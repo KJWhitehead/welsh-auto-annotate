@@ -10,20 +10,38 @@
     max-width: 700px;
     margin: 40px auto;
     line-height: 1.6;
+    padding: 0 20px;
   }
 
   textarea {
     width: 100%;
     height: 150px;
     font-size: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+
+  .glossary-input {
+    height: 80px;
+    font-family: monospace;
+    background-color: #f9f9f9;
   }
 
   button {
-    padding: 8px 16px;
+    padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
+    background-color: #0056b3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
   }
+
+  button:hover {
+    background-color: #004085;
+  }
+
 
   .annotated {
     position: relative;
@@ -50,16 +68,26 @@
     visibility: visible;
     opacity: 1;
   }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
 </style>
 </head>
 
 <body>
 
 <h2>Welsh Auto‑Annotation Tool</h2>
-
-<p>Paste any Welsh text below and click <strong>Annotate</strong>:</p>
-
+<!-- Main Text Input -->
+<label for="inputText">Welsh Text to Annotate:</label>
 <textarea id="inputText" placeholder="Rhowch eich testun Cymraeg yma..."></textarea>
+
+<!-- Dynamic Glossary Input -->
+<label for="customGlossary">Add Custom Words (Format: word : translation, one per line):</label>
+<textarea id="customGlossary" class="glossary-input" placeholder="cath : cat&#10;ci : dog&#10;gardd : garden"></textarea>
+
 <button onclick="runAnnotation()">Annotate</button>
 
 <div id="output"></div>
@@ -240,6 +268,30 @@ const glossary = {
   "pwrs": "purse"
 };
 
+// Global active glossary that builds upon the base
+let glossary = { ...baseGlossary };
+
+// --- PARSE USER CUSTOM GLOSSARY ---
+function updateGlossaryWithCustomInputs() {
+  // Reset back to base so old custom items don't accidentally linger if deleted
+  glossary = { ...baseGlossary };
+  
+  const customText = document.getElementById("customGlossary").value;
+  const lines = customText.split("\n");
+  
+  lines.forEach(line => {
+    // Only look at lines containing a colon divider
+    if (line.includes(":")) {
+      let [key, val] = line.split(":");
+      key = key.trim().toLowerCase();
+      val = val.trim();
+      
+      if (key && val) {
+        glossary[key] = val;
+      }
+    }
+  });
+}
 
 // --- SAFE WELSH MUTATION NORMALISATION ---
 function normalise(word, glossary) {
