@@ -202,12 +202,12 @@ const glossary = {
 "coeden deuluol": "a family tree",
 "coedwig": "a forest",
 "coedwigoedd": "forests",
-"cofiant": "a biography; 
+"cofiant": "a biography",
 "cofiannau": "biographies",
 "cofion": "regards",
 "cofion cynnes": "warm regards",
 "cofrestru": "to register",
-"coleg": "a college; 
+"coleg": "a college",
 "colegau": "colleges",
 "coll": "lost",
 "colli": "to lose",
@@ -269,7 +269,7 @@ const glossary = {
 "diffodd": "to switch off, to extinguish",
 "digartref": "homeless",
 "digidol": "digital",
-"dilyn": "o follow",
+"dilyn": "to follow",
 "dinas": "a city",
 "dinasoedd": "cities",
 "diolch byth": "thank goodness",
@@ -321,7 +321,7 @@ const glossary = {
 "eitem": "an item",
 "eitemau": "items",
 "eleni": "this year",
-  "eli haul": "suncream"
+  "eli haul": "suncream",
 "eliffant": "an elephant", 
 "eliffantod": "elephants",
 "elusen": "a charity",
@@ -398,7 +398,7 @@ const glossary = {
 "glo": "coal",
 "glöwr": "collier",
 "glowyr": "colliers",
-"gofalu ": "to look after, to care (am/for)",
+"gofalu": "to look after, to care (am/for)",
 "gog": "a Northwalian",
 "gogs": "Northwalians",
 "gôl": "a goal",
@@ -575,7 +575,7 @@ const glossary = {
   
 // --- SAFE WELSH MUTATION & VERB STEM NORMALISATION ---
 function normalise(word, glossary) {
-  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F]+|[^\w\u00C0-\u017F]+$/g, "");
+  let w = word.toLowerCase() .replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
 
   if (!w) return null;
 
