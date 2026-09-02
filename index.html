@@ -67,19 +67,133 @@
 <script>
 // --- YOUR WELSH GLOSSARY ---
 const glossary = {
-  "gofalodd": "He took care / made sure",
-  "mynd": "To go",
-  "gweld": "To see",
-  "parc": "Park",
-  "boced": "Pocket",
-  "sâl": "Ill / sick"
+  // A2 verbs
+  "mynd": "to go",
+  "dod": "to come",
+  "gweld": "to see",
+  "rhoi": "to give / put",
+  "cymryd": "to take",
+  "gofyn": "to ask",
+  "ateb": "to answer",
+  "bod": "to be",
+  "cael": "to get / have",
+  "dweud": "to say / tell",
+
+  // A2 nouns
+  "tŷ": "house",
+  "parc": "park",
+  "drws": "door",
+  "car": "vehicle",
+  "boced": "pocket",
+  "pêl": "ball",
+  "coed": "trees / woods",
+  "heddlu": "police",
+  "bachgen": "boy",
+  "merch": "girl",
+
+  // A2 adjectives
+  "hapus": "happy",
+  "sâl": "ill",
+  "mawr": "big",
+  "bach": "small",
+
+  // A2 function words
+  "wrth": "at / by",
+  "gyda": "with",
+  "i": "to",
+  "yn": "in / -ing marker",
+  "ar": "on",
+
+  // B1 verbs
+  "gofalodd": "he made sure / took care",
+  "ymddangos": "to appear",
+  "symud": "to move",
+  "edrych": "to look",
+  "teimlo": "to feel",
+  "credu": "to believe",
+  "disgrifio": "to describe",
+
+  // B1 nouns
+  "sylw": "attention / notice",
+  "achos": "cause / case",
+  "rheswm": "reason",
+  "sŵn": "noise",
+  "golwg": "sight / view",
+  "teimlad": "feeling",
+
+  // B1 adjectives
+  "pryderus": "worried",
+  "difrifol": "serious",
+  "arall": "other",
+  "cyflym": "fast",
+
+  // B1 connectors
+  "felly": "so / therefore",
+  "er hynny": "nevertheless",
+  "hefyd": "also",
+  "oherwydd": "because"
 };
 
-// --- AUTO‑ANNOTATION ENGINE ---
+
+// --- SAFE WELSH MUTATION NORMALISATION ---
+function normalise(word, glossary) {
+  let w = word.toLowerCase().replace(/^[^\w]+|[^\w]+$/g, "");
+
+  // 1. Try exact match
+  if (glossary[w]) return w;
+
+  // 2. Soft mutation reversals
+  const soft = {
+    "f": "b",
+    "dd": "d",
+    "g": "c",
+    "ph": "p",
+    "th": "t"
+  };
+  for (const mut in soft) {
+    if (w.startsWith(mut)) {
+      const candidate = w.replace(new RegExp("^" + mut), soft[mut]);
+      if (glossary[candidate]) return candidate;
+    }
+  }
+
+  // 3. Nasal mutation reversals
+  const nasal = {
+    "mh": "m",
+    "nh": "n",
+    "ngh": "c",
+    "ng": "g"
+  };
+  for (const mut in nasal) {
+    if (w.startsWith(mut)) {
+      const candidate = w.replace(new RegExp("^" + mut), nasal[mut]);
+      if (glossary[candidate]) return candidate;
+    }
+  }
+
+  // 4. Aspirate mutation reversals
+  const aspirate = {
+    "ch": "c",
+    "ll": "l",
+    "rh": "r"
+  };
+  for (const mut in aspirate) {
+    if (w.startsWith(mut)) {
+      const candidate = w.replace(new RegExp("^" + mut), aspirate[mut]);
+      if (glossary[candidate]) return candidate;
+    }
+  }
+
+  // 5. No match found
+  return w;
+}
+
+
+// --- AUTO‑ANNOTATION ENGINE WITH MUTATION SUPPORT ---
 function annotate(text, glossary) {
   const words = text.split(/\b/);
   return words.map(word => {
-    const clean = word.toLowerCase();
+    const clean = normalise(word, glossary);
     if (glossary[clean]) {
       return `
         <span class="annotated">${word}
@@ -89,6 +203,7 @@ function annotate(text, glossary) {
     return word;
   }).join("");
 }
+
 
 // --- RUN ANNOTATION ---
 function runAnnotation() {
