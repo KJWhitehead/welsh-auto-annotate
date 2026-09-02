@@ -445,40 +445,72 @@ const glossary = {
   "pupur": "pepper",
   "pwdin": "pudding",
   "pwnc": "subject",
-  "pwrs": "purse"
+  "pwrs": "purse",
 };
-
-// --- SAFE WELSH MUTATION NORMALISATION ---
+  
+// --- SAFE WELSH MUTATION & VERB STEM NORMALISATION ---
 function normalise(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F]+|[^\w\u00C0-\u017F]+$/g, "");
 
   if (!w) return null;
-  if (glossary[w]) return w;
 
-  // Soft mutation reversals
-  const soft = { "f": "b", "dd": "d", "g": "c", "ph": "p", "th": "t" };
-  for (const mut in soft) {
-    if (w.startsWith(mut)) {
-      const candidate = w.replace(new RegExp("^" + mut), soft[mut]);
-      if (glossary[candidate]) return candidate;
+  // 1. Core lookup helper that matches exact words or their base mutations
+  function findMatch(candidate) {
+    if (glossary[candidate]) return candidate;
+
+    // Soft mutations
+    const soft = { "f": "b", "dd": "d", "g": "c", "ph": "p", "th": "t" };
+    for (const mut in soft) {
+      if (candidate.startsWith(mut)) {
+        const root = candidate.replace(new RegExp("^" + mut), soft[mut]);
+        if (glossary[root]) return root;
+      }
     }
+
+    // Nasal mutations
+    const nasal = { "mh": "m", "nh": "n", "ngh": "c", "ng": "g" };
+    for (const mut in nasal) {
+      if (candidate.startsWith(mut)) {
+        const root = candidate.replace(new RegExp("^" + mut), nasal[mut]);
+        if (glossary[root]) return root;
+      }
+    }
+
+    // Aspirate mutations
+    const aspirate = { "ch": "c", "ll": "l", "rh": "r" };
+    for (const mut in aspirate) {
+      if (candidate.startsWith(mut)) {
+        const root = candidate.replace(new RegExp("^" + mut), aspirate[mut]);
+        if (glossary[root]) return root;
+      }
+    }
+    return null;
   }
 
-  // Nasal mutation reversals
-  const nasal = { "mh": "m", "nh": "n", "ngh": "c", "ng": "g" };
-  for (const mut in nasal) {
-    if (w.startsWith(mut)) {
-      const candidate = w.replace(new RegExp("^" + mut), nasal[mut]);
-      if (glossary[candidate]) return candidate;
-    }
-  }
+  // 2. Look for an exact match or mutation first
+  let directMatch = findMatch(w);
+  if (directMatch) return directMatch;
 
-  // Aspirate mutation reversals
-  const aspirate = { "ch": "c", "ll": "l", "rh": "r" };
-  for (const mut in aspirate) {
-    if (w.startsWith(mut)) {
-      const candidate = w.replace(new RegExp("^" + mut), aspirate[mut]);
-      if (glossary[candidate]) return candidate;
+  // 3. Past tense inflections to strip
+  const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
+
+  for (const suffix of verbSuffixes) {
+    if (w.endsWith(suffix) && w.length > suffix.length) {
+      const nakedStem = w.slice(0, -suffix.length);
+      
+      // Check if the stripped stem matches a raw dictionary root directly (like "dilyn")
+      let stemMatch = findMatch(nakedStem);
+      if (stemMatch) return stemMatch;
+
+      // FUZZY INFINITIVE CHECK (The "Tynnu" fix):
+      // If we didn't find the stem, check if adding common infinitive verb-noun endings 
+      // results in a valid dictionary word.
+      const infinitiveEndings = ["u", "i", "o", "io", "a"];
+      for (const inf of infinitiveEndings) {
+        let reconstructedVerb = nakedStem + inf;
+        let fuzzyMatch = findMatch(reconstructedVerb);
+        if (fuzzyMatch) return fuzzyMatch;
+      }
     }
   }
 
