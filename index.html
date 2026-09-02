@@ -634,7 +634,7 @@ const glossary = {
   
 // --- SAFE WELSH MUTATION & VERB STEM NORMALISATION ---
 function normalise(word, glossary) {
-  let w = word.toLowerCase() .replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
+  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
 
   if (!w) return null;
 
@@ -643,7 +643,7 @@ function normalise(word, glossary) {
     if (glossary[candidate]) return candidate;
 
     // Soft mutations
-    const soft = { "f": "b", "dd": "d", "g": "c", "ph": "p", "th": "t" };
+    const soft = { "f": "b", "dd": "d", "g": "c", "ph": "p", "th": "t", "d": "t", "b": "p"};
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
         const root = candidate.replace(new RegExp("^" + mut), soft[mut]);
