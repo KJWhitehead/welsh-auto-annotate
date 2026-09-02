@@ -19,12 +19,9 @@
     font-size: 1em;
     margin-bottom: 15px;
     box-sizing: border-box;
-  }
-
-  .glossary-input {
-    height: 80px;
-    font-family: monospace;
-    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
   }
 
   button {
@@ -41,7 +38,6 @@
   button:hover {
     background-color: #004085;
   }
-
 
   .annotated {
     position: relative;
@@ -80,20 +76,17 @@
 <body>
 
 <h2>Welsh Auto‑Annotation Tool</h2>
-<!-- Main Text Input -->
+  
+<!-- MAIN RE-SECURED INTERFACE -->
 <label for="inputText">Welsh Text to Annotate:</label>
 <textarea id="inputText" placeholder="Rhowch eich testun Cymraeg yma..."></textarea>
-
-<!-- Dynamic Glossary Input -->
-<label for="customGlossary">Add Custom Words (Format: word : translation, one per line):</label>
-<textarea id="customGlossary" class="glossary-input" placeholder="cath : cat&#10;ci : dog&#10;gardd : garden"></textarea>
-
-<button onclick="runAnnotation()">Annotate</button>
+<button onclick="runAnnotation()">Annotate Text</button>
 
 <div id="output"></div>
 
 <script>
-// --- YOUR WELSH GLOSSARY ---
+  
+// --- YOUR BASE WELSH GLOSSARY ---
 const glossary = {
   "acen": "accent",
   "achos": "cause, case (legal)",
@@ -268,42 +261,14 @@ const glossary = {
   "pwrs": "purse"
 };
 
-// Global active glossary that builds upon the base
-let glossary = { ...baseGlossary };
-
-// --- PARSE USER CUSTOM GLOSSARY ---
-function updateGlossaryWithCustomInputs() {
-  // Reset back to base so old custom items don't accidentally linger if deleted
-  glossary = { ...baseGlossary };
-  
-  const customText = document.getElementById("customGlossary").value;
-  const lines = customText.split("\n");
-  
-  lines.forEach(line => {
-    // Only look at lines containing a colon divider
-    if (line.includes(":")) {
-      let [key, val] = line.split(":");
-      key = key.trim().toLowerCase();
-      val = val.trim();
-      
-      if (key && val) {
-        glossary[key] = val;
-      }
-    }
-  });
-}
-
 // --- SAFE WELSH MUTATION NORMALISATION ---
 function normalise(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F]+|[^\w\u00C0-\u017F]+$/g, "");
 
-  // If it's empty string after stripping punctuation, stop immediately
   if (!w) return null;
-
-  // 1. Try exact match
   if (glossary[w]) return w;
 
-  // 2. Soft mutation reversals
+  // Soft mutation reversals
   const soft = { "f": "b", "dd": "d", "g": "c", "ph": "p", "th": "t" };
   for (const mut in soft) {
     if (w.startsWith(mut)) {
@@ -312,7 +277,7 @@ function normalise(word, glossary) {
     }
   }
 
-  // 3. Nasal mutation reversals
+  // Nasal mutation reversals
   const nasal = { "mh": "m", "nh": "n", "ngh": "c", "ng": "g" };
   for (const mut in nasal) {
     if (w.startsWith(mut)) {
@@ -321,7 +286,7 @@ function normalise(word, glossary) {
     }
   }
 
-  // 4. Aspirate mutation reversals
+  // Aspirate mutation reversals
   const aspirate = { "ch": "c", "ll": "l", "rh": "r" };
   for (const mut in aspirate) {
     if (w.startsWith(mut)) {
@@ -330,27 +295,21 @@ function normalise(word, glossary) {
     }
   }
 
-  // 5. No match found - return null explicitly so we know it's not in the glossary
   return null;
 }
 
-// --- AUTO‑ANNOTATION ENGINE WITH MUTATION SUPPORT ---
+// --- AUTO‑ANNOTATION ENGINE ---
 function annotate(text, glossary) {
-  // Use a cleaner splitting regex that keeps Welsh accented letters intact
   const words = text.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
   
   return words.map(word => {
     const clean = normalise(word, glossary);
-    
-    // Only wrap the word in HTML if normalise actually found a valid dictionary key!
     if (clean && glossary[clean]) {
-      return `
-        <span class="annotated">${word}<span class="tooltip">${glossary[clean]}</span></span>`;
+      return `<span class="annotated">${word}<span class="tooltip">${glossary[clean]}</span></span>`;
     }
     return word;
   }).join("");
 }
-
 
 // --- RUN ANNOTATION ---
 function runAnnotation() {
