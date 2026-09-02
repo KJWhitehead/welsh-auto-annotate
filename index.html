@@ -297,14 +297,19 @@ function normalise(word, glossary) {
 
 // --- AUTO‑ANNOTATION ENGINE WITH MUTATION SUPPORT ---
 function annotate(text, glossary) {
-  const words = text.split(/\b/);
+  // Splits text into words while keeping punctuation separated, supporting Welsh characters
+  const words = text.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
+  
   return words.map(word => {
+    // If it's a structural whitespace or punctuation snippet, don't try to normalise it
+    if (!/[a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]/.test(word)) {
+      return word;
+    }
+
     const clean = normalise(word, glossary);
     if (glossary[clean]) {
       return `
-        <span class="annotated">${word}
-          <span class="tooltip">${glossary[clean]}</span>
-        </span>`;
+        <span class="annotated">${word}<span class="tooltip">${glossary[clean]}</span></span>`;
     }
     return word;
   }).join("");
