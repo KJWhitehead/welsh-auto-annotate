@@ -12,6 +12,19 @@
     line-height: 1.6;
   }
 
+  textarea {
+    width: 100%;
+    height: 150px;
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+
   .annotated {
     position: relative;
     cursor: help;
@@ -44,35 +57,29 @@
 
 <h2>Welsh Auto‑Annotation Tool</h2>
 
-<p id="output"></p>
+<p>Paste any Welsh text below and click <strong>Annotate</strong>:</p>
+
+<textarea id="inputText" placeholder="Rhowch eich testun Cymraeg yma..."></textarea>
+<button onclick="runAnnotation()">Annotate</button>
+
+<div id="output"></div>
 
 <script>
 // --- YOUR WELSH GLOSSARY ---
 const glossary = {
-  "dysgu": "to learn / to teach",
-  "ysgol": "school",
-  "athro": "teacher",
-  "cymraeg": "Welsh language",
-  "mynd": "to go",
-  "gwneud": "to do / make",
-  "bwyd": "food"
+  "gofalodd": "He took care / made sure",
+  "mynd": "To go",
+  "gweld": "To see",
+  "parc": "Park",
+  "boced": "Pocket",
+  "sâl": "Ill / sick"
 };
-
-// --- BASIC MUTATION SUPPORT ---
-function normalise(word) {
-  return word
-    .toLowerCase()
-    .replace(/^d?d/, "d")   // soft mutation dd → d
-    .replace(/^g?g/, "g")   // soft mutation ng → g
-    .replace(/^b?f/, "b")   // soft mutation f → b
-    .replace(/^c?g/, "c");  // soft mutation g → c
-}
 
 // --- AUTO‑ANNOTATION ENGINE ---
 function annotate(text, glossary) {
   const words = text.split(/\b/);
   return words.map(word => {
-    const clean = normalise(word);
+    const clean = word.toLowerCase();
     if (glossary[clean]) {
       return `
         <span class="annotated">${word}
@@ -83,10 +90,11 @@ function annotate(text, glossary) {
   }).join("");
 }
 
-// --- YOUR WELSH TEXT ---
-const text = `Dw i'n dysgu Cymraeg yn yr ysgol ac mae'r athro yn helpu fi bob dydd.`;
-
-document.getElementById("output").innerHTML = annotate(text, glossary);
+// --- RUN ANNOTATION ---
+function runAnnotation() {
+  const text = document.getElementById("inputText").value;
+  document.getElementById("output").innerHTML = annotate(text, glossary);
+}
 </script>
 
 </body>
