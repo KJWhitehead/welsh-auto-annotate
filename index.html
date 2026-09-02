@@ -245,17 +245,14 @@ const glossary = {
 function normalise(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F]+|[^\w\u00C0-\u017F]+$/g, "");
 
+  // If it's empty string after stripping punctuation, stop immediately
+  if (!w) return null;
+
   // 1. Try exact match
   if (glossary[w]) return w;
 
   // 2. Soft mutation reversals
-  const soft = {
-    "f": "b",
-    "dd": "d",
-    "g": "c",
-    "ph": "p",
-    "th": "t"
-  };
+  const soft = { "f": "b", "dd": "d", "g": "c", "ph": "p", "th": "t" };
   for (const mut in soft) {
     if (w.startsWith(mut)) {
       const candidate = w.replace(new RegExp("^" + mut), soft[mut]);
@@ -264,12 +261,7 @@ function normalise(word, glossary) {
   }
 
   // 3. Nasal mutation reversals
-  const nasal = {
-    "mh": "m",
-    "nh": "n",
-    "ngh": "c",
-    "ng": "g"
-  };
+  const nasal = { "mh": "m", "nh": "n", "ngh": "c", "ng": "g" };
   for (const mut in nasal) {
     if (w.startsWith(mut)) {
       const candidate = w.replace(new RegExp("^" + mut), nasal[mut]);
@@ -278,11 +270,7 @@ function normalise(word, glossary) {
   }
 
   // 4. Aspirate mutation reversals
-  const aspirate = {
-    "ch": "c",
-    "ll": "l",
-    "rh": "r"
-  };
+  const aspirate = { "ch": "c", "ll": "l", "rh": "r" };
   for (const mut in aspirate) {
     if (w.startsWith(mut)) {
       const candidate = w.replace(new RegExp("^" + mut), aspirate[mut]);
@@ -290,24 +278,20 @@ function normalise(word, glossary) {
     }
   }
 
-  // 5. No match found
-  return w;
+  // 5. No match found - return null explicitly so we know it's not in the glossary
+  return null;
 }
-
 
 // --- AUTO‑ANNOTATION ENGINE WITH MUTATION SUPPORT ---
 function annotate(text, glossary) {
-  // Splits text into words while keeping punctuation separated, supporting Welsh characters
+  // Use a cleaner splitting regex that keeps Welsh accented letters intact
   const words = text.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
   
   return words.map(word => {
-    // If it's a structural whitespace or punctuation snippet, don't try to normalise it
-    if (!/[a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]/.test(word)) {
-      return word;
-    }
-
     const clean = normalise(word, glossary);
-    if (glossary[clean]) {
+    
+    // Only wrap the word in HTML if normalise actually found a valid dictionary key!
+    if (clean && glossary[clean]) {
       return `
         <span class="annotated">${word}<span class="tooltip">${glossary[clean]}</span></span>`;
     }
