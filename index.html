@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="cy">
+<head>
+<meta charset="UTF-8">
+<title>Welsh Auto‑Annotation Tool</title>
+
+<style>
+  body {
+    font-family: sans-serif;
+    max-width: 700px;
+    margin: 40px auto;
+    line-height: 1.6;
+  }
+
+  .annotated {
+    position: relative;
+    cursor: help;
+    border-bottom: 1px dotted #888;
+  }
+
+  .tooltip {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+    position: absolute;
+    bottom: 120%;
+    left: 0;
+    background: #333;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    z-index: 10;
+  }
+
+  .annotated:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+</head>
+
+<body>
+
+<h2>Welsh Auto‑Annotation Tool</h2>
+
+<p id="output"></p>
+
+<script>
+// --- YOUR WELSH GLOSSARY ---
+const glossary = {
+  "dysgu": "to learn / to teach",
+  "ysgol": "school",
+  "athro": "teacher",
+  "cymraeg": "Welsh language",
+  "mynd": "to go",
+  "gwneud": "to do / make",
+  "bwyd": "food"
+};
+
+// --- BASIC MUTATION SUPPORT ---
+function normalise(word) {
+  return word
+    .toLowerCase()
+    .replace(/^d?d/, "d")   // soft mutation dd → d
+    .replace(/^g?g/, "g")   // soft mutation ng → g
+    .replace(/^b?f/, "b")   // soft mutation f → b
+    .replace(/^c?g/, "c");  // soft mutation g → c
+}
+
+// --- AUTO‑ANNOTATION ENGINE ---
+function annotate(text, glossary) {
+  const words = text.split(/\b/);
+  return words.map(word => {
+    const clean = normalise(word);
+    if (glossary[clean]) {
+      return `
+        <span class="annotated">${word}
+          <span class="tooltip">${glossary[clean]}</span>
+        </span>`;
+    }
+    return word;
+  }).join("");
+}
+
+// --- YOUR WELSH TEXT ---
+const text = `Dw i'n dysgu Cymraeg yn yr ysgol ac mae'r athro yn helpu fi bob dydd.`;
+
+document.getElementById("output").innerHTML = annotate(text, glossary);
+</script>
+
+</body>
+</html>
