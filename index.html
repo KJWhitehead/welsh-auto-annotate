@@ -151,16 +151,32 @@ let runtimeGlossary = {};
 
 function compileActiveGlossary() {
   runtimeGlossary = {};
+  
   const useMynediad = document.getElementById('chkMynediad').checked;
   const useSylfaen = document.getElementById('chkSylfaen').checked;
   
-  if (useMynediad && typeof mynediadGlossary !== 'undefined') {
-    Object.assign(runtimeGlossary, mynediadGlossary);
+  // Helper function to safely merge words into our active runtime dictionary
+  function mergeSource(sourceGlossary) {
+    if (typeof sourceGlossary === 'undefined') return;
+    
+    for (const key in sourceGlossary) {
+      const cleanKey = key.trim().toLowerCase();
+      const translation = sourceGlossary[key];
+      
+      if (runtimeGlossary[cleanKey]) {
+        // IF THE WORD ALREADY EXISTS: Check if this specific translation is unique
+        const currentDefs = runtimeGlossary[cleanKey].split(" / ");
+        if (!currentDefs.includes(translation)) {
+          // Append the new definition using a clean divider
+          runtimeGlossary[cleanKey] += " / " + translation;
+        }
+      } else {
+        // IF THE WORD IS NEW: Just add it normally
+        runtimeGlossary[cleanKey] = translation;
+      }
+    }
   }
-  if (useSylfaen && typeof sylfaenGlossary !== 'undefined') {
-    Object.assign(runtimeGlossary, sylfaenGlossary);
-  }
-}
+
   
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
