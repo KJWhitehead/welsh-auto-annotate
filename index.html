@@ -777,16 +777,31 @@ function normalise(word, glossary) {
 
   if (!w) return null;
 
-  // 1. Core lookup helper that matches exact words or their base mutations
   function findMatch(candidate) {
     if (glossary[candidate]) return candidate;
 
-    // Soft mutations
-    const soft = { "f": "b", "dd": "d", "g": "c", "ph": "p", "th": "t", "d": "t", "b": "p"};
+    // Soft mutations 
+    // Note: "f" points to an array because it can reverse to BOTH "b" and "m"
+    const soft = { 
+      "f": ["b", "m"], 
+      "dd": ["d"], 
+      "g": ["c"], 
+      "ph": ["p"], 
+      "th": ["t"], 
+      "d": ["t"], 
+      "b": ["p"], 
+      "m": ["ll"] 
+    };
+
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
-        const root = candidate.replace(new RegExp("^" + mut), soft[mut]);
-        if (glossary[root]) return root;
+        // Get all possible original letters for this mutation prefix
+        const targets = soft[mut]; 
+        
+        for (const target of targets) {
+          const root = candidate.replace(new RegExp("^" + mut), target);
+          if (glossary[root]) return root;
+        }
       }
     }
 
@@ -810,24 +825,18 @@ function normalise(word, glossary) {
     return null;
   }
 
-  // 2. Look for an exact match or mutation first
   let directMatch = findMatch(w);
   if (directMatch) return directMatch;
 
-  // 3. Past tense inflections to strip
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
 
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
       
-      // Check if the stripped stem matches a raw dictionary root directly (like "dilyn")
       let stemMatch = findMatch(nakedStem);
       if (stemMatch) return stemMatch;
 
-      // FUZZY INFINITIVE CHECK (The "Tynnu" fix):
-      // If we didn't find the stem, check if adding common infinitive verb-noun endings 
-      // results in a valid dictionary word.
       const infinitiveEndings = ["u", "i", "o", "io", "a"];
       for (const inf of infinitiveEndings) {
         let reconstructedVerb = nakedStem + inf;
@@ -842,14 +851,36 @@ function normalise(word, glossary) {
 
 // --- AUTO‑ANNOTATION ENGINE ---
 function annotate(text, glossary) {
-  const words = text.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
+  const phrases = Object.keys(glossary).filter(key => key.includes(" "));
+  phrases.sort((a, b) => b.length - a.length);
+
+  let processedText = text;
+
+  phrases.forEach(phrase => {
+    const safePhrase = phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
+    
+    processedText = processedText.replace(regex, (match) => {
+      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
+    });
+  });
+
+  const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
   
-  return words.map(word => {
-    const clean = normalise(word, glossary);
-    if (clean && glossary[clean]) {
-      return `<span class="annotated">${word}<span class="tooltip">${glossary[clean]}</span></span>`;
+  return tokens.map(token => {
+    if (token.startsWith("___PHRASE_START___")) {
+      const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
+      return `<span class="annotated">${parts[0]}<span class="tooltip">${parts[1]}</span></span>`;
     }
-    return word;
+
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
+    return words.map(word => {
+      const clean = normalise(word, glossary);
+      if (clean && glossary[clean]) {
+        return `<span class="annotated">${word}<span class="tooltip">${glossary[clean]}</span></span>`;
+      }
+      return word;
+    }).join("");
   }).join("");
 }
 
