@@ -88,34 +88,81 @@
   
 // --- YOUR BASE WELSH GLOSSARY ---
 const glossary = {
-  "acen": "accent",
+"acen": "accent",
+  "acenion": "accents",
+  "actio": "to act",
   "achos": "cause, case (legal)",
-  "achub": "save, rescue",
+  "achosion": "causes, cases (legal)",
+  "achub": "to save, to rescue",
   "adar": "birds",
   "adeilad": "building",
+  "adeiladau": "buildings",
   "aderyn": "bird",
+  "adloniant": "entertainment",
+  "adloniannau": "entertainments",
+  "adroddiad": "report",
+  "adroddiadau": "reports",
   "addas": "suitable",
-  "addurno": "decorate",
+  "addurno": "to decorate",
   "addysg": "education",
   "aelod": "member",
+  "aelodau": "members",
   "agos": "near",
-  "anghytuno": "disagree (with)",
+  "anghytuno": "to disagree (with)",
   "angladd": "funeral",
-  "albanwr": "Scot",
-  "almaen": "Germany",
+  "angladdau": "funerals",
+  "Albanes": "Scottish woman",
+  "Albanesau": "Scottish women",
+  "Albanwr": "Scot",
+  "Albanwyr": "Scots",
+  "Almaen": "Germany",
+  "Almaeneg": "German (language)",
+  "Almaenes": "German woman",
+  "Almaenesau": "German women",
+  "Almaenwr": "German man",
+  "Almaenwyr": "Germans",
   "allwedd": "key",
-  "americanwr": "American (man)",
+  "allweddi": "keys",
+  "Americanes": "American woman",
+  "Americanesau": "American women",
+  "Americanwr": "American man",
+  "Americanwyr": "Americans",
   "amlen": "envelope",
+  "amlenni": "envelopes",
   "amserlen": "timetable",
-  "anfon": "send",
+  "amserlenni": "timetables",
+  "amyneddgar": "patient",
+  "anabl": "disabled",
+  "anfon": "to send",
   "anhygoel": "incredible",
+  "anobeithiol": "hopeless",
   "antur": "adventure",
+  "anturiau": "adventures",
+  "anturus": "adventurous",
+  "ar ben fy hun": "on my own (North Wales)",
+  "ar bwys": "near (South Wales)",
+  "archebu": "to book, to reserve, to order",
   "archfarchnad": "supermarket",
+  "archfarchnadoedd": "supermarkets",
   "ardal": "area",
-  "arian": "money, silver",
-  "arlunio": "draw, paint",
-  "astudio": "study",
-  "awyr": "air, sky",
+  "ardaloedd": "areas",
+  "ar fai": "to blame, at fault",
+  "arfordir": "coast",
+  "arfordiroedd": "coasts",
+  "ar fy mhen fy hun": "on my own (South Wales)",
+  "arian": "money; silver",
+  "arian parod": "cash",
+  "ar-lein": "online",
+  "arlunio": "to draw, to paint",
+  "ar ran": "on behalf of",
+  "arswyd": "horror",
+  "ar wahân": "separate",
+  "ar yr un pryd": "at the same time",
+  "astudio": "to study",
+  "atig": "attic",
+  "atigau": "attics",
+  "awr ginio": "lunch hour",
+  "awyr": "air; sky",
   "balch": "proud, pleased",
   "baner": "flag, banner",
   "bardd": "poet",
@@ -283,6 +330,42 @@ const glossary = {
 "cychoeddi": "to announce, to publish",
 "cyhoeddiad": "an announcement",
 "cyhoeddiadau": "announcements",
+  "cylch": "a circle",
+"cylchoedd": "circles",
+"cylch meithrin": "a pre-school nursery",
+"cylchfan": "a roundabout",
+"cylchfannau": "roundabouts",
+"cylchgrawn": "a magazine",
+"cyclgronau": "magazines",
+"cyllell": "a knife",
+"cyllyll": "knives",
+"cymdeithas": "a society",
+"cymdeithasau": "societies",
+"cymdeithas rieni": "parents' association",
+"cymdeithasu": "to socialise",
+"cymeriad": "a character",
+"cymeriadau": "characters",
+"cymreig": "Welsh",
+"cymuned": "a community",
+"cymunedau": "communities",
+"cymylau": "clouds",
+"cynffon": "a tail",
+"cynffonnau": "tails",
+"cynnig": "an offer",
+"cynigion": "offers",
+"cynulleidfa": "an audience, a congregation",
+"cynulleidfaoedd": "audiences, congregations",
+"cyrliog": "curly",
+"cysylltiad": "a contact, a connection",
+"cysylltu": "to contact, to connect (with/a)",
+"cytundeb": "a contract",
+"cytundebau": "contracts",
+"cyw": "a chick",
+"cywion": "chicks",
+"cywir": "correct",
+"chwarae teg": "fair play",
+"chwaraewr": "a player",
+"chwaraewyr": "players",
   "chwerw": "bitter",
 "chwilio": "to search (am/for)",
 "chwyrnu": "to snore",
@@ -811,6 +894,8 @@ const glossary = {
 "cachlyd": "shitty",
 "bechod": "oh, bless!",
 "snichyn": "creep",
+"pen pidyn": "dickhead",
+"penpidyn": "dickhead",
 };
   
 // --- SAFE WELSH MUTATION & VERB STEM NORMALISATION ---
@@ -820,26 +905,23 @@ function normalise(word, glossary) {
   if (!w) return null;
 
   function findMatch(candidate) {
+    // 1. Direct dictionary check
     if (glossary[candidate]) return candidate;
 
-    // Soft mutations 
-    // Note: "f" points to an array because it can reverse to BOTH "b" and "m"
+    // 2. SOFT MUTATION REVERSALS
     const soft = { 
+      "g": ["c"], 
+      "b": ["p"], 
+      "d": ["t"], 
       "f": ["b", "m"], 
       "dd": ["d"], 
-      "g": ["c"], 
-      "ph": ["p"], 
-      "th": ["t"], 
-      "d": ["t"], 
-      "b": ["p"], 
-      "m": ["ll"] 
+      "l": ["ll"], 
+      "r": ["rh"] 
     };
 
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
-        // Get all possible original letters for this mutation prefix
         const targets = soft[mut]; 
-        
         for (const target of targets) {
           const root = candidate.replace(new RegExp("^" + mut), target);
           if (glossary[root]) return root;
@@ -847,25 +929,78 @@ function normalise(word, glossary) {
       }
     }
 
-    // Nasal mutations
-    const nasal = { "mh": "m", "nh": "n", "ngh": "c", "ng": "g" };
+    // 3. NASAL MUTATION REVERSALS
+    // Updated to make sure "m" checks for "b", and "n" checks for "d"
+    const nasal = { 
+      "ngh": ["c"], 
+      "mh": ["p"], 
+      "nh": ["t"], 
+      "ng": ["g"],
+      "m": ["b"], 
+      "n": ["d"] 
+    };
+
     for (const mut in nasal) {
       if (candidate.startsWith(mut)) {
-        const root = candidate.replace(new RegExp("^" + mut), nasal[mut]);
-        if (glossary[root]) return root;
+        const targets = nasal[mut];
+        for (const target of targets) {
+          const root = candidate.replace(new RegExp("^" + mut), target);
+          if (glossary[root]) return root;
+        }
       }
     }
 
-    // Aspirate mutations
-    const aspirate = { "ch": "c", "ll": "l", "rh": "r" };
+    // 4. ASPIRATE MUTATION REVERSALS
+    const aspirate = { 
+      "ch": ["c"], 
+      "ph": ["p"], 
+      "th": ["t"] 
+    };
+
     for (const mut in aspirate) {
       if (candidate.startsWith(mut)) {
-        const root = candidate.replace(new RegExp("^" + mut), aspirate[mut]);
-        if (glossary[root]) return root;
+        const targets = aspirate[mut];
+        for (const target of targets) {
+          const root = candidate.replace(new RegExp("^" + mut), target);
+          if (glossary[root]) return root;
+        }
       }
     }
+
+    // 5. DROPPED 'G' EXTRA PASS
+    if (/^[aeiouwŷâêîôû]/i.test(candidate)) {
+      const addedG = "g" + candidate;
+      if (glossary[addedG]) return addedG;
+    }
+
     return null;
   }
+
+  // Check the word shape as it is written first
+  let directMatch = findMatch(w);
+  if (directMatch) return directMatch;
+
+  // Process verb suffixes if direct word check yielded nothing
+  const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
+
+  for (const suffix of verbSuffixes) {
+    if (w.endsWith(suffix) && w.length > suffix.length) {
+      const nakedStem = w.slice(0, -suffix.length);
+      
+      let stemMatch = findMatch(nakedStem);
+      if (stemMatch) return stemMatch;
+
+      const infinitiveEndings = ["u", "i", "o", "io", "a"];
+      for (const inf of infinitiveEndings) {
+        let reconstructedVerb = nakedStem + inf;
+        let fuzzyMatch = findMatch(reconstructedVerb);
+        if (fuzzyMatch) return fuzzyMatch;
+      }
+    }
+  }
+
+  return null;
+}
 
   let directMatch = findMatch(w);
   if (directMatch) return directMatch;
