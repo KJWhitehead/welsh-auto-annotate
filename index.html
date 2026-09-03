@@ -97,6 +97,22 @@
     visibility: visible;
     opacity: 1;
   }
+
+  /* Styling for multiple choices inside a tooltip */
+  .tooltip-branch {
+    display: block;
+    border-bottom: 1px dashed #555;
+    padding: 2px 0;
+  }
+  .tooltip-branch:last-child {
+    border-bottom: none;
+  }
+  .tooltip-label {
+    color: #a7f3d0;
+    font-size: 0.85em;
+    font-weight: bold;
+    margin-right: 5px;
+  }
   
   label {
     font-weight: bold;
@@ -110,7 +126,7 @@
 
 <h2>Welsh Auto‑Annotation Tool</h2>
 
-<!-- CLEAN, UNAMBIGUOUS CHECKBOX CONTROL PANEL -->
+<!-- CONTROL PANEL -->
 <div class="control-panel">
   <label>Select Vocabulary Levels to Include:</label>
   <div class="checkbox-group">
@@ -131,99 +147,99 @@
 <div id="output"></div>
 
 <script>
-// Runtime storage for the dynamically combined glossary
 let runtimeGlossary = {};
 
-// Merge active file lists cleanly into a single target dictionary context
 function compileActiveGlossary() {
   runtimeGlossary = {};
-  
-  // Read direct checking states from the native checkbox elements
   const useMynediad = document.getElementById('chkMynediad').checked;
   const useSylfaen = document.getElementById('chkSylfaen').checked;
   
   if (useMynediad && typeof mynediadGlossary !== 'undefined') {
     Object.assign(runtimeGlossary, mynediadGlossary);
   }
-  
   if (useSylfaen && typeof sylfaenGlossary !== 'undefined') {
     Object.assign(runtimeGlossary, sylfaenGlossary);
   }
 }
   
-// --- SAFE WELSH MUTATION & VERB STEM NORMALISATION ---
-function normalise(word, glossary) {
+// --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
+function collectMatches(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
+  if (!w) return [];
 
-  if (!w) return null;
-  if (glossary[w]) return w;
+  // Use a Set to gather unique matched glossary root keys
+  let foundKeys = new Set();
 
-  function findMutationMatch(candidate) {
+  // 1. Direct match check
+  if (glossary[w]) foundKeys.add(w);
+
+  // Helper inside to check mutation maps
+  function scanMutations(candidate) {
+    // Soft Mutations
     const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
-        const targets = soft[mut]; 
-        for (const target of targets) {
+        soft[mut].forEach(target => {
           const root = candidate.replace(new RegExp("^" + mut), target);
-          if (glossary[root]) return root;
-        }
+          if (glossary[root]) foundKeys.add(root);
+        });
       }
     }
 
+    // Nasal Mutations
     const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
     for (const mut in nasal) {
       if (candidate.startsWith(mut)) {
-        const targets = nasal[mut];
-        for (const target of targets) {
+        nasal[mut].forEach(target => {
           const root = candidate.replace(new RegExp("^" + mut), target);
-          if (glossary[root]) return root;
-        }
+          if (glossary[root]) foundKeys.add(root);
+        });
       }
     }
 
+    // Aspirate Mutations
     const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
     for (const mut in aspirate) {
       if (candidate.startsWith(mut)) {
-        const targets = aspirate[mut];
-        for (const target of targets) {
+        aspirate[mut].forEach(target => {
           const root = candidate.replace(new RegExp("^" + mut), target);
-          if (glossary[root]) return root;
-        }
+          if (glossary[root]) foundKeys.add(root);
+        });
       }
     }
 
+    // Dropped 'G' Pass
     if (/^[aeiouwŷâêîôû]/i.test(candidate)) {
       const addedG = "g" + candidate;
-      if (glossary[addedG]) return addedG;
+      if (glossary[addedG]) foundKeys.add(addedG);
     }
-
-    return null;
   }
 
-  let mutationMatch = findMutationMatch(w);
-  if (mutationMatch) return mutationMatch;
+  // Scan mutations on the base word shape
+  scanMutations(w);
 
+  // 2. Verb stem processing
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
-      if (glossary[nakedStem]) return nakedStem;
       
-      let stemMutationMatch = findMutationMatch(nakedStem);
-      if (stemMutationMatch) return stemMutationMatch;
+      if (glossary[nakedStem]) foundKeys.add(nakedStem);
+      scanMutations(nakedStem);
 
       const infinitiveEndings = ["u", "i", "o", "io", "a"];
       for (const inf of infinitiveEndings) {
         let reconstructedVerb = nakedStem + inf;
-        if (glossary[reconstructedVerb]) return reconstructedVerb;
-        
-        let fuzzyMutationMatch = findMutationMatch(reconstructedVerb);
-        if (fuzzyMutationMatch) return fuzzyMutationMatch;
+        if (glossary[reconstructedVerb]) foundKeys.add(reconstructedVerb);
+        scanMutations(reconstructedVerb);
       }
     }
   }
 
-  return null;
+  // Convert Set back to an array of objects holding the root word and its definition
+  return Array.from(foundKeys).map(key => {
+    return { root: key, definition: glossary[key] };
+  });
 }
 
 // --- AUTO‑ANNOTATION ENGINE ---
@@ -252,9 +268,15 @@ function annotate(text, glossary) {
 
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
-      const clean = normalise(word, glossary);
-      if (clean && glossary[clean]) {
-        return `<span class="annotated">${word}<span class="tooltip">${glossary[clean]}</span></span>`;
+      const matches = collectMatches(word, glossary);
+      
+      // If we found one or more definitions, stack them neatly inside the tooltip!
+      if (matches.length > 0) {
+        let tooltipContent = matches.map(m => {
+          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${m.definition}</span>`;
+        }).join("");
+
+        return `<span class="annotated">${word}<span class="tooltip">${tooltipContent}</span></span>`;
       }
       return word;
     }).join("");
@@ -263,7 +285,7 @@ function annotate(text, glossary) {
 
 // --- RUN ANNOTATION ---
 function runAnnotation() {
-  compileActiveGlossary(); // Re-read checkboxes right when user hits annotate
+  compileActiveGlossary();
   const text = document.getElementById("inputText").value;
   document.getElementById("output").innerHTML = annotate(text, runtimeGlossary);
 }
