@@ -2,7 +2,7 @@
 const mynediadGlossary = {
   "a": "and (with Treiglad Llaes)",
   "a dweud y gwir": "to be honest",
-  "Abertawe": "Swansea",
+  "abertawe": "Swansea",
   "ac ati": "et cetera",
   "actor": "actor",
   "actorion": "actors",
@@ -572,7 +572,7 @@ const mynediadGlossary = {
   "gweithio": "to work",
   "gweithiwr": "worker",
   "gweithwyr": "workers",
-  "gweld": "to see,
+  "gweld": "to see",
   "gwely": "bed",
   "gwelyau": "beds",
   "gwell": "better",
@@ -948,7 +948,6 @@ const mynediadGlossary = {
   "prawf": "test",
   "profion": "tests",
   "pres": "money (North Wales), brass",
-  {
   "prif": "main, first, top, highest",
   "prifathro": "headmaster",
   "prifathrawon": "headteachers",
