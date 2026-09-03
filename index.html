@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <title>Welsh Auto‑Annotation Tool</title>
 
+<!-- LINK YOUR EXTERNAL GLOSSARIES HERE -->
+<script src="mynediad.js"></script>
+<script src="sylfaen.js"></script>
+
 <style>
   body {
     font-family: sans-serif;
@@ -11,6 +15,34 @@
     margin: 40px auto;
     line-height: 1.6;
     padding: 0 20px;
+  }
+
+  .control-panel {
+    background: #f4f6f9;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    margin-bottom: 20px;
+  }
+
+  .vocab-btn {
+    padding: 8px 16px;
+    font-size: 0.95em;
+    cursor: pointer;
+    background-color: #e5e7eb;
+    color: #374151;
+    border: 1px solid #9ca3af;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-weight: bold;
+    transition: all 0.2s;
+  }
+
+  /* Active Toggle State Styling */
+  .vocab-btn.active {
+    background-color: #10b981;
+    color: white;
+    border-color: #059669;
   }
 
   textarea {
@@ -24,7 +56,7 @@
     padding: 8px;
   }
 
-  button {
+  .btn-primary {
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
@@ -35,7 +67,7 @@
     margin-bottom: 20px;
   }
 
-  button:hover {
+  .btn-primary:hover {
     background-color: #004085;
   }
 
@@ -76,849 +108,64 @@
 <body>
 
 <h2>Welsh Auto‑Annotation Tool</h2>
+
+<!-- NEW CONTROL PANEL FOR SELECTION -->
+<div class="control-panel">
+  <label>Select Glossary Datasets to Use:</label>
+  <button id="btnMynediad" class="vocab-btn active" onclick="toggleGlossary('mynediad')">Mynediad (Entry)</button>
+  <button id="btnSylfaen" class="vocab-btn active" onclick="toggleGlossary('sylfaen')">Sylfaen (Foundation)</button>
+</div>
   
 <!-- MAIN RE-SECURED INTERFACE -->
 <label for="inputText">Welsh Text to Annotate:</label>
 <textarea id="inputText" placeholder="Rhowch eich testun Cymraeg yma..."></textarea>
-<button onclick="runAnnotation()">Annotate Text</button>
+<button class="btn-primary" onclick="runAnnotation()">Annotate Text</button>
 
 <div id="output"></div>
 
 <script>
-  
-// --- YOUR BASE WELSH GLOSSARY ---
-const glossary = {
-"acen": "accent",
-  "acenion": "accents",
-  "actio": "to act",
-  "achos": "cause, case (legal)",
-  "achosion": "causes, cases (legal)",
-  "achub": "to save, to rescue",
-  "adar": "birds",
-  "adeilad": "building",
-  "adeiladau": "buildings",
-  "aderyn": "bird",
-  "adloniant": "entertainment",
-  "adloniannau": "entertainments",
-  "adroddiad": "report",
-  "adroddiadau": "reports",
-  "addas": "suitable",
-  "addurno": "to decorate",
-  "addysg": "education",
-  "aelod": "member",
-  "aelodau": "members",
-  "agos": "near",
-  "anghytuno": "to disagree (with)",
-  "angladd": "funeral",
-  "angladdau": "funerals",
-  "albanes": "Scottish woman",
-  "albanesau": "Scottish women",
-  "albanwr": "Scot",
-  "albanwyr": "Scots",
-  "almaen": "Germany",
-  "almaeneg": "German (language)",
-  "almaenes": "German woman",
-  "almaenesau": "German women",
-  "almaenwr": "German man",
-  "almaenwyr": "Germans",
-  "allwedd": "key",
-  "allweddi": "keys",
-  "americanes": "American woman",
-  "americanesau": "American women",
-  "americanwr": "American man",
-  "americanwyr": "Americans",
-  "amlen": "envelope",
-  "amlenni": "envelopes",
-  "amserlen": "timetable",
-  "amserlenni": "timetables",
-  "amyneddgar": "patient",
-  "anabl": "disabled",
-  "anfon": "to send",
-  "anhygoel": "incredible",
-  "anobeithiol": "hopeless",
-  "antur": "adventure",
-  "anturiau": "adventures",
-  "anturus": "adventurous",
-  "ar ben fy hun": "on my own (North Wales)",
-  "ar bwys": "near (South Wales)",
-  "archebu": "to book, to reserve, to order",
-  "archfarchnad": "supermarket",
-  "archfarchnadoedd": "supermarkets",
-  "ardal": "area",
-  "ardaloedd": "areas",
-  "ar fai": "to blame, at fault",
-  "arfordir": "coast",
-  "arfordiroedd": "coasts",
-  "ar fy mhen fy hun": "on my own (South Wales)",
-  "arian": "money; silver",
-  "arian parod": "cash",
-  "ar-lein": "online",
-  "arlunio": "to draw, to paint",
-  "ar ran": "on behalf of",
-  "arswyd": "horror",
-  "ar wahân": "separate",
-  "ar yr un pryd": "at the same time",
-  "astudio": "to study",
-  "atig": "attic",
-  "atigau": "attics",
-  "awr ginio": "lunch hour",
-  "awyr": "air; sky",
-  "balch": "proud, pleased",
-  "baner": "flag, banner",
-  "bardd": "poet",
-  "barf": "beard",
-  "bedd": "grave",
-  "beicio": "cycle, ride a bicycle",
-  "bioleg": "biology",
-  "blasu": "taste",
-  "blasus": "tasty",
-  "blawd": "flour",
-  "blog": "blog",
-  "blogio": "blog (verb)",
-  "blows": "blouse",
-  "bocs bwyd": "food box",
-  "boch": "cheek",
-  "bochdew": "hamster",
-  "bodlon": "willing, contented, satisfied",
-  "boeler": "boiler",
-  "bôn": "base, stem",
-  "botwm": "button",
-  "bresychen": "cabbage",
-  "busnes": "business",
-  "buwch": "cow",
-  "bwced": "bucket",
-  "bwcio": "book (verb)",
-  "bwthyn": "cottage",
-  "bwydo": "feed",
-  "bwystfil": "monster",
-  "byw": "alive, live",
-  "bywyd": "life",
-  "cadair olwyn": "wheelchair",
-  "cadno": "fox",
-  "cae": "field",
-  "caled": "hard",
-  "calon": "heart",
-  "call": "sensible",
-  "camp": "feat",
-  "campio": "to camp",
-  "cangarŵ": "kangaroo",
-  "canol dydd": "midday",
-  "canolog": "central",
-  "canrif": "century",
-  "canslo": "to cancel",
-  "cantores": "female singer",
-  "canwr": "singer",
-  "carafán": "caravan",
-  "caredig": "kind",
-  "carped": "carpet",
-  "cartŵn": "cartoon",
-  "cas beth": "pet hate",
-  "cas pensiliau": "pencil case",
-  "castell": "castle",
-  "castell neidio": "bouncy castle",
-  "cefn gwlad": "the countryside",
-  "cefndir": "background",
-  "cefndiroedd": "backgrounds",
-  "ceiliog": "cockerel",
-  "ceisiadau": "applications",
-  "ceisiau": "rugby tries",
-  "ceisio": "to try, to attempt",
-  "celf": "art",
-  "celfi": "furniture",
-  "cemeg": "chemistry",
-  "cerdyn credyd": "a credit card",
-  "cardiau credyd": "credit cards",
-  "cerddorol": "musical",
-  "cestyll": "castles",
-  "cewyn": "a nappy (gwr.)",
-  "cigydd": "butcher",
-  "cigyddion": "butchers",
-  "cimwch": "lobster",
-  "cimychiaid": "lobsters",
-  "cinio": "dinner", 
-  "ciniawau": "dinners",
-  "cinio rhost": "a roast dinner",
-  "ciwb": "cube",
-  "clasurol": "classical",
-  "clecs": "gossip",
-  "clir": "clear",
-"clirio": "to clear",
-"cloi": "to lock",
-"coeden": "a tree", 
-"coed": "trees",
-"coeden deuluol": "a family tree",
-"coedwig": "a forest",
-"coedwigoedd": "forests",
-"cofiant": "a biography",
-"cofiannau": "biographies",
-"cofion": "regards",
-"cofion cynnes": "warm regards",
-"cofrestru": "to register",
-"coleg": "a college",
-"colegau": "colleges",
-"coll": "lost",
-"colli": "to lose",
-"comedi": "a comedy",
-"corff": "a body",
-"cyrff": "bodies",
-"coridor": "a corridor",
-"coridorau": "corridors",
-"cornel": "a corner",
-"corneli": "corners",
-"coron": "a crown",
-"coronau": "crowns",
-"corryn": "a spider",
-"corynnod": "spiders",
-"cost": "a cost",
-"costau": "costs",
-"costio": "to cost",
-"crafu": "to scrape, to scratch",
-"craig": "a rock",
-"creigiau": "rocks",
-"cranc": "a crab",
-"crancod": "crabs",
-"creisionen": "a crisp",
-"creision": "crisps",
-"creulon": "cruel",
-"croen": "skin",
-"crwyn": "skins",
-"croesair": "crossword",
-"croeseiriau": "crosswords",
-"cropian": "to crawl",
-"crys": "a shirt",
-"crysau": "shirts",
-"crys t": "a T shirt",
-"cusan": "a kiss",
-"cusanau": "kisses",
-"cusanu": "to kiss",
-"cwch": "a boat",
-"cychod": "boats",
-"cwmwl": "a cloud",
-"cwningen": "a rabbit",
-"cwningod": "rabbits",
-"cwpan": "a cup",
-"cwpanau": "cups",
-"cwpwrdd": "a cupboard",
-"cypyrddau": "cupboards",
-"cwrdd": "to meet (with/a)",
-"cwrt": "court (sports)",
-"cyrtiau": "courts (sports)",
-"cwsmer": "a customer",
-"cwsmeriaid": "customers",
-"cwt": "a hut",
-"cytiau": "huts",
-"cwympo": "to fall",
-"cwyno": "to complain",
-"cydweithiwr": "a colleague",
-"cydweithwyr": "colleagues",
-"cydweithwraig": "a female colleague",
-"cydweithwragedd": "female colleagues",
-"cyfarfod": "to meet or a meeting",
-"cyfeillgar": "friendly",
-"cyfeirio": "to direct",
-"cyfle": "an opportunity, a chance",
-"cyfleoedd": "opportunities, chances",
-"cyfleus": "convenient",
-"cyflog": "a salary",
-"cylfogau": "salaries",
-"cyfreithiwr": "a solicitor",
-"cyfreithwyr": "solicitors",
-"cyfrwng": "a medium",
-"cyfryngau": "media",
-"cyffredin": "common",
-"cyffrous": "exciting",
-"cychoeddi": "to announce, to publish",
-"cyhoeddiad": "an announcement",
-"cyhoeddiadau": "announcements",
-  "cylch": "a circle",
-"cylchoedd": "circles",
-"cylch meithrin": "a pre-school nursery",
-"cylchfan": "a roundabout",
-"cylchfannau": "roundabouts",
-"cylchgrawn": "a magazine",
-"cyclgronau": "magazines",
-"cyllell": "a knife",
-"cyllyll": "knives",
-"cymdeithas": "a society",
-"cymdeithasau": "societies",
-"cymdeithas rieni": "parents' association",
-"cymdeithasu": "to socialise",
-"cymeriad": "a character",
-"cymeriadau": "characters",
-"cymreig": "Welsh",
-"cymuned": "a community",
-"cymunedau": "communities",
-"cymylau": "clouds",
-"cynffon": "a tail",
-"cynffonnau": "tails",
-"cynnig": "an offer",
-"cynigion": "offers",
-"cynulleidfa": "an audience, a congregation",
-"cynulleidfaoedd": "audiences, congregations",
-"cyrliog": "curly",
-"cysylltiad": "a contact, a connection",
-"cysylltu": "to contact, to connect (with/a)",
-"cytundeb": "a contract",
-"cytundebau": "contracts",
-"cyw": "a chick",
-"cywion": "chicks",
-"cywir": "correct",
-"chwarae teg": "fair play",
-"chwaraewr": "a player",
-"chwaraewyr": "players",
-  "chwerw": "bitter",
-"chwilio": "to search (am/for)",
-"chwyrnu": "to snore",
-"chwys": "sweat",
-"chwysu": "to sweat",
-"chwythu": "to blow",
-"daear": "earth",
-"daearyddiaeth": "geography",
-"dafad": "a sheep",
-"defaid": "sheep",
-"dart": "a dart",
-"dartiau": "darts",
-"datblygu": "to develop",
-"dathliad": "a celebration",
-"dathliadau": "celebrations",
-"dawns": "a dance",
-"dawnus": "talented",
-"dechreuwr": "a beginner",
-"dechreuwyr": "beginners",
-"derbyn": "to receive, to accept",
-"derbynfa": "a reception",
-"derbynfeydd": "receptions",
-"dibynnu": "to depend (upon), to rely on",
-"difetha": "to spoil, to destoy",
-"diffodd": "to switch off, to extinguish",
-"digartref": "homeless",
-"digidol": "digital",
-"dilyn": "to follow",
-"dinas": "a city",
-"dinasoedd": "cities",
-"diolch byth": "thank goodness",
-"diolchgar": "thankful, grateful",
-"disgrifio": "to describe",
-"disgwyl": "to expect",
-"disgybl": "a pupil",
-"disgyblion": "pupils",
-"distaw": "quiet",
-  "diswyddo": "to make redundant",
-"diwedd": "end",
-"diweddion": "ends",
-"diweddar": "recent",
-"dod draw": "to come over",
-"dogfen": "a document",
-"dogfennau": "documents",
-"doli": "a doll",
-"doliau": "dolls",
-"doniol": "funny, comical, amusing",
-"draig": "a dragon", 
-"dreigiau": "dragons",
-"drôr": "a drawer", 
-"droriau": "drawers",
-"dros": "over",
-"drwm": "a drum",
-"drymiau": "drums",
-"dwlu": "to love, to dote upon (with ar)",
-"dwylo": "hands",
-"dwywaith": "twice",
-"dydd": "a day",
-"dyddiau": "days",
-"dyddiad": "a date",
-"dyddiadau": "dates",
-"dyddiadur": "a diary",
-"dyddiaduron": "diaries",
-"dyfodol": "future",
-"dyffryn": "a valley",
-"dyffrynnoedd": "valleys",
-"dyna i gyd": "that’s all",
-"ebostio": "to email",
-"egwyl": "a break, break time",
-"eidal": "Italy",
-"eidalaidd": "Italian",
-"eidaleg": "Italian (language)",
-"eidales": "Italian woman",
-"eidalwr": "Italian man",
-"eiliad": "a second (of time)",
-"eiliadau": "seconds",
-"eitem": "an item",
-"eitemau": "items",
-"eleni": "this year",
-  "eli haul": "suncream",
-"eliffant": "an elephant", 
-"eliffantod": "elephants",
-"elusen": "a charity",
-"elusennau": "charities",
-"emyn": "a hymn",
-"emynau": "hymns",
-"er enghraifft": "for example",
-"erbyn": "by (time)",
-"erbyn hyn": "by now",
-"eryri": "Snowdonia",
-"esbonio": "to explain",
-"ewrop": "Europe",
-"fest": "a vest",
-"festiau": "vests",
-"fyny grisiau": "upstairs",
-"ffa": "beans",
-"ffa pob": "baked beans",
-"ffafr": "a favour",
-"ffafrau": "favours",
-"ffaith": "a fact",
-"ffeithiau": "facts",
-"ffansïo": "to fancy",
-"ffantasi": "a fantasy",
-"ffasiwn": "a fashion",
-"ffasiynau": "fashions",
-"ffasiynol": "fashionable",
-"ffeithiol": "factual",
-"fferi": "a ferry",
-"fferis": "ferries",
-"fferm": "a farm",
-"ffermydd": "farms",
-"ffermdy": "a farmhouse",
-"ffermdai": "farmhouses",
-"ffeuen": "a bean",
-"ffi": "a fee",
-"ffioedd": "fees",
-"ffiseg": "physics",
-"ffitio": "to fit",
-"fforc": "a fork",
-"ffordd": "a road, a way",
-"ffordd osgoi": "a bypass (road)",
-"ffyrdd osgoi": "bypasses",
-"ffrangeg": "French (language)",
-"ffrainc": "France",
-"ffrances": "French woman",
-"ffrancesau": "French women",
-"ffrancwr": "Frenchman",
-"ffrancwyr": "French(men)",
-"ffres": "fresh",
-"ffrio": "to fry",
-"ffrog": "a dress, a frock",
-"ffrogiau": "dresses, frocks",
-"ffŵl": "a fool",
-"ffyliaid": "fools",
-"ffwrn": "an oven",
-"ffyrc": "forks",
-"ffyrdd": "roads, ways",
-"ffyrnau": "ovens",
-  "gafr": "a goat",
-"gair o gyngor": "a word of advice",
-"galwad": "a call",
-"galwadau": "calls",
-"gartre": "at home",
-"geifr": "goats",
-"gem": "a gem", 
-"gemau": "gems",
-"gemwaith": "jewellery",
-"geni": "to be born",
-"ger": "near",
-"glân": "clean",
-"glanhäwr": "a cleaner",
-"glanhawyr": "cleaners",
-"glo": "coal",
-"glöwr": "collier",
-"glowyr": "colliers",
-"gofalu": "to look after, to care (am/for)",
-"gog": "a Northwalian",
-"gogs": "Northwalians",
-"gôl": "a goal",
-"goliau": "goals",
-"golygfa": "a view, scenery",
-"golygfeydd": "views",
-"golygus": "handsome",
-"gorchymyn": "a command",
-"gorchmynion": "commands",
-"gorffennol": "past",
-"gosod": "to put, to set",
-"gradd": "a degree",
-"graddau": "degrees",
-"gratio": "to grate",
-"grawnfwyd": "cereal",
-"grawnfwydydd": "cereals",
-"grawnffrwyth": "a grapefruit",
-"grawnffrwythau": "grapefruits",
-"gris": "a step, a stair",
-"grisiau": "steps, stairs",
-"grŵp": "a group",
-"grwpiau": "groups",
-"gwaed": "blood",
-"gwael": "poor (quality), not well, ill",
-"gwaelod": "bottom, base",
-"gwaelodion": "bases",
-"gwag": "empty",
-"gwahanol": "different",
-"gwahoddiad": "an invitation",
-"gwahoddiadau": "invitations",
-"gwarchod": "to protect, to babysit",
-"gwario": "to spend (money)",
-"gwartheg": "cattle",
-"gwawr": "a dawn",
-"gwawriau": "dawns",
-"gweddïo": "to pray",
-"gwefan": "a website",
-"gwefannau": "websites",
-"gweiddi": "to shout",
-"gweinidog": "a minister",
-"gweindogion": "ministers",
-"gweinyddol": "administrative",
-"gweld eisiau": "to miss, to yearn for",
-"gwella": "to improve, to get better",
-"gwersyll": "a camp",
-"gwersylloedd": "camps",
-"gwersylla": "to camp",
-"gwirfoddol": "voluntary",
-"gwisg": "a costume, an uniform",
-"gwisgoedd": "costumes, uniforms",
-"gwisg ffansi": "fancy dress",
-  "gwiwer": "a squirrel",
-"gwiwerod": "squirrels",
-"gwlad groeg": "Greece",
-"gwnïo": "to sew",
-"gwregys": "a belt", 
-"gwregysau": "belts",
-"gwres": "temperature, heat, heating",
-"gwres canolog": "central heating",
-"gwrthod": "to refuse",
-"gwybodaeth": "information",
-"gwych": "excellent",
-"gwydr": "glass; a glass",
-"gwydrau": "glasses (drinking)",
-"gwydraid": "a glassful",
-"gŵydd": "a goose",
-"gwyddau": "geese",
-"gwyddel": "Irishman",
-"gwyddelod": "Irish (people)",
-"gwyddeleg": "Irish (language)",
-"gwyddeles": "Irish woman",
-"gwyddelesau": "Irish women",
-"gwyddelig": "Irish",
-"gwyddoniaeth": "science",
-"gŵyl San Steffan": "Boxing Day",
-"gwylltio": "to lose one’s temper",
-"haearn": "iron",
-"hamdden": "leisure",
-"hardd": "beautiful",
-"heb sôn am": "not to mention",
-"heibio": "past",
-"heini": "fit",
-"hen ffasiwn": "old-fashioned",
-"heulwen": "sunshine",
-"hiraeth": "longing (nostalgia)",
-"hofrennydd": "a helicopter",
-"hofrenyddion": "helicopters",
-"holl": "all, whole",
-"hollol": "complete",
-"hosan": "a sock",
-"hosanau": "socks",
-"hunan": "self",
-"hunangofiant": "autobiography",
-"hunangofiannau": "autobiographies",
-"hwfro": "to hoover",
-"Hwntw": "a Southwalian",
-"Hwntws": "Southwalians",
-"hwyaden": "a duck",
-"hwyaid": "ducks",
-"hwylio": "to sail",
-"hyd yn oed": "even",
-"hyderus": "confident",
-"hyfforddi": "to train",
-"hyfforddiant": "training, coaching",
-"hyfforddwr": "a coach, a trainer",
-"hyfforddwyr": "coaches, trainers",
-"hysbysebu": "to advertise",
-  "iach": "healthy",
-  "iaith": "language",
-  "iâr": "hen",
-  "isel": "low",
-  "jar": "jar",
-  "jeli": "jelly",
-  "jirâff": "giraffe",
-  "lawnt": "lawn",
-  "lle": "place",
-  "llew": "lion",
-  "lliwgar": "colourful",
-  "llosgi": "burn",
-  "llwy": "spoon",
-  "llwybr": "path",
-  "llwynog": "fox",
-  "llygoden": "mouse",
-  "llythyr": "letter",
-  "llywodraeth": "government",
-  "mab": "son",
-  "maes": "field",
-  "meddwi": "get drunk",
-  "merch": "girl",
-  "milfeddyg": "vet",
-  "mochyn": "pig",
-  "modrwy": "ring",
-  "mwnci": "monkey",
-  "myfyriwr": "student",
-  "mynydd": "mountain",
-  "neidr": "snake",
-  "newid": "change",
-  "niwl": "fog",
-  "nodyn": "note",
-  "nofel": "novel",
-  "oedolyn": "adult",
-  "oen": "lamb",
-  "olew": "oil",
-  "olwyn": "wheel",
-  "opsiwn": "option",
-  "palu": "dig",
-  "papur": "paper",
-  "parsel": "parcel",
-  "pasio": "pass",
-  "peiriannydd": "engineer",
-  "pen": "head",
-  "penelin": "elbow",
-  "penglin": "knee",
-  "pennill": "verse",
-  "peryglus": "dangerous",
-  "plât": "plate",
-  "pluen": "feather",
-  "plymwr": "plumber",
-  "pobi": "bake",
-  "poced": "pocket",
-  "poeth": "hot",
-  "popty": "oven",
-  "porthladd": "port",
-  "potel": "bottle",
-  "powlen": "bowl",
-  "priodas": "wedding",
-  "pris": "price",
-  "prydferth": "beautiful",
-  "pupur": "pepper",
-  "pwdin": "pudding",
-  "pwnc": "subject",
-  "pwrs": "purse",
-  "pwynt": "point",
-  "pysgota": "fish",
-  "pythefnos": "fortnight",
-  "realiti": "reality",
-  "reidio": "ride",
-  "reis": "rice",
-  "rysáit": "recipe",
-  "rhaeadr": "waterfall",
-  "rhannu": "share",
-  "rheswm": "reason",
-  "rhiant": "parent",
-  "rhugl": "fluent",
-  "rhydd": "free",
-  "rhyngwladol": "international",
-  "rhyw fath": "some sort",
-  "rhyw bryd": "sometime",
-  "safle bws": "bus stop",
-  "salwch": "illness",
-  "sandal": "sandal",
-  "sant": "saint",
-  "sbaeneg": "Spanish",
-  "sbectol": "glasses",
-  "sboncen": "squash",
-  "sebon": "soap",
-  "sedd": "seat",
-  "seler": "cellar",
-  "selsigen": "sausage",
-  "senedd": "parliament",
-  "seremoni": "ceremony",
-  "sgarff": "scarf",
-  "sgert": "skirt",
-  "sgrin": "screen",
-  "sgwrs": "conversation",
-  "siaced": "jacket",
-  "sianel": "channel",
-  "sied": "shed",
-  "sinc": "sink",
-  "siomedig": "disappointed",
-  "siwmper": "sweater",
-  "siwt": "suit",
-  "sliper": "slipper",
-  "sôn": "mention",
-  "sosban": "saucepan",
-  "soser": "saucer",
-  "stadiwm": "stadium",
-  "stori": "story",
-  "storm": "storm",
-  "straen": "stress",
-  "stumog": "stomach",
-  "swil": "shy",
-  "sŵn": "sound",
-  "swyddog": "officer",
-  "sychu": "dry",
-  "sylwi": "notice",
-  "syml": "simple",
-  "ta beth": "anyway",
-  "tacluso": "tidy",
-  "tacsi": "taxi",
-  "tafarnwr": "innkeeper",
-  "tafod": "tongue",
-  "tal": "tall",
-  "taldra": "height, stature, tallness",
-"tap": "a tap",
-"tapiau": "taps",
-"tawel": "quiet, calm",
-"tebot": "a teapot",
-"tebotau": "teapots",
-"technegydd": "a technician",
-"technegwyr": "technicians",
-"technoleg": "technology",
-"teigr": "a tiger",
-"teigrod": "tigers",
-"teipio": "to type",
-"teithiwr": "a traveller",
-"teithwyr": "travellers",
-"telyn": "a harp", 
-"elynau": "harps",
-"tenau": "thin",
-"tew": "fat",
-"tisian": "to sneeze",
-"tlawd": "poor, poverty-stricken",
-"ton": "a wave",
-"tonnau": "waves",
-"torheulo": "to sunbathe",
-"tra": "while, whilst",
-"tractor": "a tractor",
-"tractorau": "tractors",
-"traddodiadol": "traditional",
-"trafferth": "trouble, bother",
-"trafferthion": "troubles",
-"traffordd": "a motorway",
-"traffyrdd": "motorways",
-"trais": "violence",
-"tramor": "overseas, abroad",
-"trawiadol": "striking",
-"trefnus": "organised, orderly",
-"treth": "a tax",
-"trethi": "taxes",
-"treulio": "to spend (time)",
-"triongl": "a triangle",
-"trionglau": "triangles",
-"troedfedd": "a foot (measurement)",
-"troedfeddi": "feet (measurement)",
-"trôns": "underpants",
-"trowsus": "trousers",
-"trwm": "heavy",
-"trwsio": "to repair, to mend",
-"trydanwr": "an electrician",
-"trydanwyr": "electricians",
-"trydar": "to tweet, to twitter",
-"tu ôl": "behind",
-"tun": "a tin, a can",
-"tuniau": "tins, cans",
-"twll": "a hole",
-"tyllau": "holes",
-"twmpath dawns": "a barn dance",
-"twmpathau dawns": "barn dances",
-"twnnel": "a tunnel",
-"twnelau": "tunnels",
-"twpsyn": "a silly person, a stupid person",
-"twpsod": "silly people",
-"tŵr": "a tower",
-"tyrau": "towers",
-"twrci": "a turkey",
-"twrcïod": "turkeys",
-"twristiaeth": "tourism",
-"tŷ ar wahân": "detached house", 
-"tai ar wahân": "detached houses",
-"tŷ gwydr": "a greenhouse",
-"tai gwydr": "greenhouses",
-"tŷ pâr": "semi-detached house ",
-"tai pâr": "semi-detached houses",
-"tŷ teras": "a terraced house",
-"tai teras": "terraced houses",
-"tybed": "I wonder",
-"tywel": "a towel",
-"tywelion": "towels",
-"tywod": "sand",
-"tywyll": "dark",
-"theatr": "a theatre",
-"theatrau": "theatres",
-"uchel": "high",
-"unig": "lonely, only",
-"union": "exact, direct",
-"wedi’r cyfan": "after all",
-"wrth fy modd": "in my element",
-"wrth ochr": "by the side of",
-"ŵyn": "lambs",
-"ŵyr": "grandson",
-"wyrion": "grandsons, grandchildren",
-"wyres ": "granddaughter",
-"wyresau": "granddaughters",
-"ychwanegol": "additional",
-"ychwanegu": "to add (to/at)",
-"y dyddiau hyn": "these days",
-"y lleill": "the others",
-"ymarfer corff": "physical education",
-"ymbarél": "umbrella", 
-"ymbarelau": "umbrellas",
-"ymddiheuro": "to apologise",
-"ymuno": "to join (a)",
-"ymweld": "to visit",
-"ymwelydd": "visitor",
-"ymwelwyr": "visitors",
-"ymyl": "an edge, rim",
-"ymylon": "edges, rims",
-"yn lle": "instead of, in place of",
-"yn union": "exactly, directly",
-"yn y bôn": "basically",
-"yn y pen draw": "eventually",
-"yn ymyl": "near, beside",
-"yn ystod": "during",
-"y rhan fwya": "the majority",
-"ysgafn": "light (of weight)",
-"ysgariad": "a divorce",
-"ysgariadau": "divorces",
-"ysgol fabanod (ben.)": "an infant school",
-"ysgolion babanod": "infant schools",
-"ysgol gyfun": "a comprehensive school",
-"ysgolion cyfun": "comp. schools",
-"ysgol gynradd": "a primary school",
-"ysgolion cynradd": "primary schools",
-"ysgol uwchradd": "a secondary school",
-"ysgolion uwchradd": "sec. schools",
-"ysgwydd": "a shoulder",
-"ysgwyddau": "shoulders",
-"ysmygu": "to smoke",
-"ystafell": "a room",
-"ystafelloedd": "rooms",
-"ystafell wydr": "a conservatory",
-"ystafelloedd gwydr": "conservatories",
-"ystod": "range",
-"yswiriant": "insurance",
-"y swistir": "Switzerland",
-  
-
-"pidyn": "dick, penis",
-"cachlyd": "shitty",
-"bechod": "oh, bless!",
-"snichyn": "creep",
-"pen pidyn": "dickhead",
-"penpidyn": "dickhead",
+// --- TRACK USER SELECTIONS ---
+let activeGlossaries = {
+  mynediad: true, // Defaulting to enabled on startup
+  sylfaen: true
 };
+
+// Runtime storage for combined glossary active state
+let runtimeGlossary = {};
+
+// Toggle status visibility state
+function toggleGlossary(type) {
+  activeGlossaries[type] = !activeGlossaries[type];
+  
+  // Toggle visual active CSS button styles
+  const btnId = type === 'mynediad' ? 'btnMynediad' : 'btnSylfaen';
+  document.getElementById(btnId).classList.toggle('active', activeGlossaries[type]);
+}
+
+// Merge active file lists cleanly into a single target dictionary context
+function compileActiveGlossary() {
+  runtimeGlossary = {};
+  
+  // If active, copy Mynediad keys over
+  if (activeGlossaries.mynediad && typeof mynediadGlossary !== 'undefined') {
+    Object.assign(runtimeGlossary, mynediadGlossary);
+  }
+  
+  // If active, copy Sylfaen keys over (overwriting duplicates if any exist)
+  if (activeGlossaries.sylfaen && typeof sylfaenGlossary !== 'undefined') {
+    Object.assign(runtimeGlossary, sylfaenGlossary);
+  }
+}
   
 // --- SAFE WELSH MUTATION & VERB STEM NORMALISATION ---
 function normalise(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
 
   if (!w) return null;
+  if (glossary[w]) return w;
 
-  function findMatch(candidate) {
-    // 1. Direct dictionary check
-    if (glossary[candidate]) return candidate;
-
-    // 2. SOFT MUTATION REVERSALS
-    const soft = { 
-      "g": ["c"], 
-      "b": ["p"], 
-      "d": ["t"], 
-      "f": ["b", "m"], 
-      "dd": ["d"], 
-      "l": ["ll"], 
-      "r": ["rh"] 
-    };
-
+  function findMutationMatch(candidate) {
+    const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
         const targets = soft[mut]; 
@@ -929,16 +176,7 @@ function normalise(word, glossary) {
       }
     }
 
-    // 3. NASAL MUTATION REVERSALS
-    const nasal = { 
-      "ngh": ["c"], 
-      "mh": ["p"], 
-      "nh": ["t"], 
-      "ng": ["g"],
-      "m": ["b"], 
-      "n": ["d"] 
-    };
-
+    const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
     for (const mut in nasal) {
       if (candidate.startsWith(mut)) {
         const targets = nasal[mut];
@@ -949,13 +187,7 @@ function normalise(word, glossary) {
       }
     }
 
-    // 4. ASPIRATE MUTATION REVERSALS
-    const aspirate = { 
-      "ch": ["c"], 
-      "ph": ["p"], 
-      "th": ["t"] 
-    };
-
+    const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
     for (const mut in aspirate) {
       if (candidate.startsWith(mut)) {
         const targets = aspirate[mut];
@@ -966,7 +198,6 @@ function normalise(word, glossary) {
       }
     }
 
-    // 5. DROPPED 'G' EXTRA PASS
     if (/^[aeiouwŷâêîôû]/i.test(candidate)) {
       const addedG = "g" + candidate;
       if (glossary[addedG]) return addedG;
@@ -975,25 +206,25 @@ function normalise(word, glossary) {
     return null;
   }
 
-  // Check the word shape as it is written first
-  let directMatch = findMatch(w);
-  if (directMatch) return directMatch;
+  let mutationMatch = findMutationMatch(w);
+  if (mutationMatch) return mutationMatch;
 
-  // Process verb suffixes if direct word check yielded nothing
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
-
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
+      if (glossary[nakedStem]) return nakedStem;
       
-      let stemMatch = findMatch(nakedStem);
-      if (stemMatch) return stemMatch;
+      let stemMutationMatch = findMutationMatch(nakedStem);
+      if (stemMutationMatch) return stemMutationMatch;
 
       const infinitiveEndings = ["u", "i", "o", "io", "a"];
       for (const inf of infinitiveEndings) {
         let reconstructedVerb = nakedStem + inf;
-        let fuzzyMatch = findMatch(reconstructedVerb);
-        if (fuzzyMatch) return fuzzyMatch;
+        if (glossary[reconstructedVerb]) return reconstructedVerb;
+        
+        let fuzzyMutationMatch = findMutationMatch(reconstructedVerb);
+        if (fuzzyMutationMatch) return fuzzyMutationMatch;
       }
     }
   }
@@ -1025,7 +256,7 @@ function annotate(text, glossary) {
       return `<span class="annotated">${parts[0]}<span class="tooltip">${parts[1]}</span></span>`;
     }
 
-    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const clean = normalise(word, glossary);
       if (clean && glossary[clean]) {
@@ -1038,8 +269,9 @@ function annotate(text, glossary) {
 
 // --- RUN ANNOTATION ---
 function runAnnotation() {
+  compileActiveGlossary(); // Re-build list dynamically based on buttons toggled
   const text = document.getElementById("inputText").value;
-  document.getElementById("output").innerHTML = annotate(text, glossary);
+  document.getElementById("output").innerHTML = annotate(text, runtimeGlossary);
 }
 </script>
 
