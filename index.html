@@ -930,7 +930,6 @@ function normalise(word, glossary) {
     }
 
     // 3. NASAL MUTATION REVERSALS
-    // Updated to make sure "m" checks for "b", and "n" checks for "d"
     const nasal = { 
       "ngh": ["c"], 
       "mh": ["p"], 
@@ -981,30 +980,6 @@ function normalise(word, glossary) {
   if (directMatch) return directMatch;
 
   // Process verb suffixes if direct word check yielded nothing
-  const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
-
-  for (const suffix of verbSuffixes) {
-    if (w.endsWith(suffix) && w.length > suffix.length) {
-      const nakedStem = w.slice(0, -suffix.length);
-      
-      let stemMatch = findMatch(nakedStem);
-      if (stemMatch) return stemMatch;
-
-      const infinitiveEndings = ["u", "i", "o", "io", "a"];
-      for (const inf of infinitiveEndings) {
-        let reconstructedVerb = nakedStem + inf;
-        let fuzzyMatch = findMatch(reconstructedVerb);
-        if (fuzzyMatch) return fuzzyMatch;
-      }
-    }
-  }
-
-  return null;
-}
-
-  let directMatch = findMatch(w);
-  if (directMatch) return directMatch;
-
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
 
   for (const suffix of verbSuffixes) {
