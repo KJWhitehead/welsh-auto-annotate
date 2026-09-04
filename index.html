@@ -177,7 +177,11 @@ function compileActiveGlossary() {
     }
   }
 
-  
+  // Safely blend inputs sequentially without hard overwrites
+  if (useMynediad) mergeSource(mynediadGlossary);
+  if (useSylfaen) mergeSource(sylfaenGlossary);
+}
+
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
