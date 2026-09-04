@@ -37,4 +37,24 @@ const canolraddGlossary = {
   "wrth fy modd": "in my element",
   
   //Uned 2
+"bricsen": "brick",
+"brics": "bricks",
+"cangen": "branch",
+  "canghennau": "branches",
+  "cerddorfa": "orchestra",
+  "cerddorfeydd": "orchestras",
+  "rheol": "rule",
+  "rheolau": "rules",
+  "cymwusnas": "favour",
+  "cymwynasau": "favours",
+  "siawns": "chance",
+  "siawnsiau": "chances",
+  "trefn": "order, arrangement",
+  "trefniadau": "orders, arrangements",
+  "anhapus": "unhappy",
+  "sicr": "certain",
+  "swyddogol": "official",
+  "talentog": "talented",
+//end of red and green parts
+  
 };
