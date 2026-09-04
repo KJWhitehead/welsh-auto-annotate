@@ -808,6 +808,7 @@ const sylfaenGlossary = {
 "snichyn": "creep",
 "pen pidyn": "dickhead",
 "penpidyn": "dickhead",
+"cwsg": "sleep (noun)",
 "rhyfedd": "strange",
 "drych": "mirror",
   "snichyn": "creep, horrible person, sneak",
