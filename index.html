@@ -74,13 +74,23 @@
     width: 100%;
   }
 
+  .btn-danger {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    cursor: pointer;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 0;
+  }
+
   @media (min-width: 480px) {
     .btn-primary { width: auto; }
   }
 
-  .btn-primary:hover {
-    background-color: #004085;
-  }
+  .btn-primary:hover { background-color: #004085; }
+  .btn-danger:hover { background-color: #c82333; }
 
   .annotated {
     position: relative;
@@ -132,6 +142,60 @@
     display: block;
     margin-bottom: 5px;
   }
+
+  /* RE-STYLED SCANNABLE STUDY LIST PANELS */
+  .study-list-container {
+    margin-top: 40px;
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .study-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 0.95em;
+  }
+
+  .study-table th, .study-table td {
+    border: 1px solid #dee2e6;
+    padding: 12px;
+    text-align: left;
+  }
+
+  .study-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: bold;
+  }
+
+  .empty-msg {
+    color: #6c757d;
+    font-style: italic;
+    text-align: center !important;
+    padding: 20px !important;
+  }
+  
+  .table-word {
+    font-weight: bold;
+    color: #0056b3;
+    background-color: #f0f7ff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+  
+  .table-branch-item {
+    display: block;
+    padding: 2px 0;
+    border-bottom: 1px dotted #e2e8f0;
+  }
+  .table-branch-item:last-child {
+    border-bottom: none;
+  }
 </style>
 </head>
 
@@ -161,6 +225,27 @@
 <button class="btn-primary" onclick="runAnnotation()">Annotate Text</button>
 
 <div id="output"></div>
+
+<!-- RE-BUILT DYNAMIC STUDY LIST VIEW -->
+<div class="study-list-container">
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 8px;">
+    <h3 style="margin: 0;">My Vocabulary Study List</h3>
+    <button class="btn-danger" onclick="clearStudyList()">Clear Study List</button>
+  </div>
+  <table class="study-table">
+    <thead>
+      <tr>
+        <th style="width: 35%;">Word / Phrase in Context</th>
+        <th style="width: 65%;">Dictionary Root & Translations</th>
+      </tr>
+    </thead>
+    <tbody id="studyListBody">
+      <tr>
+        <td colspan="2" class="empty-msg">No words looked up yet this session. Tap annotated text above to start tracking.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <script>
 let runtimeGlossary = {};
@@ -200,23 +285,13 @@ function collectMatches(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
   if (!w) return [];
 
-  // 1. WELSH CONTRACTION SPLITTER
   if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
     w = w.slice(0, -2); 
   }
 
-  // 2. WELSH VOWEL-LINK STRIPPER (Handles linking particles like nag -> na, ac -> a)
   if (!glossary[w]) {
-    const vowelLinks = {
-      "nag": "na",
-      "ac": "a",
-      "ag": "â",
-      "tuag": "tua",
-      "gydag": "gyda"
-    };
-    if (vowelLinks[w]) {
-      w = vowelLinks[w];
-    }
+    const vowelLinks = { "nag": "na", "ac": "a", "ag": "â", "tuag": "tua", "gydag": "gyda" };
+    if (vowelLinks[w]) w = vowelLinks[w];
   }
 
   if (!w) return [];
@@ -304,9 +379,16 @@ function annotate(text, glossary) {
   const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
   
   return tokens.map(token => {
-    if (token.startsWith("___PHRASE_START___")) {
+ if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
-      return `<span class="annotated" onclick="toggleMobileTooltip(event, this)">${parts[0]}<span class="tooltip"><span class="tooltip-branch"><span class="tooltip-label">(${parts[0]}):</span> ${parts[1]}</span></span></span>`;
+      
+      // Build clean parameters for phrase tooltips to match single-word patterns
+      const textPhrase = parts[0];
+      const translationPhrase = parts[1];
+      const htmlTextContent = `<span class="tooltip-branch"><span class="tooltip-label">(${textPhrase}):</span> ${translationPhrase}</span>`;
+      const cleanParam = `(${textPhrase}): ${translationPhrase}`.replace(/['"]/g, '&quot;');
+
+      return `<span class="annotated" onclick="handleWordActivation(event, this, '${textPhrase}', '${cleanParam}')">${textPhrase}<span class="tooltip">${htmlTextContent}</span></span>`;
     }
 
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
@@ -318,22 +400,78 @@ function annotate(text, glossary) {
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${m.definition}</span>`;
         }).join("");
 
-        return `<span class="annotated" onclick="toggleMobileTooltip(event, this)">${word}<span class="tooltip">${tooltipContent}</span></span>`;
+        const plainTextLabel = matches.map(m => `(${m.root}): ${m.definition}`).join(' / ');
+        const cleanParamLabel = plainTextLabel.replace(/['"]/g, '&quot;');
+
+        return `<span class="annotated" onclick="handleWordActivation(event, this, '${word}', '${cleanParamLabel}')">${word}<span class="tooltip">${tooltipContent}</span></span>`;
       }
       return word;
     }).join("");
   }).join("");
 }
 
-// --- TOUCH & CLICK DISMISS HANDLER FOR SMARTPHONES ---
-function toggleMobileTooltip(event, element) {
+// --- LAYER 3 INTERCEPT HANDLER (Toggles Tooltip AND Logs to Study Session) ---
+function handleWordActivation(event, element, plainWord, encodedTranslation) {
   event.stopPropagation(); 
+  
   const isOpen = element.classList.contains('show-tooltip');
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+  
   if (!isOpen) {
     element.classList.add('show-tooltip');
+    logToStudyList(plainWord, encodedTranslation);
   }
 }
+
+// --- CHRONOLOGICAL STORAGE LOGGING & RENDERING SCRIPT ---
+function logToStudyList(word, translationString) {
+  let listCache = sessionStorage.getItem("welshActiveStudySession");
+  let loggedWords = listCache ? JSON.parse(listCache) : [];
+  
+  const cleanWord = word.trim();
+  
+  // Format compound definitions cleanly using bullet dividers inside the table cells
+  let cellularRows = translationString.split(' / ').map(item => {
+    return `<span class="table-branch-item">${item}</span>`;
+  }).join('');
+
+  const itemExists = loggedWords.some(item => item.word.toLowerCase() === cleanWord.toLowerCase());
+  
+  if (!itemExists) {
+    loggedWords.push({ word: cleanWord, displayDef: cellularRows });
+    sessionStorage.setItem("welshActiveStudySession", JSON.stringify(loggedWords));
+    renderStudyListTable();
+  }
+}
+
+function renderStudyListTable() {
+  const tableBody = document.getElementById("studyListBody");
+  let listCache = sessionStorage.getItem("welshActiveStudySession");
+  let loggedWords = listCache ? JSON.parse(listCache) : [];
+
+  if (loggedWords.length === 0) {
+    tableBody.innerHTML = `<tr><td colspan="2" class="empty-msg">No words looked up yet this session. Tap annotated text above to start tracking.</td></tr>`;
+    return;
+  }
+
+  tableBody.innerHTML = loggedWords.map(item => {
+    return `<tr>
+      <td><span class="table-word">${item.word}</span></td>
+      <td>${item.displayDef}</td>
+    </tr>`;
+  }).join("");
+}
+
+function clearStudyList() {
+  if (confirm("Clear your current vocabulary lookup study sheet session logs?")) {
+    sessionStorage.removeItem("welshActiveStudySession");
+    renderStudyListTable();
+  }
+}
+
+window.onload = function() {
+  renderStudyListTable();
+};
 
 document.addEventListener('click', function() {
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
