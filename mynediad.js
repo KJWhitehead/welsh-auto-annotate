@@ -652,7 +652,7 @@ const mynediadGlossary = {
   "hogiau": "boys, lads",
   "hufen": "cream",
   "hufen iâ": "ice cream",
-  "hwyl": "fun",
+  "hwyl": "fun, bye",
   "hwyl (goodbye)": "good-bye",
   "hwyr": "late",
   "hydref": "autumn",
@@ -1219,7 +1219,7 @@ const mynediadGlossary = {
   "yn": "in",
   "yn barod": "already",
   "yn erbyn": "against",
-  "yn ôl": "back",
+  "yn ôl": "back, ago, according to",
   "yn unig": "only",
   "yna": "there, then",
   "yno": "there",
@@ -1238,5 +1238,17 @@ const mynediadGlossary = {
   "ystafelloedd": "rooms",
   "ystyr": "meaning",
   "ystyron": "meanings",
+
+  //purple text that's not in the back of the book
+  "ych a fi": "yuck!",
+"rhywbeth arall": "something else",
+"pob lwc": "good luck",
+"gyda'r nos": "in the evening",
+"o'r gloch": "o'clock",
+"trueni": "what a pity!",
+"eitha da": "quite good",
+"bobl bach": "good grief!",
+"o'r gorau": "okay, all right",
+"tu fas": "outside (i)",
     
 };
