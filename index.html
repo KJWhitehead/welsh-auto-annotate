@@ -155,7 +155,6 @@ function compileActiveGlossary() {
   const useMynediad = document.getElementById('chkMynediad').checked;
   const useSylfaen = document.getElementById('chkSylfaen').checked;
   
-  // Helper function to safely merge words into our active runtime dictionary
   function mergeSource(sourceGlossary) {
     if (typeof sourceGlossary === 'undefined') return;
     
@@ -164,22 +163,18 @@ function compileActiveGlossary() {
       const translation = sourceGlossary[key];
       
       if (runtimeGlossary[cleanKey]) {
-        // IF THE WORD ALREADY EXISTS: Check if this specific translation is unique
         const currentDefs = runtimeGlossary[cleanKey].split(" / ");
         if (!currentDefs.includes(translation)) {
-          // Append the new definition using a clean divider
           runtimeGlossary[cleanKey] += " / " + translation;
         }
       } else {
-        // IF THE WORD IS NEW: Just add it normally
         runtimeGlossary[cleanKey] = translation;
       }
     }
   }
 
-  // Safely blend inputs sequentially without hard overwrites
-  if (useMynediad) mergeSource(mynediadGlossary);
-  if (useSylfaen) mergeSource(sylfaenGlossary);
+  if (useMynediad) mergeSource(typeof mynediadGlossary !== 'undefined' ? mynediadGlossary : undefined);
+  if (useSylfaen) mergeSource(typeof sylfaenGlossary !== 'undefined' ? sylfaenGlossary : undefined);
 }
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
@@ -187,15 +182,11 @@ function collectMatches(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
   if (!w) return [];
 
-  // Use a Set to gather unique matched glossary root keys
   let foundKeys = new Set();
 
-  // 1. Direct match check
   if (glossary[w]) foundKeys.add(w);
 
-  // Helper inside to check mutation maps
   function scanMutations(candidate) {
-    // Soft Mutations
     const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
@@ -206,7 +197,6 @@ function collectMatches(word, glossary) {
       }
     }
 
-    // Nasal Mutations
     const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
     for (const mut in nasal) {
       if (candidate.startsWith(mut)) {
@@ -217,7 +207,6 @@ function collectMatches(word, glossary) {
       }
     }
 
-    // Aspirate Mutations
     const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
     for (const mut in aspirate) {
       if (candidate.startsWith(mut)) {
@@ -228,17 +217,14 @@ function collectMatches(word, glossary) {
       }
     }
 
-    // Dropped 'G' Pass
     if (/^[aeiouwŷâêîôû]/i.test(candidate)) {
       const addedG = "g" + candidate;
       if (glossary[addedG]) foundKeys.add(addedG);
     }
   }
 
-  // Scan mutations on the base word shape
   scanMutations(w);
 
-  // 2. Verb stem processing
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
@@ -256,7 +242,6 @@ function collectMatches(word, glossary) {
     }
   }
 
-  // Convert Set back to an array of objects holding the root word and its definition
   return Array.from(foundKeys).map(key => {
     return { root: key, definition: glossary[key] };
   });
@@ -283,14 +268,14 @@ function annotate(text, glossary) {
   return tokens.map(token => {
     if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
-      return `<span class="annotated">${parts[0]}<span class="tooltip">${parts[1]}</span></span>`;
+      // FIXED: Safely split indices using parts[0] for text and parts[1] for translation
+      return `<span class="annotated">${parts[0]}<span class="tooltip"><span class="tooltip-branch"><span class="tooltip-label">(${parts[0]}):</span> ${parts[1]}</span></span></span>`;
     }
 
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       
-      // If we found one or more definitions, stack them neatly inside the tooltip!
       if (matches.length > 0) {
         let tooltipContent = matches.map(m => {
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${m.definition}</span>`;
