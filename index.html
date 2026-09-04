@@ -7,6 +7,7 @@
 <!-- LINK YOUR EXTERNAL GLOSSARIES HERE -->
 <script src="mynediad.js"></script>
 <script src="sylfaen.js"></script>
+<script src="canolradd.js"></script>
 
 <style>
   body {
@@ -126,7 +127,7 @@
 
 <h2>Welsh Auto‑Annotation Tool</h2>
 
-<!-- CONTROL PANEL -->
+<!-- CONTROL PANEL WITH UPDATED THREE CHECKBOX OPTIONS -->
 <div class="control-panel">
   <label>Select Vocabulary Levels to Include:</label>
   <div class="checkbox-group">
@@ -135,6 +136,9 @@
     </label>
     <label class="checkbox-label">
       <input type="checkbox" id="chkSylfaen" checked> Sylfaen (Foundation level)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="chkCanolradd" checked> Canolradd (Intermediate level)
     </label>
   </div>
 </div>
@@ -154,6 +158,7 @@ function compileActiveGlossary() {
   
   const useMynediad = document.getElementById('chkMynediad').checked;
   const useSylfaen = document.getElementById('chkSylfaen').checked;
+  const useCanolradd = document.getElementById('chkCanolradd').checked;
   
   function mergeSource(sourceGlossary) {
     if (typeof sourceGlossary === 'undefined') return;
@@ -175,6 +180,7 @@ function compileActiveGlossary() {
 
   if (useMynediad) mergeSource(typeof mynediadGlossary !== 'undefined' ? mynediadGlossary : undefined);
   if (useSylfaen) mergeSource(typeof sylfaenGlossary !== 'undefined' ? sylfaenGlossary : undefined);
+  if (useCanolradd) mergeSource(typeof canolraddGlossary !== 'undefined' ? canolraddGlossary : undefined);
 }
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
@@ -182,11 +188,24 @@ function collectMatches(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
   if (!w) return [];
 
+  // NEW: WELSH CONTRACTION SPLITTER (Handles 'r and 'n)
+  if (w.endsWith("'r") || w.endsWith("’r")) {
+    w = w.slice(0, -2); 
+  } else if (w.endsWith("'n") || w.endsWith("’n")) {
+    w = w.slice(0, -2); 
+  }
+
+  // Re-verify text context after stripping the contraction
+  if (!w) return [];
+
   let foundKeys = new Set();
 
+  // 1. Direct match check
   if (glossary[w]) foundKeys.add(w);
 
+  // Helper inside to check mutation maps
   function scanMutations(candidate) {
+    // Soft Mutations
     const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
@@ -197,6 +216,7 @@ function collectMatches(word, glossary) {
       }
     }
 
+    // Nasal Mutations
     const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
     for (const mut in nasal) {
       if (candidate.startsWith(mut)) {
@@ -207,6 +227,7 @@ function collectMatches(word, glossary) {
       }
     }
 
+    // Aspirate Mutations
     const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
     for (const mut in aspirate) {
       if (candidate.startsWith(mut)) {
@@ -217,14 +238,17 @@ function collectMatches(word, glossary) {
       }
     }
 
+    // Dropped 'G' Pass
     if (/^[aeiouwŷâêîôû]/i.test(candidate)) {
       const addedG = "g" + candidate;
       if (glossary[addedG]) foundKeys.add(addedG);
     }
   }
 
+  // Scan mutations on the base word shape
   scanMutations(w);
 
+  // 2. Verb stem processing
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant"];
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
@@ -246,7 +270,6 @@ function collectMatches(word, glossary) {
     return { root: key, definition: glossary[key] };
   });
 }
-
 // --- AUTO‑ANNOTATION ENGINE ---
 function annotate(text, glossary) {
   const phrases = Object.keys(glossary).filter(key => key.includes(" "));
