@@ -299,7 +299,7 @@ function collectMatches(word, glossary) {
   // 3. NEW: DROPPED-F RESTORER (Handles spoken variants like diwetha -> diwethaf)
   if (!glossary[w]) {
     // If the word ends in a vowel, check if adding an 'f' hits a glossary entry
-    if (/ [aeiouwŷâêîôû]$/i.test(w)) {
+    if (/[aeiouwŷâêîôû]$/i.test(w)) {
       const addedF = w + "f";
       if (glossary[addedF]) {
         w = addedF; // Found it! Update our search target to the dictionary form
