@@ -801,7 +801,7 @@ const sylfaenGlossary = {
 "yswiriant": "insurance",
 "y swistir": "Switzerland",
 
-  //Vocab from the purple boxes that's missing from the book dictionary
+  //Vocab from the purple boxes and elsewhere that's missing from the book dictionary
   "mwy nag unwaith": "more than once",
 "pam lai": "why not?",
 "raid cropian cyn cerdded": "You must walk before you can run",
@@ -833,6 +833,14 @@ const sylfaenGlossary = {
 "wadi'r cyfan": "after all",
 "bant â ni": "off we go",
 "rhywbryd": "sometime",
+"patrwm": "pattern",
+  "rhaid": "must",
+  "flwyddyn": "year (with 1)",
+  "flynedd": "years (with 2)",
+  "blynedd": "years (with 3, 4, 6)",
+  "mlynedd": "years (with 5, 7, 8, 9, 10)",
+  "dychmygu": "imagine",
+
   
 // Vocab from Yn Ei Gwsg and various other sources
 "pidyn": "dick, penis",
@@ -997,7 +1005,6 @@ const sylfaenGlossary = {
   "ffydd": "faith",
   "euog": "guilty",
   "ar flaenau ei thraed": "on her tiptoes",
-  
   
   
   
