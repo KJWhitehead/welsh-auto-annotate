@@ -5,3 +5,14 @@ I have not used best practices: my KANBAN is in my head and on paper.
 As of 16:30 on Friday the 4th, I'm realising that this tool on its own, in its current format, might not actually help learning. I think I need to add layers. 
 This could mean tools that identify the part of speech or other markers that might help the learner come up with the meaning on their own, or providing Welsh-to-Welsh translations.
 
+As of Wednesday the 9th, I've tried to use the following files for the following things:
+
+mynediad.js: includes the Mynediad vocab from the back of the Dysgu Cymraeg version 2 book; purple text in the chapter starts that isn't at the back of the book; colours, numbers, months, and days; the top 500 words list; prepositions and inflections for 'ar', 'at', 'am', 'wrth', 'i'; and the pronouns.
+
+sylfaen.js: includes the Sylfaen vocab from the back of the Dysgu Cymraeg version 2 book; vocab from the purple boxes and elsewhere that's missing from the book dictionary; vocab from the book Yn Ei Gwsg and various other sources
+
+canolradd.js: includes the Canolradd vocab from the back of the Dysgu Cymraeg version 2 book
+
+bbc.js: includes Geirfa Newyddion from http://news.bbc.co.uk/welsh/hi/newsid_2150000/newsid_2151300/2151336.stm - the original has errors, though.
+
+There's now the option of clicking to add to a study list and the number of clicks will increase the item's priority.
