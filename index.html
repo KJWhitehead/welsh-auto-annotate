@@ -226,23 +226,23 @@
 
 <div id="output"></div>
 
-<!-- RE-BUILT DYNAMIC STUDY LIST VIEW -->
+<!-- LAYER 3: DYNAMIC STUDY LIST VIEW (UPDATED FOR 3 COLUMNS) -->
 <div class="study-list-container">
   <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 8px;">
     <h3 style="margin: 0;">My Vocabulary Study List</h3>
-    <button class="btn-danger" onclick="clearStudyList()">Clear Study List</button>
+    <button class="btn-danger" style="margin: 0;" onclick="clearStudyList()">Clear Study List</button>
   </div>
   <table class="study-table">
     <thead>
       <tr>
-  <th style="width: 30%;">Word / Phrase in Context</th>
-  <th style="width: 55%;">Dictionary Root & Translations</th>
-  <th style="width: 15%; text-align: center;">Times Looked Up</th>
-</tr>
+        <th style="width: 30%;">Word / Phrase in Context</th>
+        <th style="width: 55%;">Dictionary Root & Translations</th>
+        <th style="width: 15%; text-align: center;">Times Looked Up</th>
+      </tr>
     </thead>
     <tbody id="studyListBody">
       <tr>
-        <td colspan="3" class="empty-msg">No words looked up yet this session. Tap annotated text above to start tracking.</td>
+        <td colspan="3" class="empty-msg">No words saved to study list yet. Tap the [+] inside any translation bubble to start tracking.</td>
       </tr>
     </tbody>
   </table>
