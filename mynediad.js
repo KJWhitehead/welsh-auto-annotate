@@ -1342,4 +1342,57 @@ const mynediadGlossary = {
   "tiwtor": "tutor",
   "tros": "over",
   "tu": "inside",
+
+  //prepositions and inflections
+  "arna i": "on me (inflected form of 'ar')",
+"arnat ti": "on you (inflected form of 'ar')",
+"arno fe": "on him (inflected form of 'ar')",
+"arno fo": "on him (inflected form of 'ar')",
+"arni hi": "on her/impersonal it (inflected form of 'ar')",
+"arnon ni": "on us (inflected form of 'ar')",
+"arnoch chi": "on you plural/formal (inflected form of 'ar')",
+"arnyn nhw": "on them (inflected form of 'ar')",
+
+"ata i": "at/by/for/to/towards me (inflected form of at)",
+"ato i": "at/by/for/to/towards me (inflected form of at)",
+"atat ti": "at/by/for/to/towards you (inflected form of at)",
+"atot ti": "at/by/for/to/towards you (inflected form of at)",
+"ato fe": "at/by/for/to/towards him (inflected form of at)",
+"ato fo": "at/by/for/to/towards him (inflected form of at)",
+"ati hi": "at/by/for/to/towards her/impersonal it (inflected form of at)",
+"aton ni": "at/by/for/to/towards us (inflected form of at)",
+"atoch chi": "at/by/for/to/towards you plural/formal (inflected form of at)",
+"atyn nhw": "at/by/for/to/towards them (inflected form of at)",
+
+"amdana i": "about/around/at/for/of me (inflected form of am)",
+"amdanat ti": "about/around/at/for/of you (inflected form of am)",
+"amdano fe": "about/around/at/for/of him (inflected form of am)",
+"amdano fo": "about/around/at/for/of him (inflected form of am)",
+"amdani hi": "about/around/at/for/of her/impersonal it (inflected form of am)",
+"amdanon ni": "about/around/at/for/of us (inflected form of am)",
+"amdanoch chi": "about/around/at/for/of you plural/formal (inflected form of am)",
+"amdanyn nhw": "about/around/at/for/of them (inflected form of am)",
+
+"wrtho i": "by/near/to/with me (inflected form of wrth)",
+"wrthot ti": "by/near/to/with you (inflected form of wrth)",
+"wrtho fe": "by/near/to/with him (inflected form of wrth)",
+"wrtho fo": "by/near/to/with him (inflected form of wrth)",
+"wrthi hi": "by/near/to/with her/impersonal it (inflected form of wrth)",
+"wrthon ni": "by/near/to/with us (inflected form of wrth)",
+"wrthoch chi": "by/near/to/with you plural/formal (inflected form of wrth)",
+"wrthyn nhw": "by/near/to/with them (inflected form of wrth)",
+
+"iddo fe": "for/to him (inflected form of i)",
+"iddo fo": "for/to him (inflected form of i)",
+"iddi hi": "for/to her/impersonal it (inflected form of i)",
+
+"iddyn nhw": "for/to them (inflected form of i)",
+
+  //pronouns
+  "fy": "my (with nasal mutation)",
+"dy": "your (with soft mutation)",
+"ei": "his (with soft mutation); her (with aspirate mutation)",
+"ein": "our",
+"eich": "your (plural or formal)",
+"eu": "their",
 };
