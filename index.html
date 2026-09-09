@@ -9,6 +9,7 @@
 <script src="mynediad.js"></script>
 <script src="sylfaen.js"></script>
 <script src="canolradd.js"></script>
+<script src="bbc.js"></script>
 
 <style>
   body {
@@ -203,7 +204,7 @@
 
 <h2>Welsh Auto‑Annotation Tool</h2>
 
-<!-- CONTROL PANEL -->
+<!-- CONTROL PANEL (UPDATED FOR 4 CHECKBOX OPTIONS) -->
 <div class="control-panel">
   <label>Select Vocabulary Levels to Include:</label>
   <div class="checkbox-group">
@@ -215,6 +216,9 @@
     </label>
     <label class="checkbox-label">
       <input type="checkbox" id="chkCanolradd" checked> Canolradd (Intermediate level)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="chkBBC"> BBC News Vocab
     </label>
   </div>
 </div>
@@ -257,9 +261,10 @@ function compileActiveGlossary() {
   const useMynediad = document.getElementById('chkMynediad').checked;
   const useSylfaen = document.getElementById('chkSylfaen').checked;
   const useCanolradd = document.getElementById('chkCanolradd').checked;
+  const useBBC = document.getElementById('chkBBC').checked;
   
   function mergeSource(sourceGlossary) {
-    if (typeof sourceGlossary === 'undefined') return;
+    if (sourceGlossary === undefined || sourceGlossary === null) return;
     
     for (const key in sourceGlossary) {
       const cleanKey = key.trim().toLowerCase();
@@ -279,6 +284,7 @@ function compileActiveGlossary() {
   if (useMynediad) mergeSource(typeof mynediadGlossary !== 'undefined' ? mynediadGlossary : undefined);
   if (useSylfaen) mergeSource(typeof sylfaenGlossary !== 'undefined' ? sylfaenGlossary : undefined);
   if (useCanolradd) mergeSource(typeof canolraddGlossary !== 'undefined' ? canolraddGlossary : undefined);
+  if (useBBC) mergeSource(typeof bbcGlossary !== 'undefined' ? bbcGlossary : undefined);
 }
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
