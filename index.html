@@ -235,13 +235,14 @@
   <table class="study-table">
     <thead>
       <tr>
-        <th style="width: 35%;">Word / Phrase in Context</th>
-        <th style="width: 65%;">Dictionary Root & Translations</th>
-      </tr>
+  <th style="width: 30%;">Word / Phrase in Context</th>
+  <th style="width: 55%;">Dictionary Root & Translations</th>
+  <th style="width: 15%; text-align: center;">Times Looked Up</th>
+</tr>
     </thead>
     <tbody id="studyListBody">
       <tr>
-        <td colspan="2" class="empty-msg">No words looked up yet this session. Tap annotated text above to start tracking.</td>
+        <td colspan="3" class="empty-msg">No words looked up yet this session. Tap annotated text above to start tracking.</td>
       </tr>
     </tbody>
   </table>
@@ -403,15 +404,18 @@ function annotate(text, glossary) {
     if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
       
-      // FIXED: Safely unpack phrase indexing keys for mobile tracking strings
       const textPhrase = parts[0];
       const translationPhrase = parts[1];
       const htmlTextContent = `<span class="tooltip-branch"><span class="tooltip-label">(${textPhrase}):</span> ${translationPhrase}</span>`;
       const cleanParam = `(${textPhrase}): ${translationPhrase}`.replace(/['"]/g, '&quot;');
 
-      return `<span class="annotated" onclick="handleWordActivation(event, this, '${textPhrase}', '${cleanParam}')">${textPhrase}<span class="tooltip">${htmlTextContent}</span></span>`;
+      // Add the button snippet for multi-word expressions too
+      let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${textPhrase}', '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+
+      return `<span class="annotated" onclick="handleWordActivation(event, this, '${textPhrase}', '${cleanParam}')">${textPhrase}<span class="tooltip">${htmlTextContent}${addBtnHtml}</span></span>`;
     }
 
+    
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
@@ -424,14 +428,18 @@ function annotate(text, glossary) {
         const plainTextLabel = matches.map(m => `(${m.root}): ${m.definition}`).join(' / ');
         const cleanParamLabel = plainTextLabel.replace(/['"]/g, '&quot;');
 
-        return `<span class="annotated" onclick="handleWordActivation(event, this, '${word}', '${cleanParamLabel}')">${word}<span class="tooltip">${tooltipContent}</span></span>`;
+        // 1. PLACE THE NEW BUTTON HTML GENERATOR HERE
+        let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${word}', '${cleanParamLabel}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+
+        // 2. INJECT THE BUTTON INTERNALLY AT THE TAIL OF THE TOOLTIP PANEL
+        return `<span class="annotated" onclick="handleWordActivation(event, this, '${word}', '${cleanParamLabel}')">${word}<span class="tooltip">${tooltipContent}${addBtnHtml}</span></span>`;
       }
       return word;
     }).join("");
   }).join("");
 }
 
-// --- LAYER 3 INTERCEPT HANDLER (Toggles Tooltip AND Logs to Study Session) ---
+// --- LAYER 3 INTERCEPT HANDLER (Toggles Tooltip Visibility Only) ---
 function handleWordActivation(event, element, plainWord, encodedTranslation) {
   event.stopPropagation(); 
   
@@ -440,28 +448,44 @@ function handleWordActivation(event, element, plainWord, encodedTranslation) {
   
   if (!isOpen) {
     element.classList.add('show-tooltip');
-    logToStudyList(plainWord, encodedTranslation);
   }
 }
 
-// --- CHRONOLOGICAL STORAGE LOGGING & RENDERING SCRIPT ---
-function logToStudyList(word, translationString) {
+// --- NEW CHRONOLOGICAL & FREQUENCY INTERCEPT ROUTING ---
+function handleAddButtonClick(event, plainWord, encodedTranslation) {
+  event.stopPropagation(); // Stop the bubble click from closing the tooltip immediately
+  
+  // Clean up parameters safely
+  const cleanWord = plainWord.trim();
+  
+  // Pull existing session dictionary list cache
   let listCache = sessionStorage.getItem("welshActiveStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
   
-  const cleanWord = word.trim();
+  // Check if this word has been saved to the study list before
+  const existingItemIndex = loggedWords.findIndex(item => item.word.toLowerCase() === cleanWord.toLowerCase());
   
-  let cellularRows = translationString.split(' / ').map(item => {
-    return `<span class="table-branch-item">${item}</span>`;
-  }).join('');
-
-  const itemExists = loggedWords.some(item => item.word.toLowerCase() === cleanWord.toLowerCase());
-  
-  if (!itemExists) {
-    loggedWords.push({ word: cleanWord, displayDef: cellularRows });
-    sessionStorage.setItem("welshActiveStudySession", JSON.stringify(loggedWords));
-    renderStudyListTable();
+  if (existingItemIndex !== -1) {
+    // If it exists, bump up its lookup counter
+    loggedWords[existingItemIndex].count += 1;
+  } else {
+    // If it's brand new, format cell structural items and initialize count to 1
+    let cellularRows = encodedTranslation.split(' / ').map(item => {
+      return `<span class="table-branch-item">${item}</span>`;
+    }).join('');
+    
+    loggedWords.push({ word: cleanWord, displayDef: cellularRows, count: 1 });
   }
+  
+  // RANKING TRIGGER: Sort the entire array dynamically from highest lookups to lowest lookups
+  loggedWords.sort((a, b) => b.count - a.count);
+  
+  // Push it back into browser memory and refresh the visual viewport
+  sessionStorage.setItem("welshActiveStudySession", JSON.stringify(loggedWords));
+  renderStudyListTable();
+  
+  // Briefly alert the user or close open tooltip panels for responsive feel
+  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
 }
 
 function renderStudyListTable() {
@@ -470,14 +494,16 @@ function renderStudyListTable() {
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
   if (loggedWords.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="2" class="empty-msg">No words looked up yet this session. Tap annotated text above to start tracking.</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="3" class="empty-msg">No words saved to study list yet. Tap the [+] inside any translation bubble to start tracking.</td></tr>`;
     return;
   }
 
+  // Render list prioritized by lookup count frequency
   tableBody.innerHTML = loggedWords.map(item => {
     return `<tr>
       <td><span class="table-word">${item.word}</span></td>
       <td>${item.displayDef}</td>
+      <td style="text-align: center; font-weight: bold; color: #dc3545; background-color: #fff5f5;">${item.count}×</td>
     </tr>`;
   }).join("");
 }
