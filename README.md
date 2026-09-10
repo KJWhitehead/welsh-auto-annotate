@@ -18,4 +18,5 @@ bbc.js: includes Geirfa Newyddion from http://news.bbc.co.uk/welsh/hi/newsid_215
 There's now the option of clicking to add to a study list and the number of clicks will increase the item's priority.
 
 Possibilities of next steps:
-colour-coding the parts of speech & gender. Potential issues: some words can be more than one part of speech; are there really that many adverbs? they are mostly yn + adjective; it would mean going back and doing every entry, but AI can help speed that up.
+1. colour-coding the parts of speech & gender. Potential issues: some words can be more than one part of speech; are there really that many adverbs? they are mostly yn + adjective; it would mean going back and doing every entry, but AI can help speed that up.
+2. adding the DuoLingo vocab in sylfaen.js
