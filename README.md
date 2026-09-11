@@ -9,7 +9,7 @@ As of Wednesday the 9th, I've tried to use the following files for the following
 
 mynediad.js: includes the Mynediad vocab from the back of the Dysgu Cymraeg version 2 book; purple text in the chapter starts that isn't at the back of the book; colours, numbers, months, and days; the top 500 words list; prepositions and inflections for 'ar', 'at', 'am', 'wrth', 'i'; and the pronouns; irregular stems of verbs; irregular part tense of gwneud, cael, mynd, dod
 
-sylfaen.js: includes the Sylfaen vocab from the back of the Dysgu Cymraeg version 2 book; vocab from the purple boxes and elsewhere that's missing from the book dictionary; vocab from the book Yn Ei Gwsg and various other sources; irregular concise future of gwneud, cael, mynd, dod; conditional of hoffi and gallu; DuoLingo vocab; the dylai/should forms
+sylfaen.js: includes the Sylfaen vocab from the back of the Dysgu Cymraeg version 2 book; vocab from the purple boxes and elsewhere that's missing from the book dictionary; vocab from the book Yn Ei Gwsg and various other sources; irregular concise future of gwneud, cael, mynd, dod; conditional of hoffi and gallu; DuoLingo vocab; the dylai/should forms. Note about Duolingo words: a few, such as arogldarth (incense?) and fioddiraddadwy/bioddiraddadwy did not come up on https://geiriadur.uwtsd.ac.uk/ so they were not included.
 
 canolradd.js: includes the Canolradd vocab from the back of the Dysgu Cymraeg version 2 book
 
@@ -20,3 +20,4 @@ There's now the option of clicking to add to a study list and the number of clic
 Possibilities of next steps:
 1. colour-coding the parts of speech & gender. Potential issues: some words can be more than one part of speech; are there really that many adverbs? they are mostly yn + adjective; it would mean going back and doing every entry, but AI can help speed that up.
 2. comparative & superlative forms - both with the rules & the irregulars
+3. making sure the tool recognises command forms
