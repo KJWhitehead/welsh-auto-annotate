@@ -203,7 +203,11 @@
 
 <body>
 
-<h2>Welsh Auto‑Annotation Tool</h2>
+<!-- HEADER APPLICATION BANNER WITH LOGO -->
+<div style="display: flex; align-items: center; gap: 15px; margin-top: 10px; margin-bottom: 25px;">
+  <img src="assets/logokd.png" alt="Kenyon Designs Logo" style="height: 50px; width: auto; object-fit: contain;">
+  <h2 style="margin: 0; font-size: 1.6em; color: #1e293b;">Welsh Auto‑Annotation Tool</h2>
+</div>
 
 <!-- CONTROL PANEL (UPDATED FOR 4 CHECKBOX OPTIONS) -->
 <div class="control-panel">
@@ -550,6 +554,12 @@ function runAnnotation() {
   document.getElementById("output").innerHTML = "";
 }
 </script>
-
+<!-- MINIMALIST SUPPORT FOOTER -->
+<footer style="margin-top: 50px; padding: 20px 0; border-top: 1px solid #dee2e6; text-align: center; font-size: 0.9em; color: #555;">
+  <p style="margin-bottom: 12px;">Developed by <strong>kenyon designs</strong></p>
+  <a href="https://wise.com/pay/me/kenyonjulia" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 8px; background-color: #00b9ff; color: white; text-decoration: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; font-size: 0.88em; box-shadow: 0 2px 5px rgba(0,0,0,0.08); transition: background-color 0.2s, transform 0.2s;">
+    ☕ Tip your dev with Wise
+  </a>
+</footer>
 </body>
 </html>
