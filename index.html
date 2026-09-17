@@ -364,6 +364,14 @@ function collectMatches(word, glossary) {
       const addedG = "g" + candidate;
       checkAndAdd(addedG);
     }
+        // NEW: ASPIRATE VOWEL PASS (Handles appearing h- e.g., hafal -> afal)
+    if (candidate.startsWith("h") && candidate.length > 1) {
+      const vowelRoot = candidate.slice(1); // Strip the initial 'h'
+      // Only match if the remaining word starts with a genuine Welsh vowel
+      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) {
+        if (glossary[vowelRoot]) foundKeys.add(vowelRoot);
+      }
+    }
   }
 
   scanMutations(w);
