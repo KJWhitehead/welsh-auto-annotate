@@ -1077,7 +1077,11 @@ const mynediadGlossary = {
   "swperau": "suppers",
   "swydd": "job, post",
   "swyddi": "jobs, posts",
-  "swyddfa": "office",
+  "swyddfa": { 
+  definition: "office", 
+  course: "Mynediad", 
+  unit: "Uned 5" 
+}
   "swyddfeydd": "offices",
   "sych": "dry",
   "syched": "thirst",
