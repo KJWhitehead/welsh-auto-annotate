@@ -1,5 +1,5 @@
 // BBC News Vocabulary
-const bbcGlossary = {
+window.bbcGlossary = {
   "abaty": "abbey",
   "aber": "estuary",
   "aberth": "sacrifice",
