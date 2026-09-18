@@ -261,6 +261,49 @@
 <script>
 let runtimeGlossary = {};
 
+// --- GLOBAL API VARIABLES ---
+const BASE_URL = "https://techiaith.cymru";
+const API_KEY = "YOUR_API_KEY_HERE"; // Replace with your actual key if using premium tier
+
+// --- DYNAMIC LIVE CYSILL SPELL/GRAMMAR CHECK CONNECTOR (GET) ---
+async function fetchCysillAnalysis(textBlock) {
+  const queryParams = new URLSearchParams({ text: textBlock, api_key: API_KEY });
+  try {
+    const response = await fetch(`${BASE_URL}/cysill/v1?${queryParams.toString()}`);
+    if (!response.ok) throw new Error("Cysill rejection.");
+    return await response.json();
+  } catch (error) {
+    console.error("Cysill API Failed:", error);
+    return null; 
+  }
+}
+
+// --- DYNAMIC LIVE WELSH PART-OF-SPEECH TAGGER (GET) ---
+async function fetchWelshPOS(textBlock) {
+  const queryParams = new URLSearchParams({ text: textBlock, api_key: API_KEY });
+  try {
+    const response = await fetch(`${BASE_URL}/pos/v1?${queryParams.toString()}`);
+    if (!response.ok) throw new Error("POS rejection.");
+    return await response.json();
+  } catch (error) {
+    console.error("POS Fetch failed:", error);
+    return null;
+  }
+}
+
+// --- DYNAMIC LIVE WELSH LEMMATISER (GET) ---
+async function fetchWelshLemmas(textBlock) {
+  const queryParams = new URLSearchParams({ text: textBlock, api_key: API_KEY });
+  try {
+    const response = await fetch(`${BASE_URL}/lemmatizer/v1?${queryParams.toString()}`);
+    if (!response.ok) throw new Error("Lemmatiser rejection.");
+    return await response.json();
+  } catch (error) {
+    console.error("Lemmatiser Fetch failed:", error);
+    return null;
+  }
+}
+
 function compileActiveGlossary() {
   runtimeGlossary = {};
   
@@ -279,14 +322,12 @@ function compileActiveGlossary() {
       let textTranslation = "";
       let courseInfo = "";
 
-      // Securely check if the entry is an object container or a flat translation string
       if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
         textTranslation = rawData.definition;
         if (rawData.course && rawData.unit) {
           courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
         }
       } else {
-        // Keeps all off-book lexis and plain strings running
         textTranslation = rawData;
       }
       
@@ -303,22 +344,10 @@ function compileActiveGlossary() {
     }
   }
 
-  // FIXED: Using 'typeof Variable !== "undefined"' safely targets top-level const scripts
-  if (useMynediad && window.mynediadGlossary) {
-  mergeSource(window.mynediadGlossary);
-}
-
-if (useSylfaen && window.sylfaenGlossary) {
-  mergeSource(window.sylfaenGlossary);
-}
-
-if (useCanolradd && window.canolraddGlossary) {
-  mergeSource(window.canolraddGlossary);
-}
-
-if (useBBC && window.bbcGlossary) {
-  mergeSource(window.bbcGlossary);
-}
+  if (useMynediad && window.mynediadGlossary) mergeSource(window.mynediadGlossary);
+  if (useSylfaen && window.sylfaenGlossary) mergeSource(window.sylfaenGlossary);
+  if (useCanolradd && window.canolraddGlossary) mergeSource(window.canolraddGlossary);
+  if (useBBC && window.bbcGlossary) mergeSource(window.bbcGlossary);
 }
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
@@ -326,83 +355,54 @@ function collectMatches(word, glossary) {
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
   if (!w) return [];
 
-  // 1. WELSH CONTRACTION SPLITTER
   if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
     w = w.slice(0, -2); 
   }
 
-  // 2. WELSH VOWEL-LINK STRIPPER (Handles particles like nag -> na)
   if (!glossary[w]) {
     const vowelLinks = { "nag": "na", "ac": "a", "ag": "â", "tuag": "tua", "gydag": "gyda" };
     if (vowelLinks[w]) w = vowelLinks[w];
   }
 
   if (!w) return [];
-
   let foundKeys = new Set();
 
-  // Core lookup helper that tests dictionary items AND dropped -f spelling patterns
   function checkAndAdd(candidate) {
-    if (glossary[candidate]) {
-      foundKeys.add(candidate);
-    }
-    // DROPPED-F RESTORER INTEGRATION: If the word variant ends in a vowel, test adding an 'f'
+    if (glossary[candidate]) foundKeys.add(candidate);
     if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
       const candidateWithF = candidate + "f";
-      if (glossary[candidateWithF]) {
-        foundKeys.add(candidateWithF);
-      }
+      if (glossary[candidateWithF]) foundKeys.add(candidateWithF);
     }
   }
 
-  // Check the word form as it was written first
   checkAndAdd(w);
 
   function scanMutations(candidate) {
-    // Soft Mutations
     const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
     for (const mut in soft) {
       if (candidate.startsWith(mut)) {
-        soft[mut].forEach(target => {
-          const root = candidate.replace(new RegExp("^" + mut), target);
-          checkAndAdd(root);
-        });
+        soft[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
       }
     }
 
-    // Nasal Mutations
     const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
     for (const mut in nasal) {
       if (candidate.startsWith(mut)) {
-        nasal[mut].forEach(target => {
-          const root = candidate.replace(new RegExp("^" + mut), target);
-          checkAndAdd(root);
-        });
+        nasal[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
       }
     }
 
-    // Aspirate Mutations
     const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
     for (const mut in aspirate) {
       if (candidate.startsWith(mut)) {
-        aspirate[mut].forEach(target => {
-          const root = candidate.replace(new RegExp("^" + mut), target);
-          checkAndAdd(root);
-        });
+        aspirate[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
       }
     }
 
-    if (/^[aeiouwŷâêîôû]/i.test(candidate)) {
-      const addedG = "g" + candidate;
-      checkAndAdd(addedG);
-    }
-        // NEW: ASPIRATE VOWEL PASS (Handles appearing h- e.g., hafal -> afal)
+    if (/^[aeiouwŷâêîôû]/i.test(candidate)) checkAndAdd("g" + candidate);
     if (candidate.startsWith("h") && candidate.length > 1) {
-      const vowelRoot = candidate.slice(1); // Strip the initial 'h'
-      // Only match if the remaining word starts with a genuine Welsh vowel
-      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) {
-        if (glossary[vowelRoot]) foundKeys.add(vowelRoot);
-      }
+      const vowelRoot = candidate.slice(1);
+      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot) && glossary[vowelRoot]) foundKeys.add(vowelRoot);
     }
   }
 
@@ -412,7 +412,6 @@ function collectMatches(word, glossary) {
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
-      
       checkAndAdd(nakedStem);
       scanMutations(nakedStem);
 
@@ -425,9 +424,7 @@ function collectMatches(word, glossary) {
     }
   }
 
-  return Array.from(foundKeys).map(key => {
-    return { root: key, definition: glossary[key] };
-  });
+  return Array.from(foundKeys).map(key => ({ root: key, definition: glossary[key] }));
 }
 
 // --- AUTO‑ANNOTATION ENGINE ---
@@ -440,7 +437,6 @@ function annotate(text, glossary) {
   phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
-    
     processedText = processedText.replace(regex, (match) => {
       return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
     });
@@ -451,35 +447,24 @@ function annotate(text, glossary) {
   return tokens.map(token => {
     if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
-      
       const textPhrase = parts[0];
       const translationPhrase = parts[1];
       const htmlTextContent = `<span class="tooltip-branch"><span class="tooltip-label">(${textPhrase}):</span> ${translationPhrase}</span>`;
       const cleanParam = `(${textPhrase}): ${translationPhrase}`.replace(/['"]/g, '&quot;');
-
-      // Add the button snippet for multi-word expressions too
       let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${textPhrase}', '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
 
       return `<span class="annotated" onclick="handleWordActivation(event, this, '${textPhrase}', '${cleanParam}')">${textPhrase}<span class="tooltip">${htmlTextContent}${addBtnHtml}</span></span>`;
     }
 
-    
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
-      
       if (matches.length > 0) {
-        let tooltipContent = matches.map(m => {
-          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${m.definition}</span>`;
-        }).join("");
-
+        let tooltipContent = matches.map(m => `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${m.definition}</span>`).join("");
         const plainTextLabel = matches.map(m => `(${m.root}): ${m.definition}`).join(' / ');
         const cleanParamLabel = plainTextLabel.replace(/['"]/g, '&quot;');
-
-        // 1. PLACE THE NEW BUTTON HTML GENERATOR HERE
+        
         let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${word}', '${cleanParamLabel}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-
-        // 2. INJECT THE BUTTON INTERNALLY AT THE TAIL OF THE TOOLTIP PANEL
         return `<span class="annotated" onclick="handleWordActivation(event, this, '${word}', '${cleanParamLabel}')">${word}<span class="tooltip">${tooltipContent}${addBtnHtml}</span></span>`;
       }
       return word;
@@ -490,44 +475,28 @@ function annotate(text, glossary) {
 // --- LAYER 3 INTERCEPT HANDLER (Toggles Tooltip Visibility Only) ---
 function handleWordActivation(event, element, plainWord, encodedTranslation) {
   event.stopPropagation(); 
-  
   const isOpen = element.classList.contains('show-tooltip');
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-  
-  if (!isOpen) {
-    element.classList.add('show-tooltip');
-  }
+  if (!isOpen) element.classList.add('show-tooltip');
 }
 
 // --- NEW CHRONOLOGICAL & FREQUENCY INTERCEPT ROUTING ---
 function handleAddButtonClick(event, plainWord, encodedTranslation) {
-  event.stopPropagation(); // Stop the bubble click from closing the tooltip immediately
-  
-  // Clean up parameters safely
+  event.stopPropagation(); 
   const cleanWord = plainWord.trim();
-  
-  // Pull existing session dictionary list cache
   let listCache = sessionStorage.getItem("welshActiveStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
   
-  // Check if this word has been saved to the study list before
   const existingItemIndex = loggedWords.findIndex(item => item.word.toLowerCase() === cleanWord.toLowerCase());
   
   if (existingItemIndex !== -1) {
-    // If it exists, bump up its lookup counter
     loggedWords[existingItemIndex].count += 1;
   } else {
-    // If it's brand new, format cell structural items and initialize count to 1
-    let cellularRows = encodedTranslation.split(' / ').map(item => {
-      return `<span class="table-branch-item">${item}</span>`;
-    }).join('');
-    
+    let cellularRows = encodedTranslation.split(' / ').map(item => `<span class="table-branch-item">${item}</span>`).join('');
     loggedWords.push({ word: cleanWord, displayDef: cellularRows, count: 1 });
   }
   
-  // RANKING TRIGGER: Sort the entire array dynamically from highest lookups to lowest lookups
   loggedWords.sort((a, b) => b.count - a.count);
-  
   // Push it back into browser memory and refresh the visual viewport
   sessionStorage.setItem("welshActiveStudySession", JSON.stringify(loggedWords));
   renderStudyListTable();
@@ -571,16 +540,73 @@ document.addEventListener('click', function() {
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
 });
 
-// --- RUN ANNOTATION ---
-function runAnnotation() {
+// --- UPDATED COMBINED RUN ANNOTATION ENGINE ---
+async function runAnnotation() {
   compileActiveGlossary();
   const text = document.getElementById("inputText").value;
-  document.getElementById("output").innerHTML = annotate(text, runtimeGlossary);
+
+  if (!text.trim()) {
+    document.getElementById("output").innerHTML = "Please type some Welsh text first to test.";
+    return;
+  }
+
+  // 1. Instantly display your native interactive annotated text layout
+  const traditionalAnnotatedHTML = annotate(text, runtimeGlossary);
+  
+  document.getElementById("output").innerHTML = `
+    ${traditionalAnnotatedHTML}
+    <hr style="margin: 30px 0; border: 0; border-top: 1px dashed #ccc;">
+    <div id="api-diagnostic-log" style="text-align:left; font-family:sans-serif; font-size:14px; color:#4b5563;">
+      <i>Fetching active live dictionary APIs... Please wait...</i>
+    </div>
+  `;
+
+  try {
+    // 2. Query Techiaith APIs in the background simultaneously
+    const [cysillResult, posResult, lemmaResult] = await Promise.all([
+      fetchCysillAnalysis(text),
+      fetchWelshPOS(text),
+      fetchWelshLemmas(text)
+    ]);
+
+    // 3. Build independent, diagnostic blocks for each layout response
+    let diagnosticHTML = `<div style="display: flex; flex-direction: column; gap: 15px; font-family: monospace; white-space: pre-wrap; font-size:12px;">`;
+
+    if (cysillResult) {
+      diagnosticHTML += `
+        <div style="background:#f0f7ff; padding:15px; border:1px solid #3b82f6; border-radius:6px;">
+          <strong>✍️ Live Cysill Spellcheck Data:</strong><br><br>${JSON.stringify(cysillResult, null, 2)}
+        </div>`;
+    }
+    if (posResult) {
+      diagnosticHTML += `
+        <div style="background:#fef8e6; padding:15px; border:1px solid #f59e0b; border-radius:6px;">
+          <strong>🏷️ Live Part-of-Speech Tagging Data:</strong><br><br>${JSON.stringify(posResult, null, 2)}
+        </div>`;
+    }
+    if (lemmaResult) {
+      diagnosticHTML += `
+        <div style="background:#eefdf4; padding:15px; border:1px solid #10b981; border-radius:6px;">
+          <strong>🎉 Live Lemmatiser Base Root Data:</strong><br><br>${JSON.stringify(lemmaResult, null, 2)}
+        </div>`;
+    }
+
+    diagnosticHTML += `</div>`;
+    
+    // Inject the payload tracking cards down below your traditional tooltips
+    document.getElementById("api-diagnostic-log").innerHTML = diagnosticHTML;
+
+  } catch (err) {
+    console.error("API Diagnostics crashed:", err);
+    document.getElementById("api-diagnostic-log").innerHTML = "<b style='color:#dc3545;'>❌ Live API Diagnostics failed to compile.</b>";
+  }
 }
-  function clearAnnotation() {
+
+function clearAnnotation() {
   document.getElementById("inputText").value = "";
   document.getElementById("output").innerHTML = "";
 }
+
 </script>
   <script data-goatcounter="https://welshannotation.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
