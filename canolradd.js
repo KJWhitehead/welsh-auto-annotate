@@ -1,5 +1,5 @@
 // Canolradd Vocabulary
-const canolraddGlossary = {
+window.canolraddGlossary = {
 "a bod yn onest": "to be honest",
   "aber": "estuary",
   "aberoedd": "estuaries",
