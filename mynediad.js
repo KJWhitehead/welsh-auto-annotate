@@ -1081,7 +1081,7 @@ const mynediadGlossary = {
   definition: "office", 
   course: "Mynediad", 
   unit: "Uned 5" 
-}
+},
   "swyddfeydd": "offices",
   "sych": "dry",
   "syched": "thirst",
