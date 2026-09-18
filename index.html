@@ -304,7 +304,9 @@ function compileActiveGlossary() {
   }
 
   // FIXED: Using 'typeof Variable !== "undefined"' safely targets top-level const scripts
-  if (useMynediad && typeof mynediadGlossary !== 'undefined') mergeSource(mynediadGlossary);
+  if (useMynediad && window.mynediadGlossary) {
+  mergeSource(window.mynediadGlossary);
+}
   if (useSylfaen && typeof sylfaenGlossary !== 'undefined') mergeSource(sylfaenGlossary);
   if (useCanolradd && typeof canolraddGlossary !== 'undefined') mergeSource(canolraddGlossary);
   if (useBBC && typeof bbcGlossary !== 'undefined') mergeSource(bbcGlossary);
