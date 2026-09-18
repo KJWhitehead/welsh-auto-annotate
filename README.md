@@ -19,9 +19,13 @@ There's now the option of clicking to add to a study list and the number of clic
 
 17 Sept: I've made sure that the vocab from Version 2 of Canolradd was uploaded, I've added the h- in "ei hafal" for "her apple"
 
+18 Sept: Massive brainstorm and discovery of free Welsh APIs. I'll have to branch now. Exciting!
+
 Possibilities of next steps:
 1. comparative & superlative irregulars
 2. making sure the tool recognises command forms
 3. all the bod forms - incl. the formal forms
 4. converting to a Chrome extension
 5. adding Uwch vocab
+6. adding which chapter the word first appeared: in progress
+
