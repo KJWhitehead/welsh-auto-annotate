@@ -270,7 +270,7 @@ function compileActiveGlossary() {
   const useBBC = document.getElementById('chkBBC').checked;
   
   function mergeSource(sourceGlossary) {
-    if (sourceGlossary === undefined || sourceGlossary === null) return;
+    if (!sourceGlossary || typeof sourceGlossary !== 'object') return;
     
     for (const key in sourceGlossary) {
       const cleanKey = key.trim().toLowerCase();
@@ -279,14 +279,14 @@ function compileActiveGlossary() {
       let textTranslation = "";
       let courseInfo = "";
 
-      // Check if the item is a new curriculum object or a standard flat text string
-      if (typeof rawData === 'object' && rawData !== null) {
+      // Securely check if the entry is an object container or a flat translation string
+      if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
         textTranslation = rawData.definition;
         if (rawData.course && rawData.unit) {
           courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
         }
       } else {
-        // Keeps  off-book lexis working 
+        // Keeps all of  off-book lexis and plain strings running 
         textTranslation = rawData;
       }
       
@@ -303,10 +303,11 @@ function compileActiveGlossary() {
     }
   }
 
-  if (useMynediad) mergeSource(typeof mynediadGlossary !== 'undefined' ? mynediadGlossary : undefined);
-  if (useSylfaen) mergeSource(typeof sylfaenGlossary !== 'undefined' ? sylfaenGlossary : undefined);
-  if (useCanolradd) mergeSource(typeof canolraddGlossary !== 'undefined' ? canolraddGlossary : undefined);
-  if (useBBC) mergeSource(typeof bbcGlossary !== 'undefined' ? bbcGlossary : undefined);
+  // FIXED: Direct window global memory lookup prevents scripts from dropping out silently
+  if (useMynediad && window.mynediadGlossary) mergeSource(window.mynediadGlossary);
+  if (useSylfaen && window.sylfaenGlossary) mergeSource(window.sylfaenGlossary);
+  if (useCanolradd && window.canolraddGlossary) mergeSource(window.canolraddGlossary);
+  if (useBBC && window.bbcGlossary) mergeSource(window.bbcGlossary);
 }
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
