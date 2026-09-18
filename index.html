@@ -286,7 +286,7 @@ function compileActiveGlossary() {
           courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
         }
       } else {
-        // Keeps all of  off-book lexis and plain strings running 
+        // Keeps all off-book lexis and plain strings running
         textTranslation = rawData;
       }
       
@@ -303,11 +303,11 @@ function compileActiveGlossary() {
     }
   }
 
-  // FIXED: Direct window global memory lookup prevents scripts from dropping out silently
-  if (useMynediad && window.mynediadGlossary) mergeSource(window.mynediadGlossary);
-  if (useSylfaen && window.sylfaenGlossary) mergeSource(window.sylfaenGlossary);
-  if (useCanolradd && window.canolraddGlossary) mergeSource(window.canolraddGlossary);
-  if (useBBC && window.bbcGlossary) mergeSource(window.bbcGlossary);
+  // FIXED: Using 'typeof Variable !== "undefined"' safely targets top-level const scripts
+  if (useMynediad && typeof mynediadGlossary !== 'undefined') mergeSource(mynediadGlossary);
+  if (useSylfaen && typeof sylfaenGlossary !== 'undefined') mergeSource(sylfaenGlossary);
+  if (useCanolradd && typeof canolraddGlossary !== 'undefined') mergeSource(canolraddGlossary);
+  if (useBBC && typeof bbcGlossary !== 'undefined') mergeSource(bbcGlossary);
 }
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
