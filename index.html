@@ -274,15 +274,31 @@ function compileActiveGlossary() {
     
     for (const key in sourceGlossary) {
       const cleanKey = key.trim().toLowerCase();
-      const translation = sourceGlossary[key];
+      const rawData = sourceGlossary[key];
       
-      if (runtimeGlossary[cleanKey]) {
-        const currentDefs = runtimeGlossary[cleanKey].split(" / ");
-        if (!currentDefs.includes(translation)) {
-          runtimeGlossary[cleanKey] += " / " + translation;
+      let textTranslation = "";
+      let courseInfo = "";
+
+      // Check if the item is a new curriculum object or a standard flat text string
+      if (typeof rawData === 'object' && rawData !== null) {
+        textTranslation = rawData.definition;
+        if (rawData.course && rawData.unit) {
+          courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
         }
       } else {
-        runtimeGlossary[cleanKey] = translation;
+        // Keeps  off-book lexis working 
+        textTranslation = rawData;
+      }
+      
+      const finalDisplayString = textTranslation + courseInfo;
+
+      if (runtimeGlossary[cleanKey]) {
+        const currentDefs = runtimeGlossary[cleanKey].split(" / ");
+        if (!currentDefs.includes(finalDisplayString)) {
+          runtimeGlossary[cleanKey] += " / " + finalDisplayString;
+        }
+      } else {
+        runtimeGlossary[cleanKey] = finalDisplayString;
       }
     }
   }
