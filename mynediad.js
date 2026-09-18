@@ -1,5 +1,5 @@
 // Mynediad Vocabulary
-const mynediadGlossary = {
+window.mynediadGlossary = {
   "a": "and (with Treiglad Llaes)",
   "a dweud y gwir": "to be honest",
   "abertawe": "Swansea",
