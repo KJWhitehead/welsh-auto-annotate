@@ -1,5 +1,5 @@
 // Sylfaen Vocabulary
-const sylfaenGlossary = {
+window.sylfaenGlossary = {
   "acen": "accent",
   "acenion": "accents",
   "actio": "to act",
