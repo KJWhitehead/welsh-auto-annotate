@@ -1,0 +1,26 @@
+json{
+  "manifest_version": 3,
+  "name": "Welsh Auto-Annotation Tool",
+  "version": "1.0.0",
+  "description": "Injects hover tooltips over Welsh text using curriculum glossaries and mutation tokenisers.",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "dictionaries/mynediad.js",
+        "dictionaries/sylfaen.js",
+        "tokenizer-matrix.js",
+        "content.js"
+      ],
+      "css": ["assets/styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
