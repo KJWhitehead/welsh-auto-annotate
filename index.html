@@ -7,12 +7,12 @@
 <title>Welsh Auto‑Annotation Tool</title>
 
  <link rel="stylesheet" href="assets/styles.css">
-  <script src="dictionaries/mynediad.js"></script>
-  <script src="dictionaries/sylfaen.js"></script>
-    <script src="dictionaries/canolradd.js"></script>
-    <script src="dictionaries/bbc.js"></script>
-<script src="tokenizer-matrix.js"></script>
-    <script src="content.js" defer></script>
+<!-- LINK YOUR EXTERNAL GLOSSARIES HERE -->
+<script src="mynediad.js"></script>
+<script src="sylfaen.js"></script>
+<script src="canolradd.js"></script>
+<script src="bbc.js"></script>
+
 
 </head>
 
@@ -78,19 +78,19 @@ let runtimeGlossary = {};
 
 function compileActiveGlossary() {
   runtimeGlossary = {};
-  
+
   const useMynediad = document.getElementById('chkMynediad').checked;
   const useSylfaen = document.getElementById('chkSylfaen').checked;
   const useCanolradd = document.getElementById('chkCanolradd').checked;
   const useBBC = document.getElementById('chkBBC').checked;
-  
+
   function mergeSource(sourceGlossary) {
     if (!sourceGlossary || typeof sourceGlossary !== 'object') return;
-    
+
     for (const key in sourceGlossary) {
       const cleanKey = key.trim().toLowerCase();
       const rawData = sourceGlossary[key];
-      
+
       let textTranslation = "";
       let courseInfo = "";
 
@@ -104,7 +104,7 @@ function compileActiveGlossary() {
         // Keeps all off-book lexis and plain strings running
         textTranslation = rawData;
       }
-      
+
       const finalDisplayString = textTranslation + courseInfo;
 
       if (runtimeGlossary[cleanKey]) {
@@ -117,6 +117,7 @@ function compileActiveGlossary() {
       }
     }
   }
+
 
   // Direct window global memory lookup ensures const scripts connect flawlessly
     if (useMynediad && window.mynediadGlossary) mergeSource(window.mynediadGlossary);
