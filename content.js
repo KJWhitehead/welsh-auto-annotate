@@ -1,11 +1,11 @@
 (function () {
   // 1. Establish an instantly accessible configuration state cache
   let extensionSettings = {
-    activeLevels: { mynediad: true, sylfaen: true },
+    activeLevels: { mynediad: true, sylfaen: true, canolradd: true, bbc: true },
     tooltipsEnabled: true
   };
 
-  // 2. Safe storage fallback setup for local file execution
+ // 2. Safe storage fallback setup for local file execution
   const storageMock = {
     get: (keys, callback) => callback(extensionSettings)
   };
@@ -14,7 +14,11 @@
   // 3. Immediately pull preferences on load to populate the cache
   storageArea.get(["activeLevels", "tooltipsEnabled"], (settings) => {
     if (settings) {
-      extensionSettings = settings;
+      // Deep merge settings to avoid losing missing keys if older storage data exists
+      extensionSettings.activeLevels = { ...extensionSettings.activeLevels, ...settings.activeLevels };
+      if (settings.tooltipsEnabled !== undefined) {
+        extensionSettings.tooltipsEnabled = settings.tooltipsEnabled;
+      }
     }
     // Automatically boot the runner once settings are verified
     runAnnotation();
@@ -22,10 +26,8 @@
 
   // --- AUTO-ANNOTATION ENGINE ---
   function annotate(text, glossary) {
-    // Read directly from the instantly available configuration cache
     if (!extensionSettings.tooltipsEnabled) return text;
 
-    // Your original, unmodified synchronous phrase matrix logic
     const phrases = Object.keys(glossary).filter(key => key.includes(" "));
     phrases.sort((a, b) => b.length - a.length);
 
@@ -38,8 +40,6 @@
         return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
       });
     });
-
-    // Continue your word mutations / matrix calculations...
     
     return processedText; // Returns string cleanly and synchronously
   }
@@ -47,11 +47,11 @@
   // --- WRAPPER RUNNER EXECUTION ---
   function runAnnotation() {
     const outputContainer = document.getElementById("output");
-    if (!outputContainer) return;
+    if (!outputContainer) return; 
 
     const sourceText = outputContainer.textContent;
     
-    // Choose your dictionary matching scope based on cached settings
+    // Dynamically bundle the matching matrix from all active filters
     let targetedGlossary = {};
     if (extensionSettings.activeLevels.mynediad && window.mynediadGlossary) {
       targetedGlossary = { ...targetedGlossary, ...window.mynediadGlossary };
@@ -59,11 +59,17 @@
     if (extensionSettings.activeLevels.sylfaen && window.sylfaenGlossary) {
       targetedGlossary = { ...targetedGlossary, ...window.sylfaenGlossary };
     }
+    if (extensionSettings.activeLevels.canolradd && window.canolraddGlossary) {
+      targetedGlossary = { ...targetedGlossary, ...window.canolraddGlossary };
+    }
+    if (extensionSettings.activeLevels.bbc && window.bbcGlossary) {
+      targetedGlossary = { ...targetedGlossary, ...window.bbcGlossary };
+    }
 
-    // Process everything perfectly in sequence
+    // Process everything sequentially using your synchronous pipeline
     const localAnnotatedHtml = annotate(sourceText, targetedGlossary);
     
-    // Push directly to the DOM wrapper view
+    // Inject directly back to visual element container
     outputContainer.innerHTML = localAnnotatedHtml;
   }
 })();
