@@ -1,56 +1,69 @@
-// content.js
-
 (function () {
-  console.log("Welsh Auto-Annotation content script loaded.");
+  // 1. Establish an instantly accessible configuration state cache
+  let extensionSettings = {
+    activeLevels: { mynediad: true, sylfaen: true },
+    tooltipsEnabled: true
+  };
 
-  function initAnnotationEngine() {
-    chrome.storage.local.get(["activeLevels", "tooltipsEnabled"], (settings) => {
-      if (!settings.tooltipsEnabled) return;
+  // 2. Safe storage fallback setup for local file execution
+  const storageMock = {
+    get: (keys, callback) => callback(extensionSettings)
+  };
+  const storageArea = (typeof chrome !== 'undefined' && chrome.storage) ? chrome.storage.local : storageMock;
 
-      // Select standard text rendering nodes on the page
-      const textElements = document.querySelectorAll("p, span, li, h1, h2, h3");
+  // 3. Immediately pull preferences on load to populate the cache
+  storageArea.get(["activeLevels", "tooltipsEnabled"], (settings) => {
+    if (settings) {
+      extensionSettings = settings;
+    }
+    // Automatically boot the runner once settings are verified
+    runAnnotation();
+  });
 
-      textElements.forEach((element) => {
-        if (!element.textContent.trim() || element.isContentEditable || element.classList.contains("cy-annotated")) {
-          return;
-        }
-        processElementNode(element, settings.activeLevels);
+  // --- AUTO-ANNOTATION ENGINE ---
+  function annotate(text, glossary) {
+    // Read directly from the instantly available configuration cache
+    if (!extensionSettings.tooltipsEnabled) return text;
+
+    // Your original, unmodified synchronous phrase matrix logic
+    const phrases = Object.keys(glossary).filter(key => key.includes(" "));
+    phrases.sort((a, b) => b.length - a.length);
+
+    let processedText = text;
+
+    phrases.forEach(phrase => {
+      const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
+      const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
+      processedText = processedText.replace(regex, (match) => {
+        return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
       });
     });
-  }
 
-  function processElementNode(element, activeLevels) {
-    const originalText = element.textContent;
+    // Continue your word mutations / matrix calculations...
     
-    // Placeholder token breakdown split. 
-    // You will hook your custom 'tokenizer-matrix.js' logic right here.
-    const words = originalText.split(/(\s+)/); 
-
-    const processedHTML = words.map((token) => {
-      // Basic match sanity check for text characters
-      if (!/^[A-Za-zâêîôûŵŷß́̀̂̈]+\$/.test(token)) return token;
-
-      let matchFound = null;
-      let definition = "";
-
-      // Match against window dictionary scopes loaded prior to this script
-      if (activeLevels.mynediad && window.mynediadGlossary && window.mynediadGlossary[token.toLowerCase()]) {
-        matchFound = token;
-        definition = window.mynediadGlossary[token.toLowerCase()];
-      }
-
-      if (matchFound) {
-        return `<span class="cy-annotated-word" data-tooltip="${definition}">${token}</span>`;
-      }
-
-      return token;
-    }).join("");
-
-    if (processedHTML !== originalText) {
-      element.innerHTML = processedHTML;
-      element.classList.add("cy-annotated");
-    }
+    return processedText; // Returns string cleanly and synchronously
   }
 
-  initAnnotationEngine();
+  // --- WRAPPER RUNNER EXECUTION ---
+  function runAnnotation() {
+    const outputContainer = document.getElementById("output");
+    if (!outputContainer) return;
+
+    const sourceText = outputContainer.textContent;
+    
+    // Choose your dictionary matching scope based on cached settings
+    let targetedGlossary = {};
+    if (extensionSettings.activeLevels.mynediad && window.mynediadGlossary) {
+      targetedGlossary = { ...targetedGlossary, ...window.mynediadGlossary };
+    }
+    if (extensionSettings.activeLevels.sylfaen && window.sylfaenGlossary) {
+      targetedGlossary = { ...targetedGlossary, ...window.sylfaenGlossary };
+    }
+
+    // Process everything perfectly in sequence
+    const localAnnotatedHtml = annotate(sourceText, targetedGlossary);
+    
+    // Push directly to the DOM wrapper view
+    outputContainer.innerHTML = localAnnotatedHtml;
+  }
 })();
