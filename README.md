@@ -21,6 +21,8 @@ There's now the option of clicking to add to a study list and the number of clic
 
 18 Sept: Massive brainstorm and discovery of free Welsh APIs. I'll have to branch now. Exciting!
 
+19 Sept: Realisation that the API doesn't actually help as it only works for individual words.  Lame. Branches deleted.
+
 Possibilities of next steps:
 1. comparative & superlative irregulars
 2. making sure the tool recognises command forms
