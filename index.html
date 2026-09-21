@@ -9,10 +9,29 @@
   <link rel="stylesheet" href="assets/styles.css">
 
 <!-- EXTERNAL GLOSSARIES-->
-<script src="dictionaries/mynediad.js"></script>
-<script src="dictionaries/sylfaen.js"></script>
-<script src="dictionaries/canolradd.js"></script>
-<script src="dictionaries/bbc.js"></script>
+<script>
+  (async function loadDictionaries() {
+    const files = {
+      mynediadGlossary: 'dictionaries/mynediad.json',
+      sylfaenGlossary: 'dictionaries/sylfaen.json',
+      canolraddGlossary: 'dictionaries/canolradd.json',
+      bbcGlossary: 'dictionaries/bbc.json'
+    };
+
+    for (const [globalName, path] of Object.entries(files)) {
+      try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        window[globalName] = await response.json();
+      } catch (error) {
+        console.error(`Failed to load local dictionary from ${path}:`, error);
+      }
+    }
+    
+    console.log("✅ All Welsh JSON dictionaries loaded successfully into the window context.");
+  })();
+</script>
 
 
 </head>
