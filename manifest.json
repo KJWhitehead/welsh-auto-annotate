@@ -2,21 +2,29 @@
   "manifest_version": 3,
   "name": "Welsh Auto-Annotation Tool",
   "version": "1.0",
+  "description": "Injects hover tooltips over processed Welsh text using offline curriculum dictionaries.",
   "permissions": [
-    "storage",
-    "activeTab"
+    "activeTab",
+    "scripting"
   ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Annotate Page"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": [
-        "dictionaries/mynediad.js",
-        "dictionaries/sylfaen.js",
-        "dictionaries/canolradd.js",
-        "dictionaries/bbc.js",
-        "content.js"
-      ],
+      "js": ["content.js"],
+      "css": ["assets/styles.css"],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["dictionaries/*.json"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
