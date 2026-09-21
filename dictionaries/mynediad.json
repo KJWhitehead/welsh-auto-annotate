@@ -890,7 +890,7 @@
   "cyfarfodydd": {
     "definition": "meetings"
   },
-  "cyfarfod (verb)": {
+  "cyfarfod": {
     "definition": "to meet"
   },
   "cyfarth": {
@@ -956,19 +956,19 @@
   "cymdogion": {
     "definition": "neighbours"
   },
-  "Cymraeg": {
+  "cymraeg": {
     "definition": "Welsh"
   },
-  "Cymraes": {
+  "cymraes": {
     "definition": "Welshwoman"
   },
-  "Cymro": {
+  "cymro": {
     "definition": "Welshman"
   },
-  "Cymru": {
+  "cymru": {
     "definition": "Wales"
   },
-  "Cymry": {
+  "cymry": {
     "definition": "Welsh people"
   },
   "cymryd": {
@@ -1098,10 +1098,7 @@
     "definition": "to dance"
   },
   "de": {
-    "definition": "south"
-  },
-  "de (right)": {
-    "definition": "right"
+    "definition": "south; right"
   },
   "deall": {
     "definition": "to understand"
