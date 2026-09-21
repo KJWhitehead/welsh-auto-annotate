@@ -149,7 +149,7 @@ function annotate(text, glossary) {
   }).join("");
 }
 
-// 2. EXTENSION RECEIVER (Fetches and merges all 4 JSON files on command)
+// 2. EXTENSION RECEIVER (Processes full block-level containers to keep sentence structure intact)
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.action === "RUN_ANNOTATION") {
     try {
@@ -169,28 +169,23 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         combinedGlossary = { ...combinedGlossary, ...data };
       }
 
-      // Targets the active text content of the website you are browsing
-      const walkAndAnnotate = (node) => {
-        let child = node.firstChild;
-        while (child) {
-          if (child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0) {
-            const rawText = child.textContent;
-            const annotatedHtml = annotate(rawText, combinedGlossary);
-            
-            if (annotatedHtml !== rawText) {
-              const span = document.createElement('span');
-              span.innerHTML = annotatedHtml;
-              child.replaceWith(span);
-            }
-          } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'SCRIPT' && child.tagName !== 'STYLE' && child.tagName !== 'TEXTAREA') {
-            walkAndAnnotate(child);
-          }
-          child = child.nextSibling;
-        }
-      };
+      // 1. Target standard paragraph, list item, and layout containers across the live web layout
+      const textContainers = document.querySelectorAll('p, li, h1, h2, h3, article, span.story-body__introduction');
 
-      walkAndAnnotate(document.body);
-      console.log("🚀 Page annotation engine fired cleanly over live web text elements!");
+      textContainers.forEach(container => {
+        // 2. Grab the full, uninterrupted text flow of the container (ignoring bold/underline tag separations)
+        const rawText = container.innerText;
+        
+        // 3. Process the full string so word boundaries (\b) remain perfectly aligned
+        const annotatedHtml = annotate(rawText, combinedGlossary);
+        
+        if (annotatedHtml !== rawText) {
+          // 4. Overwrite the element container cleanly with your new annotation hover spans
+          container.innerHTML = annotatedHtml;
+        }
+      });
+
+      console.log("🚀 Safe sentence-level auto-annotation complete across bold and styled fonts!");
 
     } catch (error) {
       console.error("Failed to execute extension mapping loops:", error);
