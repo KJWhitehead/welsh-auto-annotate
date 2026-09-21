@@ -1,3 +1,90 @@
+// --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
+function collectMatches(word, glossary) {
+  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
+  if (!w) return [];
+
+  // 1. WELSH CONTRACTION SPLITTER
+  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
+    w = w.slice(0, -2); 
+  }
+
+  // 2. WELSH VOWEL-LINK STRIPPER
+  if (!glossary[w]) {
+    const vowelLinks = { "nag": "na", "ac": "a", "ag": "â", "tuag": "tua", "gydag": "gyda" };
+    if (vowelLinks[w]) w = vowelLinks[w];
+  }
+
+  if (!w) return [];
+  let foundKeys = new Set();
+
+  function checkAndAdd(candidate) {
+    if (glossary[candidate]) foundKeys.add(candidate);
+    if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
+      const candidateWithF = candidate + "f";
+      if (glossary[candidateWithF]) foundKeys.add(candidateWithF);
+    }
+  }
+
+  checkAndAdd(w);
+
+  function scanMutations(candidate) {
+    // Soft Mutations
+    const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
+    for (const mut in soft) {
+      if (candidate.startsWith(mut)) {
+        soft[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+      }
+    }
+
+    // Nasal Mutations
+    const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
+    for (const mut in nasal) {
+      if (candidate.startsWith(mut)) {
+        nasal[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+      }
+    }
+
+    // Aspirate Mutations
+    const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
+    for (const mut in aspirate) {
+      if (candidate.startsWith(mut)) {
+        aspirate[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+      }
+    }
+
+    if (/^[aeiouwŷâêîôû]/i.test(candidate)) checkAndAdd("g" + candidate);
+
+    // ASPIRATE VOWEL PASS
+    if (candidate.startsWith("h") && candidate.length > 1) {
+      const vowelRoot = candidate.slice(1);
+      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) checkAndAdd(vowelRoot);
+    }
+  }
+
+  scanMutations(w);
+
+  // 3. VERB STEM SUFFIX STRIPPER
+  const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
+  for (const suffix of verbSuffixes) {
+    if (w.endsWith(suffix) && w.length > suffix.length) {
+      const nakedStem = w.slice(0, -suffix.length);
+      checkAndAdd(nakedStem);
+      scanMutations(nakedStem);
+
+      const infinitiveEndings = ["u", "i", "o", "io", "a"];
+      for (const inf of infinitiveEndings) {
+        let reconstructedVerb = nakedStem + inf;
+        checkAndAdd(reconstructedVerb);
+        scanMutations(reconstructedVerb);
+      }
+    }
+  }
+
+  return Array.from(foundKeys).map(key => {
+    return { root: key, definition: glossary[key] };
+  });
+}
+
 // 1. MASTER ANNOTATION ENGINE (Matches your verified index.html logic)
 function annotate(text, glossary) {
   const phrases = Object.keys(glossary).filter(key => key.includes(" "));
