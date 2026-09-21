@@ -1,0 +1,4832 @@
+{
+  "acen": {
+    "definition": "accent"
+  },
+  "acenion": {
+    "definition": "accents"
+  },
+  "actio": {
+    "definition": "to act"
+  },
+  "achos": {
+    "definition": "cause, case (legal)"
+  },
+  "achosion": {
+    "definition": "causes, cases (legal)"
+  },
+  "achub": {
+    "definition": "to save, to rescue"
+  },
+  "adar": {
+    "definition": "birds"
+  },
+  "adeilad": {
+    "definition": "building"
+  },
+  "adeiladau": {
+    "definition": "buildings"
+  },
+  "aderyn": {
+    "definition": "bird"
+  },
+  "adloniant": {
+    "definition": "entertainment"
+  },
+  "adloniannau": {
+    "definition": "entertainments"
+  },
+  "adroddiad": {
+    "definition": "report"
+  },
+  "adroddiadau": {
+    "definition": "reports"
+  },
+  "addas": {
+    "definition": "suitable"
+  },
+  "addurno": {
+    "definition": "to decorate"
+  },
+  "addysg": {
+    "definition": "education"
+  },
+  "aelod": {
+    "definition": "member"
+  },
+  "aelodau": {
+    "definition": "members"
+  },
+  "agos": {
+    "definition": "near"
+  },
+  "anghytuno": {
+    "definition": "to disagree (with)"
+  },
+  "angladd": {
+    "definition": "funeral"
+  },
+  "angladdau": {
+    "definition": "funerals"
+  },
+  "albanes": {
+    "definition": "Scottish woman"
+  },
+  "albanesau": {
+    "definition": "Scottish women"
+  },
+  "albanwr": {
+    "definition": "Scot"
+  },
+  "albanwyr": {
+    "definition": "Scots"
+  },
+  "almaen": {
+    "definition": "Germany"
+  },
+  "almaeneg": {
+    "definition": "German (language)"
+  },
+  "almaenes": {
+    "definition": "German woman"
+  },
+  "almaenesau": {
+    "definition": "German women"
+  },
+  "almaenwr": {
+    "definition": "German man"
+  },
+  "almaenwyr": {
+    "definition": "Germans"
+  },
+  "allwedd": {
+    "definition": "key"
+  },
+  "allweddi": {
+    "definition": "keys"
+  },
+  "americanes": {
+    "definition": "American woman"
+  },
+  "americanesau": {
+    "definition": "American women"
+  },
+  "americanwr": {
+    "definition": "American man"
+  },
+  "americanwyr": {
+    "definition": "Americans"
+  },
+  "amlen": {
+    "definition": "envelope"
+  },
+  "amlenni": {
+    "definition": "envelopes"
+  },
+  "amserlen": {
+    "definition": "timetable"
+  },
+  "amserlenni": {
+    "definition": "timetables"
+  },
+  "amyneddgar": {
+    "definition": "patient"
+  },
+  "anabl": {
+    "definition": "disabled"
+  },
+  "anfon": {
+    "definition": "to send"
+  },
+  "anhygoel": {
+    "definition": "incredible"
+  },
+  "anobeithiol": {
+    "definition": "hopeless"
+  },
+  "antur": {
+    "definition": "adventure"
+  },
+  "anturiau": {
+    "definition": "adventures"
+  },
+  "anturus": {
+    "definition": "adventurous"
+  },
+  "ar ben fy hun": {
+    "definition": "on my own (North Wales)"
+  },
+  "ar bwys": {
+    "definition": "near (South Wales)"
+  },
+  "archebu": {
+    "definition": "to book, to reserve, to order"
+  },
+  "archfarchnad": {
+    "definition": "supermarket"
+  },
+  "archfarchnadoedd": {
+    "definition": "supermarkets"
+  },
+  "ardal": {
+    "definition": "area"
+  },
+  "ardaloedd": {
+    "definition": "areas"
+  },
+  "ar fai": {
+    "definition": "at fault"
+  },
+  "arfordir": {
+    "definition": "coast"
+  },
+  "arfordiroedd": {
+    "definition": "coasts"
+  },
+  "ar fy mhen fy hun": {
+    "definition": "on my own (South Wales)"
+  },
+  "arian": {
+    "definition": "money; silver"
+  },
+  "arian parod": {
+    "definition": "cash"
+  },
+  "ar-lein": {
+    "definition": "online"
+  },
+  "arlunio": {
+    "definition": "to draw, to paint"
+  },
+  "ar ran": {
+    "definition": "on behalf of"
+  },
+  "arswyd": {
+    "definition": "horror"
+  },
+  "ar wahân": {
+    "definition": "separate"
+  },
+  "ar yr un pryd": {
+    "definition": "at the same time"
+  },
+  "astudio": {
+    "definition": "to study"
+  },
+  "atig": {
+    "definition": "attic"
+  },
+  "atigau": {
+    "definition": "attics"
+  },
+  "awr ginio": {
+    "definition": "lunch hour"
+  },
+  "awyr": {
+    "definition": "air; sky"
+  },
+  "balch": {
+    "definition": "glad"
+  },
+  "baner": {
+    "definition": "flag, banner"
+  },
+  "bardd": {
+    "definition": "poet"
+  },
+  "barf": {
+    "definition": "beard"
+  },
+  "bedd": {
+    "definition": "grave"
+  },
+  "beicio": {
+    "definition": "cycle, ride a bicycle"
+  },
+  "bioleg": {
+    "definition": "biology"
+  },
+  "blasu": {
+    "definition": "taste"
+  },
+  "blasus": {
+    "definition": "tasty"
+  },
+  "blawd": {
+    "definition": "flour"
+  },
+  "blog": {
+    "definition": "blog"
+  },
+  "blogio": {
+    "definition": "blog (verb)"
+  },
+  "blows": {
+    "definition": "blouse"
+  },
+  "bocs bwyd": {
+    "definition": "food box"
+  },
+  "boch": {
+    "definition": "cheek"
+  },
+  "bochdew": {
+    "definition": "hamster"
+  },
+  "bodlon": {
+    "definition": "willing, contented, satisfied"
+  },
+  "boeler": {
+    "definition": "boiler"
+  },
+  "bôn": {
+    "definition": "base, stem"
+  },
+  "botwm": {
+    "definition": "button"
+  },
+  "bresychen": {
+    "definition": "cabbage"
+  },
+  "busnes": {
+    "definition": "business"
+  },
+  "buwch": {
+    "definition": "cow"
+  },
+  "bwced": {
+    "definition": "bucket"
+  },
+  "bwcio": {
+    "definition": "book (verb)"
+  },
+  "bwthyn": {
+    "definition": "cottage"
+  },
+  "bwydo": {
+    "definition": "feed"
+  },
+  "bwystfil": {
+    "definition": "beast"
+  },
+  "byw": {
+    "definition": "alive, live"
+  },
+  "bywyd": {
+    "definition": "life"
+  },
+  "cadair olwyn": {
+    "definition": "wheelchair"
+  },
+  "cadno": {
+    "definition": "fox"
+  },
+  "cae": {
+    "definition": "field"
+  },
+  "caled": {
+    "definition": "hard"
+  },
+  "calon": {
+    "definition": "heart"
+  },
+  "call": {
+    "definition": "wise"
+  },
+  "camp": {
+    "definition": "feat"
+  },
+  "campio": {
+    "definition": "to camp"
+  },
+  "cangarŵ": {
+    "definition": "kangaroo"
+  },
+  "canol dydd": {
+    "definition": "midday"
+  },
+  "canolog": {
+    "definition": "central"
+  },
+  "canrif": {
+    "definition": "century"
+  },
+  "canslo": {
+    "definition": "to cancel"
+  },
+  "cantores": {
+    "definition": "female singer"
+  },
+  "canwr": {
+    "definition": "singer"
+  },
+  "carafán": {
+    "definition": "caravan"
+  },
+  "caredig": {
+    "definition": "kind"
+  },
+  "carped": {
+    "definition": "carpet"
+  },
+  "cartŵn": {
+    "definition": "cartoon"
+  },
+  "cas beth": {
+    "definition": "pet hate"
+  },
+  "cas pensiliau": {
+    "definition": "pencil case"
+  },
+  "castell": {
+    "definition": "castle"
+  },
+  "castell neidio": {
+    "definition": "bouncy castle"
+  },
+  "cefn gwlad": {
+    "definition": "the countryside"
+  },
+  "cefndir": {
+    "definition": "background"
+  },
+  "cefndiroedd": {
+    "definition": "backgrounds"
+  },
+  "ceiliog": {
+    "definition": "cockerel"
+  },
+  "ceisiadau": {
+    "definition": "applications"
+  },
+  "ceisiau": {
+    "definition": "rugby tries"
+  },
+  "ceisio": {
+    "definition": "to try, to attempt"
+  },
+  "celf": {
+    "definition": "art"
+  },
+  "celfi": {
+    "definition": "furniture"
+  },
+  "cemeg": {
+    "definition": "chemistry"
+  },
+  "cerdyn credyd": {
+    "definition": "a credit card"
+  },
+  "cardiau credyd": {
+    "definition": "credit cards"
+  },
+  "cerddorol": {
+    "definition": "musical"
+  },
+  "cestyll": {
+    "definition": "castles"
+  },
+  "cewyn": {
+    "definition": "a nappy (gwr.)"
+  },
+  "cigydd": {
+    "definition": "butcher"
+  },
+  "cigyddion": {
+    "definition": "butchers"
+  },
+  "cimwch": {
+    "definition": "lobster"
+  },
+  "cimychiaid": {
+    "definition": "lobsters"
+  },
+  "cinio": {
+    "definition": "dinner"
+  },
+  "ciniawau": {
+    "definition": "dinners"
+  },
+  "cinio rhost": {
+    "definition": "a roast dinner"
+  },
+  "ciwb": {
+    "definition": "cube"
+  },
+  "clasurol": {
+    "definition": "classical"
+  },
+  "clecs": {
+    "definition": "gossip"
+  },
+  "clir": {
+    "definition": "clear"
+  },
+  "clirio": {
+    "definition": "to clear"
+  },
+  "cloi": {
+    "definition": "to lock"
+  },
+  "coeden": {
+    "definition": "a tree"
+  },
+  "coed": {
+    "definition": "trees"
+  },
+  "coeden deuluol": {
+    "definition": "a family tree"
+  },
+  "coedwig": {
+    "definition": "a forest"
+  },
+  "coedwigoedd": {
+    "definition": "forests"
+  },
+  "cofiant": {
+    "definition": "a biography"
+  },
+  "cofiannau": {
+    "definition": "biographies"
+  },
+  "cofion": {
+    "definition": "regards"
+  },
+  "cofion cynnes": {
+    "definition": "warm regards"
+  },
+  "cofrestru": {
+    "definition": "to register"
+  },
+  "coleg": {
+    "definition": "a college"
+  },
+  "colegau": {
+    "definition": "colleges"
+  },
+  "coll": {
+    "definition": "lost"
+  },
+  "colli": {
+    "definition": "to lose"
+  },
+  "comedi": {
+    "definition": "a comedy"
+  },
+  "corff": {
+    "definition": "a body"
+  },
+  "cyrff": {
+    "definition": "bodies"
+  },
+  "coridor": {
+    "definition": "a corridor"
+  },
+  "coridorau": {
+    "definition": "corridors"
+  },
+  "cornel": {
+    "definition": "a corner"
+  },
+  "corneli": {
+    "definition": "corners"
+  },
+  "coron": {
+    "definition": "a crown"
+  },
+  "coronau": {
+    "definition": "crowns"
+  },
+  "corryn": {
+    "definition": "a spider"
+  },
+  "corynnod": {
+    "definition": "spiders"
+  },
+  "cost": {
+    "definition": "a cost"
+  },
+  "costau": {
+    "definition": "costs"
+  },
+  "costio": {
+    "definition": "to cost"
+  },
+  "crafu": {
+    "definition": "to scrape, to scratch"
+  },
+  "craig": {
+    "definition": "a rock"
+  },
+  "creigiau": {
+    "definition": "rocks"
+  },
+  "cranc": {
+    "definition": "a crab"
+  },
+  "crancod": {
+    "definition": "crabs"
+  },
+  "creisionen": {
+    "definition": "a crisp"
+  },
+  "creision": {
+    "definition": "crisps"
+  },
+  "creulon": {
+    "definition": "cruel"
+  },
+  "croen": {
+    "definition": "skin"
+  },
+  "crwyn": {
+    "definition": "skins"
+  },
+  "croesair": {
+    "definition": "crossword"
+  },
+  "croeseiriau": {
+    "definition": "crosswords"
+  },
+  "cropian": {
+    "definition": "to crawl"
+  },
+  "crys": {
+    "definition": "a shirt"
+  },
+  "crysau": {
+    "definition": "shirts"
+  },
+  "crys t": {
+    "definition": "a T shirt"
+  },
+  "cusan": {
+    "definition": "a kiss"
+  },
+  "cusanau": {
+    "definition": "kisses"
+  },
+  "cusanu": {
+    "definition": "to kiss"
+  },
+  "cwch": {
+    "definition": "a boat"
+  },
+  "cychod": {
+    "definition": "boats"
+  },
+  "cwmwl": {
+    "definition": "a cloud"
+  },
+  "cwningen": {
+    "definition": "a rabbit"
+  },
+  "cwningod": {
+    "definition": "rabbits"
+  },
+  "cwpan": {
+    "definition": "a cup"
+  },
+  "cwpanau": {
+    "definition": "cups"
+  },
+  "cwpwrdd": {
+    "definition": "a cupboard"
+  },
+  "cypyrddau": {
+    "definition": "cupboards"
+  },
+  "cwrdd": {
+    "definition": "to meet (with/a)"
+  },
+  "cwrt": {
+    "definition": "court (sports)"
+  },
+  "cyrtiau": {
+    "definition": "courts (sports)"
+  },
+  "cwsmer": {
+    "definition": "a customer"
+  },
+  "cwsmeriaid": {
+    "definition": "customers"
+  },
+  "cwt": {
+    "definition": "a hut"
+  },
+  "cytiau": {
+    "definition": "huts"
+  },
+  "cwympo": {
+    "definition": "to fall"
+  },
+  "cwyno": {
+    "definition": "to complain"
+  },
+  "cydweithiwr": {
+    "definition": "a colleague"
+  },
+  "cydweithwyr": {
+    "definition": "colleagues"
+  },
+  "cydweithwraig": {
+    "definition": "a female colleague"
+  },
+  "cydweithwragedd": {
+    "definition": "female colleagues"
+  },
+  "cyfarfod": {
+    "definition": "to meet or a meeting"
+  },
+  "cyfeillgar": {
+    "definition": "friendly"
+  },
+  "cyfeirio": {
+    "definition": "to direct"
+  },
+  "cyfle": {
+    "definition": "an opportunity, a chance"
+  },
+  "cyfleoedd": {
+    "definition": "opportunities, chances"
+  },
+  "cyfleus": {
+    "definition": "convenient"
+  },
+  "cyflog": {
+    "definition": "a salary"
+  },
+  "cylfogau": {
+    "definition": "salaries"
+  },
+  "cyfreithiwr": {
+    "definition": "a solicitor"
+  },
+  "cyfreithwyr": {
+    "definition": "solicitors"
+  },
+  "cyfrwng": {
+    "definition": "a medium"
+  },
+  "cyfryngau": {
+    "definition": "media"
+  },
+  "cyffredin": {
+    "definition": "common"
+  },
+  "cyffrous": {
+    "definition": "exciting"
+  },
+  "cychoeddi": {
+    "definition": "to announce, to publish"
+  },
+  "cyhoeddiad": {
+    "definition": "an announcement"
+  },
+  "cyhoeddiadau": {
+    "definition": "announcements"
+  },
+  "cylch": {
+    "definition": "a circle"
+  },
+  "cylchoedd": {
+    "definition": "circles"
+  },
+  "cylch meithrin": {
+    "definition": "a pre-school nursery"
+  },
+  "cylchfan": {
+    "definition": "a roundabout"
+  },
+  "cylchfannau": {
+    "definition": "roundabouts"
+  },
+  "cylchgrawn": {
+    "definition": "a magazine"
+  },
+  "cyclgronau": {
+    "definition": "magazines"
+  },
+  "cyllell": {
+    "definition": "a knife"
+  },
+  "cyllyll": {
+    "definition": "knives"
+  },
+  "cymdeithas": {
+    "definition": "a society"
+  },
+  "cymdeithasau": {
+    "definition": "societies"
+  },
+  "cymdeithas rieni": {
+    "definition": "parents' association"
+  },
+  "cymdeithasu": {
+    "definition": "to socialise"
+  },
+  "cymeriad": {
+    "definition": "a character"
+  },
+  "cymeriadau": {
+    "definition": "characters"
+  },
+  "cymreig": {
+    "definition": "Welsh"
+  },
+  "cymuned": {
+    "definition": "a community"
+  },
+  "cymunedau": {
+    "definition": "communities"
+  },
+  "cymylau": {
+    "definition": "clouds"
+  },
+  "cynffon": {
+    "definition": "a tail"
+  },
+  "cynffonnau": {
+    "definition": "tails"
+  },
+  "cynnig": {
+    "definition": "an offer"
+  },
+  "cynigion": {
+    "definition": "offers"
+  },
+  "cynulleidfa": {
+    "definition": "an audience, a congregation"
+  },
+  "cynulleidfaoedd": {
+    "definition": "audiences, congregations"
+  },
+  "cyrliog": {
+    "definition": "curly"
+  },
+  "cysylltiad": {
+    "definition": "a contact, a connection"
+  },
+  "cysylltu": {
+    "definition": "to contact, to connect (with/a)"
+  },
+  "cytundeb": {
+    "definition": "a contract"
+  },
+  "cytundebau": {
+    "definition": "contracts"
+  },
+  "cyw": {
+    "definition": "a chick"
+  },
+  "cywion": {
+    "definition": "chicks"
+  },
+  "cywir": {
+    "definition": "correct"
+  },
+  "chwarae teg": {
+    "definition": "fair play"
+  },
+  "chwaraewr": {
+    "definition": "a player"
+  },
+  "chwaraewyr": {
+    "definition": "players"
+  },
+  "chwerw": {
+    "definition": "bitter"
+  },
+  "chwilio": {
+    "definition": "to search (am/for)"
+  },
+  "chwyrnu": {
+    "definition": "to snore"
+  },
+  "chwys": {
+    "definition": "sweat"
+  },
+  "chwysu": {
+    "definition": "to sweat"
+  },
+  "chwythu": {
+    "definition": "to blow"
+  },
+  "daear": {
+    "definition": "earth"
+  },
+  "daearyddiaeth": {
+    "definition": "geography"
+  },
+  "dafad": {
+    "definition": "a sheep"
+  },
+  "defaid": {
+    "definition": "sheep"
+  },
+  "dart": {
+    "definition": "a dart"
+  },
+  "dartiau": {
+    "definition": "darts"
+  },
+  "datblygu": {
+    "definition": "to develop"
+  },
+  "dathliad": {
+    "definition": "a celebration"
+  },
+  "dathliadau": {
+    "definition": "celebrations"
+  },
+  "dawns": {
+    "definition": "a dance"
+  },
+  "dawnus": {
+    "definition": "talented"
+  },
+  "dechreuwr": {
+    "definition": "a beginner"
+  },
+  "dechreuwyr": {
+    "definition": "beginners"
+  },
+  "derbyn": {
+    "definition": "to receive, to accept"
+  },
+  "derbynfa": {
+    "definition": "a reception"
+  },
+  "derbynfeydd": {
+    "definition": "receptions"
+  },
+  "dibynnu": {
+    "definition": "to depend (upon), to rely on"
+  },
+  "difetha": {
+    "definition": "to spoil, to destoy"
+  },
+  "diffodd": {
+    "definition": "to switch off, to extinguish"
+  },
+  "digartref": {
+    "definition": "homeless"
+  },
+  "digidol": {
+    "definition": "digital"
+  },
+  "dilyn": {
+    "definition": "to follow"
+  },
+  "dinas": {
+    "definition": "a city"
+  },
+  "dinasoedd": {
+    "definition": "cities"
+  },
+  "diolch byth": {
+    "definition": "thank goodness"
+  },
+  "diolchgar": {
+    "definition": "thankful, grateful"
+  },
+  "disgrifio": {
+    "definition": "to describe"
+  },
+  "disgwyl": {
+    "definition": "to expect"
+  },
+  "disgybl": {
+    "definition": "a pupil"
+  },
+  "disgyblion": {
+    "definition": "pupils"
+  },
+  "distaw": {
+    "definition": "quiet"
+  },
+  "diswyddo": {
+    "definition": "to make redundant"
+  },
+  "diwedd": {
+    "definition": "end"
+  },
+  "diweddion": {
+    "definition": "ends"
+  },
+  "diweddar": {
+    "definition": "recent"
+  },
+  "dod draw": {
+    "definition": "to come over"
+  },
+  "dogfen": {
+    "definition": "a document"
+  },
+  "dogfennau": {
+    "definition": "documents"
+  },
+  "doli": {
+    "definition": "a doll"
+  },
+  "doliau": {
+    "definition": "dolls"
+  },
+  "doniol": {
+    "definition": "funny, comical, amusing"
+  },
+  "draig": {
+    "definition": "a dragon"
+  },
+  "dreigiau": {
+    "definition": "dragons"
+  },
+  "drôr": {
+    "definition": "a drawer"
+  },
+  "droriau": {
+    "definition": "drawers"
+  },
+  "dros": {
+    "definition": "over"
+  },
+  "drwm": {
+    "definition": "a drum"
+  },
+  "drymiau": {
+    "definition": "drums"
+  },
+  "dwlu": {
+    "definition": "to love, to dote upon (with ar)"
+  },
+  "dwylo": {
+    "definition": "hands"
+  },
+  "dwywaith": {
+    "definition": "twice"
+  },
+  "dydd": {
+    "definition": "a day"
+  },
+  "dyddiau": {
+    "definition": "days"
+  },
+  "dyddiad": {
+    "definition": "a date"
+  },
+  "dyddiadau": {
+    "definition": "dates"
+  },
+  "dyddiadur": {
+    "definition": "a diary"
+  },
+  "dyddiaduron": {
+    "definition": "diaries"
+  },
+  "dyfodol": {
+    "definition": "future"
+  },
+  "dyffryn": {
+    "definition": "a valley"
+  },
+  "dyffrynnoedd": {
+    "definition": "valleys"
+  },
+  "dyna i gyd": {
+    "definition": "that’s all"
+  },
+  "ebostio": {
+    "definition": "to email"
+  },
+  "egwyl": {
+    "definition": "a break, break time"
+  },
+  "eidal": {
+    "definition": "Italy"
+  },
+  "eidalaidd": {
+    "definition": "Italian"
+  },
+  "eidaleg": {
+    "definition": "Italian (language)"
+  },
+  "eidales": {
+    "definition": "Italian woman"
+  },
+  "eidalwr": {
+    "definition": "Italian man"
+  },
+  "eiliad": {
+    "definition": "a second (of time)"
+  },
+  "eiliadau": {
+    "definition": "seconds"
+  },
+  "eitem": {
+    "definition": "an item"
+  },
+  "eitemau": {
+    "definition": "items"
+  },
+  "eleni": {
+    "definition": "this year"
+  },
+  "eli haul": {
+    "definition": "suncream"
+  },
+  "eliffant": {
+    "definition": "an elephant"
+  },
+  "eliffantod": {
+    "definition": "elephants"
+  },
+  "elusen": {
+    "definition": "a charity"
+  },
+  "elusennau": {
+    "definition": "charities"
+  },
+  "emyn": {
+    "definition": "a hymn"
+  },
+  "emynau": {
+    "definition": "hymns"
+  },
+  "er enghraifft": {
+    "definition": "for example"
+  },
+  "erbyn": {
+    "definition": "by (time)"
+  },
+  "erbyn hyn": {
+    "definition": "by now"
+  },
+  "eryri": {
+    "definition": "Snowdonia"
+  },
+  "esbonio": {
+    "definition": "to explain"
+  },
+  "ewrop": {
+    "definition": "Europe"
+  },
+  "fest": {
+    "definition": "a vest"
+  },
+  "festiau": {
+    "definition": "vests"
+  },
+  "fyny grisiau": {
+    "definition": "upstairs"
+  },
+  "ffa": {
+    "definition": "beans"
+  },
+  "ffa pob": {
+    "definition": "baked beans"
+  },
+  "ffafr": {
+    "definition": "a favour"
+  },
+  "ffafrau": {
+    "definition": "favours"
+  },
+  "ffaith": {
+    "definition": "a fact"
+  },
+  "ffeithiau": {
+    "definition": "facts"
+  },
+  "ffansïo": {
+    "definition": "to fancy"
+  },
+  "ffantasi": {
+    "definition": "a fantasy"
+  },
+  "ffasiwn": {
+    "definition": "a fashion"
+  },
+  "ffasiynau": {
+    "definition": "fashions"
+  },
+  "ffasiynol": {
+    "definition": "fashionable"
+  },
+  "ffeithiol": {
+    "definition": "factual"
+  },
+  "fferi": {
+    "definition": "a ferry"
+  },
+  "fferis": {
+    "definition": "ferries"
+  },
+  "fferm": {
+    "definition": "a farm"
+  },
+  "ffermydd": {
+    "definition": "farms"
+  },
+  "ffermdy": {
+    "definition": "a farmhouse"
+  },
+  "ffermdai": {
+    "definition": "farmhouses"
+  },
+  "ffeuen": {
+    "definition": "a bean"
+  },
+  "ffi": {
+    "definition": "a fee"
+  },
+  "ffioedd": {
+    "definition": "fees"
+  },
+  "ffiseg": {
+    "definition": "physics"
+  },
+  "ffitio": {
+    "definition": "to fit"
+  },
+  "fforc": {
+    "definition": "a fork"
+  },
+  "ffordd": {
+    "definition": "a road, a way"
+  },
+  "ffordd osgoi": {
+    "definition": "a bypass (road)"
+  },
+  "ffyrdd osgoi": {
+    "definition": "bypasses"
+  },
+  "ffrangeg": {
+    "definition": "French (language)"
+  },
+  "ffrainc": {
+    "definition": "France"
+  },
+  "ffrances": {
+    "definition": "French woman"
+  },
+  "ffrancesau": {
+    "definition": "French women"
+  },
+  "ffrancwr": {
+    "definition": "Frenchman"
+  },
+  "ffrancwyr": {
+    "definition": "French(men)"
+  },
+  "ffres": {
+    "definition": "fresh"
+  },
+  "ffrio": {
+    "definition": "to fry"
+  },
+  "ffrog": {
+    "definition": "a dress, a frock"
+  },
+  "ffrogiau": {
+    "definition": "dresses, frocks"
+  },
+  "ffŵl": {
+    "definition": "a fool"
+  },
+  "ffyliaid": {
+    "definition": "fools"
+  },
+  "ffwrn": {
+    "definition": "an oven"
+  },
+  "ffyrc": {
+    "definition": "forks"
+  },
+  "ffyrdd": {
+    "definition": "roads, ways"
+  },
+  "ffyrnau": {
+    "definition": "ovens"
+  },
+  "gafr": {
+    "definition": "a goat"
+  },
+  "gair o gyngor": {
+    "definition": "a word of advice"
+  },
+  "galwad": {
+    "definition": "a call"
+  },
+  "galwadau": {
+    "definition": "calls"
+  },
+  "gartre": {
+    "definition": "at home"
+  },
+  "geifr": {
+    "definition": "goats"
+  },
+  "gem": {
+    "definition": "a gem"
+  },
+  "gemau": {
+    "definition": "gems"
+  },
+  "gemwaith": {
+    "definition": "jewellery"
+  },
+  "geni": {
+    "definition": "to be born"
+  },
+  "ger": {
+    "definition": "near"
+  },
+  "glân": {
+    "definition": "clean"
+  },
+  "glanhäwr": {
+    "definition": "a cleaner"
+  },
+  "glanhawyr": {
+    "definition": "cleaners"
+  },
+  "glo": {
+    "definition": "coal"
+  },
+  "glöwr": {
+    "definition": "collier"
+  },
+  "glowyr": {
+    "definition": "colliers"
+  },
+  "gofalu": {
+    "definition": "to look after, to care (am/for)"
+  },
+  "gog": {
+    "definition": "a Northwalian"
+  },
+  "gogs": {
+    "definition": "Northwalians"
+  },
+  "gôl": {
+    "definition": "a goal"
+  },
+  "goliau": {
+    "definition": "goals"
+  },
+  "golygfa": {
+    "definition": "a view, scenery"
+  },
+  "golygfeydd": {
+    "definition": "views"
+  },
+  "golygus": {
+    "definition": "handsome"
+  },
+  "gorchymyn": {
+    "definition": "a command"
+  },
+  "gorchmynion": {
+    "definition": "commands"
+  },
+  "gorffennol": {
+    "definition": "past"
+  },
+  "gosod": {
+    "definition": "to put, to set"
+  },
+  "gradd": {
+    "definition": "a degree"
+  },
+  "graddau": {
+    "definition": "degrees"
+  },
+  "gratio": {
+    "definition": "to grate"
+  },
+  "grawnfwyd": {
+    "definition": "cereal"
+  },
+  "grawnfwydydd": {
+    "definition": "cereals"
+  },
+  "grawnffrwyth": {
+    "definition": "a grapefruit"
+  },
+  "grawnffrwythau": {
+    "definition": "grapefruits"
+  },
+  "gris": {
+    "definition": "a step, a stair"
+  },
+  "grisiau": {
+    "definition": "steps, stairs"
+  },
+  "grŵp": {
+    "definition": "a group"
+  },
+  "grwpiau": {
+    "definition": "groups"
+  },
+  "gwaed": {
+    "definition": "blood"
+  },
+  "gwael": {
+    "definition": "poor (quality), not well, ill"
+  },
+  "gwaelod": {
+    "definition": "bottom, base"
+  },
+  "gwaelodion": {
+    "definition": "bases"
+  },
+  "gwag": {
+    "definition": "empty"
+  },
+  "gwahanol": {
+    "definition": "different"
+  },
+  "gwahoddiad": {
+    "definition": "an invitation"
+  },
+  "gwahoddiadau": {
+    "definition": "invitations"
+  },
+  "gwarchod": {
+    "definition": "to protect, to babysit"
+  },
+  "gwario": {
+    "definition": "to spend (money)"
+  },
+  "gwartheg": {
+    "definition": "cattle"
+  },
+  "gwawr": {
+    "definition": "a dawn"
+  },
+  "gwawriau": {
+    "definition": "dawns"
+  },
+  "gweddïo": {
+    "definition": "to pray"
+  },
+  "gwefan": {
+    "definition": "a website"
+  },
+  "gwefannau": {
+    "definition": "websites"
+  },
+  "gweiddi": {
+    "definition": "to shout"
+  },
+  "gweinidog": {
+    "definition": "a minister"
+  },
+  "gweindogion": {
+    "definition": "ministers"
+  },
+  "gweinyddol": {
+    "definition": "administrative"
+  },
+  "gweld eisiau": {
+    "definition": "to miss, to yearn for"
+  },
+  "gwella": {
+    "definition": "to improve, to get better"
+  },
+  "gwersyll": {
+    "definition": "a camp"
+  },
+  "gwersylloedd": {
+    "definition": "camps"
+  },
+  "gwersylla": {
+    "definition": "to camp"
+  },
+  "gwirfoddol": {
+    "definition": "voluntary"
+  },
+  "gwisg": {
+    "definition": "a costume, an uniform"
+  },
+  "gwisgoedd": {
+    "definition": "costumes, uniforms"
+  },
+  "gwisg ffansi": {
+    "definition": "fancy dress"
+  },
+  "gwiwer": {
+    "definition": "a squirrel"
+  },
+  "gwiwerod": {
+    "definition": "squirrels"
+  },
+  "gwlad groeg": {
+    "definition": "Greece"
+  },
+  "gwnïo": {
+    "definition": "to sew"
+  },
+  "gwregys": {
+    "definition": "a belt"
+  },
+  "gwregysau": {
+    "definition": "belts"
+  },
+  "gwres": {
+    "definition": "temperature, heat, heating"
+  },
+  "gwres canolog": {
+    "definition": "central heating"
+  },
+  "gwrthod": {
+    "definition": "to refuse"
+  },
+  "gwybodaeth": {
+    "definition": "information"
+  },
+  "gwych": {
+    "definition": "excellent"
+  },
+  "gwydr": {
+    "definition": "glass; a glass"
+  },
+  "gwydrau": {
+    "definition": "glasses (drinking)"
+  },
+  "gwydraid": {
+    "definition": "a glassful"
+  },
+  "gŵydd": {
+    "definition": "a goose"
+  },
+  "gwyddau": {
+    "definition": "geese"
+  },
+  "gwyddel": {
+    "definition": "Irishman"
+  },
+  "gwyddelod": {
+    "definition": "Irish (people)"
+  },
+  "gwyddeleg": {
+    "definition": "Irish (language)"
+  },
+  "gwyddeles": {
+    "definition": "Irish woman"
+  },
+  "gwyddelesau": {
+    "definition": "Irish women"
+  },
+  "gwyddelig": {
+    "definition": "Irish"
+  },
+  "gwyddoniaeth": {
+    "definition": "science"
+  },
+  "gŵyl San Steffan": {
+    "definition": "Boxing Day"
+  },
+  "gwylltio": {
+    "definition": "to lose one’s temper"
+  },
+  "haearn": {
+    "definition": "iron"
+  },
+  "hamdden": {
+    "definition": "leisure"
+  },
+  "hardd": {
+    "definition": "beautiful"
+  },
+  "heb sôn am": {
+    "definition": "not to mention"
+  },
+  "heibio": {
+    "definition": "past"
+  },
+  "heini": {
+    "definition": "fit"
+  },
+  "hen ffasiwn": {
+    "definition": "old-fashioned"
+  },
+  "heulwen": {
+    "definition": "sunshine"
+  },
+  "hiraeth": {
+    "definition": "longing (nostalgia)"
+  },
+  "hofrennydd": {
+    "definition": "a helicopter"
+  },
+  "hofrenyddion": {
+    "definition": "helicopters"
+  },
+  "holl": {
+    "definition": "all, whole"
+  },
+  "hollol": {
+    "definition": "complete"
+  },
+  "hosan": {
+    "definition": "a sock"
+  },
+  "hosanau": {
+    "definition": "socks"
+  },
+  "hunan": {
+    "definition": "self"
+  },
+  "hunangofiant": {
+    "definition": "autobiography"
+  },
+  "hunangofiannau": {
+    "definition": "autobiographies"
+  },
+  "hwfro": {
+    "definition": "to hoover"
+  },
+  "hwntw": {
+    "definition": "a Southwalian"
+  },
+  "hwntws": {
+    "definition": "Southwalians"
+  },
+  "hwyaden": {
+    "definition": "a duck"
+  },
+  "hwyaid": {
+    "definition": "ducks"
+  },
+  "hwylio": {
+    "definition": "to sail"
+  },
+  "hyd yn oed": {
+    "definition": "even"
+  },
+  "hyderus": {
+    "definition": "confident"
+  },
+  "hyfforddi": {
+    "definition": "to train"
+  },
+  "hyfforddiant": {
+    "definition": "training, coaching"
+  },
+  "hyfforddwr": {
+    "definition": "a coach, a trainer"
+  },
+  "hyfforddwyr": {
+    "definition": "coaches, trainers"
+  },
+  "hysbysebu": {
+    "definition": "to advertise"
+  },
+  "iach": {
+    "definition": "healthy"
+  },
+  "iaith": {
+    "definition": "language"
+  },
+  "iâr": {
+    "definition": "hen"
+  },
+  "ieithoedd": {
+    "definition": "languages"
+  },
+  "iogwrt": {
+    "definition": "a yoghurt"
+  },
+  "isel": {
+    "definition": "low"
+  },
+  "jar": {
+    "definition": "jar"
+  },
+  "jeli": {
+    "definition": "jelly"
+  },
+  "jiráff": {
+    "definition": "giraffe"
+  },
+  "lan lofft": {
+    "definition": "upstairs"
+  },
+  "lawnt": {
+    "definition": "lawn"
+  },
+  "lawntydd": {
+    "definition": "lawns"
+  },
+  "lawntiau": {
+    "definition": "lawns"
+  },
+  "lefel": {
+    "definition": "a level"
+  },
+  "lefelau": {
+    "definition": "levels"
+  },
+  "lein": {
+    "definition": "a line"
+  },
+  "leiniau": {
+    "definition": "lines"
+  },
+  "lori": {
+    "definition": "a lorry"
+  },
+  "lorïau": {
+    "definition": "lorries"
+  },
+  "llall": {
+    "definition": "other"
+  },
+  "lleill": {
+    "definition": "others"
+  },
+  "llaw": {
+    "definition": "a hand"
+  },
+  "lleoedd": {
+    "definition": "places"
+  },
+  "llefydd": {
+    "definition": "places"
+  },
+  "llefain": {
+    "definition": "to cry"
+  },
+  "llef": {
+    "definition": "irregular stem of llefain (to cry)"
+  },
+  "lleol": {
+    "definition": "local"
+  },
+  "lleuad": {
+    "definition": "moon"
+  },
+  "llewod": {
+    "definition": "lions"
+  },
+  "lliwio": {
+    "definition": "to colour (in)"
+  },
+  "llo": {
+    "definition": "a calf"
+  },
+  "lloi": {
+    "definition": "calves"
+  },
+  "llogi": {
+    "definition": "to rent, to hire"
+  },
+  "llonydd": {
+    "definition": "to still, tranquil/peace and quiet"
+  },
+  "llungopïo": {
+    "definition": "to photocopy"
+  },
+  "llwgu": {
+    "definition": "starving"
+  },
+  "llwyau": {
+    "definition": "spoons"
+  },
+  "llwybrau": {
+    "definition": "paths"
+  },
+  "llwynogod": {
+    "definition": "foxes"
+  },
+  "llygod": {
+    "definition": "mice"
+  },
+  "llygoden fawr": {
+    "definition": "a rat"
+  },
+  "llygod mawr": {
+    "definition": "rats"
+  },
+  "llym": {
+    "definition": "strict, sharp"
+  },
+  "llysfam": {
+    "definition": "stepmother"
+  },
+  "llysfamau": {
+    "definition": "stepmothers"
+  },
+  "llysieuol": {
+    "definition": "vegetarian"
+  },
+  "llystad": {
+    "definition": "stepfather"
+  },
+  "llystadau": {
+    "definition": "stepfathers"
+  },
+  "llythyrau": {
+    "definition": "letters"
+  },
+  "llywodraethau": {
+    "definition": "governments"
+  },
+  "lle": {
+    "definition": "place"
+  },
+  "llew": {
+    "definition": "lion"
+  },
+  "lliwgar": {
+    "definition": "colourful"
+  },
+  "llosgi": {
+    "definition": "burn"
+  },
+  "llwy": {
+    "definition": "spoon"
+  },
+  "llwybr": {
+    "definition": "path"
+  },
+  "llwynog": {
+    "definition": "fox"
+  },
+  "llygoden": {
+    "definition": "mouse"
+  },
+  "llythyr": {
+    "definition": "letter"
+  },
+  "llywodraeth": {
+    "definition": "government"
+  },
+  "mab": {
+    "definition": "a son"
+  },
+  "meibion": {
+    "definition": "sons"
+  },
+  "mae’n debyg": {
+    "definition": "it's likely, it seems"
+  },
+  "maes": {
+    "definition": "a field, an area"
+  },
+  "meysydd": {
+    "definition": "fields"
+  },
+  "maes awyr": {
+    "definition": "airport"
+  },
+  "meysydd awyr": {
+    "definition": "airports"
+  },
+  "maint": {
+    "definition": "a size"
+  },
+  "meintiau": {
+    "definition": "sizes"
+  },
+  "malwoden": {
+    "definition": "a snail"
+  },
+  "malwod": {
+    "definition": "snails"
+  },
+  "marw": {
+    "definition": "to die; dead"
+  },
+  "materion cyfoes": {
+    "definition": "current affairs"
+  },
+  "mathemateg": {
+    "definition": "mathematics"
+  },
+  "meddai": {
+    "definition": "said"
+  },
+  "meddwi": {
+    "definition": "to get drunk"
+  },
+  "meicrodon": {
+    "definition": "microwave"
+  },
+  "meithrinfa ": {
+    "definition": "a crèche, a nursery"
+  },
+  "meithrinfeydd": {
+    "definition": "crèches, nurseries"
+  },
+  "melys": {
+    "definition": "sweet"
+  },
+  "merch": {
+    "definition": "a girl, a daughter"
+  },
+  "merched": {
+    "definition": "girls, daughters"
+  },
+  "milfeddyg": {
+    "definition": "a vet"
+  },
+  "milfeddygon": {
+    "definition": "vets"
+  },
+  "milfeddygfa": {
+    "definition": "veterinary surgery"
+  },
+  "milfeddygfeydd": {
+    "definition": "veterinary surgeries"
+  },
+  "milltir": {
+    "definition": "a mile"
+  },
+  "milltiroedd": {
+    "definition": "miles"
+  },
+  "mochyn": {
+    "definition": "a pig"
+  },
+  "moch": {
+    "definition": "pigs"
+  },
+  "mochyn cwta": {
+    "definition": "a guinea pig"
+  },
+  "moch cwta": {
+    "definition": "guinea pigs"
+  },
+  "modfedd": {
+    "definition": "an inch"
+  },
+  "modfeddi": {
+    "definition": "inches"
+  },
+  "modrwy": {
+    "definition": "a ring"
+  },
+  "modrwyau": {
+    "definition": "rings"
+  },
+  "moel": {
+    "definition": "bald"
+  },
+  "mwg": {
+    "definition": "smoke"
+  },
+  "mwnci": {
+    "definition": "a monkey"
+  },
+  "mwncïod": {
+    "definition": "monkeys"
+  },
+  "mwstas": {
+    "definition": "a moustache"
+  },
+  "mwstashis": {
+    "definition": "moustaches"
+  },
+  "mwy neu lai": {
+    "definition": "more or less"
+  },
+  "mwyn": {
+    "definition": "mild"
+  },
+  "myfyriwr": {
+    "definition": "a male student"
+  },
+  "myfyrwyr": {
+    "definition": "students"
+  },
+  "myfyrwraig": {
+    "definition": "a female student"
+  },
+  "myfyrwragedd": {
+    "definition": "female students"
+  },
+  "mynd ati": {
+    "definition": "to go about (doing something)"
+  },
+  "mynedfa": {
+    "definition": "an entrance"
+  },
+  "mynedfeydd": {
+    "definition": "entrances"
+  },
+  "mynydd": {
+    "definition": "a mountain"
+  },
+  "mynyddoedd": {
+    "definition": "mountains"
+  },
+  "nadredd": {
+    "definition": "snakes"
+  },
+  "nadroedd": {
+    "definition": "snakes"
+  },
+  "naid": {
+    "definition": "a jump, a leap"
+  },
+  "neidiau": {
+    "definition": "jumps, leaps"
+  },
+  "natur": {
+    "definition": "nature"
+  },
+  "naturiol": {
+    "definition": "natural"
+  },
+  "neges": {
+    "definition": "a message"
+  },
+  "negeseuon": {
+    "definition": "messages"
+  },
+  "neidio": {
+    "definition": "to jump"
+  },
+  "neidr": {
+    "definition": "a snake"
+  },
+  "newid": {
+    "definition": "to change"
+  },
+  "newyddiadurwr": {
+    "definition": "a journalist"
+  },
+  "newyddiadurwyr": {
+    "definition": "journalists"
+  },
+  "nifer": {
+    "definition": "a number"
+  },
+  "niwl": {
+    "definition": "fog, mist"
+  },
+  "niwloedd": {
+    "definition": "fogs, mists"
+  },
+  "nodyn": {
+    "definition": "a note"
+  },
+  "nodiadau": {
+    "definition": "notes (written)"
+  },
+  "nodau": {
+    "definition": "notes (musical)"
+  },
+  "noddi": {
+    "definition": "to sponsor"
+  },
+  "nofel": {
+    "definition": "a novel"
+  },
+  "nofelau": {
+    "definition": "novels"
+  },
+  "norman": {
+    "definition": "a Norman"
+  },
+  "normaniaid": {
+    "definition": "Normans"
+  },
+  "noswyl nadolig": {
+    "definition": "Christmas Eve"
+  },
+  "nwyddau": {
+    "definition": "goods"
+  },
+  "o dro i dro": {
+    "definition": "from time to time"
+  },
+  "o hyd": {
+    "definition": "still"
+  },
+  "oddi wrth": {
+    "definition": "from (person)"
+  },
+  "oedolion": {
+    "definition": "adults"
+  },
+  "oedolyn": {
+    "definition": "an adult"
+  },
+  "oen": {
+    "definition": "a lamb"
+  },
+  "ŵyn": {
+    "definition": "lambs"
+  },
+  "oergell": {
+    "definition": "fridge"
+  },
+  "oergelloedd": {
+    "definition": "refrigerators"
+  },
+  "oes": {
+    "definition": "an age (time)"
+  },
+  "oesoedd": {
+    "definition": "ages"
+  },
+  "ofn": {
+    "definition": "fear"
+  },
+  "ofnau": {
+    "definition": "fears"
+  },
+  "olew": {
+    "definition": "oil"
+  },
+  "olewau": {
+    "definition": "oils"
+  },
+  "olwyn": {
+    "definition": "a wheel"
+  },
+  "olwynion": {
+    "definition": "wheels"
+  },
+  "opsiwn": {
+    "definition": "an option"
+  },
+  "opsiynau": {
+    "definition": "options"
+  },
+  "optegydd": {
+    "definition": "optician"
+  },
+  "optegwyr": {
+    "definition": "opticians"
+  },
+  "o’r blaen": {
+    "definition": "before, previously"
+  },
+  "o’r diwedd": {
+    "definition": "at last, finally"
+  },
+  "palu": {
+    "definition": "to dig"
+  },
+  "pam lai": {
+    "definition": "why not?"
+  },
+  "panel": {
+    "definition": "a panel"
+  },
+  "paneli": {
+    "definition": "panels"
+  },
+  "papur": {
+    "definition": "a paper, a newspaper"
+  },
+  "papurau": {
+    "definition": "papers, newspapers"
+  },
+  "papur bro": {
+    "definition": "local Welsh paper"
+  },
+  "papuro": {
+    "definition": "to paper, papering"
+  },
+  "parsel": {
+    "definition": "a parcel"
+  },
+  "parseli": {
+    "definition": "parcels"
+  },
+  "pasio": {
+    "definition": "to pass"
+  },
+  "peiriannydd": {
+    "definition": "an engineer"
+  },
+  "peirianwyr": {
+    "definition": "engineers"
+  },
+  "pêl-fasged": {
+    "definition": "basketball"
+  },
+  "pêl-rwyd": {
+    "definition": "netball"
+  },
+  "pen ôl": {
+    "definition": "bottom (body part)"
+  },
+  "penolau": {
+    "definition": "bottoms"
+  },
+  "pen-blwydd priodas": {
+    "definition": "wedding anniversary"
+  },
+  "penderfynu": {
+    "definition": "to decide"
+  },
+  "penelin": {
+    "definition": "an elbow"
+  },
+  "penelinoedd": {
+    "definition": "elbows"
+  },
+  "pen-glin": {
+    "definition": "a knee"
+  },
+  "pengliniau": {
+    "definition": "knees"
+  },
+  "pennill": {
+    "definition": "a verse"
+  },
+  "penillion": {
+    "definition": "verses"
+  },
+  "penrhyn gŵyr": {
+    "definition": "the Gower Peninsula"
+  },
+  "perlysieuyn": {
+    "definition": "a herb"
+  },
+  "perlysiau": {
+    "definition": "herbs"
+  },
+  "personol": {
+    "definition": "personal"
+  },
+  "peryglus": {
+    "definition": "dangerous"
+  },
+  "pilo": {
+    "definition": "to peel"
+  },
+  "plaen": {
+    "definition": "plain"
+  },
+  "plât": {
+    "definition": "a plate"
+  },
+  "platiau": {
+    "definition": "plates"
+  },
+  "plicio": {
+    "definition": "to peel"
+  },
+  "pluen": {
+    "definition": "a feather"
+  },
+  "plu": {
+    "definition": "feathers"
+  },
+  "plwg": {
+    "definition": "a plug"
+  },
+  "plygiau": {
+    "definition": "plugs"
+  },
+  "plymwr": {
+    "definition": "a plumber"
+  },
+  "plymwyr": {
+    "definition": "plumbers"
+  },
+  "pobi": {
+    "definition": "to bake"
+  },
+  "poblogaidd": {
+    "definition": "popular"
+  },
+  "poced": {
+    "definition": "a pocket"
+  },
+  "pocedi": {
+    "definition": "pockets"
+  },
+  "poenus": {
+    "definition": "painful"
+  },
+  "poeth": {
+    "definition": "hot"
+  },
+  "popty": {
+    "definition": "an oven"
+  },
+  "poptai": {
+    "definition": "ovens"
+  },
+  "porthladd": {
+    "definition": "a port, a harbour"
+  },
+  "porthladdoedd": {
+    "definition": "ports, harbours"
+  },
+  "postio": {
+    "definition": "to post"
+  },
+  "potel": {
+    "definition": "a bottle"
+  },
+  "poteli": {
+    "definition": "bottles"
+  },
+  "powdr": {
+    "definition": "powder"
+  },
+  "powlen": {
+    "definition": "a bowl"
+  },
+  "powlenni": {
+    "definition": "bowls"
+  },
+  "pren": {
+    "definition": "wooden"
+  },
+  "presennol": {
+    "definition": "(the) present"
+  },
+  "preswyl": {
+    "definition": "residential"
+  },
+  "prifddinas": {
+    "definition": "capital city"
+  },
+  "prifddinasoedd": {
+    "definition": "capital cities"
+  },
+  "priodas": {
+    "definition": "a wedding"
+  },
+  "priodasau": {
+    "definition": "weddings"
+  },
+  "pris": {
+    "definition": "a price"
+  },
+  "prisiau": {
+    "definition": "prices"
+  },
+  "pry copyn": {
+    "definition": "a spider"
+  },
+  "pryfaid cop": {
+    "definition": "spiders (Gogledd Cymru)"
+  },
+  "prydain": {
+    "definition": "Britain"
+  },
+  "prydferth": {
+    "definition": "beautiful"
+  },
+  "pupur": {
+    "definition": "pepper"
+  },
+  "pwdin": {
+    "definition": "a pudding"
+  },
+  "pwdinau": {
+    "definition": "puddings"
+  },
+  "pwnc": {
+    "definition": "a subject"
+  },
+  "pynciau": {
+    "definition": "subjects"
+  },
+  "pwrs": {
+    "definition": "a purse"
+  },
+  "pyrsiau": {
+    "definition": "purses"
+  },
+  "pwynt": {
+    "definition": "a point"
+  },
+  "pwyntiau": {
+    "definition": "points"
+  },
+  "pwys": {
+    "definition": "pound (lb)"
+  },
+  "pwysau": {
+    "definition": "pounds, weight, weights"
+  },
+  "pysgota": {
+    "definition": "to fish"
+  },
+  "pythefnos": {
+    "definition": "a fortnight"
+  },
+  "realiti": {
+    "definition": "reality"
+  },
+  "reidio": {
+    "definition": "to ride"
+  },
+  "reis": {
+    "definition": "rice"
+  },
+  "rysáit": {
+    "definition": "a recipe"
+  },
+  "ryseitiau": {
+    "definition": "recipes"
+  },
+  "rhaeadr": {
+    "definition": "a waterfall"
+  },
+  "rhaeadrau": {
+    "definition": "waterfalls"
+  },
+  "rhag ofn": {
+    "definition": "(just) in case"
+  },
+  "rhan fwya": {
+    "definition": "a majority"
+  },
+  "rhannu": {
+    "definition": "to share, to divide"
+  },
+  "rhegi": {
+    "definition": "to swear"
+  },
+  "rheilffordd": {
+    "definition": "a railway"
+  },
+  "rheilffyrdd": {
+    "definition": "railways"
+  },
+  "rhentio": {
+    "definition": "to rent (Gogledd Cymru)"
+  },
+  "rhentu": {
+    "definition": "to rent (De Cymru)"
+  },
+  "rheswm": {
+    "definition": "a reason"
+  },
+  "rhesymau": {
+    "definition": "reasons"
+  },
+  "rhesymol": {
+    "definition": "reasonable"
+  },
+  "rhewgell": {
+    "definition": "freezer"
+  },
+  "rhewgelloedd": {
+    "definition": "freezers"
+  },
+  "rhewi": {
+    "definition": "to freeze"
+  },
+  "rhiant": {
+    "definition": "a parent"
+  },
+  "rhieni": {
+    "definition": "parents"
+  },
+  "rhiwbob": {
+    "definition": "rhubarb"
+  },
+  "rhoi gwybod": {
+    "definition": "to inform"
+  },
+  "rhugl": {
+    "definition": "fluent"
+  },
+  "rhydd": {
+    "definition": "free, loose, available"
+  },
+  "rhyngwladol": {
+    "definition": "international"
+  },
+  "rhyw fath": {
+    "definition": "some sort"
+  },
+  "rhywbryd": {
+    "definition": "sometime"
+  },
+  "safle bws": {
+    "definition": "a bus stop"
+  },
+  "safleoedd bws": {
+    "definition": "bus stops"
+  },
+  "salwch": {
+    "definition": "illness, sickness"
+  },
+  "sandal": {
+    "definition": "a sandal"
+  },
+  "sandalau": {
+    "definition": "sandals"
+  },
+  "sant": {
+    "definition": "a saint"
+  },
+  "saint": {
+    "definition": "saints"
+  },
+  "sawdl": {
+    "definition": "a heel"
+  },
+  "sodlau": {
+    "definition": "heels"
+  },
+  "sawl": {
+    "definition": "several, many"
+  },
+  "sbaeneg": {
+    "definition": "Spanish (language)"
+  },
+  "sbectol": {
+    "definition": "spectacles, glasses"
+  },
+  "sbectolau": {
+    "definition": "pairs of glasses"
+  },
+  "sbectol haul": {
+    "definition": "sunglasses"
+  },
+  "sbectolau haul": {
+    "definition": "pairs of sunglasses"
+  },
+  "sbeislyd": {
+    "definition": "spicy"
+  },
+  "sboncen": {
+    "definition": "squash (chwaraeon)"
+  },
+  "sebon": {
+    "definition": "soap"
+  },
+  "sedd": {
+    "definition": "a seat"
+  },
+  "seddi": {
+    "definition": "seats"
+  },
+  "sef": {
+    "definition": "i.e. (that is to say)"
+  },
+  "seler": {
+    "definition": "a cellar"
+  },
+  "seleri": {
+    "definition": "cellars"
+  },
+  "selsigen": {
+    "definition": "a sausage"
+  },
+  "selsig": {
+    "definition": "sausages"
+  },
+  "senedd": {
+    "definition": "a parliament, a senate"
+  },
+  "seneddau": {
+    "definition": "parliaments"
+  },
+  "seremoni": {
+    "definition": "a ceremony"
+  },
+  "seremonïau": {
+    "definition": "ceremonies"
+  },
+  "sgarff": {
+    "definition": "a scarf"
+  },
+  "sgarffiau": {
+    "definition": "scarves"
+  },
+  "sgert": {
+    "definition": "a skirt"
+  },
+  "sgertiau": {
+    "definition": "skirts"
+  },
+  "sgrin": {
+    "definition": "a screen"
+  },
+  "sgriniau": {
+    "definition": "screens"
+  },
+  "sgwrs": {
+    "definition": "a conversation, a chat"
+  },
+  "sgyrsiau": {
+    "definition": "conversations, chats"
+  },
+  "sgwrsio": {
+    "definition": "to chat"
+  },
+  "siaced": {
+    "definition": "a jacket"
+  },
+  "siacedi": {
+    "definition": "jackets"
+  },
+  "sianel": {
+    "definition": "a channel"
+  },
+  "sianeli": {
+    "definition": "channels"
+  },
+  "sied": {
+    "definition": "a shed"
+  },
+  "siediau": {
+    "definition": "sheds"
+  },
+  "sinc": {
+    "definition": "a sink"
+  },
+  "sinciau": {
+    "definition": "sinks"
+  },
+  "siomedig": {
+    "definition": "disappointing, disappointed"
+  },
+  "siwmper": {
+    "definition": "a sweater, a jumper"
+  },
+  "siwmperi": {
+    "definition": "sweaters, jumpers"
+  },
+  "siwt": {
+    "definition": "a suit"
+  },
+  "siwtiau": {
+    "definition": "suits"
+  },
+  "sliper": {
+    "definition": "a slipper"
+  },
+  "sliperi": {
+    "definition": "slippers"
+  },
+  "sôn": {
+    "definition": "to mention"
+  },
+  "sosban": {
+    "definition": "a saucepan"
+  },
+  "sosbenni": {
+    "definition": "saucepans"
+  },
+  "soser": {
+    "definition": "a saucer"
+  },
+  "soseri": {
+    "definition": "saucers"
+  },
+  "stadiwm": {
+    "definition": "a stadium"
+  },
+  "stadiymau": {
+    "definition": "stadiums"
+  },
+  "stori": {
+    "definition": "a story"
+  },
+  "storïau": {
+    "definition": "stories"
+  },
+  "storm": {
+    "definition": "a storm"
+  },
+  "stormydd": {
+    "definition": "storms"
+  },
+  "straen": {
+    "definition": "a strain, a stress, tension"
+  },
+  "straeniau": {
+    "definition": "strains, stresses, tensions"
+  },
+  "stumog": {
+    "definition": "a stomach"
+  },
+  "stumogau": {
+    "definition": "stomachs"
+  },
+  "suddo": {
+    "definition": "to sink"
+  },
+  "swil": {
+    "definition": "shy, bashful"
+  },
+  "sŵn": {
+    "definition": "a sound, a noise"
+  },
+  "synau": {
+    "definition": "sounds, noises"
+  },
+  "swyddog": {
+    "definition": "an officer"
+  },
+  "swyddogion": {
+    "definition": "officers"
+  },
+  "sychu": {
+    "definition": "to dry"
+  },
+  "sychwr gwallt": {
+    "definition": "a hairdryer"
+  },
+  "sylwi": {
+    "definition": "to notice"
+  },
+  "syml": {
+    "definition": "simple"
+  },
+  "ta beth": {
+    "definition": "anyway"
+  },
+  "tacluso": {
+    "definition": "to tidy"
+  },
+  "tacsi": {
+    "definition": "a taxi"
+  },
+  "tacsis": {
+    "definition": "taxis"
+  },
+  "tafarnwr": {
+    "definition": "an innkeeper"
+  },
+  "tafarnwyr": {
+    "definition": "innkeepers"
+  },
+  "taflu": {
+    "definition": "to throw"
+  },
+  "tafod": {
+    "definition": "a tongue"
+  },
+  "tafodau": {
+    "definition": "tongues"
+  },
+  "tair gwaith": {
+    "definition": "three times"
+  },
+  "tal": {
+    "definition": "tall"
+  },
+  "taldra": {
+    "definition": "height, stature, tallness"
+  },
+  "tap": {
+    "definition": "a tap"
+  },
+  "tapiau": {
+    "definition": "taps"
+  },
+  "tawel": {
+    "definition": "quiet, calm"
+  },
+  "tebot": {
+    "definition": "a teapot"
+  },
+  "tebotau": {
+    "definition": "teapots"
+  },
+  "technegydd": {
+    "definition": "a technician"
+  },
+  "technegwyr": {
+    "definition": "technicians"
+  },
+  "technoleg": {
+    "definition": "technology"
+  },
+  "teigr": {
+    "definition": "a tiger"
+  },
+  "teigrod": {
+    "definition": "tigers"
+  },
+  "teipio": {
+    "definition": "to type"
+  },
+  "teithiwr": {
+    "definition": "a traveller"
+  },
+  "teithwyr": {
+    "definition": "travellers"
+  },
+  "telyn": {
+    "definition": "a harp"
+  },
+  "telynau": {
+    "definition": "harps"
+  },
+  "tenau": {
+    "definition": "thin"
+  },
+  "tew": {
+    "definition": "fat"
+  },
+  "tisian": {
+    "definition": "to sneeze"
+  },
+  "tlawd": {
+    "definition": "poor, poverty-stricken"
+  },
+  "ton": {
+    "definition": "a wave"
+  },
+  "tonnau": {
+    "definition": "waves"
+  },
+  "torheulo": {
+    "definition": "to sunbathe"
+  },
+  "tra": {
+    "definition": "while, whilst"
+  },
+  "tractor": {
+    "definition": "a tractor"
+  },
+  "tractorau": {
+    "definition": "tractors"
+  },
+  "traddodiadol": {
+    "definition": "traditional"
+  },
+  "trafferth": {
+    "definition": "trouble, bother"
+  },
+  "trafferthion": {
+    "definition": "troubles"
+  },
+  "traffordd": {
+    "definition": "a motorway"
+  },
+  "traffyrdd": {
+    "definition": "motorways"
+  },
+  "trais": {
+    "definition": "violence"
+  },
+  "tramor": {
+    "definition": "overseas, abroad"
+  },
+  "trawiadol": {
+    "definition": "striking"
+  },
+  "trefnus": {
+    "definition": "organised, orderly"
+  },
+  "treth": {
+    "definition": "a tax"
+  },
+  "trethi": {
+    "definition": "taxes"
+  },
+  "treulio": {
+    "definition": "to spend (time)"
+  },
+  "triongl": {
+    "definition": "a triangle"
+  },
+  "trionglau": {
+    "definition": "triangles"
+  },
+  "troedfedd": {
+    "definition": "a foot (measurement)"
+  },
+  "troedfeddi": {
+    "definition": "feet"
+  },
+  "trôns": {
+    "definition": "underpants"
+  },
+  "trowsus": {
+    "definition": "trousers"
+  },
+  "trwm": {
+    "definition": "heavy"
+  },
+  "trwsio": {
+    "definition": "to repair, to mend"
+  },
+  "trydanwr": {
+    "definition": "an electrician"
+  },
+  "trydanwyr": {
+    "definition": "electricians"
+  },
+  "trydar": {
+    "definition": "to tweet, to twitter"
+  },
+  "tu ôl": {
+    "definition": "behind"
+  },
+  "tun": {
+    "definition": "a tin, a can"
+  },
+  "tuniau": {
+    "definition": "tins, cans"
+  },
+  "twll": {
+    "definition": "a hole"
+  },
+  "tyllau": {
+    "definition": "holes"
+  },
+  "twmpath dawns": {
+    "definition": "a barn dance"
+  },
+  "twmpathau dawns": {
+    "definition": "barn dances"
+  },
+  "twnnel": {
+    "definition": "a tunnel"
+  },
+  "twnelau": {
+    "definition": "tunnels"
+  },
+  "twpsyn": {
+    "definition": "a silly person, a stupid person"
+  },
+  "twpsod": {
+    "definition": "silly people"
+  },
+  "tŵr": {
+    "definition": "a tower"
+  },
+  "tyrau": {
+    "definition": "towers"
+  },
+  "twrci": {
+    "definition": "a turkey"
+  },
+  "twrcïod": {
+    "definition": "turkeys"
+  },
+  "twristiaeth": {
+    "definition": "tourism"
+  },
+  "tŷ ar wahân": {
+    "definition": "detached house"
+  },
+  "tai ar wahân": {
+    "definition": "detached houses"
+  },
+  "tŷ gwydr": {
+    "definition": "a greenhouse"
+  },
+  "tai gwydr": {
+    "definition": "greenhouses"
+  },
+  "tŷ pâr": {
+    "definition": "semi-detached house"
+  },
+  "tai pâr": {
+    "definition": "semi-detached houses"
+  },
+  "tŷ teras": {
+    "definition": "a terraced house"
+  },
+  "tai teras": {
+    "definition": "terraced houses"
+  },
+  "tybed?": {
+    "definition": "I wonder?"
+  },
+  "tywel": {
+    "definition": "a towel"
+  },
+  "tywelion": {
+    "definition": "towels"
+  },
+  "tywod": {
+    "definition": "sand"
+  },
+  "tywyll": {
+    "definition": "dark"
+  },
+  "theatr": {
+    "definition": "a theatre"
+  },
+  "theatrau": {
+    "definition": "theatres"
+  },
+  "uchel": {
+    "definition": "high"
+  },
+  "unig": {
+    "definition": "lonely, only"
+  },
+  "union": {
+    "definition": "exact, direct"
+  },
+  "wedi’r cyfan": {
+    "definition": "after all"
+  },
+  "wrth fy modd": {
+    "definition": "in my element"
+  },
+  "wrth ochr": {
+    "definition": "by the side of"
+  },
+  "ŵyr": {
+    "definition": "grandson"
+  },
+  "wyrion": {
+    "definition": "grandsons, grandchildren"
+  },
+  "wyres": {
+    "definition": "granddaughter"
+  },
+  "wyresau": {
+    "definition": "granddaughters"
+  },
+  "ychwanegol": {
+    "definition": "additional"
+  },
+  "ychwanegu (at)": {
+    "definition": "to add (to)"
+  },
+  "y dyddiau hyn": {
+    "definition": "these days"
+  },
+  "y lleill": {
+    "definition": "the others"
+  },
+  "ymarfer corff": {
+    "definition": "physical education"
+  },
+  "ymbarél": {
+    "definition": "umbrella"
+  },
+  "ymbarelau": {
+    "definition": "umbrellas"
+  },
+  "ymddiheuro": {
+    "definition": "to apologise"
+  },
+  "ymuno": {
+    "definition": "to join"
+  },
+  "ymweld": {
+    "definition": "to visit"
+  },
+  "ymwelydd": {
+    "definition": "visitor"
+  },
+  "ymwelwyr": {
+    "definition": "visitors"
+  },
+  "ymyl": {
+    "definition": "an edge, rim"
+  },
+  "ymylon": {
+    "definition": "edges, rims"
+  },
+  "yn lle": {
+    "definition": "instead of, in place of"
+  },
+  "yn union": {
+    "definition": "exactly, directly"
+  },
+  "yn y bôn": {
+    "definition": "basically"
+  },
+  "yn y pen draw": {
+    "definition": "eventually"
+  },
+  "yn ymyl": {
+    "definition": "near, beside"
+  },
+  "yn ystod": {
+    "definition": "during"
+  },
+  "yr eidal": {
+    "definition": "Italy"
+  },
+  "y rhan fwya": {
+    "definition": "the majority"
+  },
+  "ysgafn": {
+    "definition": "light (of weight)"
+  },
+  "ysgariad": {
+    "definition": "a divorce"
+  },
+  "ysgariadau": {
+    "definition": "divorces"
+  },
+  "ysgol fabanod": {
+    "definition": "an infant school"
+  },
+  "ysgolion babanod": {
+    "definition": "infant schools"
+  },
+  "ysgol gyfun": {
+    "definition": "a comprehensive school"
+  },
+  "ysgolion cyfun": {
+    "definition": "comp. schools"
+  },
+  "ysgol gynradd": {
+    "definition": "a primary school"
+  },
+  "ysgolion cynradd": {
+    "definition": "primary schools"
+  },
+  "ysgol uwchradd": {
+    "definition": "a secondary school"
+  },
+  "ysgolion uwchradd": {
+    "definition": "sec. schools"
+  },
+  "ysgwydd": {
+    "definition": "a shoulder"
+  },
+  "ysgwyddau": {
+    "definition": "shoulders"
+  },
+  "ysmygu": {
+    "definition": "to smoke"
+  },
+  "ystafell": {
+    "definition": "a room"
+  },
+  "ystafelloedd": {
+    "definition": "rooms"
+  },
+  "ystafell wydr": {
+    "definition": "a conservatory"
+  },
+  "ystafelloedd gwydr": {
+    "definition": "conservatories"
+  },
+  "ystod": {
+    "definition": "range"
+  },
+  "yswiriant": {
+    "definition": "insurance"
+  },
+  "y swistir": {
+    "definition": "Switzerland"
+  },
+  "mwy nag unwaith": {
+    "definition": "more than once"
+  },
+  "raid cropian cyn cerdded": {
+    "definition": "You must walk before you can run"
+  },
+  "yn aml": {
+    "definition": "often"
+  },
+  "ar ben": {
+    "definition": "on top of"
+  },
+  "y llall": {
+    "definition": "the other"
+  },
+  "bob yn ail": {
+    "definition": "every other, alternate"
+  },
+  "o'r diwedd": {
+    "definition": "at last, finally"
+  },
+  "cadw mewn cysylltaid": {
+    "definition": "to keep in touch"
+  },
+  "o'r blaen": {
+    "definition": "before"
+  },
+  "dal y lein": {
+    "definition": "to hold the line"
+  },
+  "lawr llawr": {
+    "definition": "downstairs"
+  },
+  "uwchben": {
+    "definition": "above"
+  },
+  "braidd": {
+    "definition": "rather"
+  },
+  "cymru am byth": {
+    "definition": "Wales forever!"
+  },
+  "ar goll": {
+    "definition": "lost"
+  },
+  "wadi'r cyfan": {
+    "definition": "after all"
+  },
+  "bant â ni": {
+    "definition": "off we go"
+  },
+  "patrwm": {
+    "definition": "pattern"
+  },
+  "rhaid": {
+    "definition": "must"
+  },
+  "flwyddyn": {
+    "definition": "year (with 1)"
+  },
+  "flynedd": {
+    "definition": "years (with 2)"
+  },
+  "blynedd": {
+    "definition": "years (with 3, 4, 6)"
+  },
+  "mlynedd": {
+    "definition": "years (with 5, 7, 8, 9, 10)"
+  },
+  "dychmygu": {
+    "definition": "imagine"
+  },
+  "pidyn": {
+    "definition": "dick, penis"
+  },
+  "cachlyd": {
+    "definition": "shitty"
+  },
+  "bechod": {
+    "definition": "oh, bless!"
+  },
+  "snichyn": {
+    "definition": "creep, horrible person, sneak"
+  },
+  "pen pidyn": {
+    "definition": "dickhead"
+  },
+  "penpidyn": {
+    "definition": "dickhead"
+  },
+  "cwsg": {
+    "definition": "sleep (noun)"
+  },
+  "rhyfedd": {
+    "definition": "strange"
+  },
+  "drych": {
+    "definition": "mirror"
+  },
+  "snichlyd": {
+    "definition": "creepy, awful"
+  },
+  "gwirion": {
+    "definition": "silly"
+  },
+  "amlwg": {
+    "definition": "obvious, evident"
+  },
+  "gafael": {
+    "definition": "to grab, to get hold of"
+  },
+  "y ffordd anghywir": {
+    "definition": "the wrong way"
+  },
+  "y ffordd gywir": {
+    "definition": "the right way"
+  },
+  "dod o hyd i": {
+    "definition": "to come across/to find"
+  },
+  "methu": {
+    "definition": "fail"
+  },
+  "gast": {
+    "definition": "bitch"
+  },
+  "a dweud y gwir": {
+    "definition": "to tell the truth"
+  },
+  "blynyddoedd": {
+    "definition": "years"
+  },
+  "malu": {
+    "definition": "to destroy"
+  },
+  "tarw": {
+    "definition": "bull"
+  },
+  "bag chwythu": {
+    "definition": "breathalyser"
+  },
+  "gollwng": {
+    "definition": "to release, to drop"
+  },
+  "stumiau": {
+    "definition": "poses"
+  },
+  "cyfarth": {
+    "definition": "to bark"
+  },
+  "piso": {
+    "definition": "to urinate"
+  },
+  "breuddwydio": {
+    "definition": "to dream"
+  },
+  "maddau": {
+    "definition": "to forgive"
+  },
+  "planhigion": {
+    "definition": "plants"
+  },
+  "briw": {
+    "definition": "cut"
+  },
+  "briwiau": {
+    "definition": "cuts"
+  },
+  "anaf": {
+    "definition": "injury"
+  },
+  "anafiadau": {
+    "definition": "injuries"
+  },
+  "llyfu": {
+    "definition": "to lick"
+  },
+  "gwaedlyd": {
+    "definition": "bloody"
+  },
+  "olion": {
+    "definition": "marks"
+  },
+  "pry genwair": {
+    "definition": "worm"
+  },
+  "smotyn": {
+    "definition": "spot"
+  },
+  "glanio": {
+    "definition": "to land"
+  },
+  "diflannu": {
+    "definition": "to disappear"
+  },
+  "tennyn": {
+    "definition": "lead, leash"
+  },
+  "sownd": {
+    "definition": "safe, sound, stuck"
+  },
+  "troi": {
+    "definition": "to turn"
+  },
+  "difaru": {
+    "definition": "to regret"
+  },
+  "fel y bedd": {
+    "definition": "as quiet as the grave"
+  },
+  "ar wahân i": {
+    "definition": "apart from"
+  },
+  "palmant": {
+    "definition": "pavement"
+  },
+  "i gyfeiriad": {
+    "definition": "towards"
+  },
+  "dwyn": {
+    "definition": "to steal"
+  },
+  "ymosod": {
+    "definition": "to attack (ar)"
+  },
+  "plannu": {
+    "definition": "to plant"
+  },
+  "tocio": {
+    "definition": "to prune"
+  },
+  "dyrnau": {
+    "definition": "fists"
+  },
+  "ers tro": {
+    "definition": "for a while"
+  },
+  "araith": {
+    "definition": "speech"
+  },
+  "cyflymder": {
+    "definition": "speed"
+  },
+  "dod i bed": {
+    "definition": "to come to an end"
+  },
+  "patshyn": {
+    "definition": "patch"
+  },
+  "gwlân": {
+    "definition": "wool"
+  },
+  "crys nos": {
+    "definition": "nightshirt"
+  },
+  "blodeuog": {
+    "definition": "flowery"
+  },
+  "gwyrch": {
+    "definition": "hedge"
+  },
+  "penlinio": {
+    "definition": "to kneel"
+  },
+  "talcen": {
+    "definition": "forehead"
+  },
+  "anadlu": {
+    "definition": "to breathe"
+  },
+  "plygu": {
+    "definition": "to bend, to bow"
+  },
+  "gwddw": {
+    "definition": "neck"
+  },
+  "garddwrn": {
+    "definition": "wrist"
+  },
+  "naci tad": {
+    "definition": "not at all"
+  },
+  "ysgwyd": {
+    "definition": "to shake"
+  },
+  "ochneidio": {
+    "definition": "to sign"
+  },
+  "hurt": {
+    "definition": "stupid, stunned"
+  },
+  "milgi": {
+    "definition": "greyhound"
+  },
+  "baglu": {
+    "definition": "to trip"
+  },
+  "ufudd": {
+    "definition": "obedient"
+  },
+  "cyffwrdd": {
+    "definition": "to touch"
+  },
+  "cymhleth": {
+    "definition": "complicated"
+  },
+  "ymyrryd": {
+    "definition": "to tamper, to interfere"
+  },
+  "tystiolaeth": {
+    "definition": "evidence"
+  },
+  "tyst": {
+    "definition": "witness"
+  },
+  "braster": {
+    "definition": "fat"
+  },
+  "ardal y llynnoedd": {
+    "definition": "the Lake District"
+  },
+  "merched y wawr": {
+    "definition": "Welsh equivalent of the WI"
+  },
+  "cripio": {
+    "definition": "to scratch"
+  },
+  "annifyr": {
+    "definition": "unpleasant"
+  },
+  "egluro": {
+    "definition": "to explain"
+  },
+  "fforddio": {
+    "definition": "to afford"
+  },
+  "yn glep": {
+    "definition": "with a bang"
+  },
+  "cadach": {
+    "definition": "cloth"
+  },
+  "sgwrio": {
+    "definition": "to scrub"
+  },
+  "rhwbio": {
+    "definition": "to rub"
+  },
+  "pwyth": {
+    "definition": "stitch"
+  },
+  "pwythau": {
+    "definition": "stitches"
+  },
+  "druan": {
+    "definition": "poor, unfortunate"
+  },
+  "haeddu": {
+    "definition": "to deserve"
+  },
+  "cosb": {
+    "definition": "punishment"
+  },
+  "criw o gefnogwyr": {
+    "definition": "a group of supporters"
+  },
+  "llydan": {
+    "definition": "wide"
+  },
+  "llachar": {
+    "definition": "bright"
+  },
+  "del": {
+    "definition": "pretty"
+  },
+  "llygaid llo": {
+    "definition": "pretty, dreamy eyes"
+  },
+  "carreg": {
+    "definition": "stong"
+  },
+  "tawelwch": {
+    "definition": "silence"
+  },
+  "budr": {
+    "definition": "dirty"
+  },
+  "dillad budron": {
+    "definition": "dirty clothes"
+  },
+  "yn bendant": {
+    "definition": "definitely"
+  },
+  "rhoi mwythau": {
+    "definition": "to pet (an animal)"
+  },
+  "sloch": {
+    "definition": "splash"
+  },
+  "glin": {
+    "definition": "lap"
+  },
+  "grawnwin": {
+    "definition": "grapes"
+  },
+  "gwelw": {
+    "definition": "pale"
+  },
+  "cleisiau": {
+    "definition": "bruises"
+  },
+  "ewin": {
+    "definition": "nail, fingernail"
+  },
+  "ewinedd": {
+    "definition": "nails, fingernails"
+  },
+  "cricmala": {
+    "definition": "arthritis"
+  },
+  "sgrech": {
+    "definition": "scream"
+  },
+  "tylluan": {
+    "definition": "owl"
+  },
+  "gwenwynig": {
+    "definition": "poisonous"
+  },
+  "yn beryg bywyd": {
+    "definition": "extremely dangerous"
+  },
+  "cyfadde": {
+    "definition": "to admit"
+  },
+  "cyfaddef": {
+    "definition": "to admit"
+  },
+  "o ddifri": {
+    "definition": "seriously"
+  },
+  "dall": {
+    "definition": "blind"
+  },
+  "gwinllan": {
+    "definition": "vineyard"
+  },
+  "dwsin": {
+    "definition": "dozen"
+  },
+  "carchar": {
+    "definition": "prison"
+  },
+  "difrifol": {
+    "definition": "serious"
+  },
+  "trwydded": {
+    "definition": "licence"
+  },
+  "slei": {
+    "definition": "sly"
+  },
+  "cochi": {
+    "definition": "to blush"
+  },
+  "chwip o": {
+    "definition": "fantastic, brilliant"
+  },
+  "dannedd gosod": {
+    "definition": "false teeth"
+  },
+  "cylch gwau": {
+    "definition": "knitting circle"
+  },
+  "noethlymun": {
+    "definition": "naked"
+  },
+  "hypnotydd": {
+    "definition": "hypnotist"
+  },
+  "yn ddiweddarach": {
+    "definition": "later"
+  },
+  "ailgylchu": {
+    "definition": "to recycle"
+  },
+  "yn hollol": {
+    "definition": "precisely"
+  },
+  "llys": {
+    "definition": "court"
+  },
+  "meddw gaib": {
+    "definition": "extremely drunk"
+  },
+  "cyn bo hir": {
+    "definition": "soon"
+  },
+  "ffydd": {
+    "definition": "faith"
+  },
+  "euog": {
+    "definition": "guilty"
+  },
+  "ar flaenau ei thraed": {
+    "definition": "on her tiptoes"
+  },
+  "dw i": {
+    "definition": "I am"
+  },
+  "dych chi": {
+    "definition": "you are"
+  },
+  "ioga": {
+    "definition": "yoga"
+  },
+  "madarch": {
+    "definition": "mushrooms"
+  },
+  "mafon": {
+    "definition": "rasperries"
+  },
+  "pannas": {
+    "definition": "parsnips"
+  },
+  "pinafal": {
+    "definition": "a pineapple"
+  },
+  "lemon": {
+    "definition": "lemon"
+  },
+  "orenau": {
+    "definition": "oranges"
+  },
+  "dyn ni": {
+    "definition": "we are"
+  },
+  "mae hi": {
+    "definition": "she is/ it (impersonal) is"
+  },
+  "maen nhw": {
+    "definition": "they are"
+  },
+  "mae e": {
+    "definition": "he is"
+  },
+  "wyt ti": {
+    "definition": "you are"
+  },
+  "rwyt ti": {
+    "definition": "you are"
+  },
+  "sgipio": {
+    "definition": "to skip"
+  },
+  "sglefrio": {
+    "definition": "to skate"
+  },
+  "smygu": {
+    "definition": "to smoke"
+  },
+  "afal": {
+    "definition": "apple"
+  },
+  "bacwn": {
+    "definition": "bason"
+  },
+  "bara brith": {
+    "definition": "bara brith"
+  },
+  "bresych": {
+    "definition": "cabbage"
+  },
+  "cyri": {
+    "definition": "a curry"
+  },
+  "nac": {
+    "definition": "neither, nor"
+  },
+  "glaswellt": {
+    "definition": "grass"
+  },
+  "hecsagon": {
+    "definition": "a hexagon"
+  },
+  "inc": {
+    "definition": "ink"
+  },
+  "di-waith": {
+    "definition": "unemployed"
+  },
+  "gwraig tŷ": {
+    "definition": "a housewife"
+  },
+  "gŵr tŷ": {
+    "definition": "a house-husband"
+  },
+  "heddwas": {
+    "definition": "a police officer"
+  },
+  "mecanic": {
+    "definition": "a mechanic"
+  },
+  "ysgrifenyddes": {
+    "definition": "a secretary"
+  },
+  "cot law": {
+    "definition": "a raincoat"
+  },
+  "dillad ysgol": {
+    "definition": "school clothes"
+  },
+  "gwisg ysgol": {
+    "definition": "a school uniform"
+  },
+  "jîns": {
+    "definition": "jeans"
+  },
+  "teits": {
+    "definition": "tights, pantyhose"
+  },
+  "awstralia": {
+    "definition": "Australia"
+  },
+  "norwy": {
+    "definition": "Norway"
+  },
+  "naddo": {
+    "definition": "no"
+  },
+  "do": {
+    "definition": "yes"
+  },
+  "echnos": {
+    "definition": "the night before last"
+  },
+  "teclyn": {
+    "definition": "a gadget, a tool"
+  },
+  "adio": {
+    "definition": "plus, to add"
+  },
+  "lluosi": {
+    "definition": "to multiply"
+  },
+  "symiau": {
+    "definition": "sums, arithmetic"
+  },
+  "yn hafal i": {
+    "definition": "equals"
+  },
+  "cesair": {
+    "definition": "hail"
+  },
+  "waeth": {
+    "definition": "worse"
+  },
+  "roedd": {
+    "definition": "she/he/it was"
+  },
+  "blodfresych": {
+    "definition": "cauliflower"
+  },
+  "lemonêd": {
+    "definition": "lemonade"
+  },
+  "nenfwd": {
+    "definition": "a ceiling"
+  },
+  "treiffl": {
+    "definition": "trifle"
+  },
+  "arth": {
+    "definition": "a bear"
+  },
+  "barcud": {
+    "definition": "a kite (the bird)"
+  },
+  "blaidd": {
+    "definition": "a wolf"
+  },
+  "brân": {
+    "definition": "a crow"
+  },
+  "carw": {
+    "definition": "a deer"
+  },
+  "copyn": {
+    "definition": "a spider"
+  },
+  "crwban": {
+    "definition": "a tortoise, a turtle"
+  },
+  "dolffin": {
+    "definition": "a dolphin"
+  },
+  "draenog": {
+    "definition": "a hedgehog :)"
+  },
+  "dyfrgi": {
+    "definition": "an otter"
+  },
+  "gwenynen": {
+    "definition": "a bee"
+  },
+  "morfil": {
+    "definition": "a whale"
+  },
+  "pili-pala": {
+    "definition": "a butterfly"
+  },
+  "pryf": {
+    "definition": "insect, fly"
+  },
+  "siarc": {
+    "definition": "a shark"
+  },
+  "ffynnon": {
+    "definition": "a well"
+  },
+  "ogof": {
+    "definition": "a cave"
+  },
+  "dach chi": {
+    "definition": "you are"
+  },
+  "shwmae": {
+    "definition": "hello/how are things"
+  },
+  "losin": {
+    "definition": "a sweet, sweets"
+  },
+  "naddwr": {
+    "definition": "a sharpener"
+  },
+  "omled": {
+    "definition": "an omelette"
+  },
+  "plîs": {
+    "definition": "please"
+  },
+  "pren mesur": {
+    "definition": "a ruler"
+  },
+  "ma's": {
+    "definition": "out"
+  },
+  "wedi": {
+    "definition": "past tense marker - like 'have'"
+  },
+  "ysgubo": {
+    "definition": "to sweep"
+  },
+  "deuddeg": {
+    "definition": "12"
+  },
+  "un ar ddeg": {
+    "definition": "11"
+  },
+  "argraffydd": {
+    "definition": "a printer"
+  },
+  "ar draws": {
+    "definition": "across"
+  },
+  "cefnfor": {
+    "definition": "ocean"
+  },
+  "cwmpawd": {
+    "definition": "a compass"
+  },
+  "modur": {
+    "definition": "motor"
+  },
+  "syndod": {
+    "definition": "a surprise"
+  },
+  "hun": {
+    "definition": "self"
+  },
+  "hunain": {
+    "definition": "selves"
+  },
+  "mam-gu": {
+    "definition": "grandmother"
+  },
+  "tad-cu": {
+    "definition": "grandfather"
+  },
+  "camlas": {
+    "definition": "a canal"
+  },
+  "ar lan y môr": {
+    "definition": "at the seaside"
+  },
+  "pryd o fwyd": {
+    "definition": "a meal"
+  },
+  "perthnasau": {
+    "definition": "relatives, relations, relationships"
+  },
+  "priodfab": {
+    "definition": "bridegroom"
+  },
+  "priodferch": {
+    "definition": "bride"
+  },
+  "yng nghyfraith": {
+    "definition": "in-law"
+  },
+  "mo": {
+    "definition": "not"
+  },
+  "amau": {
+    "definition": "to suspect, to doubt"
+  },
+  "arafu": {
+    "definition": "to slow down"
+  },
+  "cyfrifiannell": {
+    "definition": "a calculator"
+  },
+  "onglydd": {
+    "definition": "a protractor"
+  },
+  "rwber": {
+    "definition": "a rubber, an eraser"
+  },
+  "sêls": {
+    "definition": "sales"
+  },
+  "olympaidd": {
+    "definition": "olympic"
+  },
+  "bocsio": {
+    "definition": "to box"
+  },
+  "pencampwyr": {
+    "definition": "champions"
+  },
+  "pêl-droed": {
+    "definition": "football"
+  },
+  "pêl-fas": {
+    "definition": "baseball"
+  },
+  "pêl-foli": {
+    "definition": "volleyball"
+  },
+  "sgôr": {
+    "definition": "a score"
+  },
+  "gas": {
+    "definition": "hate, hateful, nasty"
+  },
+  "salw": {
+    "definition": "ugly"
+  },
+  "afalau": {
+    "definition": "apples"
+  },
+  "fodca": {
+    "definition": "vodka"
+  },
+  "hwnnw": {
+    "definition": "that, that one"
+  },
+  "peint": {
+    "definition": "a pint"
+  },
+  "beth sy'n bod": {
+    "definition": "what's wrong"
+  },
+  "clun": {
+    "definition": "hip"
+  },
+  "ffliw": {
+    "definition": "the flu"
+  },
+  "sgïo": {
+    "definition": "skiing"
+  },
+  "clustdlws": {
+    "definition": "earring"
+  },
+  "bydd": {
+    "definition": "will be"
+  },
+  "cyfoethog": {
+    "definition": "rich"
+  },
+  "aeddfed": {
+    "definition": "ripe, mature"
+  },
+  "plentynnaidd": {
+    "definition": "childish"
+  },
+  "mynegi": {
+    "definition": "to express"
+  },
+  "bynglo": {
+    "definition": "bungalow"
+  },
+  "dwll o le": {
+    "definition": "a dump, a hole of a place"
+  },
+  "teras": {
+    "definition": "terrace"
+  },
+  "hen bryd": {
+    "definition": "high time"
+  },
+  "ie": {
+    "definition": "yes"
+  },
+  "ia": {
+    "definition": "yes"
+  },
+  "nage": {
+    "definition": "no"
+  },
+  "figanaidd": {
+    "definition": "vegan"
+  },
+  "fy nghas beth": {
+    "definition": "my pet hate, my pet peeve"
+  },
+  "cnoi": {
+    "definition": "to bite, to chew"
+  },
+  "gohirio": {
+    "definition": "to postpone"
+  },
+  "loteri": {
+    "definition": "a lottery"
+  },
+  "dihuno": {
+    "definition": "to wake"
+  },
+  "ffenestr": {
+    "definition": "window"
+  },
+  "biau": {
+    "definition": "to oen"
+  },
+  "llawlyfr": {
+    "definition": "a handbook"
+  },
+  "llungopïau": {
+    "definition": "photocopies"
+  },
+  "model": {
+    "definition": "model"
+  },
+  "gweithdy": {
+    "definition": "workshop"
+  },
+  "gwyddoniadur": {
+    "definition": "an encyclopaedia"
+  },
+  "lasied": {
+    "definition": "a glassful"
+  },
+  "sŵ": {
+    "definition": "zoo"
+  },
+  "llwyddo": {
+    "definition": "to succeed"
+  },
+  "garlleg": {
+    "definition": "garlic"
+  },
+  "letys": {
+    "definition": "lettuce"
+  },
+  "hufen iâ": {
+    "definition": "ice cream"
+  },
+  "effeithiol": {
+    "definition": "effective"
+  },
+  "am wn i": {
+    "definition": "as far as I know, I suppose"
+  },
+  "cilogram": {
+    "definition": "kilogram"
+  },
+  "cilometr": {
+    "definition": "kilometer"
+  },
+  "drwch": {
+    "definition": "thickness"
+  },
+  "trwch": {
+    "definition": "thickness"
+  },
+  "enfawr": {
+    "definition": "huge, enormous"
+  },
+  "fetrig": {
+    "definition": "metric"
+  },
+  "metrig": {
+    "definition": "metric"
+  },
+  "hyd": {
+    "definition": "length, along, until, duration, up to, as far as"
+  },
+  "pa mor": {
+    "definition": "how much"
+  },
+  "stôn": {
+    "definition": "stone"
+  },
+  "uchder": {
+    "definition": "height, altitude"
+  },
+  "cyn lleied": {
+    "definition": "as small"
+  },
+  "cynddrwg": {
+    "definition": "as bad, as naughty"
+  },
+  "cystal": {
+    "definition": "as good, so good"
+  },
+  "ddiniwed": {
+    "definition": "harmless, innocent"
+  },
+  "gyda'i gilydd": {
+    "definition": "together"
+  },
+  "pen-blwydd": {
+    "definition": "birthday"
+  },
+  "unfed ar ddeg": {
+    "definition": "11th"
+  },
+  "wythfed": {
+    "definition": "8th"
+  },
+  "chweched": {
+    "definition": "6th"
+  },
+  "degfed": {
+    "definition": "10th"
+  },
+  "nawfed": {
+    "definition": "9th"
+  },
+  "pedwerydd": {
+    "definition": "4th"
+  },
+  "pymthegfed": {
+    "definition": "15th"
+  },
+  "pumed": {
+    "definition": "5th"
+  },
+  "seithfed": {
+    "definition": "7th"
+  },
+  "tân gwyllt": {
+    "definition": "fireworks"
+  },
+  "mwya": {
+    "definition": "biggest, most, largest"
+  },
+  "deunawfed": {
+    "definition": "18th"
+  },
+  "ail ar bymtheg": {
+    "definition": "17th"
+  },
+  "ail ar hugain": {
+    "definition": "22nd"
+  },
+  "pumed ar hugain": {
+    "definition": "25th"
+  },
+  "seithfed ar hugain": {
+    "definition": "27th"
+  },
+  "ugeinfed": {
+    "definition": "20th"
+  },
+  "unfed ar ddeg ar hugain": {
+    "definition": "31st"
+  },
+  "unfed ar hugain": {
+    "definition": "21st"
+  },
+  "cyfan": {
+    "definition": "whole"
+  },
+  "fan hyn": {
+    "definition": "here"
+  },
+  "sbel": {
+    "definition": "a spell, a while"
+  },
+  "bocs": {
+    "definition": "a box"
+  },
+  "morthwyl": {
+    "definition": "a hammer"
+  },
+  "o dan": {
+    "definition": "under"
+  },
+  "rheolydd pell": {
+    "definition": "a remote control"
+  },
+  "ynghanol": {
+    "definition": "in the midst"
+  },
+  "blewog": {
+    "definition": "hairy"
+  },
+  "doeth": {
+    "definition": "wise"
+  },
+  "gwleidyddol": {
+    "definition": "political"
+  },
+  "llon": {
+    "definition": "cheerful"
+  },
+  "meddylgar": {
+    "definition": "thoughtful"
+  },
+  "styfnig": {
+    "definition": "stubborn, obstinate"
+  },
+  "ymosodol": {
+    "definition": "aggressive"
+  },
+  "carioci": {
+    "definition": "karaoke"
+  },
+  "farus": {
+    "definition": "greedy"
+  },
+  "barus": {
+    "definition": "greedy"
+  },
+  "gwaedu": {
+    "definition": "to bleed"
+  },
+  "llywio": {
+    "definition": "to steer"
+  },
+  "helaeth": {
+    "definition": "extensive, profuse"
+  },
+  "roc a rôl": {
+    "definition": "rock and roll"
+  },
+  "warden traffig": {
+    "definition": "traffic warden"
+  },
+  "morwr": {
+    "definition": "sailor"
+  },
+  "seidr": {
+    "definition": "cider"
+  },
+  "on'd ife": {
+    "definition": "isn't he/she/it?"
+  },
+  "cymharu": {
+    "definition": "to compare"
+  },
+  "dewr": {
+    "definition": "brave"
+  },
+  "brys": {
+    "definition": "emergency, rush, hurry"
+  },
+  "cyflawni": {
+    "definition": "to accomplish"
+  },
+  "enghraifft": {
+    "definition": "example"
+  },
+  "meithrin": {
+    "definition": "nursery"
+  },
+  "cyfun": {
+    "definition": "comprehensive"
+  },
+  "cynradd": {
+    "definition": "primary"
+  },
+  "uwchradd": {
+    "definition": "high, secondary"
+  },
+  "badell": {
+    "definition": "a pan"
+  },
+  "cwcer": {
+    "definition": "a cooker"
+  },
+  "stemio": {
+    "definition": "to steam"
+  },
+  "archdderwydd": {
+    "definition": "an archdruid"
+  },
+  "darllediad": {
+    "definition": "a broadcast"
+  },
+  "hawliau sifil": {
+    "definition": "human rights"
+  },
+  "am byth": {
+    "definition": "for ever"
+  },
+  "bob hyn a hyn": {
+    "definition": "every now and again"
+  },
+  "dros dro": {
+    "definition": "temporary"
+  },
+  "eisoes": {
+    "definition": "already"
+  },
+  "ers hynny": {
+    "definition": "since then"
+  },
+  "fesul": {
+    "definition": "by"
+  },
+  "o bryd i'w gilydd": {
+    "definition": "from time to time"
+  },
+  "yn wastad": {
+    "definition": "always"
+  },
+  "ar lein": {
+    "definition": "online"
+  },
+  "plastig": {
+    "definition": "plastic"
+  },
+  "troli": {
+    "definition": "trolley"
+  },
+  "sylwad": {
+    "definition": "comment, notice, observation"
+  },
+  "allgofnodi": {
+    "definition": "to log out"
+  },
+  "batri": {
+    "definition": "battery"
+  },
+  "bysellfwrdd": {
+    "definition": "keyboard"
+  },
+  "caledwedd": {
+    "definition": "hardware"
+  },
+  "cyfrinair": {
+    "definition": "a password"
+  },
+  "gwefru": {
+    "definition": "to charge"
+  },
+  "hashnod": {
+    "definition": "hashtag"
+  },
+  "hunlun": {
+    "definition": "selfie"
+  },
+  "meddalwedd": {
+    "definition": "software"
+  },
+  "mewngofnodi": {
+    "definition": "to log in"
+  },
+  "proffil": {
+    "definition": "a profile"
+  },
+  "rhaglen gyfrifiadurol": {
+    "definition": "computer application, computer programme"
+  },
+  "rhaglennu": {
+    "definition": "to program"
+  },
+  "sgrîn": {
+    "definition": "screen"
+  },
+  "symudol": {
+    "definition": "mobile, moveable, portable"
+  },
+  "taenlen": {
+    "definition": "spreadsheet"
+  },
+  "wrth gefn": {
+    "definition": "a back-up"
+  },
+  "cynhaeaf": {
+    "definition": "a harvest"
+  },
+  "planhigyn": {
+    "definition": "a plant"
+  },
+  "ariannwr": {
+    "definition": "a cashier"
+  },
+  "bancio": {
+    "definition": "to bank"
+  },
+  "credyd": {
+    "definition": "credit"
+  },
+  "diafol": {
+    "definition": "devil"
+  },
+  "duwies": {
+    "definition": "goddess"
+  },
+  "enaid": {
+    "definition": "soul"
+  },
+  "myfyrio": {
+    "definition": "to meditate"
+  },
+  "ofergoelion": {
+    "definition": "superstitions"
+  },
+  "ysbrydol": {
+    "definition": "spiritual"
+  },
+  "ysbrydolrwydd": {
+    "definition": "spirituality"
+  },
+  "adnoddau dynol": {
+    "definition": "human resources"
+  },
+  "cyffredinol": {
+    "definition": "general"
+  },
+  "cyllid": {
+    "definition": "finance"
+  },
+  "elw": {
+    "definition": "profit"
+  },
+  "addoli": {
+    "definition": "to worship, to adore"
+  },
+  "anffyddiwr": {
+    "definition": "an athiest"
+  },
+  "cadeirlan": {
+    "definition": "cathedral"
+  },
+  "crefydd": {
+    "definition": "religion"
+  },
+  "dilynwyr": {
+    "definition": "followers"
+  },
+  "duwiau": {
+    "definition": "gods"
+  },
+  "duwiesau": {
+    "definition": "goddesses"
+  },
+  "efengyl": {
+    "definition": "gospel"
+  },
+  "nawddsant": {
+    "definition": "patron saint"
+  },
+  "paganiaeth": {
+    "definition": "Paganism"
+  },
+  "pregethu": {
+    "definition": "to preach"
+  },
+  "uffern": {
+    "definition": "hell"
+  },
+  "afu": {
+    "definition": "liver"
+  },
+  "aren": {
+    "definition": "kidney"
+  },
+  "gwasanaeth iechyd gwladol": {
+    "definition": "NHS"
+  },
+  "animeiddio": {
+    "definition": "to animate"
+  },
+  "barddoniaeth": {
+    "definition": "poetry"
+  },
+  "cerflun": {
+    "definition": "sculpture, statue"
+  },
+  "paentiad": {
+    "definition": "painting"
+  },
+  "stiwdio": {
+    "definition": "studio"
+  },
+  "brifo": {
+    "definition": "to hurt"
+  },
+  "brigdrawst": {
+    "definition": "a catwalk"
+  },
+  "eicon": {
+    "definition": "an icon"
+  },
+  "glamoraidd": {
+    "definition": "glamorous"
+  },
+  "adweithio": {
+    "definition": "to react"
+  },
+  "arbrawf": {
+    "definition": "an experiment"
+  },
+  "celloedd": {
+    "definition": "cells"
+  },
+  "cyhydnos": {
+    "definition": "equinox"
+  },
+  "cysawd yr haul": {
+    "definition": "the solar system"
+  },
+  "damcaniaeth": {
+    "definition": "theory"
+  },
+  "disgyrchiant": {
+    "definition": "gravity"
+  },
+  "effaith": {
+    "definition": "effect"
+  },
+  "elfen": {
+    "definition": "element"
+  },
+  "esblygiad": {
+    "definition": "evolution"
+  },
+  "ffisioleg": {
+    "definition": "physiology"
+  },
+  "heuldro": {
+    "definition": "solstice"
+  },
+  "labordy": {
+    "definition": "laboratory"
+  },
+  "llosgydd bunsen": {
+    "definition": "bunsen burner"
+  },
+  "ocsigen": {
+    "definition": "oxygen"
+  },
+  "planed": {
+    "definition": "planet"
+  },
+  "seryddiaeth": {
+    "definition": "astonomy"
+  },
+  "ymbelydredd": {
+    "definition": "radioactivity"
+  },
+  "ceidwadol": {
+    "definition": "conservative"
+  },
+  "chwyldro": {
+    "definition": "revolution"
+  },
+  "comiwnyddol": {
+    "definition": "communist"
+  },
+  "heddwch": {
+    "definition": "peace"
+  },
+  "heddychwr": {
+    "definition": "pacifist"
+  },
+  "hiliaeth": {
+    "definition": "racism"
+  },
+  "isetholiad": {
+    "definition": "a by-election"
+  },
+  "lafur": {
+    "definition": "Labour"
+  },
+  "sosialaidd": {
+    "definition": "socialist"
+  },
+  "sosialydd": {
+    "definition": "a socialist"
+  },
+  "werdd": {
+    "definition": "green"
+  },
+  "ymgyrchu": {
+    "definition": "to campaign"
+  },
+  "ymgyrchydd": {
+    "definition": "a campaigner"
+  },
+  "chwannen": {
+    "definition": "a flea"
+  },
+  "pelydr-x": {
+    "definition": "an x-ray"
+  },
+  "pensaer": {
+    "definition": "an architect"
+  },
+  "ymwelwr": {
+    "definition": "a tourist, a visitor"
+  },
+  "cydweithrediad": {
+    "definition": "cooperation"
+  },
+  "cyson": {
+    "definition": "regular"
+  },
+  "y fath beth": {
+    "definition": "such a thing"
+  },
+  "brwydro": {
+    "definition": "to battle, fighting, struggling"
+  },
+  "cywilydd": {
+    "definition": "embarassing, to embarass, a shame"
+  },
+  "gweithred": {
+    "definition": "an action"
+  },
+  "pipo": {
+    "definition": "peeking, to peek"
+  },
+  "rhyngrwyd": {
+    "definition": "internet"
+  },
+  "ystyried": {
+    "definition": "consider"
+  },
+  "dymunwn": {
+    "definition": "We wish"
+  },
+  "arllwys": {
+    "definition": "pour"
+  },
+  "cymysgu": {
+    "definition": "to mix"
+  },
+  "cynhwysion": {
+    "definition": "ingredients"
+  },
+  "ffedog": {
+    "definition": "apron"
+  },
+  "ffrimpan": {
+    "definition": "frying pan"
+  },
+  "hidlo": {
+    "definition": "sifting"
+  },
+  "heol fawr": {
+    "definition": "high street"
+  },
+  "dod i arfer": {
+    "definition": "get used to"
+  },
+  "gwahodd": {
+    "definition": "to invite"
+  },
+  "profiad": {
+    "definition": "experience"
+  },
+  "sawl gwaith": {
+    "definition": "several times"
+  },
+  "hala": {
+    "definition": "spend"
+  },
+  "waled": {
+    "definition": "wallet"
+  },
+  "codi pwysau": {
+    "definition": "to lift weights"
+  },
+  "gwnaf": {
+    "definition": "1st person singular (I) concise future tense form of gwneud"
+  },
+  "gwnei": {
+    "definition": "2nd person singular (you) concise future tense form of gwneud"
+  },
+  "gwnaiff": {
+    "definition": "3rd person singular (he/she/it) concise future tense form of gwneud"
+  },
+  "gwnawn": {
+    "definition": "1st person plural (we) concise future tense form of gwneud"
+  },
+  "gwnewch": {
+    "definition": "2nd person plural/formal (you) concise future tense form of gwneud"
+  },
+  "gwnân": {
+    "definition": "3rd person plural (they) concise future tense form of gwneud"
+  },
+  "af": {
+    "definition": "1st person singular (I) concise future tense form of mynd"
+  },
+  "ei": {
+    "definition": "2nd person singular (you) concise future tense form of mynd"
+  },
+  "aiff": {
+    "definition": "3rd person singular (he/she/it) concise future tense form of mynd"
+  },
+  "awn": {
+    "definition": "1st person plural (we) concise future tense form of mynd"
+  },
+  "ewch": {
+    "definition": "2nd person plural/formal (you) concise future tense form of mynd; command form of mynd"
+  },
+  "ân": {
+    "definition": "3rd person plural (they) concise future tense form of mynd"
+  },
+  "caf": {
+    "definition": "1st person singular (I) concise future tense form of cael"
+  },
+  "cei": {
+    "definition": "2nd person singular (you) concise future tense form of cael"
+  },
+  "caiff": {
+    "definition": "3rd person singular (he/she/it) concise future tense form of cael"
+  },
+  "cawn": {
+    "definition": "1st person plural (we) concise future tense form of cael"
+  },
+  "cewch": {
+    "definition": "2nd person plural/formal (you) concise future tense form of cael"
+  },
+  "cân": {
+    "definition": "3rd person plural (they) concise future tense form of cael"
+  },
+  "dof": {
+    "definition": "1st person singular (I) concise future tense form of dod"
+  },
+  "doi": {
+    "definition": "2nd person singular (you) concise future tense form of dod"
+  },
+  "daw": {
+    "definition": "3rd person singular (he/she/it) concise future tense form of dod"
+  },
+  "down": {
+    "definition": "1st person plural (we) concise future tense form of dod"
+  },
+  "dewch": {
+    "definition": "2nd person plural/formal (you) concise future tense form of dod"
+  },
+  "dôn": {
+    "definition": "3rd person plural (they) concise future tense form of dod"
+  },
+  "hoffwn": {
+    "definition": "1st person singular (I) conditional form of hoffi"
+  },
+  "hoffet": {
+    "definition": "2nd person singular (you) conditional form of hoffi"
+  },
+  "hoffai": {
+    "definition": "3rd person singular (he/she/it) conditional form of hoffi"
+  },
+  "hoffen": {
+    "definition": "1st person plural (we) / 3rd person plural (they) conditional form of hoffi"
+  },
+  "hoffech": {
+    "definition": "2nd person plural/formal (you) conditional form of hoffi"
+  },
+  "gallwn": {
+    "definition": "1st person singular (I) conditional form of gallu"
+  },
+  "gallet": {
+    "definition": "2nd person singular (you) conditional form of gallu"
+  },
+  "gallai": {
+    "definition": "3rd person singular (he/she/it) conditional form of gallu"
+  },
+  "gallen": {
+    "definition": "1st person plural (we) / 3rd person plural (they) conditional form of gallu"
+  },
+  "gallech": {
+    "definition": "2nd person plural/formal (you) conditional form of gallu"
+  },
+  "dylwn": {
+    "definition": "1st person singular (I) 'should'"
+  },
+  "dylet": {
+    "definition": "2nd person singular (you) 'should'"
+  },
+  "dylai": {
+    "definition": "3rd person singular (he/she/it) 'should'"
+  },
+  "dylen": {
+    "definition": "1st person plural (we) / 3rd person plural (they) 'should'"
+  },
+  "dylech": {
+    "definition": "2nd person plural/formal (you) 'should'"
+  }
+}
