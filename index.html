@@ -29,7 +29,10 @@
       }
     }
     
-    console.log("✅ All Welsh JSON dictionaries loaded successfully into the window context.");
+    console.log("✅ All Welsh JSON dictionaries loaded into window context.");
+    
+    // Fire a signal letting the main tool know it is safe to boot up!
+    window.dispatchEvent(new Event('dictionariesReady'));
   })();
 </script>
 
@@ -95,6 +98,14 @@
 
 <script>
 let runtimeGlossary = {};
+// Wait for our asynchronous JSON loader to finish attaching everything to window
+window.addEventListener('dictionariesReady', () => {
+  console.log("🚀 All JSON files are loaded into window. Compiling active runtime glossary...");
+  
+  // compilation logic
+  compileActiveGlossary();
+});
+
 
 function compileActiveGlossary() {
   runtimeGlossary = {};
@@ -114,15 +125,12 @@ function compileActiveGlossary() {
       let textTranslation = "";
       let courseInfo = "";
 
-      // Securely check if the entry is an object container or a flat translation string
       if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
         textTranslation = rawData.definition;
         if (rawData.course && rawData.unit) {
           courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
         }
       } else {
-        // Keeps all off-book lexis and plain strings running perfectly!
-
         textTranslation = rawData;
       }
 
@@ -139,6 +147,14 @@ function compileActiveGlossary() {
     }
   }
 
+  // 1. Pass the global window objects into  merge function safely
+  if (useMynediad) mergeSource(window.mynediadGlossary);
+  if (useSylfaen) mergeSource(window.sylfaenGlossary);
+  if (useCanolradd) mergeSource(window.canolraddGlossary);
+  if (useBBC) mergeSource(window.bbcGlossary);
+
+  console.log("✅ Runtime glossary compiled with entries:", Object.keys(runtimeGlossary).length);
+}
   // Direct window global memory lookup ensures const scripts connect
     if (useMynediad && window.mynediadGlossary) mergeSource(window.mynediadGlossary);
   if (useSylfaen && window.sylfaenGlossary) mergeSource(window.sylfaenGlossary);
