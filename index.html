@@ -164,16 +164,16 @@
 </div>
 
 <script>
+// 1. Declare runtime variables globally at the top
 let runtimeGlossary = {};
-// Wait for our asynchronous JSON loader to finish attaching everything to window
+
+// 2. THE BARRICADE: Wait for our asynchronous JSON loader to finish attaching everything to window
 window.addEventListener('dictionariesReady', () => {
-  console.log("🚀 All JSON files are loaded into window. Compiling active runtime glossary...");
-  
-  // compilation logic
+  console.log("🚀 All JSON files are loaded into window. Compiling initial active runtime glossary...");
   compileActiveGlossary();
 });
 
-
+// 3. THE GLOSSARY COMPILER
 function compileActiveGlossary() {
   runtimeGlossary = {};
 
@@ -192,6 +192,7 @@ function compileActiveGlossary() {
       let textTranslation = "";
       let courseInfo = "";
 
+      // Smart hybrid check for object containers or flat strings
       if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
         textTranslation = rawData.definition;
         if (rawData.course && rawData.unit) {
@@ -214,20 +215,14 @@ function compileActiveGlossary() {
     }
   }
 
-  // 1. Pass the global window objects into  merge function safely
+  // Pass the global window objects into merge function safely
   if (useMynediad) mergeSource(window.mynediadGlossary);
   if (useSylfaen) mergeSource(window.sylfaenGlossary);
   if (useCanolradd) mergeSource(window.canolraddGlossary);
   if (useBBC) mergeSource(window.bbcGlossary);
 
-  console.log("✅ Runtime glossary compiled with entries:", Object.keys(runtimeGlossary).length);
+  console.log("📊 Active glossary compiled. Total terms:", Object.keys(runtimeGlossary).length);
 }
-  // Direct window global memory lookup ensures const scripts connect
-    if (useMynediad && window.mynediadGlossary) mergeSource(window.mynediadGlossary);
-  if (useSylfaen && window.sylfaenGlossary) mergeSource(window.sylfaenGlossary);
-  if (useCanolradd && window.canolraddGlossary) mergeSource(window.canolraddGlossary);
-  if (useBBC && window.bbcGlossary) mergeSource(window.bbcGlossary);
-
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
@@ -285,7 +280,7 @@ function collectMatches(word, glossary) {
 
     if (/^[aeiouwŷâêîôû]/i.test(candidate)) checkAndAdd("g" + candidate);
 
-    // ASPIRATE VOWEL PASS (Handles appearing h- prefix, e.g., hafal -> afal)
+    // ASPIRATE VOWEL PASS
     if (candidate.startsWith("h") && candidate.length > 1) {
       const vowelRoot = candidate.slice(1);
       if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) checkAndAdd(vowelRoot);
@@ -294,7 +289,7 @@ function collectMatches(word, glossary) {
 
   scanMutations(w);
 
-  // 3. VERB STEM SUFFIX STRIPPER (Commands & Past Tenses)
+  // 3. VERB STEM SUFFIX STRIPPER
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
@@ -324,7 +319,7 @@ function annotate(text, glossary) {
   let processedText = text;
 
   phrases.forEach(phrase => {
-    const safePhrase = phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
     processedText = processedText.replace(regex, (match) => {
       return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
@@ -391,6 +386,8 @@ function handleAddButtonClick(event, plainWord, encodedTranslation) {
 
 function renderStudyListTable() {
   const tableBody = document.getElementById("studyListBody");
+  if (!tableBody) return; // Prevent errors if elements don't exist yet
+  
   let listCache = sessionStorage.getItem("welshActiveStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
@@ -411,7 +408,7 @@ function runAnnotation() {
   compileActiveGlossary();
   const text = document.getElementById("inputText").value;
 
-   if (!text.trim()) {
+  if (!text.trim()) {
     document.getElementById("output").innerHTML = "Please type some Welsh text first to annotate.";
     return;
   }
