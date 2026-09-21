@@ -11,6 +11,7 @@
 <!-- EXTERNAL GLOSSARIES-->
 <script>
   (async function loadDictionaries() {
+    // These paths are relative to your index.html file location
     const files = {
       mynediadGlossary: 'dictionaries/mynediad.json',
       sylfaenGlossary: 'dictionaries/sylfaen.json',
@@ -23,6 +24,7 @@
         const response = await fetch(path);
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         
+        // Securely bind the dictionary data to the window object
         window[globalName] = await response.json();
       } catch (error) {
         console.error(`Failed to load local dictionary from ${path}:`, error);
@@ -31,9 +33,74 @@
     
     console.log("✅ All Welsh JSON dictionaries loaded into window context.");
     
-    // Fire a signal letting the main tool know it is safe to boot up!
+    // Shouts to the page that the data is ready!
     window.dispatchEvent(new Event('dictionariesReady'));
   })();
+</script>
+
+
+<--THE ENGINE & LISTENERS (Compiles data)  -->
+
+<script>
+  // Global declaration so your highlighting matrix can find it later
+  let runtimeGlossary = {};
+
+  // THE BARRICADE: Waits patiently for the loader's signal before starting
+  window.addEventListener('dictionariesReady', () => {
+    console.log("🚀 Signal received! Compiling initial active runtime glossary...");
+    compileActiveGlossary();
+  });
+
+  // compilation logic 
+  function compileActiveGlossary() {
+    runtimeGlossary = {};
+
+    const useMynediad = document.getElementById('chkMynediad').checked;
+    const useSylfaen = document.getElementById('chkSylfaen').checked;
+    const useCanolradd = document.getElementById('chkCanolradd').checked;
+    const useBBC = document.getElementById('chkBBC').checked;
+
+    function mergeSource(sourceGlossary) {
+      if (!sourceGlossary || typeof sourceGlossary !== 'object') return;
+
+      for (const key in sourceGlossary) {
+        const cleanKey = key.trim().toLowerCase();
+        const rawData = sourceGlossary[key];
+
+        let textTranslation = "";
+        let courseInfo = "";
+
+        // Smart hybrid check for object containers or flat strings
+        if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
+          textTranslation = rawData.definition;
+          if (rawData.course && rawData.unit) {
+            courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
+          }
+        } else {
+          textTranslation = rawData;
+        }
+
+        const finalDisplayString = textTranslation + courseInfo;
+
+        if (runtimeGlossary[cleanKey]) {
+          const currentDefs = runtimeGlossary[cleanKey].split(" / ");
+          if (!currentDefs.includes(finalDisplayString)) {
+            runtimeGlossary[cleanKey] += " / " + finalDisplayString;
+          }
+        } else {
+          runtimeGlossary[cleanKey] = finalDisplayString;
+        }
+      }
+    }
+
+    // Safely pull from the global objects populated by the fetch block
+    if (useMynediad) mergeSource(window.mynediadGlossary);
+    if (useSylfaen) mergeSource(window.sylfaenGlossary);
+    if (useCanolradd) mergeSource(window.canolraddGlossary);
+    if (useBBC) mergeSource(window.bbcGlossary);
+
+    console.log("📊 Active glossary compiled. Total terms:", Object.keys(runtimeGlossary).length);
+  }
 </script>
 
 
