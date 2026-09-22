@@ -3379,7 +3379,7 @@
     "definition": "stepdaughters",
     "course": "Mynediad", 
     "unit": "Uned 20"
-  }
+  },
   "llystad": {
     "definition": "stepfather",
     "course": "Mynediad", 
@@ -5595,7 +5595,7 @@
     "course": "Mynediad",
     "unit": "Uned 19"
   },
-  "ych a fi!": {
+  "ych a fi": {
     "definition": "horrid, yuck!",
     "course": "Mynediad", 
     "unit": "Uned 2"
@@ -5758,9 +5758,6 @@
   },
   "ystyron": {
     "definition": "meanings"
-  },
-  "ych a fi": {
-    "definition": "yuck!"
   },
   "rhywbeth arall": {
     "definition": "something else",
@@ -5957,7 +5954,7 @@
     "definition": "letter (of the alphabet)"
   },
   "llythrennau": {
-    "definition": "letter (of the alphabet)"
+    "definition": "letters (of the alphabet)"
   },
   "mosg": {
     "definition": "a mosque"
