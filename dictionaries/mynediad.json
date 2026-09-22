@@ -39,28 +39,22 @@
     "unit": "Uned 8"
   },
   "achos": {
-    "definition": "because",
-    "course": "Mynediad", 
+    "definition": "because" 
   },
   "adeilad": {
-    "definition": "building",
-    "course": "Mynediad", 
+    "definition": "building"
   },
   "adeiladau": {
-    "definition": "buildings",
-    "course": "Mynediad", 
+    "definition": "buildings"
   },
   "adeiladu": {
-    "definition": "to build",
-    "course": "Mynediad", 
+    "definition": "to build"
   },
   "adeiladwr": {
-    "definition": "builder",
-    "course": "Mynediad", 
+    "definition": "builder"
   },
   "adeiladwyr": {
-    "definition": "builders",
-    "course": "Mynediad", 
+    "definition": "builders"
   },
   "adolygu": {
     "definition": "to revise",
@@ -69,23 +63,19 @@
   },
   "adre": {
     "definition": "home (homeward)",
-    "course": "Mynediad", ,
     "course": "Mynediad", 
     "unit": "Uned 4"
   },
   "adref": {
     "definition": "home (homeward)",
-    "course": "Mynediad", ,
     "course": "Mynediad", 
     "unit": "Uned 4"
   },
   "mynd adre": {
-    "definition": "to go home",
-    "course": "Mynediad", 
+    "definition": "to go home"
   },
   "mynd adref": {
-    "definition": "to go home",
-    "course": "Mynediad", 
+    "definition": "to go home"
   },
   "afal": {
     "definition": "apple",
@@ -98,16 +88,13 @@
     "unit": "Uned 11"
   },
   "afon": {
-    "definition": "river",
-    "course": "Mynediad", 
+    "definition": "river"
   },
   "afonydd": {
-    "definition": "rivers",
-    "course": "Mynediad", 
+    "definition": "rivers"
   },
   "afreolaidd": {
-    "definition": "irregular",
-    "course": "Mynediad", 
+    "definition": "irregular"
   },
   "agor": {
     "definition": "to open",
@@ -115,16 +102,13 @@
     "unit": "Uned 9"
   },
   "agos": {
-    "definition": "near",
-    "course": "Mynediad", 
+    "definition": "near"
   },
   "angel": {
-    "definition": "angel",
-    "course": "Mynediad", 
+    "definition": "angel" 
   },
   "angylion": {
-    "definition": "angels",
-    "course": "Mynediad", 
+    "definition": "angels" 
   },
   "angen": {
     "definition": "to need, a need",
@@ -136,24 +120,19 @@
     "course": "Mynediad", 
   },
   "anghofio": {
-    "definition": "to forget",
-    "course": "Mynediad", 
+    "definition": "to forget"
   },
   "anghywir": {
-    "definition": "incorrect, wrong",
-    "course": "Mynediad", 
+    "definition": "incorrect, wrong" 
   },
   "angor": {
-    "definition": "anchor",
-    "course": "Mynediad", 
+    "definition": "anchor"
   },
   "angorau": {
-    "definition": "anchors",
-    "course": "Mynediad", 
+    "definition": "anchors"
   },
   "ail": {
-    "definition": "second",
-    "course": "Mynediad", 
+    "definition": "second" 
   },
   "allan": {
     "definition": "out",
@@ -161,12 +140,10 @@
     "unit": "Uned 8"
   },
   "allwedd": {
-    "definition": "key",
-    "course": "Mynediad", 
+    "definition": "key"
   },
   "allweddi": {
-    "definition": "keys",
-    "course": "Mynediad", 
+    "definition": "keys"
   },
   "am": {
     "definition": "about",
@@ -174,20 +151,16 @@
     "unit": "Uned 10"
   },
   "ambiwlans": {
-    "definition": "ambulance",
-    "course": "Mynediad", 
+    "definition": "ambulance"
   },
   "ambiwlansys": {
-    "definition": "ambulances",
-    "course": "Mynediad", 
+    "definition": "ambulances"
   },
   "amgueddfa": {
-    "definition": "museum",
-    "course": "Mynediad", 
+    "definition": "museum"
   },
   "amgueddfeydd": {
-    "definition": "museums",
-    "course": "Mynediad", 
+    "definition": "museums"
   },
   "aml": {
     "definition": "often",
@@ -195,12 +168,10 @@
     "unit": "Uned 4"
   },
   "amser": {
-    "definition": "time",
-    "course": "Mynediad", 
+    "definition": "time" 
   },
   "amser sbâr": {
-    "definition": "spare time",
-    "course": "Mynediad", 
+    "definition": "spare time"
   },
   "anifail": {
     "definition": "animal",
@@ -223,16 +194,13 @@
     "unit": "Uned 12"
   },
   "annwyd": {
-    "definition": "a cold",
-    "course": "Mynediad", 
+    "definition": "a cold"
   },
   "anwydau": {
-    "definition": "colds",
-    "course": "Mynediad", 
+    "definition": "colds"
   },
   "annwyl": {
-    "definition": "dear, beloved",
-    "course": "Mynediad", 
+    "definition": "dear, beloved"
   },
   "anodd": {
     "definition": "difficult",
@@ -240,12 +208,10 @@
     "unit": "Uned 11"
   },
   "anrheg": {
-    "definition": "gift",
-    "course": "Mynediad", 
+    "definition": "gift"
   },
   "anrhegion": {
-    "definition": "gifts",
-    "course": "Mynediad", 
+    "definition": "gifts"
   },
   "apwyntiad": {
     "definition": "appointment",
