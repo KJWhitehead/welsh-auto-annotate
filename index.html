@@ -6,199 +6,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Welsh Auto‑Annotation Tool</title>
 
-<!-- LINK YOUR EXTERNAL GLOSSARIES HERE -->
-<script src="mynediad.js"></script>
-<script src="sylfaen.js"></script>
-<script src="canolradd.js"></script>
-<script src="bbc.js"></script>
+  <link rel="stylesheet" href="assets/styles.css">
 
-<style>
-  body {
-    font-family: sans-serif;
-    max-width: 750px;
-    margin: 20px auto;
-    line-height: 1.6;
-    padding: 0 20px;
-    background-color: #fafafa;
-  }
 
-  .control-panel {
-    background: #f4f6f9;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #d1d5db;
-    margin-bottom: 20px;
-  }
+  
+<!-- EXTERNAL GLOSSARIES-->
+<script>
+  (async function loadDictionaries() {
+    // Relative paths to your modern JSON files
+    const files = {
+      mynediadGlossary: 'dictionaries/mynediad.json',
+      sylfaenGlossary: 'dictionaries/sylfaen.json',
+      canolraddGlossary: 'dictionaries/canolradd.json',
+      bbcGlossary: 'dictionaries/bbc.json'
+    };
 
-  .checkbox-group {
-    display: flex;
-    gap: 20px;
-    margin-top: 8px;
-    flex-wrap: wrap; 
-  }
+    for (const [globalName, path] of Object.entries(files)) {
+      try {
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+        
+        // Bind the clean data directly to the global window context
+        window[globalName] = await response.json();
+      } catch (error) {
+        console.error(`Failed to load local dictionary from ${path}:`, error);
+      }
+    }
+    
+    console.log("✅ All Welsh JSON dictionaries loaded successfully into the window context.");
+    
+    // Yell to the page that the data is ready to use!
+    window.dispatchEvent(new Event('dictionariesReady'));
+  })();
+</script>
 
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: normal;
-    cursor: pointer;
-    font-size: 1em;
-    padding: 5px 0;
-  }
 
-  .checkbox-label input {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
-
-  textarea {
-    width: 100%;
-    height: 150px;
-    font-size: 1em;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-  }
-
-  .btn-primary {
-    padding: 12px 24px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-
-  .btn-danger {
-    padding: 6px 12px;
-    font-size: 0.85em;
-    cursor: pointer;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin: 0;
-  }
-
-  @media (min-width: 480px) {
-    .btn-primary { width: auto; }
-  }
-
-  .btn-primary:hover { background-color: #004085; }
-  .btn-danger:hover { background-color: #c82333; }
-
-  .annotated {
-    position: relative;
-    cursor: pointer;
-    border-bottom: 2px dotted #0056b3;
-    display: inline-block;
-  }
-
-  .tooltip {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.15s ease-in-out;
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #222;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    white-space: nowrap;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-
-  .annotated:hover .tooltip,
-  .annotated.show-tooltip .tooltip {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .tooltip-branch {
-    display: block;
-    border-bottom: 1px dashed #444;
-    padding: 3px 0;
-  }
-  .tooltip-branch:last-child {
-    border-bottom: none;
-  }
-  .tooltip-label {
-    color: #a7f3d0;
-    font-size: 0.85em;
-    font-weight: bold;
-    margin-right: 5px;
-  }
-
-  label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-
-  /* RE-STYLED SCANNABLE STUDY LIST PANELS */
-  .study-list-container {
-    margin-top: 40px;
-    background: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-
-  .study-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    font-size: 0.95em;
-  }
-
-  .study-table th, .study-table td {
-    border: 1px solid #dee2e6;
-    padding: 12px;
-    text-align: left;
-  }
-
-  .study-table th {
-    background-color: #f8f9fa;
-    color: #495057;
-    font-weight: bold;
-  }
-
-  .empty-msg {
-    color: #6c757d;
-    font-style: italic;
-    text-align: center !important;
-    padding: 20px !important;
-  }
-
-  .table-word {
-    font-weight: bold;
-    color: #0056b3;
-    background-color: #f0f7ff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    display: inline-block;
-  }
-
-  .table-branch-item {
-    display: block;
-    padding: 2px 0;
-    border-bottom: 1px dotted #e2e8f0;
-  }
-  .table-branch-item:last-child {
-    border-bottom: none;
-  }
-</style>
 </head>
 
 <body>
@@ -259,8 +101,16 @@
 </div>
 
 <script>
+// Declare your single runtime dictionary globally at the top
 let runtimeGlossary = {};
 
+// THE BARRICADE: Safe execution guard waiting for the loader's signal
+window.addEventListener('dictionariesReady', () => {
+  console.log("🚀 Signal received! Compiling initial active runtime glossary...");
+  compileActiveGlossary();
+});
+
+// GLOSSARY PARSING ENGINE
 function compileActiveGlossary() {
   runtimeGlossary = {};
 
@@ -279,15 +129,13 @@ function compileActiveGlossary() {
       let textTranslation = "";
       let courseInfo = "";
 
-      // Securely check if the entry is an object container or a flat translation string
+      // Smart hybrid check for object containers or flat strings
       if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
         textTranslation = rawData.definition;
         if (rawData.course && rawData.unit) {
           courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
         }
       } else {
-        // Keeps all off-book lexis and plain strings running perfectly!
-
         textTranslation = rawData;
       }
 
@@ -304,11 +152,13 @@ function compileActiveGlossary() {
     }
   }
 
-  // Direct window global memory lookup ensures const scripts connect
-    if (useMynediad && window.mynediadGlossary) mergeSource(window.mynediadGlossary);
-  if (useSylfaen && window.sylfaenGlossary) mergeSource(window.sylfaenGlossary);
-  if (useCanolradd && window.canolraddGlossary) mergeSource(window.canolraddGlossary);
-  if (useBBC && window.bbcGlossary) mergeSource(window.bbcGlossary);
+  // Safely merge checkboxes to global variables populated by the fetch script
+  if (useMynediad) mergeSource(window.mynediadGlossary);
+  if (useSylfaen) mergeSource(window.sylfaenGlossary);
+  if (useCanolradd) mergeSource(window.canolraddGlossary);
+  if (useBBC) mergeSource(window.bbcGlossary);
+
+  console.log("📊 Active glossary compiled. Total terms:", Object.keys(runtimeGlossary).length);
 }
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
@@ -367,7 +217,7 @@ function collectMatches(word, glossary) {
 
     if (/^[aeiouwŷâêîôû]/i.test(candidate)) checkAndAdd("g" + candidate);
 
-    // ASPIRATE VOWEL PASS (Handles appearing h- prefix, e.g., hafal -> afal)
+    // ASPIRATE VOWEL PASS
     if (candidate.startsWith("h") && candidate.length > 1) {
       const vowelRoot = candidate.slice(1);
       if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) checkAndAdd(vowelRoot);
@@ -376,7 +226,7 @@ function collectMatches(word, glossary) {
 
   scanMutations(w);
 
-  // 3. VERB STEM SUFFIX STRIPPER (Commands & Past Tenses)
+  // 3. VERB STEM SUFFIX STRIPPER
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
   for (const suffix of verbSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
@@ -406,7 +256,7 @@ function annotate(text, glossary) {
   let processedText = text;
 
   phrases.forEach(phrase => {
-    const safePhrase = phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
     processedText = processedText.replace(regex, (match) => {
       return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
@@ -444,7 +294,7 @@ function annotate(text, glossary) {
 }
 
 // --- LAYER INTERACTION HANDLERS ---
-function handleWordActivation(event, element, plainWord, encodedTranslation) {
+  function handleWordActivation(event, element, plainWord, encodedTranslation) {
   event.stopPropagation(); 
   const isOpen = element.classList.contains('show-tooltip');
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
@@ -473,6 +323,8 @@ function handleAddButtonClick(event, plainWord, encodedTranslation) {
 
 function renderStudyListTable() {
   const tableBody = document.getElementById("studyListBody");
+  if (!tableBody) return; 
+  
   let listCache = sessionStorage.getItem("welshActiveStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
@@ -493,7 +345,7 @@ function runAnnotation() {
   compileActiveGlossary();
   const text = document.getElementById("inputText").value;
 
-   if (!text.trim()) {
+  if (!text.trim()) {
     document.getElementById("output").innerHTML = "Please type some Welsh text first to annotate.";
     return;
   }
@@ -514,6 +366,8 @@ window.onload = function() {
 document.addEventListener('click', function() {
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
 });
+
+
 </script>
   <script data-goatcounter="https://welshannotation.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
