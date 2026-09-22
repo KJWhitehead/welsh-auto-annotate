@@ -15,8 +15,7 @@
     "unit": "Uned 1"
   },
   "ac ati": {
-    "definition": "et cetera",
-    "course": "Mynediad", 
+    "definition": "et cetera"
   },
   "actor": {
     "definition": "actor",
@@ -985,7 +984,7 @@
     "definition": "you (formal/plural)",
     "course": "Mynediad", 
     "unit": "Uned 1"
-  }
+  },
   "ci": {
     "definition": "dog",
     "course": "Mynediad",
