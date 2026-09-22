@@ -115,8 +115,7 @@
     "unit": "Uned 11"
   },
   "anghenion": {
-    "definition": "needs",
-    "course": "Mynediad", 
+    "definition": "needs"
   },
   "anghofio": {
     "definition": "to forget"
@@ -314,19 +313,19 @@
   },
   "athro cyflenwi": {
     "definition": "supply teacher",
-    "course": "Mynediad", 
+    "course": "Mynediad"
   },
   "aur": {
     "definition": "gold",
-    "course": "Mynediad", 
+    "course": "Mynediad"
   },
   "awdur": {
     "definition": "author",
-    "course": "Mynediad", 
+    "course": "Mynediad"
   },
   "awduron": {
     "definition": "authors",
-    "course": "Mynediad", 
+    "course": "Mynediad"
   },
   "awr": {
     "definition": "hour",
