@@ -89,10 +89,14 @@
     "unit": "Uned 11"
   },
   "afon": {
-    "definition": "river"
+    "definition": "river",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "afonydd": {
-    "definition": "rivers"
+    "definition": "rivers",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "afreolaidd": {
     "definition": "irregular"
@@ -121,10 +125,14 @@
     "course": "Mynediad" 
   },
   "anghofio": {
-    "definition": "to forget"
+    "definition": "to forget",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "anghywir": {
-    "definition": "incorrect, wrong" 
+    "definition": "incorrect, wrong",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "angor": {
     "definition": "anchor"
@@ -133,7 +141,9 @@
     "definition": "anchors"
   },
   "ail": {
-    "definition": "second" 
+    "definition": "second",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "allan": {
     "definition": "out",
@@ -141,10 +151,14 @@
     "unit": "Uned 8"
   },
   "allwedd": {
-    "definition": "key"
+    "definition": "key",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "allweddi": {
-    "definition": "keys"
+    "definition": "keys",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "am": {
     "definition": "about",
@@ -173,10 +187,14 @@
     "unit": "Uned 4"
   },
   "amser": {
-    "definition": "time" 
+    "definition": "time",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "amser sbâr": {
-    "definition": "spare time"
+    "definition": "spare time",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "anifail": {
     "definition": "animal",
@@ -209,7 +227,9 @@
     "unit": "Uned 13" 
   },
   "annwyl": {
-    "definition": "dear, beloved"
+    "definition": "dear, beloved",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "anodd": {
     "definition": "difficult",
@@ -217,10 +237,14 @@
     "unit": "Uned 11"
   },
   "anrheg": {
-    "definition": "gift"
+    "definition": "gift",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "anrhegion": {
-    "definition": "gifts"
+    "definition": "gifts",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "apwyntiad": {
     "definition": "appointment",
@@ -243,7 +267,9 @@
     "unit": "Uned 8"
   },
   "ar gyfer": {
-    "definition": "for (for the purpose of)" 
+    "definition": "for (the purpose of)" ,
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "ar hyn o bryd": {
     "definition": "at the moment",
@@ -254,13 +280,17 @@
     "definition": "on the banks of / on the shore of" 
   },
   "ar ôl": {
-    "definition": "after, following"
+    "definition": "after, following",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "ar unwaith": {
     "definition": "at once" 
   },
   "ar werth": {
-    "definition": "for sale"
+    "definition": "for sale",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "araf": {
     "definition": "slow",
@@ -273,10 +303,14 @@
     "unit": "Uned 3"
   },
   "arbennig": {
-    "definition": "special"
+    "definition": "special",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "archebu": {
-    "definition": "to order, to book, to reserve"
+    "definition": "to order, to book, to reserve",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "ardderchog": {
     "definition": "excellent",
@@ -339,11 +373,13 @@
   },
   "awdur": {
     "definition": "author",
-    "course": "Mynediad"
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "awduron": {
     "definition": "authors",
-    "course": "Mynediad"
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "awr": {
     "definition": "hour",
@@ -407,16 +443,24 @@
     "unit": "Uned 11"
   },
   "banc": {
-    "definition": "bank"
+    "definition": "bank",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "banciau": {
-    "definition": "banks"
+    "definition": "banks",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "bar": {
-    "definition": "bar"
+    "definition": "bar",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "bariau": {
-    "definition": "bars"
+    "definition": "bars",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "bara": {
     "definition": "bread"
@@ -462,10 +506,14 @@
     "unit": "Uned 13" 
   },
   "beiro": {
-    "definition": "biro"
+    "definition": "biro",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "beiros": {
-    "definition": "biros"
+    "definition": "biros",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "bendigedig": {
     "definition": "fantastic",
@@ -486,7 +534,9 @@
     "unit": "Uned 2"
   },
   "beth bynnag": {
-    "definition": "anyway, whatever"
+    "definition": "anyway, whatever",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "bisged": {
     "definition": "biscuit",
@@ -517,10 +567,14 @@
     "unit": "Uned 3"
   },
   "blwyddyn": {
-    "definition": "year"
+    "definition": "year",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "blynyddoedd": {
-    "definition": "years"
+    "definition": "years",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "bod": {
     "definition": "to be",
@@ -563,10 +617,14 @@
     "unit": "Uned 6"
   },
   "braich": {
-    "definition": "arm"
+    "definition": "arm",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "breichiau": {
-    "definition": "arms"
+    "definition": "arms",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "brawd": {
     "definition": "brother",
@@ -579,10 +637,14 @@
     "unit": "Uned 12"
   },
   "brecwast": {
-    "definition": "breakfast"
+    "definition": "breakfast",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "brecwastau": {
-    "definition": "breakfasts"
+    "definition": "breakfasts",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "brechdan": {
     "definition": "sandwich",
@@ -595,22 +657,44 @@
     "unit": "Uned 11"
   },
   "bron": {
-    "definition": "nearly"
+    "definition": "nearly",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "brws": {
-    "definition": "brush"
+    "definition": "brush",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "brwsys": {
-    "definition": "brushes"
+    "definition": "brushes",
+    "course": "Mynediad",
+    "unit": "Uned 19"
+  },
+  "brws dannedd": {
+    "definition": "toothbrush",
+    "course": "Mynediad",
+    "unit": "Uned 19"
+  },
+  "brwsys dannedd": {
+    "definition": "toothbrushes",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "brwsio": {
-    "definition": "to brush"
+    "definition": "to brush",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "brysio": {
-    "definition": "to hurry"
+    "definition": "to hurry",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "buan": {
-    "definition": "soon"
+    "definition": "soon",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "bugail": {
     "definition": "shepherd"
@@ -705,10 +789,14 @@
     "definition": "short"
   },
   "bys": {
-    "definition": "finger"
+    "definition": "finger",
+    "course": "Mynediad", 
+    "unit": "Uned 21"
   },
   "bysedd": {
-    "definition": "fingers"
+    "definition": "fingers",
+    "course": "Mynediad", 
+    "unit": "Uned 21"
   },
   "byth": {
     "definition": "ever, never",
@@ -731,10 +819,14 @@
     "unit": "Uned 2"
   },
   "cadair": {
-    "definition": "chair"
+    "definition": "chair",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "cadeiriau": {
-    "definition": "chairs"
+    "definition": "chairs",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "cadw": {
     "definition": "to keep, to reserve",
@@ -885,10 +977,14 @@
     "unit": "Uned 13" 
   },
   "cartref": {
-    "definition": "home"
+    "definition": "home",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "cartrefi": {
-    "definition": "homes"
+    "definition": "homes",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "caru": {
     "definition": "to love"
@@ -970,7 +1066,9 @@
     "definition": "male cousins"
   },
   "cefnogi": {
-    "definition": "to support"
+    "definition": "to support",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "ceffyl": {
     "definition": "horse",
@@ -983,10 +1081,14 @@
     "unit": "Uned 12"
   },
   "ceg": {
-    "definition": "mouth"
+    "definition": "mouth",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "cegau": {
-    "definition": "mouths"
+    "definition": "mouths",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "cegin": {
     "definition": "kitchen",
@@ -1009,7 +1111,9 @@
     "unit": "Uned 7"
   },
   "cenedlaethol": {
-    "definition": "national"
+    "definition": "national",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "cerdyn": {
     "definition": "card",
@@ -1031,6 +1135,16 @@
     "definition": "music",
     "course": "Mynediad",
     "unit": "Uned 9"
+  },
+  "ces": {
+    "definition": "case; 1st person singular (I) past tense form of cael",
+    "course": "Mynediad",
+    "unit": "Uned 11 (cael); Uned 21 (case)"
+  },
+  "cesys": {
+    "definition": "cases",
+    "course": "Mynediad",
+    "unit": "Uned 21 (case)"
   },
   "chi": {
     "definition": "you (formal/plural)",
@@ -1088,10 +1202,14 @@
     "definition": "ears"
   },
   "clwb": {
-    "definition": "club"
+    "definition": "club",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "clybiau": {
-    "definition": "clubs"
+    "definition": "clubs",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "clywed": {
     "definition": "to hear",
@@ -1119,10 +1237,14 @@
     "unit": "Uned 10"
   },
   "coes": {
-    "definition": "leg"
+    "definition": "leg",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "coesau": {
-    "definition": "legs"
+    "definition": "legs",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "cofio": {
     "definition": "to remember",
@@ -1231,16 +1353,34 @@
     "definition": "questions"
   },
   "cwm": {
-    "definition": "valley"
+    "definition": "valley",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "cymoedd": {
-    "definition": "valleys"
+    "definition": "valleys",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "cwmni": {
-    "definition": "company"
+    "definition": "company",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "cwmnïau": {
-    "definition": "companies"
+    "definition": "companies",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
+  },
+  "cwpwrdd": {
+    "definition": "cupboards",
+    "course": "Mynediad", 
+    "unit": "Uned 19, Uned 22"
+  },
+  "cypyrddau": {
+    "definition": "a cupboard",
+    "course": "Mynediad", 
+    "unit": "Uned 19, Uned 22"
   },
   "cwrdd": {
     "definition": "to meet (with â)",
@@ -1248,10 +1388,14 @@
     "unit": "Uned 6"
   },
   "cwrs": {
-    "definition": "course"
+    "definition": "course",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "cyrsiau": {
-    "definition": "courses"
+    "definition": "courses",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "cwrw": {
     "definition": "beer"
@@ -1278,10 +1422,14 @@
     "unit": "Uned 7"
   },
   "cyfeiriad": {
-    "definition": "address"
+    "definition": "address",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "cyfeiriadau": {
-    "definition": "addresses"
+    "definition": "addresses",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "cyfenw": {
     "definition": "surname"
@@ -1290,7 +1438,9 @@
     "definition": "surnames"
   },
   "cyfieithu": {
-    "definition": "to translate"
+    "definition": "to translate",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "cyflym": {
     "definition": "fast, quick",
@@ -1373,7 +1523,9 @@
     "definition": "Welsh people"
   },
   "cymryd": {
-    "definition": "to take"
+    "definition": "to take",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "cymydog": {
     "definition": "neighbour",
@@ -1396,10 +1548,14 @@
     "unit": "Uned 10"
   },
   "cynnes": {
-    "definition": "warm"
+    "definition": "warm",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "cynnwys": {
-    "definition": "to include"
+    "definition": "to include",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "cynta": {
     "definition": "first",
@@ -1418,17 +1574,23 @@
   },
   "cysgu": {
     "definition": "to sleep",
-    "course": "Mynediad",
-    "unit": "Uned 12"
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "cystadleuaeth": {
-    "definition": "competition"
+    "definition": "competition",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "cystadlaethau": {
-    "definition": "competitions"
+    "definition": "competitions",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "cystadlu": {
-    "definition": "to compete"
+    "definition": "to compete",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "cytuno": {
     "definition": "to agree"
@@ -1462,16 +1624,24 @@
     "unit": "Uned 11"
   },
   "chwarter": {
-    "definition": "quarter"
+    "definition": "quarter",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "chwarteri": {
-    "definition": "quarters"
+    "definition": "quarters",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "chwerthin": {
-    "definition": "to laugh"
+    "definition": "to laugh",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "chwith": {
-    "definition": "left"
+    "definition": "left",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "da": {
     "definition": "good; abbreviation of 'gyda'",
@@ -1482,7 +1652,9 @@
     "definition": "sweets (North Wales)"
   },
   "dangos": {
-    "definition": "to show"
+    "definition": "to show",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "dail": {
     "definition": "leaves",
@@ -1498,13 +1670,19 @@
     "definition": "to understand (North Wales)"
   },
   "damwain": {
-    "definition": "accident"
+    "definition": "accident",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "damweiniau": {
-    "definition": "accidents"
+    "definition": "accidents",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "dan": {
-    "definition": "under"
+    "definition": "under",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "dannodd": {
     "definition": "toothache",
@@ -1512,10 +1690,14 @@
     "unit": "Uned 13" 
   },
   "dant": {
-    "definition": "tooth"
+    "definition": "tooth",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "dannedd": {
-    "definition": "teeth"
+    "definition": "teeth",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "darllen": {
     "definition": "to read",
@@ -1539,7 +1721,7 @@
   "de": {
     "definition": "south; right",
     "course": "Mynediad", 
-    "unit": "Uned 14 (south)"
+    "unit": "Uned 14 (south); Uned 21 (right)"
   },
   "deall": {
     "definition": "to understand",
@@ -1582,22 +1764,29 @@
     "unit": "Uned 8"
   },
   "dewis": {
-    "definition": "choice"
+    "definition": "a choice; to choose",
+    "course": "Mynediad", 
+    "unit": "Uned 15 (noun)"
   },
   "dewisiadau": {
-    "definition": "choices"
-  },
-  "dewis (verb)": {
-    "definition": "to choose"
+    "definition": "choices",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "diddordeb": {
-    "definition": "interest"
+    "definition": "interest",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "diddordebau": {
-    "definition": "interests"
+    "definition": "interests",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "diddorol": {
-    "definition": "interesting"
+    "definition": "interesting",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "diflas": {
     "definition": "miserable, boring",
@@ -1605,10 +1794,14 @@
     "unit": "Uned 6"
   },
   "digon": {
-    "definition": "enough"
+    "definition": "enough",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "digwydd": {
-    "definition": "to happen, to occur"
+    "definition": "to happen, to occur",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "dillad": {
     "definition": "clothes",
@@ -1626,10 +1819,12 @@
   "dim byd": {
     "definition": "nothing",
     "course": "Mynediad",
-    "unit": "Uned 11"
+    "unit": "Uned 11, Uned 22"
   },
   "dim ond": {
-    "definition": "only"
+    "definition": "only",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "dinas": {
     "definition": "city"
@@ -1658,7 +1853,9 @@
     "unit": "Uned 1"
   },
   "di-waith": {
-    "definition": "unemployed"
+    "definition": "unemployed",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "diwetha": {
     "definition": "last (previous)",
@@ -1705,7 +1902,9 @@
     "unit": "Uned 8"
   },
   "dringo": {
-    "definition": "to climb"
+    "definition": "to climb",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "dros": {
     "definition": "over",
@@ -1718,7 +1917,9 @@
     "unit": "Uned 7"
   },
   "drwg": {
-    "definition": "bad"
+    "definition": "bad",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "drws": {
     "definition": "door",
@@ -1747,7 +1948,9 @@
     "unit": "Uned 3"
   },
   "dwyn": {
-    "definition": "to steal"
+    "definition": "to steal",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "dwyrain": {
     "definition": "east"
@@ -1797,7 +2000,9 @@
     "unit": "Uned 2"
   },
   "dyfalu": {
-    "definition": "to guess"
+    "definition": "to guess",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "dyma": {
     "definition": "here is, this is",
@@ -1897,7 +2102,9 @@
     "unit": "Uned 3"
   },
   "eistedd": {
-    "definition": "to sit"
+    "definition": "to sit",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "eitha": {
     "definition": "fairly, quite"
@@ -1930,14 +2137,25 @@
     "course": "Mynediad", 
     "unit": "Uned 13" 
   },
+  "erbyn": {
+    "definition": "by (time/amser)",
+    "course": "Mynediad",
+    "unit": "Uned 18"
+  },
   "erioed": {
-    "definition": "never"
+    "definition": "never",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "ers": {
-    "definition": "since"
+    "definition": "since",
+    "course": "Mynediad",
+    "unit": "Uned 18"
   },
   "ers talwm": {
-    "definition": "a long time ago (North Wales)"
+    "definition": "a long time ago (North Wales)",
+    "course": "Mynediad",
+    "unit": "Uned 18"
   },
   "eryr": {
     "definition": "eagle"
@@ -1956,10 +2174,14 @@
     "unit": "Uned 11"
   },
   "sgidiau": {
-    "definition": "shoes"
+    "definition": "shoes",
+    "course": "Mynediad",
+    "unit": "Uned 11"
   },
   "esgusodi": {
-    "definition": "to excuse"
+    "definition": "to excuse",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "eto": {
     "definition": "again",
@@ -1967,10 +2189,14 @@
     "unit": "Uned 1"
   },
   "ewythr": {
-    "definition": "uncle"
+    "definition": "uncle",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "ewythrod": {
-    "definition": "uncles"
+    "definition": "uncles",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "faint": {
     "definition": "how much, how many",
@@ -2009,10 +2235,14 @@
     "unit": "Uned 3"
   },
   "ffair": {
-    "definition": "fair"
+    "definition": "fair",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "ffeiriau": {
-    "definition": "fairs"
+    "definition": "fairs",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "ffatri": {
     "definition": "factory",
@@ -2034,14 +2264,30 @@
     "course": "Mynediad", 
     "unit": "Uned 6"
   },
+"ffeil": {
+    "definition": "a file",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
+  },
+"ffeiliau": {
+    "definition": "files",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
+  },
   "ffenest": {
-    "definition": "window"
+    "definition": "window",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "ffenestri": {
-    "definition": "windows"
+    "definition": "windows",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "ffermio": {
-    "definition": "to farm"
+    "definition": "to farm",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "ffermwr": {
     "definition": "farmer",
@@ -2052,16 +2298,24 @@
     "definition": "farmers"
   },
   "fferyllfa": {
-    "definition": "pharmacy"
+    "definition": "chemist shop",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "fferyllfeydd": {
-    "definition": "pharmacies"
+    "definition": "chemist shops",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "ffigwr": {
-    "definition": "figure"
+    "definition": "figure",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "ffigyrau": {
-    "definition": "figures"
+    "definition": "figures",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "ffilm": {
     "definition": "film"
@@ -2096,7 +2350,14 @@
     "unit": "Uned 3"
   },
   "ffôn symudol": {
-    "definition": "mobile phone"
+    "definition": "mobile phone",
+    "course": "Mynediad",
+    "unit": "Uned 22"
+  },
+  "ffônau symudol": {
+    "definition": "mobile phones",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "ffonio": {
     "definition": "to phone",
@@ -2116,7 +2377,7 @@
   "ffrainc": {
     "definition": "France",
     "course": "Mynediad", 
-    "unit": "Uned 4"
+    "unit": "Uned 16"
   },
   "ffrind": {
     "definition": "friend"
@@ -2176,10 +2437,14 @@
     "unit": "Uned 4"
   },
   "gardd": {
-    "definition": "garden"
+    "definition": "garden",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "gerddi": {
-    "definition": "gardens"
+    "definition": "gardens",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "garddio": {
     "definition": "to garden",
@@ -2223,7 +2488,9 @@
     "unit": "Uned 4"
   },
   "glanhau": {
-    "definition": "to clean"
+    "definition": "to clean",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "glaw": {
     "definition": "rain",
@@ -2234,10 +2501,14 @@
     "definition": "pretty good, middling (North & West Wales)"
   },
   "gobaith": {
-    "definition": "hope"
+    "definition": "hope",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "gobeithion": {
-    "definition": "hopes"
+    "definition": "hopes",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "gobeithio": {
     "definition": "to hope",
@@ -2245,7 +2516,9 @@
     "unit": "Uned 14"
   },
   "gofalus": {
-    "definition": "careful"
+    "definition": "careful",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "gofyn": {
     "definition": "to ask",
@@ -2258,10 +2531,14 @@
     "unit": "Uned 14"
   },
   "golau": {
-    "definition": "light"
+    "definition": "light",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "goleuadau": {
-    "definition": "lights"
+    "definition": "lights",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "golchi": {
     "definition": "to wash",
@@ -2277,7 +2554,9 @@
     "unit": "Uned 2"
   },
   "gorau": {
-    "definition": "best"
+    "definition": "best",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "gorfod": {
     "definition": "to have to",
@@ -2382,16 +2661,24 @@
     "unit": "Uned 14"
   },
   "gwenu": {
-    "definition": "to smile"
+    "definition": "to smile (with ar)",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "gwers": {
-    "definition": "lesson"
+    "definition": "lesson",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "gwersi": {
-    "definition": "lessons"
+    "definition": "lessons",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "gwerth": {
-    "definition": "worth, value"
+    "definition": "worth, value",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "gwerthu": {
     "definition": "to sell",
@@ -2428,7 +2715,9 @@
     "definition": "daft (North Wales)"
   },
   "gwisgo": {
-    "definition": "to dress, to wear"
+    "definition": "to dress, to wear",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "gwlad": {
     "definition": "country"
@@ -2437,7 +2726,9 @@
     "definition": "countries"
   },
   "gwlad yr iâ": {
-    "definition": "Iceland"
+    "definition": "Iceland",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "gwleidydd": {
     "definition": "politician"
@@ -2456,10 +2747,14 @@
     "unit": "Uned 2"
   },
   "gwobr": {
-    "definition": "prize"
+    "definition": "prize",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "gwobrau": {
-    "definition": "prizes"
+    "definition": "prizes",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "gŵr": {
     "definition": "husband, man",
@@ -2542,7 +2837,9 @@
     "definition": "in the evening"
   },
   "gyferbyn": {
-    "definition": "opposite"
+    "definition": "opposite",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "gyrru": {
     "definition": "to drive",
@@ -2600,10 +2897,14 @@
     "unit": "Uned 11"
   },
   "hawdd": {
-    "definition": "easy"
+    "definition": "easy",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "heb": {
-    "definition": "without"
+    "definition": "without",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "hedfan": {
     "definition": "to fly",
@@ -2665,7 +2966,9 @@
     "unit": "Uned 13" 
   },
   "hir": {
-    "definition": "long"
+    "definition": "long",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "hoci": {
     "definition": "hockey",
@@ -2693,7 +2996,9 @@
     "definition": "boys, lads"
   },
   "hufen": {
-    "definition": "cream"
+    "definition": "cream",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "hufen iâ": {
     "definition": "ice cream",
@@ -2721,16 +3026,24 @@
     "unit": "Uned 6"
   },
   "hyn": {
-    "definition": "this"
+    "definition": "this",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "hynny": {
-    "definition": "that"
+    "definition": "that",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "hysbyseb": {
-    "definition": "advertisement"
+    "definition": "advertisement",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "hysbysebion": {
-    "definition": "advertisements"
+    "definition": "advertisements",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "i": {
     "definition": "to; for",
@@ -2772,7 +3085,9 @@
     "definition": "health"
   },
   "ifanc": {
-    "definition": "young"
+    "definition": "young",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "isio": {
     "definition": "to want (North Wales)",
@@ -2799,7 +3114,9 @@
     "unit": "Uned 9"
   },
   "ledled": {
-    "definition": "throughout"
+    "definition": "throughout",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "lemon": {
     "definition": "lemon",
@@ -2827,19 +3144,29 @@
     "unit": "Uned 2"
   },
   "lifft": {
-    "definition": "lift"
+    "definition": "lift",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "lifftiau": {
-    "definition": "lifts"
+    "definition": "lifts",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "lolfa": {
-    "definition": "lounge"
+    "definition": "lounge",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "lôn": {
-    "definition": "lane"
+    "definition": "lane",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "lonydd": {
-    "definition": "lanes"
+    "definition": "lanes",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "lwc": {
     "definition": "luck"
@@ -2871,7 +3198,9 @@
     "unit": "Uned 9"
   },
   "llawn": {
-    "definition": "full"
+    "definition": "full",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "llawr": {
     "definition": "floor",
@@ -2894,16 +3223,22 @@
     "unit": "Uned 6"
   },
   "lled": {
-    "definition": "width"
+    "definition": "width",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "llefrith": {
     "definition": "milk (North Wales)"
   },
   "llen": {
-    "definition": "curtain"
+    "definition": "curtain",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "llenni": {
-    "definition": "curtains"
+    "definition": "curtains",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "llenwi": {
     "definition": "to fill",
@@ -2911,16 +3246,24 @@
     "unit": "Uned 9"
   },
   "llestr": {
-    "definition": "dish"
+    "definition": "dish",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "llestri": {
-    "definition": "dishes"
+    "definition": "dishes",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "llinell": {
-    "definition": "line"
+    "definition": "line",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "llinellau": {
-    "definition": "lines"
+    "definition": "lines",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "lliw": {
     "definition": "colour"
@@ -2953,10 +3296,14 @@
     "definition": "congratulations"
   },
   "llun": {
-    "definition": "picture"
+    "definition": "picture",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "lluniau": {
-    "definition": "pictures"
+    "definition": "pictures",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "llundain": {
     "definition": "London",
@@ -2969,28 +3316,44 @@
     "unit": "Uned 13" 
   },
   "llyfr": {
-    "definition": "book"
+    "definition": "book",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "llyfrau": {
-    "definition": "books"
+    "definition": "books",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "llyfrgell": {
-    "definition": "library"
+    "definition": "library",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "llyfrgelloedd": {
-    "definition": "libraries"
+    "definition": "libraries",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "llyfrgellydd": {
-    "definition": "librarian"
+    "definition": "librarian",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "llyfrgellwyr": {
-    "definition": "librarians"
+    "definition": "librarians",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "llygad": {
-    "definition": "eye"
+    "definition": "eye",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "llygaid": {
-    "definition": "eyes"
+    "definition": "eyes",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "llynedd": {
     "definition": "last year",
@@ -2998,16 +3361,29 @@
     "unit": "Uned 13" 
   },
   "llysfab": {
-    "definition": "stepson"
+    "definition": "stepson",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "llys feibion": {
-    "definition": "stepsons"
+    "definition": "stepsons",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "llysferch": {
-    "definition": "stepdaughter"
+    "definition": "stepdaughter",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "llys ferched": {
-    "definition": "stepdaughters"
+    "definition": "stepdaughters",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
+  }
+  "llystad": {
+    "definition": "stepfather",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "llysiau": {
     "definition": "vegetables",
@@ -3043,10 +3419,14 @@
     "definition": "to adopt"
   },
   "maes": {
-    "definition": "field"
+    "definition": "field",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "meysydd": {
-    "definition": "fields"
+    "definition": "fields",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "maes parcio": {
     "definition": "car park",
@@ -3064,10 +3444,14 @@
     "unit": "Uned 12"
   },
   "mam faeth": {
-    "definition": "foster mother"
+    "definition": "foster mother",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "mamau maeth": {
-    "definition": "foster mothers"
+    "definition": "foster mothers",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "mam-gu": {
     "definition": "grandmother",
@@ -3080,22 +3464,32 @@
     "unit": "Uned 12"
   },
   "mam-yng-nghyfraith": {
-    "definition": "mother-in-law"
+    "definition": "mother-in-law",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "maneg": {
-    "definition": "glove"
+    "definition": "glove",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "menig": {
-    "definition": "gloves"
+    "definition": "gloves",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "manylion": {
     "definition": "details"
   },
   "marchnad": {
-    "definition": "market"
+    "definition": "market",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "marchnadoedd": {
-    "definition": "markets"
+    "definition": "markets",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "mawr": {
     "definition": "big",
@@ -3103,10 +3497,14 @@
     "unit": "Uned 6"
   },
   "mêc": {
-    "definition": "make"
+    "definition": "make",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "mêcs": {
-    "definition": "makes"
+    "definition": "makes",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "medru": {
     "definition": "to be able to, can (North Wales)"
@@ -3131,28 +3529,40 @@
     "definition": "doctor's surgeries"
   },
   "mefus": {
-    "definition": "strawberries"
+    "definition": "strawberries",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "mefusen": {
-    "definition": "strawberry"
+    "definition": "strawberry",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "meindio": {
     "definition": "to mind"
   },
   "mêl": {
-    "definition": "honey"
+    "definition": "honey",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "melysion": {
     "definition": "sweets"
   },
   "menyn": {
-    "definition": "butter"
+    "definition": "butter",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "menyw": {
-    "definition": "woman (South Wales)"
+    "definition": "woman (South Wales)",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "menywod": {
-    "definition": "women (South Wales)"
+    "definition": "women (South Wales)",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "merch": {
     "definition": "girl, daughter",
@@ -3176,10 +3586,14 @@
     "definition": "in time"
   },
   "mil": {
-    "definition": "thousand"
+    "definition": "thousand",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "miloedd": {
-    "definition": "thousands"
+    "definition": "thousands",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "miliwn": {
     "definition": "million",
@@ -3202,16 +3616,24 @@
     "unit": "Uned 10"
   },
   "mis mêl": {
-    "definition": "honeymoon"
+    "definition": "honeymoon",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "misoedd mêl": {
-    "definition": "honeymoons"
+    "definition": "honeymoons",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "modryb": {
-    "definition": "aunt"
+    "definition": "aunt",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "modrybedd": {
-    "definition": "aunts"
+    "definition": "aunts",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "moddion": {
     "definition": "medicine",
@@ -3304,7 +3726,9 @@
     "unit": "Uned 1"
   },
   "neb": {
-    "definition": "nobody, no one"
+    "definition": "nobody, no one",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "neges": {
     "definition": "message",
@@ -3358,7 +3782,9 @@
     "unit": "Uned 2"
   },
   "newyddion": {
-    "definition": "news"
+    "definition": "news",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "nith": {
     "definition": "niece"
@@ -3367,7 +3793,9 @@
     "definition": "nieces"
   },
   "niwlog": {
-    "definition": "foggy, misty"
+    "definition": "foggy, misty",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "nofio": {
     "definition": "to swim",
@@ -3375,7 +3803,9 @@
     "unit": "Uned 3"
   },
   "nôl": {
-    "definition": "to get, to collect"
+    "definition": "to get, to collect",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "nos": {
     "definition": "night",
@@ -3388,10 +3818,14 @@
     "unit": "Uned 1"
   },
   "nos galan": {
-    "definition": "New Year's Eve"
+    "definition": "New Year's Eve",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "noson": {
-    "definition": "evening"
+    "definition": "evening",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "noswaith": {
     "definition": "evening",
@@ -3431,7 +3865,9 @@
     "definition": "from"
   },
   "o gwbl": {
-    "definition": "at all"
+    "definition": "at all",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "o gwmpas": {
     "definition": "around",
@@ -3445,13 +3881,29 @@
     "definition": "o'clock"
   },
   "o'r gorau": {
-    "definition": "OK, alright"
+    "definition": "OK, alright",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "ochr": {
-    "definition": "side"
+    "definition": "side",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "ochrau": {
-    "definition": "sides"
+    "definition": "sides",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "oedolyn": {
+    "definition": "adult",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "oedolion": {
+    "definition": "adults",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "oed": {
     "definition": "age",
@@ -3494,7 +3946,9 @@
     "definition": "watch (timepiece)"
   },
   "os": {
-    "definition": "if"
+    "definition": "if",
+    "course": "Mynediad",
+    "unit": "Uned 18"
   },
   "os gwelwch chi'n dda": {
     "definition": "please (formal/plural)",
@@ -3505,7 +3959,9 @@
     "definition": "afternoon"
   },
   "pa": {
-    "definition": "which?"
+    "definition": "which?",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "pabell": {
     "definition": "tent",
@@ -3518,7 +3974,9 @@
     "unit": "Uned 13" 
   },
   "pacio": {
-    "definition": "to pack"
+    "definition": "to pack",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "paent": {
     "definition": "paint"
@@ -3592,10 +4050,14 @@
     "definition": "ready"
   },
   "parti": {
-    "definition": "party"
+    "definition": "party",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "partïon": {
-    "definition": "parties"
+    "definition": "parties",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "partner": {
     "definition": "partner",
@@ -3611,10 +4073,14 @@
     "definition": "Easter"
   },
   "pasport": {
-    "definition": "passport"
+    "definition": "passport",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "pasportau": {
-    "definition": "passports"
+    "definition": "passports",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "pasta": {
     "definition": "pasta"
@@ -3625,7 +4091,9 @@
     "unit": "Uned 1"
   },
   "peidio": {
-    "definition": "to stop, to cease, to refrain"
+    "definition": "to stop, to cease, to refrain",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "peintio": {
     "definition": "to paint",
@@ -3693,28 +4161,42 @@
     "unit": "Uned 8"
   },
   "pensil": {
-    "definition": "pencil"
+    "definition": "pencil",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "pensiliau": {
-    "definition": "pencils"
+    "definition": "pencils",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "pensiwn": {
-    "definition": "pension"
+    "definition": "pension",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "pensiynau": {
     "definition": "pensions"
   },
   "pensiynwr": {
-    "definition": "pensioner"
+    "definition": "pensioner",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "pensiynwyr": {
-    "definition": "pensioners"
+    "definition": "pensioners",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "pentref": {
-    "definition": "village"
+    "definition": "village",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "pentrefi": {
-    "definition": "villages"
+    "definition": "villages",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "penwythnos": {
     "definition": "weekend",
@@ -3730,7 +4212,9 @@
     "definition": "perfect"
   },
   "perfformio": {
-    "definition": "to perform"
+    "definition": "to perform",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "person": {
     "definition": "person",
@@ -3751,10 +4235,14 @@
     "unit": "Uned 13" 
   },
   "peth": {
-    "definition": "thing"
+    "definition": "thing",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "pethau": {
-    "definition": "things"
+    "definition": "things",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "pigyn clust": {
     "definition": "earache (North Wales)"
@@ -3810,7 +4298,9 @@
     "unit": "Uned 13" 
   },
   "poeni": {
-    "definition": "to worry"
+    "definition": "to worry",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "poeth": {
     "definition": "hot",
@@ -3818,10 +4308,14 @@
     "unit": "Uned 6, Uned 11"
   },
   "pont": {
-    "definition": "bridge"
+    "definition": "bridge",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "pontydd": {
-    "definition": "bridges"
+    "definition": "bridges",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "popeth": {
     "definition": "everything",
@@ -3837,7 +4331,9 @@
     "unit": "Uned 3"
   },
   "posib": {
-    "definition": "possible"
+    "definition": "possible",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "post": {
     "definition": "post"
@@ -3853,16 +4349,22 @@
     "unit": "Uned 7"
   },
   "prawf": {
-    "definition": "test"
+    "definition": "test",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "profion": {
-    "definition": "tests"
+    "definition": "tests",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "pres": {
     "definition": "money (North Wales), brass"
   },
   "prif": {
-    "definition": "main, first, top, highest"
+    "definition": "main, first, top, highest",
+    "course": "Mynediad",
+    "unit": "Uned 18"
   },
   "prifathro": {
     "definition": "headmaster"
@@ -3888,7 +4390,9 @@
     "unit": "Uned 13" 
   },
   "priodi": {
-    "definition": "to marry"
+    "definition": "to marry",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "problem": {
     "definition": "problem",
@@ -3968,7 +4472,14 @@
     "unit": "Uned 6"
   },
   "pys": {
-    "definition": "peas"
+    "definition": "peas",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
+  },
+  "pysen": {
+    "definition": "pea",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "pysgodyn": {
     "definition": "fish",
@@ -3986,10 +4497,14 @@
     "unit": "Uned 2"
   },
   "ras": {
-    "definition": "race"
+    "definition": "race",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "rasys": {
-    "definition": "races"
+    "definition": "races",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "rownd": {
     "definition": "round, around"
@@ -4021,16 +4536,24 @@
     "unit": "Uned 1"
   },
   "rhai": {
-    "definition": "some"
+    "definition": "some",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "rhan": {
-    "definition": "part"
+    "definition": "part",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "rhannau": {
-    "definition": "parts"
+    "definition": "parts",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "rhan-amser": {
-    "definition": "part-time"
+    "definition": "part-time",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "rhedeg": {
     "definition": "to run",
@@ -4041,7 +4564,9 @@
     "definition": "those"
   },
   "rheoli": {
-    "definition": "to manage, to control"
+    "definition": "to manage, to control",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "rheolwr": {
     "definition": "manager",
@@ -4059,10 +4584,14 @@
     "unit": "Uned 8"
   },
   "rhestr": {
-    "definition": "list"
+    "definition": "list",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
   "rhestri": {
-    "definition": "lists"
+    "definition": "lists",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
   },
  "rhew": {
     "definition": "ice; irregular stem of rhewi (to freeze)",
@@ -4080,16 +4609,24 @@
     "unit": "Uned 1"
   },
   "rhwng": {
-    "definition": "between"
+    "definition": "between",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "rhy": {
-    "definition": "too"
+    "definition": "too",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "rhyfedd": {
-    "definition": "strange, funny, odd"
+    "definition": "strange, funny, odd",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "rhyw": {
-    "definition": "any, some"
+    "definition": "any, some",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "rhywbeth": {
     "definition": "something",
@@ -4142,12 +4679,19 @@
     "definition": "spare"
   },
   "sbectol": {
+    "definition": "sunglasses",
+    "course": "Mynediad",
+    "unit": "Uned 19"
+  },
+  "sbectol haul": {
     "definition": "spectacles, glasses",
     "course": "Mynediad",
     "unit": "Uned 12"
   },
   "sbwriel": {
-    "definition": "rubbish"
+    "definition": "rubbish",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "seiclo": {
     "definition": "to cycle",
@@ -4161,16 +4705,24 @@
     "definition": "car boot sales"
   },
   "seren": {
-    "definition": "star"
+    "definition": "star",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "sêr": {
-    "definition": "stars"
+    "definition": "stars",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "sesiwn": {
-    "definition": "session"
+    "definition": "session",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "sesiynau": {
-    "definition": "sessions"
+    "definition": "sessions",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "sglodion": {
     "definition": "chips",
@@ -4178,10 +4730,14 @@
     "unit": "Uned 3"
   },
   "sgorio": {
-    "definition": "to score"
+    "definition": "to score",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "sgwennu": {
-    "definition": "to write (North Wales)"
+    "definition": "to write (North Wales)",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "siarad": {
     "definition": "to talk, to speak",
@@ -4189,10 +4745,14 @@
     "unit": "Uned 8"
   },
   "siaradwr": {
-    "definition": "speaker"
+    "definition": "speaker",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "siaradwyr": {
-    "definition": "speakers"
+    "definition": "speakers",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "siec": {
     "definition": "cheque",
@@ -4211,16 +4771,24 @@
     "definition": "cigarettes"
   },
   "silff": {
-    "definition": "shelf"
+    "definition": "shelf",
+    "course": "Mynediad",
+    "unit": "Uned 12"
   },
   "silffoedd": {
-    "definition": "shelves"
+    "definition": "shelves",
+    "course": "Mynediad",
+    "unit": "Uned 12"
   },
   "silff ben tân": {
-    "definition": "mantelpiece"
+    "definition": "mantelpiece",
+    "course": "Mynediad",
+    "unit": "Uned 12"
   },
   "sillafu": {
-    "definition": "to spell"
+    "definition": "to spell",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "sinema": {
     "definition": "cinema",
@@ -4243,10 +4811,14 @@
     "unit": "Uned 2"
   },
   "sioe": {
-    "definition": "show"
+    "definition": "show",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "sioeau": {
-    "definition": "shows"
+    "definition": "shows",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "siôn corn": {
     "definition": "Santa Claus"
@@ -4267,10 +4839,14 @@
     "unit": "Uned 2"
   },
   "siopwr": {
-    "definition": "shopkeeper"
+    "definition": "shopkeeper",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "siopwyr": {
-    "definition": "shopkeepers"
+    "definition": "shopkeepers",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "sir": {
     "definition": "county",
@@ -4299,6 +4875,16 @@
     "definition": "to iron",
     "course": "Mynediad", 
     "unit": "Uned 2"
+  },
+  "stafell": {
+    "definition": "room",
+    "course": "Mynediad",
+    "unit": "Uned 19"
+  },
+  "stafelloedd": {
+    "definition": "rooms",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "staff": {
     "definition": "staff",
@@ -4450,10 +5036,14 @@
     "unit": "Uned 12"
   },
   "tad maeth": {
-    "definition": "foster father"
+    "definition": "foster father",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "tadau maeth": {
-    "definition": "foster fathers"
+    "definition": "foster fathers",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "tad-yng-nghyfraith": {
     "definition": "father-in-law"
@@ -4489,10 +5079,14 @@
     "definition": "grandfathers (North Wales)"
   },
   "taith": {
-    "definition": "journey"
+    "definition": "journey",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "teithiau": {
-    "definition": "journeys"
+    "definition": "journeys",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "talu": {
     "definition": "to pay",
@@ -4500,16 +5094,24 @@
     "unit": "Uned 8"
   },
   "tan": {
-    "definition": "until"
+    "definition": "until",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "tân": {
-    "definition": "fire"
+    "definition": "fire",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "tanau": {
-    "definition": "fires"
+    "definition": "fires",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "taro": {
-    "definition": "to hit, to strike"
+    "definition": "to hit, to strike",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "taten": {
     "definition": "potato",
@@ -4530,7 +5132,14 @@
     "definition": "similar, alike"
   },
   "tedi": {
-    "definition": "teddy bear"
+    "definition": "teddy bear",
+    "course": "Mynediad",
+    "unit": "Uned 21"
+  },
+  "tedis": {
+    "definition": "teddy bears",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "tegan": {
     "definition": "toy"
@@ -4545,10 +5154,14 @@
     "definition": "kettles"
   },
   "tei": {
-    "definition": "tie"
+    "definition": "tie",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "teis": {
-    "definition": "ties"
+    "definition": "ties",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "teisen": {
     "definition": "cake",
@@ -4566,7 +5179,9 @@
     "unit": "Uned 14"
   },
   "teithio": {
-    "definition": "to travel"
+    "definition": "to travel",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "teledu": {
     "definition": "television",
@@ -4589,7 +5204,9 @@
     "unit": "Uned 6"
   },
   "teuluol": {
-    "definition": "family (as adjective)"
+    "definition": "family (as adjective)",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "theatr": {
     "definition": "theatre",
@@ -4642,7 +5259,9 @@
     "unit": "Uned 11"
   },
   "torri": {
-    "definition": "to break"
+    "definition": "to break",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "torri lawr": {
     "definition": "to break down",
@@ -4685,7 +5304,9 @@
     "unit": "Uned 6"
   },
   "trafod": {
-    "definition": "to discuss"
+    "definition": "to discuss",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "tre": {
     "definition": "town",
@@ -4701,7 +5322,9 @@
     "definition": "towns"
   },
   "trefnu": {
-    "definition": "to arrange, to organise"
+    "definition": "to arrange, to organise",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "trên": {
     "definition": "train",
@@ -4736,7 +5359,9 @@
     "unit": "Uned 12"
   },
   "troi": {
-    "definition": "to turn"
+    "definition": "to turn",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "trwy": {
     "definition": "through",
@@ -4749,16 +5374,24 @@
     "unit": "Uned 11"
   },
   "trwyn": {
-    "definition": "nose"
+    "definition": "nose",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "trwynau": {
-    "definition": "noses"
+    "definition": "noses",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "trydan": {
-    "definition": "electricity, electric"
+    "definition": "electricity; electric",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "trydydd": {
-    "definition": "third"
+    "definition": "third",
+    "course": "Mynediad",
+    "unit": "Uned 22"
   },
   "tu allan i": {
     "definition": "outside"
@@ -4810,7 +5443,9 @@
     "unit": "Uned 6"
   },
   "tyfu": {
-    "definition": "to grow"
+    "definition": "to grow",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "tymor": {
     "definition": "season, term",
@@ -4826,7 +5461,9 @@
     "definition": "to pull"
   },
   "tynnu llun": {
-    "definition": "to take a picture; to draw a picture"
+    "definition": "to take a picture; to draw a picture",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "tywydd": {
     "definition": "weather",
@@ -4834,7 +5471,9 @@
     "unit": "Uned 6"
   },
   "ugain": {
-    "definition": "twenty"
+    "definition": "twenty",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "ugeiniau": {
     "definition": "twenties"
@@ -4853,7 +5492,9 @@
     "definition": "nowhere"
   },
   "unrhyw": {
-    "definition": "any"
+    "definition": "any",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "unwaith": {
     "definition": "once"
@@ -4864,10 +5505,14 @@
     "unit": "Uned 11"
   },
   "wal": {
-    "definition": "wall"
+    "definition": "wall",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "waliau": {
-    "definition": "walls"
+    "definition": "walls",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "wedi blino": {
     "definition": "tired",
@@ -4890,7 +5535,9 @@
     "unit": "Uned 4"
   },
   "wrth": {
-    "definition": "by"
+    "definition": "by",
+    "course": "Mynediad", 
+    "unit": "Uned 19"
   },
   "wrth gwrs": {
     "definition": "of course",
@@ -4908,10 +5555,14 @@
     "unit": "Uned 11"
   },
   "wyneb": {
-    "definition": "face"
+    "definition": "face",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "wynebau": {
-    "definition": "faces"
+    "definition": "faces",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "wythnos": {
     "definition": "week",
@@ -4940,7 +5591,9 @@
     "unit": "Uned 13" 
   },
   "y we": {
-    "definition": "the web"
+    "definition": "the web",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "ych a fi!": {
     "definition": "horrid, yuck!",
@@ -4966,7 +5619,9 @@
     "unit": "Uned 1"
   },
   "ymarfer": {
-    "definition": "to practise, to rehearse"
+    "definition": "to practise, to rehearse",
+    "course": "Mynediad",
+    "unit": "Uned 20"
   },
   "ymddeol": {
     "definition": "to retire",
@@ -5009,13 +5664,19 @@
     "definition": "already"
   },
   "yn erbyn": {
-    "definition": "against"
+    "definition": "against",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "yn ôl": {
-    "definition": "back, ago, according to"
+    "definition": "back, ago, according to",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "yn unig": {
-    "definition": "only"
+    "definition": "only",
+    "course": "Mynediad", 
+    "unit": "Uned 16"
   },
   "yna": {
     "definition": "there, then",
@@ -5028,10 +5689,14 @@
     "unit": "Uned 4"
   },
   "ynys": {
-    "definition": "island"
+    "definition": "island",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "ynysoedd": {
-    "definition": "islands"
+    "definition": "islands",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "yr alban": {
     "definition": "Scotland",
@@ -5044,7 +5709,9 @@
     "unit": "Uned 8"
   },
   "yr wyddfa": {
-    "definition": "Snowdon"
+    "definition": "Snowdon",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
   },
   "ysbyty": {
     "definition": "hospital",
@@ -5057,22 +5724,34 @@
     "unit": "Uned 5"
   },
   "ysbwriel": {
-    "definition": "rubbish"
+    "definition": "rubbish",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "ysgol": {
-    "definition": "school"
+    "definition": "school; ladder",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "ysgolion": {
-    "definition": "schools"
+    "definition": "schools; ladders",
+    "course": "Mynediad", 
+    "unit": "Uned 5"
   },
   "ysgrifennu": {
-    "definition": "to write"
+    "definition": "to write",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "ystafell": {
-    "definition": "room"
+    "definition": "room",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "ystafelloedd": {
-    "definition": "rooms"
+    "definition": "rooms",
+    "course": "Mynediad",
+    "unit": "Uned 19"
   },
   "ystyr": {
     "definition": "meaning"
@@ -5114,7 +5793,9 @@
     "unit": "Uned 9"
   },
   "bobl bach": {
-    "definition": "good grief!"
+    "definition": "good grief!",
+    "course": "Mynediad", 
+    "unit": "Uned 15"
   },
   "o'r gorau": {
     "definition": "okay, all right"
@@ -5336,7 +6017,14 @@
     "definition": "less"
   },
   "llaw": {
-    "definition": "hand"
+    "definition": "hand",
+    "course": "Mynediad",
+    "unit": "Uned 21"
+  },
+  "dwylo": {
+    "definition": "hands",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "maint": {
     "definition": "size"
@@ -5372,7 +6060,9 @@
     "definition": "from"
   },
   "rhoi": {
-    "definition": "to give"
+    "definition": "to give",
+    "course": "Mynediad",
+    "unit": "Uned 21"
   },
   "sawl": {
     "definition": "several"
@@ -5606,9 +6296,6 @@
   "aethoch": {
     "definition": "2nd person plural/formal (you) past tense form of mynd"
   },
-  "ces": {
-    "definition": "1st person singular (I) past tense form of cael"
-  },
   "cest": {
     "definition": "2nd person singular (you) past tense form of cael"
   },
@@ -5764,4 +6451,3 @@
     "definition": "irregular stem of ymadael (to leave)"
   }
 }
-
