@@ -125,10 +125,19 @@ function annotate(text, glossary) {
       if (matches.length > 0) {
         let tooltipContent = matches.map(m => {
           const rawDef = m.definition;
-          const displayDefText = (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) 
-            ? rawDef.definition 
-            : rawDef;
-          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${displayDefText}</span>`;
+          let displayDefText = rawDef;
+          let courseInfo = "";
+
+          // Extract information if it's a structured JSON object
+          if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
+            displayDefText = rawDef.definition;
+            if (rawDef.course && rawDef.unit) {
+              courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
+            }
+          }
+          
+          const finalDisplayString = displayDefText + courseInfo;
+          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${finalDisplayString}</span>`;
         }).join("");
 
         const plainTextLabel = matches.map(m => {
