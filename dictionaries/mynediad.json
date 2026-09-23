@@ -1751,6 +1751,9 @@
   "da-da": {
     "definition": "sweets (North Wales)"
   },
+    "da da": {
+    "definition": "sweets (North Wales)"
+  },
   "dangos": {
     "definition": "to show",
     "course": "Mynediad",
@@ -1968,6 +1971,11 @@
     "unit": "Uned 1"
   },
   "di-waith": {
+    "definition": "unemployed",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "di waith": {
     "definition": "unemployed",
     "course": "Mynediad", 
     "unit": "Uned 17"
@@ -3658,12 +3666,27 @@
     "course": "Mynediad",
     "unit": "Uned 12"
   },
+  "mam gu": {
+    "definition": "grandmother",
+    "course": "Mynediad",
+    "unit": "Uned 12"
+  },
   "mam-guod": {
     "definition": "grandmothers (South Wales)",
     "course": "Mynediad",
     "unit": "Uned 12"
   },
+  "mam guod": {
+    "definition": "grandmothers (South Wales)",
+    "course": "Mynediad",
+    "unit": "Uned 12"
+  },
   "mam-yng-nghyfraith": {
+    "definition": "mother-in-law",
+    "course": "Mynediad", 
+    "unit": "Uned 20"
+  },
+  "mam yng nghyfraith": {
     "definition": "mother-in-law",
     "course": "Mynediad", 
     "unit": "Uned 20"
@@ -4361,6 +4384,11 @@
     "course": "Mynediad", 
     "unit": "Uned 2"
   },
+  "pêl droed": {
+    "definition": "football",
+    "course": "Mynediad", 
+    "unit": "Uned 2"
+  },
   "pell": {
     "definition": "far",
     "course": "Mynediad", 
@@ -4377,6 +4405,11 @@
     "unit": "Uned 13" 
   },
   "pen-blwydd": {
+    "definition": "birthday",
+    "course": "Mynediad", 
+    "unit": "Uned 7"
+  },
+  "pen blwydd": {
     "definition": "birthday",
     "course": "Mynediad", 
     "unit": "Uned 7"
@@ -4806,6 +4839,11 @@
     "unit": "Uned 18"
   },
   "rhan-amser": {
+    "definition": "part-time",
+    "course": "Mynediad",
+    "unit": "Uned 20"
+  },
+  "rhan amser": {
     "definition": "part-time",
     "course": "Mynediad",
     "unit": "Uned 20"
@@ -5316,6 +5354,16 @@
     "course": "Mynediad",
     "unit": "Uned 12"
   },
+  "tad cu": {
+    "definition": "grandfather (South Wales)",
+    "course": "Mynediad",
+    "unit": "Uned 12"
+  },
+  "tad cuod": {
+    "definition": "grandfathers (South Wales)",
+    "course": "Mynediad",
+    "unit": "Uned 12"
+  },
   "tad maeth": {
     "definition": "foster father",
     "course": "Mynediad",
@@ -5330,6 +5378,12 @@
     "definition": "father-in-law"
   },
   "tadau-yng-nghyfraith": {
+    "definition": "fathers-in-law"
+  },
+    "tad yng nghyfraith": {
+    "definition": "father-in-law"
+  },
+  "tadau yng nghyfraith": {
     "definition": "fathers-in-law"
   },
   "tafarn": {
@@ -6243,6 +6297,11 @@
     "definition": "disability"
   },
   "ar-lein": {
+    "definition": "online",
+    "course": "Mynediad",
+    "unit": "Uned 9"
+  },
+    "ar lein": {
     "definition": "online",
     "course": "Mynediad",
     "unit": "Uned 9"
