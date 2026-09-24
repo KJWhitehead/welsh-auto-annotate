@@ -1202,6 +1202,11 @@
   "erbyn hyn": {
     "definition": "by now"
   },
+  "eraill": {
+    "definition": "others",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
+  },
   "eryri": {
     "definition": "Snowdonia"
   },
@@ -1808,10 +1813,14 @@
     "definition": "lorries"
   },
   "llall": {
-    "definition": "other"
+    "definition": "other",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "lleill": {
-    "definition": "others"
+    "definition": "others",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "llaw": {
     "definition": "a hand"
