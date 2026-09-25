@@ -369,35 +369,115 @@ function compileActiveGlossary() {
 
 // --- TOKENIZER MATRIX ENGINE ---
 function collectMatches(word, glossary) {
-  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+\$/g, "");
+  // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
+  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+|[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+$/g, "").trim();
   if (!w) return [];
 
-  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) w = w.slice(0, -2);
-  if (!w) return [];
+  // 1. WELSH CONTRACTION SPLITTER
+  // Only trim context attachments if the absolute contraction isn't explicitly in the glossary first!
+  if (!glossary[w]) {
+    if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
+      w = w.slice(0, -2); 
+    }
+  }
 
+  // 2. WELSH VOWEL-LINK STRIPPER
+  if (!glossary[w]) {
+    const vowelLinks = { "nag": "na", "ac": "a", "ag": "â", "tuag": "tua", "gydag": "gyda" };
+    if (vowelLinks[w]) w = vowelLinks[w];
+  }
+
+  if (!w) return [];
   let foundKeys = new Set();
+
   function checkAndAdd(candidate) {
     if (glossary[candidate]) foundKeys.add(candidate);
+    if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
+      const candidateWithF = candidate + "f";
+      if (glossary[candidateWithF]) foundKeys.add(candidateWithF);
+    }
   }
 
   checkAndAdd(w);
 
-  // Soft/Nasal/Aspirate mutation matrices checks
-  const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
-  for (const m in soft) if (w.startsWith(m)) soft[m].forEach(t => checkAndAdd(w.replace(new RegExp("^" + m), t)));
+  function scanMutations(candidate) {
+    // Soft Mutations
+    const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
+    for (const mut in soft) {
+      if (candidate.startsWith(mut)) {
+        soft[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+      }
+    }
 
-  const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
-  for (const m in nasal) if (w.startsWith(m)) nasal[m].forEach(t => checkAndAdd(w.replace(new RegExp("^" + m), t)));
+    // Nasal Mutations
+    const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
+    for (const mut in nasal) {
+      if (candidate.startsWith(mut)) {
+        nasal[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+      }
+    }
 
-  const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
-  for (const m in aspirate) if (w.startsWith(m)) aspirate[m].forEach(t => checkAndAdd(w.replace(new RegExp("^" + m), t)));
+    // Aspirate Mutations
+    const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
+    for (const mut in aspirate) {
+      if (candidate.startsWith(mut)) {
+        aspirate[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+      }
+    }
 
-  if (/^[aeiouwŷâêîôû]/i.test(w)) checkAndAdd("g" + w);
-  if (w.startsWith("h") && w.length > 1 && /^[aeiouwŷâêîôû]/i.test(w.slice(1))) checkAndAdd(w.slice(1));
+    if (/^[aeiouwŷâêîôû]/i.test(candidate)) checkAndAdd("g" + candidate);
 
-  return Array.from(foundKeys).map(key => ({ root: key, definition: glossary[key] }));
+    // ASPIRATE VOWEL PASS
+    if (candidate.startsWith("h") && candidate.length > 1) {
+      const vowelRoot = candidate.slice(1);
+      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) checkAndAdd(vowelRoot);
+    }
+  }
+
+  scanMutations(w);
+
+  // 3. VERB STEM SUFFIX STRIPPER
+  const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
+  for (const suffix of verbSuffixes) {
+    if (w.endsWith(suffix) && w.length > suffix.length) {
+      const nakedStem = w.slice(0, -suffix.length);
+      checkAndAdd(nakedStem);
+      scanMutations(nakedStem);
+
+      const infinitiveEndings = ["u", "i", "o", "io", "a"];
+      for (const inf of infinitiveEndings) {
+        let reconstructedVerb = nakedStem + inf;
+        checkAndAdd(reconstructedVerb);
+        scanMutations(reconstructedVerb);
+      }
+    }
+  }
+
+  // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
+  // Targets regular endings: -ach (comparative), -af (superlative), -ed (equative)
+  const adjSuffixes = ["ach", "af", "ed"];
+  for (const suffix of adjSuffixes) {
+    if (w.endsWith(suffix) && w.length > suffix.length) {
+      const nakedStem = w.slice(0, -suffix.length);
+      
+      // Check the direct naked stem (e.g., fwynach -> mwynach -> mwyn)
+      checkAndAdd(nakedStem);
+      scanMutations(nakedStem);
+
+      // Handle spelling restoration: if the root dropped a terminal vowel before suffixing
+      const vowelRestorations = ["e", "o", "a"];
+      for (const v of vowelRestorations) {
+        let reconstructedAdj = nakedStem + v;
+        checkAndAdd(reconstructedAdj);
+        scanMutations(reconstructedAdj);
+      }
+    }
+  }
+
+  return Array.from(foundKeys).map(key => {
+    return { root: key, definition: glossary[key] };
+  });
 }
-
 function annotate(text, glossary) {
   const phrases = Object.keys(glossary).filter(k => k.includes(" ")).sort((a, b) => b.length - a.length);
   let processedText = text;
