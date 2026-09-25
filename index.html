@@ -247,8 +247,9 @@ function collectMatches(word, glossary) {
       }
     }
   }
- // 4. ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
-  const adjSuffixes = { "ach": "comparative", "af": "superlative", "ed": "equative" };
+ /  // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
+  // Targets regular endings, including modern spoken dropped-f superlatives!
+  const adjSuffixes = { "ach": "comparative", "af": "superlative", "a": "superlative", "ed": "equative" };
   for (const [suffix, formType] of Object.entries(adjSuffixes)) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
@@ -256,7 +257,6 @@ function collectMatches(word, glossary) {
       // We will temporarily intercept found keys to attach the form label to them
       function checkAddWithForm(candidate) {
         if (glossary[candidate]) {
-          // Store the match as an object with its grammatical form mapped
           foundKeys.add(JSON.stringify({ root: candidate, form: formType }));
         }
       }
@@ -274,13 +274,12 @@ function collectMatches(word, glossary) {
       const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
       for (const m in aspirate) if (nakedStem.startsWith(m)) aspirate[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
 
-      // Harden stem reversals
+      // Harden stem reversals (e.g., teca -> tec -> teg)
       if (nakedStem.endsWith("c")) { const s = nakedStem.slice(0, -1) + "g"; checkAddWithForm(s); }
       if (nakedStem.endsWith("t")) { const s = nakedStem.slice(0, -1) + "d"; checkAddWithForm(s); }
       if (nakedStem.endsWith("p")) { const s = nakedStem.slice(0, -1) + "b"; checkAddWithForm(s); }
     }
   }
-
   return Array.from(foundKeys).map(item => {
     if (item.startsWith("{")) {
       const parsed = JSON.parse(item);
