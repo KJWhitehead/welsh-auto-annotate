@@ -14,12 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      tableBody.innerHTML = loggedWords.map(item => `<tr>
-        <td><span class="table-word">${item.word}</span></td>
-        <td>${item.displayDef}</td>
-        <td><span class="unit-tag">${item.course} • ${item.unit}</span></td>
-        <td style="text-align: center;"><span class="count-badge">${item.count}×</span></td>
-      </tr>`).join("");
+const sourceLabel = (item.course || item.unit) ? `${item.course} ${item.unit ? '• ' + item.unit : ''}`.trim() : "";
+
+tableBody.innerHTML = loggedWords.map(item => `<tr>
+  <td><span class="table-word">${item.word}</span></td>
+  <td>${item.displayDef}</td>
+  <td>${sourceLabel ? `<span class="unit-tag">\${sourceLabel}</span>` : ""}</td>
+  <td style="text-align: center;"><span class="count-badge">${item.count}×</span></td>
+</tr>`).join("");
     });
   }
 
