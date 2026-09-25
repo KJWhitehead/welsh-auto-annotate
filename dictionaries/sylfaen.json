@@ -6,7 +6,9 @@
     "definition": "accents"
   },
   "actio": {
-    "definition": "to act"
+    "definition": "to act",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "achos": {
     "definition": "cause, case (legal)"
@@ -15,7 +17,9 @@
     "definition": "causes, cases (legal)"
   },
   "achub": {
-    "definition": "to save, to rescue"
+    "definition": "to save, to rescue",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "adar": {
     "definition": "birds"
@@ -42,7 +46,9 @@
     "definition": "reports"
   },
   "addas": {
-    "definition": "suitable"
+    "definition": "suitable",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "addurno": {
     "definition": "to decorate"
@@ -84,7 +90,9 @@
     "definition": "Germany"
   },
   "almaeneg": {
-    "definition": "German (language)"
+    "definition": "German (iaith)",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "almaenes": {
     "definition": "German woman"
@@ -162,16 +170,24 @@
     "definition": "to book, to reserve, to order"
   },
   "archfarchnad": {
-    "definition": "supermarket"
+    "definition": "supermarket",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "archfarchnadoedd": {
-    "definition": "supermarkets"
+    "definition": "supermarkets",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "ardal": {
-    "definition": "area"
+    "definition": "area",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "ardaloedd": {
-    "definition": "areas"
+    "definition": "areas",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "ar fai": {
     "definition": "at fault"
@@ -309,7 +325,9 @@
     "definition": "beast"
   },
   "byw": {
-    "definition": "alive, live"
+    "definition": "alive, live",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "bywyd": {
     "definition": "life"
@@ -333,13 +351,27 @@
     "definition": "wise"
   },
   "camp": {
-    "definition": "feat"
+    "definition": "feat",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
+  },
+  "campau": {
+    "definition": "feats",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "campio": {
     "definition": "to camp"
   },
   "cangarŵ": {
-    "definition": "kangaroo"
+    "definition": "kangaroo",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
+  },
+  "cangarŵod": {
+    "definition": "kangaroo",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "canol dydd": {
     "definition": "midday"
@@ -384,7 +416,9 @@
     "definition": "bouncy castle"
   },
   "cefn gwlad": {
-    "definition": "the countryside"
+    "definition": "the countryside",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "cefndir": {
     "definition": "background"
@@ -447,13 +481,17 @@
     "definition": "dinners"
   },
   "cinio rhost": {
-    "definition": "a roast dinner"
+    "definition": "a roast dinner",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "ciwb": {
     "definition": "cube"
   },
   "clasurol": {
-    "definition": "classical"
+    "definition": "classical",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "clecs": {
     "definition": "gossip"
@@ -482,6 +520,11 @@
   "coedwigoedd": {
     "definition": "forests"
   },
+  "cof": {
+    "definition": "memory",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
+  },
   "cofiant": {
     "definition": "a biography"
   },
@@ -495,7 +538,9 @@
     "definition": "warm regards"
   },
   "cofrestru": {
-    "definition": "to register"
+    "definition": "to register",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "coleg": {
     "definition": "a college"
@@ -507,7 +552,9 @@
     "definition": "lost"
   },
   "colli": {
-    "definition": "to lose"
+    "definition": "to lose, to miss",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "comedi": {
     "definition": "a comedy"
@@ -575,6 +622,11 @@
   "creulon": {
     "definition": "cruel"
   },
+  "crïo": {
+    "definition": "to cry",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
+  },
   "croen": {
     "definition": "skin"
   },
@@ -588,13 +640,19 @@
     "definition": "crosswords"
   },
   "cropian": {
-    "definition": "to crawl"
+    "definition": "to crawl",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "crys": {
-    "definition": "a shirt"
+    "definition": "a shirt",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "crysau": {
-    "definition": "shirts"
+    "definition": "shirts",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "crys t": {
     "definition": "a T shirt"
@@ -657,22 +715,32 @@
     "definition": "huts"
   },
   "cwympo": {
-    "definition": "to fall"
+    "definition": "to fall",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cwyno": {
     "definition": "to complain"
   },
   "cydweithiwr": {
-    "definition": "a colleague"
+    "definition": "a colleague",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cydweithwyr": {
-    "definition": "colleagues"
+    "definition": "colleagues",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cydweithwraig": {
-    "definition": "a female colleague"
+    "definition": "a female colleague",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cydweithwragedd": {
-    "definition": "female colleagues"
+    "definition": "female colleagues",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cyfarfod": {
     "definition": "to meet or a meeting"
@@ -684,13 +752,19 @@
     "definition": "to direct"
   },
   "cyfle": {
-    "definition": "an opportunity, a chance"
+    "definition": "an opportunity, a chance",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cyfleoedd": {
-    "definition": "opportunities, chances"
+    "definition": "opportunities, chances",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cyfleus": {
-    "definition": "convenient"
+    "definition": "convenient",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "cyflog": {
     "definition": "a salary"
@@ -789,10 +863,14 @@
     "definition": "tails"
   },
   "cynnig": {
-    "definition": "an offer"
+    "definition": "an offer",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cynigion": {
-    "definition": "offers"
+    "definition": "offers",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "cynulleidfa": {
     "definition": "an audience, a congregation"
@@ -825,7 +903,9 @@
     "definition": "correct"
   },
   "chwarae teg": {
-    "definition": "fair play"
+    "definition": "fair play",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "chwaraewr": {
     "definition": "a player"
@@ -837,7 +917,9 @@
     "definition": "bitter"
   },
   "chwilio": {
-    "definition": "to search (am/for)"
+    "definition": "to search (with am)",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "chwyrnu": {
     "definition": "to snore"
@@ -864,10 +946,14 @@
     "definition": "sheep"
   },
   "dart": {
-    "definition": "a dart"
+    "definition": "a dart",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "dartiau": {
-    "definition": "darts"
+    "definition": "darts",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "datblygu": {
     "definition": "to develop"
@@ -927,7 +1013,9 @@
     "definition": "thank goodness"
   },
   "diolchgar": {
-    "definition": "thankful, grateful"
+    "definition": "thankful, grateful",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "disgrifio": {
     "definition": "to describe"
@@ -948,10 +1036,14 @@
     "definition": "to make redundant"
   },
   "diwedd": {
-    "definition": "end"
+    "definition": "end",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "diweddion": {
-    "definition": "ends"
+    "definition": "ends",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "diweddar": {
     "definition": "recent"
@@ -996,7 +1088,9 @@
     "definition": "drums"
   },
   "dwlu": {
-    "definition": "to love, to dote upon (with ar)"
+    "definition": "to love, to dote upon (with ar)",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "dwylo": {
     "definition": "hands"
@@ -1023,7 +1117,9 @@
     "definition": "diaries"
   },
   "dyfodol": {
-    "definition": "future"
+    "definition": "future",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "dyffryn": {
     "definition": "a valley"
@@ -1047,7 +1143,7 @@
     "definition": "Italian"
   },
   "eidaleg": {
-    "definition": "Italian (language)"
+    "definition": "Italian (iaith)"
   },
   "eidales": {
     "definition": "Italian woman"
@@ -1068,7 +1164,9 @@
     "definition": "items"
   },
   "eleni": {
-    "definition": "this year"
+    "definition": "this year",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "eli haul": {
     "definition": "suncream"
@@ -1080,10 +1178,14 @@
     "definition": "elephants"
   },
   "elusen": {
-    "definition": "a charity"
+    "definition": "a charity",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "elusennau": {
-    "definition": "charities"
+    "definition": "charities",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "emyn": {
     "definition": "a hymn"
@@ -1099,6 +1201,11 @@
   },
   "erbyn hyn": {
     "definition": "by now"
+  },
+  "eraill": {
+    "definition": "others",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "eryri": {
     "definition": "Snowdonia"
@@ -1200,7 +1307,9 @@
     "definition": "bypasses"
   },
   "ffrangeg": {
-    "definition": "French (language)"
+    "definition": "French (iaith)",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "ffrainc": {
     "definition": "France"
@@ -1236,7 +1345,9 @@
     "definition": "fools"
   },
   "ffwrn": {
-    "definition": "an oven"
+    "definition": "an oven",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "ffyrc": {
     "definition": "forks"
@@ -1245,7 +1356,9 @@
     "definition": "roads, ways"
   },
   "ffyrnau": {
-    "definition": "ovens"
+    "definition": "ovens",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "gafr": {
     "definition": "a goat"
@@ -1392,7 +1505,9 @@
     "definition": "invitations"
   },
   "gwarchod": {
-    "definition": "to protect, to babysit"
+    "definition": "to protect, to babysit",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "gwario": {
     "definition": "to spend (money)"
@@ -1428,7 +1543,9 @@
     "definition": "administrative"
   },
   "gweld eisiau": {
-    "definition": "to miss, to yearn for"
+    "definition": "to miss, to yearn for",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "gwella": {
     "definition": "to improve, to get better"
@@ -1443,7 +1560,9 @@
     "definition": "to camp"
   },
   "gwirfoddol": {
-    "definition": "voluntary"
+    "definition": "voluntary",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "gwisg": {
     "definition": "a costume, an uniform"
@@ -1506,10 +1625,10 @@
     "definition": "Irishman"
   },
   "gwyddelod": {
-    "definition": "Irish (people)"
+    "definition": "Irish (pobl)"
   },
   "gwyddeleg": {
-    "definition": "Irish (language)"
+    "definition": "Irish (iaith)"
   },
   "gwyddeles": {
     "definition": "Irish woman"
@@ -1533,7 +1652,9 @@
     "definition": "iron"
   },
   "hamdden": {
-    "definition": "leisure"
+    "definition": "leisure",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "hardd": {
     "definition": "beautiful"
@@ -1563,7 +1684,9 @@
     "definition": "helicopters"
   },
   "holl": {
-    "definition": "all, whole"
+    "definition": "all, whole",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "hollol": {
     "definition": "complete"
@@ -1608,22 +1731,30 @@
     "definition": "confident"
   },
   "hyfforddi": {
-    "definition": "to train"
+    "definition": "to train",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "hyfforddiant": {
     "definition": "training, coaching"
   },
   "hyfforddwr": {
-    "definition": "a coach, a trainer"
+    "definition": "a coach, a trainer",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "hyfforddwyr": {
-    "definition": "coaches, trainers"
+    "definition": "coaches, trainers",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "hysbysebu": {
     "definition": "to advertise"
   },
   "iach": {
-    "definition": "healthy"
+    "definition": "healthy",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "iaith": {
     "definition": "language"
@@ -1635,7 +1766,9 @@
     "definition": "languages"
   },
   "iogwrt": {
-    "definition": "a yoghurt"
+    "definition": "a yoghurt",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "isel": {
     "definition": "low"
@@ -1680,10 +1813,14 @@
     "definition": "lorries"
   },
   "llall": {
-    "definition": "other"
+    "definition": "other",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "lleill": {
-    "definition": "others"
+    "definition": "others",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "llaw": {
     "definition": "a hand"
@@ -1695,7 +1832,9 @@
     "definition": "places"
   },
   "llefain": {
-    "definition": "to cry"
+    "definition": "to cry",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "llef": {
     "definition": "irregular stem of llefain (to cry)"
@@ -1704,7 +1843,9 @@
     "definition": "local"
   },
   "lleuad": {
-    "definition": "moon"
+    "definition": "moon",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "llewod": {
     "definition": "lions"
@@ -1770,7 +1911,9 @@
     "definition": "letters"
   },
   "llywodraethau": {
-    "definition": "governments"
+    "definition": "governments",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "lle": {
     "definition": "place"
@@ -1782,7 +1925,9 @@
     "definition": "colourful"
   },
   "llosgi": {
-    "definition": "burn"
+    "definition": "to burn",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "llwy": {
     "definition": "spoon"
@@ -1800,7 +1945,9 @@
     "definition": "letter"
   },
   "llywodraeth": {
-    "definition": "government"
+    "definition": "government",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "mab": {
     "definition": "a son"
@@ -1830,16 +1977,30 @@
     "definition": "sizes"
   },
   "malwoden": {
-    "definition": "a snail"
+    "definition": "a snail",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "malwod": {
-    "definition": "snails"
+    "definition": "snails",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "marw": {
     "definition": "to die; dead"
   },
   "materion cyfoes": {
     "definition": "current affairs"
+  },
+  "math": {
+    "definition": "kind, type",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
+  },
+  "mathau": {
+    "definition": "kinds, types",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "mathemateg": {
     "definition": "mathematics"
@@ -1854,10 +2015,14 @@
     "definition": "microwave"
   },
   "meithrinfa ": {
-    "definition": "a crèche, a nursery"
+    "definition": "a crèche, a nursery",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "meithrinfeydd": {
-    "definition": "crèches, nurseries"
+    "definition": "crèches, nurseries",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "melys": {
     "definition": "sweet"
@@ -1881,10 +2046,14 @@
     "definition": "veterinary surgeries"
   },
   "milltir": {
-    "definition": "a mile"
+    "definition": "a mile",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "milltiroedd": {
-    "definition": "miles"
+    "definition": "miles",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "mochyn": {
     "definition": "a pig"
@@ -1956,10 +2125,14 @@
     "definition": "entrances"
   },
   "mynydd": {
-    "definition": "a mountain"
+    "definition": "a mountain",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "mynyddoedd": {
-    "definition": "mountains"
+    "definition": "mountains",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "nadredd": {
     "definition": "snakes"
@@ -1968,10 +2141,14 @@
     "definition": "snakes"
   },
   "naid": {
-    "definition": "a jump, a leap"
+    "definition": "a jump, a leap",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "neidiau": {
-    "definition": "jumps, leaps"
+    "definition": "jumps, leaps",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "natur": {
     "definition": "nature"
@@ -1992,7 +2169,9 @@
     "definition": "a snake"
   },
   "newid": {
-    "definition": "to change"
+    "definition": "to change",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "newyddiadurwr": {
     "definition": "a journalist"
@@ -2001,7 +2180,14 @@
     "definition": "journalists"
   },
   "nifer": {
-    "definition": "a number"
+    "definition": "a number",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
+  },
+  "niferoedd": {
+    "definition": "numbers",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "niwl": {
     "definition": "fog, mist"
@@ -2049,10 +2235,14 @@
     "definition": "from (person)"
   },
   "oedolion": {
-    "definition": "adults"
+    "definition": "adults",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "oedolyn": {
-    "definition": "an adult"
+    "definition": "an adult",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "oen": {
     "definition": "a lamb"
@@ -2061,10 +2251,14 @@
     "definition": "lambs"
   },
   "oergell": {
-    "definition": "fridge"
+    "definition": "fridge",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "oergelloedd": {
-    "definition": "refrigerators"
+    "definition": "refrigerators",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "oes": {
     "definition": "an age (time)"
@@ -2085,10 +2279,14 @@
     "definition": "oils"
   },
   "olwyn": {
-    "definition": "a wheel"
+    "definition": "a wheel",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "olwynion": {
-    "definition": "wheels"
+    "definition": "wheels",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "opsiwn": {
     "definition": "an option"
@@ -2112,7 +2310,9 @@
     "definition": "to dig"
   },
   "pam lai": {
-    "definition": "why not?"
+    "definition": "why not?",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "panel": {
     "definition": "a panel"
@@ -2130,7 +2330,9 @@
     "definition": "local Welsh paper"
   },
   "papuro": {
-    "definition": "to paper, papering"
+    "definition": "to paper, papering",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "parsel": {
     "definition": "a parcel"
@@ -2139,7 +2341,9 @@
     "definition": "parcels"
   },
   "pasio": {
-    "definition": "to pass"
+    "definition": "to pass",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "peiriannydd": {
     "definition": "an engineer"
@@ -2148,10 +2352,14 @@
     "definition": "engineers"
   },
   "pêl-fasged": {
-    "definition": "basketball"
+    "definition": "basketball",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "pêl-rwyd": {
-    "definition": "netball"
+    "definition": "netball",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "pen ôl": {
     "definition": "bottom (body part)"
@@ -2220,10 +2428,14 @@
     "definition": "feathers"
   },
   "plwg": {
-    "definition": "a plug"
+    "definition": "a plug",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "plygiau": {
-    "definition": "plugs"
+    "definition": "plugs",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "plymwr": {
     "definition": "a plumber"
@@ -2265,10 +2477,14 @@
     "definition": "to post"
   },
   "potel": {
-    "definition": "a bottle"
+    "definition": "a bottle",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "poteli": {
-    "definition": "bottles"
+    "definition": "bottles",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "powdr": {
     "definition": "powder"
@@ -2286,7 +2502,9 @@
     "definition": "(the) present"
   },
   "preswyl": {
-    "definition": "residential"
+    "definition": "residential",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "prifddinas": {
     "definition": "capital city"
@@ -2295,10 +2513,14 @@
     "definition": "capital cities"
   },
   "priodas": {
-    "definition": "a wedding"
+    "definition": "a wedding",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "priodasau": {
-    "definition": "weddings"
+    "definition": "weddings",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "pris": {
     "definition": "a price"
@@ -2334,28 +2556,42 @@
     "definition": "subjects"
   },
   "pwrs": {
-    "definition": "a purse"
+    "definition": "a purse",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "pyrsiau": {
-    "definition": "purses"
+    "definition": "purses",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "pwynt": {
-    "definition": "a point"
+    "definition": "a point",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "pwyntiau": {
-    "definition": "points"
+    "definition": "points",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "pwys": {
-    "definition": "pound (lb)"
+    "definition": "pound (lb)",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "pwysau": {
-    "definition": "pounds, weight, weights"
+    "definition": "pounds; weight, weights",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "pysgota": {
     "definition": "to fish"
   },
   "pythefnos": {
-    "definition": "a fortnight"
+    "definition": "a fortnight",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "realiti": {
     "definition": "reality"
@@ -2364,7 +2600,9 @@
     "definition": "to ride"
   },
   "reis": {
-    "definition": "rice"
+    "definition": "rice",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "rysáit": {
     "definition": "a recipe"
@@ -2412,10 +2650,14 @@
     "definition": "reasonable"
   },
   "rhewgell": {
-    "definition": "freezer"
+    "definition": "freezer",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "rhewgelloedd": {
-    "definition": "freezers"
+    "definition": "freezers",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "rhewi": {
     "definition": "to freeze"
@@ -2478,7 +2720,9 @@
     "definition": "several, many"
   },
   "sbaeneg": {
-    "definition": "Spanish (language)"
+    "definition": "Spanish (iaith)",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "sbectol": {
     "definition": "spectacles, glasses"
@@ -2493,19 +2737,27 @@
     "definition": "pairs of sunglasses"
   },
   "sbeislyd": {
-    "definition": "spicy"
+    "definition": "spicy",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "sboncen": {
-    "definition": "squash (chwaraeon)"
+    "definition": "squash (chwaraeon)",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "sebon": {
     "definition": "soap"
   },
   "sedd": {
-    "definition": "a seat"
+    "definition": "a seat",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "seddi": {
-    "definition": "seats"
+    "definition": "seats",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "sef": {
     "definition": "i.e. (that is to say)"
@@ -2527,6 +2779,16 @@
   },
   "seneddau": {
     "definition": "parliaments"
+  },
+  "sesiwn": {
+    "definition": "session",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
+  },
+  "sesiynau": {
+    "definition": "sessions",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "seremoni": {
     "definition": "a ceremony"
@@ -2652,13 +2914,20 @@
     "definition": "stomachs"
   },
   "suddo": {
-    "definition": "to sink"
+    "definition": "to sink",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "swil": {
     "definition": "shy, bashful"
   },
   "sŵn": {
     "definition": "a sound, a noise"
+  },
+  "sy": {
+    "definition": "who/which",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "synau": {
     "definition": "sounds, noises"
@@ -2724,7 +2993,9 @@
     "definition": "taps"
   },
   "tawel": {
-    "definition": "quiet, calm"
+    "definition": "quiet, calm",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "tebot": {
     "definition": "a teapot"
@@ -2781,7 +3052,9 @@
     "definition": "waves"
   },
   "torheulo": {
-    "definition": "to sunbathe"
+    "definition": "to sunbathe",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "tra": {
     "definition": "while, whilst"
@@ -2796,10 +3069,14 @@
     "definition": "traditional"
   },
   "trafferth": {
-    "definition": "trouble, bother"
+    "definition": "trouble, bother",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "trafferthion": {
-    "definition": "troubles"
+    "definition": "troubles",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "traffordd": {
     "definition": "a motorway"
@@ -2811,7 +3088,9 @@
     "definition": "violence"
   },
   "tramor": {
-    "definition": "overseas, abroad"
+    "definition": "overseas, abroad",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "trawiadol": {
     "definition": "striking"
@@ -2889,7 +3168,9 @@
     "definition": "tunnels"
   },
   "twpsyn": {
-    "definition": "a silly person, a stupid person"
+    "definition": "a silly person, a stupid person",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "twpsod": {
     "definition": "silly people"
@@ -2934,7 +3215,9 @@
     "definition": "terraced houses"
   },
   "tybed?": {
-    "definition": "I wonder?"
+    "definition": "I wonder?",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "tywel": {
     "definition": "a towel"
@@ -2958,7 +3241,9 @@
     "definition": "high"
   },
   "unig": {
-    "definition": "lonely, only"
+    "definition": "lonely, only",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "union": {
     "definition": "exact, direct"
@@ -2997,7 +3282,9 @@
     "definition": "the others"
   },
   "ymarfer corff": {
-    "definition": "physical education"
+    "definition": "physical education",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "ymbarél": {
     "definition": "umbrella"
@@ -3045,7 +3332,9 @@
     "definition": "during"
   },
   "yr eidal": {
-    "definition": "Italy"
+    "definition": "Italy",
+    "course": "Sylfaen", 
+    "unit": "Uned 3"
   },
   "y rhan fwya": {
     "definition": "the majority"
@@ -3114,16 +3403,24 @@
     "definition": "Switzerland"
   },
   "mwy nag unwaith": {
-    "definition": "more than once"
+    "definition": "more than once",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
-  "raid cropian cyn cerdded": {
-    "definition": "You must walk before you can run"
+  "rhaid cropian cyn cerdded": {
+    "definition": "You must walk before you can run",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "yn aml": {
-    "definition": "often"
+    "definition": "often",
+    "course": "Sylfaen", 
+    "unit": "Uned 1"
   },
   "ar ben": {
-    "definition": "on top of"
+    "definition": "on top of",
+    "course": "Sylfaen", 
+    "unit": "Uned 2"
   },
   "y llall": {
     "definition": "the other"
@@ -3674,9 +3971,6 @@
   "smygu": {
     "definition": "to smoke"
   },
-  "afal": {
-    "definition": "apple"
-  },
   "bacwn": {
     "definition": "bason"
   },
@@ -3953,9 +4247,6 @@
   "pencampwyr": {
     "definition": "champions"
   },
-  "pêl-droed": {
-    "definition": "football"
-  },
   "pêl-fas": {
     "definition": "baseball"
   },
@@ -3970,9 +4261,6 @@
   },
   "salw": {
     "definition": "ugly"
-  },
-  "afalau": {
-    "definition": "apples"
   },
   "fodca": {
     "definition": "vodka"
@@ -4002,7 +4290,9 @@
     "definition": "will be"
   },
   "cyfoethog": {
-    "definition": "rich"
+    "definition": "rich",
+    "course": "Sylfaen", 
+    "unit": "Uned 4"
   },
   "aeddfed": {
     "definition": "ripe, mature"
@@ -4830,3 +5120,4 @@
     "definition": "2nd person plural/formal (you) 'should'"
   }
 }
+
