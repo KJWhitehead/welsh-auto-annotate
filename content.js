@@ -290,8 +290,7 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-  // Handle study list buttons inside live pages safely
-  // 1. EXTENSION IN-PAGE CLICK INTERACTION DELEGATION
+  // 1. EXTENSION & WORKBENCH CLICK INTERACTION DELEGATION
   if (target.classList.contains('study-btn')) {
     event.stopPropagation();
     
@@ -299,28 +298,44 @@ document.addEventListener('click', (event) => {
     const word = decodeURIComponent(target.getAttribute('data-word')).trim();
     const encodedData = JSON.parse(decodeURIComponent(target.getAttribute('data-param')));
     
-    // BULLETPROOF: Send a clean message up to background.js to execute storage updates safely!
-    chrome.runtime.sendMessage({
-      action: "SAVE_VOCAB_WORD",
-      payload: {
-        word: word,
-        def: encodedData.def,
-        course: encodedData.course,
-        unit: encodedData.unit
+    // 🧠 THE HYBRID GATEKEEPER SWITCH:
+    // If the 'chrome.runtime' object exists, use the background cloud sync messenger!
+    if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+      chrome.runtime.sendMessage({
+        action: "SAVE_VOCAB_WORD",
+        payload: {
+          word: word,
+          def: encodedData.def,
+          course: encodedData.course,
+          unit: encodedData.unit
+        }
+      }, (response) => {
+        triggerVisualSuccessFeedback(target);
+      });
+    } 
+    // FALLBACK TRACK: If running offline on your 200 OK server, use safe localStorage!
+    else {
+      let listCache = localStorage.getItem("welshLocalStudySession");
+      let loggedWords = listCache ? JSON.parse(listCache) : [];
+
+      const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === word.toLowerCase());
+      if (matchIdx !== -1) {
+        loggedWords[matchIdx].count += 1;
+      } else {
+        loggedWords.push({ word: word, displayDef: encodedData.def, course: encodedData.course, unit: encodedData.unit, count: 1 });
       }
-    }, (response) => {
-      // Visual feedback: Confirm save action success dynamically inside the tooltip bubble
-      target.innerText = "✅ Added!";
-      target.style.background = "#059669";
+
+      localStorage.setItem("welshLocalStudySession", JSON.stringify(loggedWords));
       
-      // Auto-close tooltip bubble shortly after saving
-      setTimeout(() => {
-        document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-      }, 800);
-    });
+      // If the local workbench table renderer function exists on the screen, reload it instantly!
+      if (typeof renderStudyListTable === 'function') {
+        renderStudyListTable();
+      }
+      
+      triggerVisualSuccessFeedback(target);
+    }
     return;
   }
-
   // Dismiss tooltips on general clicks
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
 });
