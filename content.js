@@ -136,8 +136,8 @@ function annotate(text, glossary) {
         let tooltipHtml = matches.map(m => {
           const d = m.definition;
           const txt = (d && typeof d === 'object') ? d.definition : d;
-          const c = (d && d.course) ? d.course : "N/A";
-          const u = (d && d.unit) ? d.unit : "N/A";
+          const c = (d && d.course) ? d.course : "";
+          const u = (d && d.unit) ? d.unit : "";
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt} [${c} • ${u}]</span>`;
         }).join("");
 
@@ -147,8 +147,8 @@ function annotate(text, glossary) {
         const packedData = {
           word: word,
           def: (firstMatch && typeof firstMatch === 'object') ? firstMatch.definition : firstMatch,
-          course: (firstMatch && firstMatch.course) ? firstMatch.course : "N/A",
-          unit: (firstMatch && firstMatch.unit) ? firstMatch.unit : "N/A"
+          course: (firstMatch && firstMatch.course) ? firstMatch.course : "",
+          unit: (firstMatch && firstMatch.unit) ? firstMatch.unit : ""
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         let btn = `<button class="study-btn" data-word="${word}" data-param="${cleanParam}" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
