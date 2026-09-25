@@ -96,12 +96,19 @@ function annotate(text, glossary) {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
     processedText = processedText.replace(regex, (match) => {
-      // Safe phrase data unpacking
       const rawDef = glossary[phrase];
-      const displayDefText = (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) 
-        ? rawDef.definition 
-        : rawDef;
-      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${displayDefText}___PHRASE_END___`;
+      let displayDefText = rawDef;
+      let courseInfo = "";
+
+      if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
+        displayDefText = rawDef.definition;
+        if (rawDef.course && rawDef.unit) {
+          courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
+        }
+      }
+
+      const finalDisplayString = displayDefText + courseInfo;
+      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${finalDisplayString}___PHRASE_END___`;
     });
   });
 
@@ -119,30 +126,37 @@ function annotate(text, glossary) {
       return `<span class="annotated">${textPhrase}<span class="tooltip">${htmlTextContent}${addBtnHtml}</span></span>`;
     }
 
-    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
+     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
-      const matches = collectMatches(word, glossary); // Your mutation matrix runs here safely
+      const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
+        // 🛠️ UPDATED FOR CHAPTER ORIGINS:
         let tooltipContent = matches.map(m => {
           const rawDef = m.definition;
-          const displayDefText = (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) 
-            ? rawDef.definition 
-            : rawDef;
-          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${displayDefText}</span>`;
+          let displayDefText = rawDef;
+          let courseInfo = "";
+
+          if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
+            displayDefText = rawDef.definition;
+            if (rawDef.course && rawDef.unit) {
+              courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
+            }
+          }
+          
+          const finalDisplayString = displayDefText + courseInfo;
+          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${finalDisplayString}</span>`;
         }).join("");
 
         const plainTextLabel = matches.map(m => {
           const rawDef = m.definition;
-          const displayDefText = (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) 
-            ? rawDef.definition 
-            : rawDef;
+          const displayDefText = (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) ? rawDef.definition : rawDef;
           return `(${m.root}): ${displayDefText}`;
         }).join(' / ');
 
         const cleanParamLabel = plainTextLabel.replace(/['"]/g, '&quot;');
-        let addBtnHtml = `<button class="study-btn" data-word="${word}" data-param="${cleanParamLabel}" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+        let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${word}', '${cleanParamLabel}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
 
-        return `<span class="annotated">${word}<span class="tooltip">${tooltipContent}${addBtnHtml}</span></span>`;
+        return `<span class="annotated" onclick="handleWordActivation(event, this, '${word}', '${cleanParamLabel}')">${word}<span class="tooltip">${tooltipContent}${addBtnHtml}</span></span>`;
       }
       return word;
     }).join("");
