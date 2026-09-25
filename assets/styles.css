@@ -1,238 +1,62 @@
-body {
-    font-family: sans-serif;
-    max-width: 750px;
-    margin: 20px auto;
-    line-height: 1.6;
-    padding: 0 20px;
-    background-color: #fafafa;
-  }
+/* --- ISOLATED EXTENSION WEB INJECTION CSS --- */
+/* This file ONLY touches the hover tooltips on live websites! */
 
-  .control-panel {
-    background: #f4f6f9;
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px solid #d1d5db;
-    margin-bottom: 20px;
-  }
-
-  .checkbox-group {
-    display: flex;
-    gap: 20px;
-    margin-top: 8px;
-    flex-wrap: wrap; 
-  }
-
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-weight: normal;
-    cursor: pointer;
-    font-size: 1em;
-    padding: 5px 0;
-  }
-
-  .checkbox-label input {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-  }
-
-  textarea {
-    width: 100%;
-    height: 150px;
-    font-size: 1em;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-  }
-
-  .btn-primary {
-    padding: 12px 24px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #0056b3;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-
-  .btn-danger {
-    padding: 6px 12px;
-    font-size: 0.85em;
-    cursor: pointer;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin: 0;
-  }
-
-  @media (min-width: 480px) {
-    .btn-primary { width: auto; }
-  }
-
-  .btn-primary:hover { background-color: #004085; }
-  .btn-danger:hover { background-color: #c82333; }
-
-  .annotated {
-    position: relative;
-    cursor: pointer;
-    border-bottom: 2px dotted #0056b3;
-    display: inline-block;
-  }
-
-  .tooltip {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.15s ease-in-out;
-    position: absolute;
-    bottom: 125%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #222;
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 6px;
-    white-space: nowrap;
-    z-index: 100;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-
-  .annotated:hover .tooltip,
-  .annotated.show-tooltip .tooltip {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .tooltip-branch {
-    display: block;
-    border-bottom: 1px dashed #444;
-    padding: 3px 0;
-  }
-  .tooltip-branch:last-child {
-    border-bottom: none;
-  }
-  .tooltip-label {
-    color: #a7f3d0;
-    font-size: 0.85em;
-    font-weight: bold;
-    margin-right: 5px;
-  }
-
-  label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-
-/* SCOPED SYSTEM STUDY TABLE STYLING                       */
-/* ======================================================= */
-/* These rules are tightly scoped so they can NEVER break public web page elements */
-
-.study-list-container {
-  margin-top: 40px;
-  background: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 6px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-
-* ======================================================= */
-/* SCOPED SYSTEM STUDY TABLE STYLING                       */
-/* ======================================================= */
-/* These rules are isolated via .study-table so they can NEVER break public web page elements */
-
-.study-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-  font-size: 0.95em;
-  font-family: sans-serif;
-}
-
-.study-table th, 
-.study-table td {
-  border: 1px solid #dee2e6;
-  padding: 12px;
-  text-align: left;
-}
-
-.study-table th {
-  background-color: #f8f9fa;
-  color: #495057;
-  font-weight: bold;
-}
-
-.empty-msg {
-  color: #6c757d;
-  font-style: italic;
-  text-align: center !important;
-  padding: 20px !important;
-}
-
-.table-word {
-  font-weight: bold;
-  color: #0056b3;
-  background-color: #f0f7ff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  display: inline-block;
-}
-
-.table-branch-item {
-  display: block;
-  padding: 2px 0;
-  border-bottom: 1px dotted #e2e8f0;
-}
-.table-branch-item:last-child {
-  border-bottom: none;
-}
-
-.cy-annotated-word {
-  border-bottom: 2px dashed #0056b3;
-  cursor: help;
+.annotated {
   position: relative;
-  display: inline-block;
+  display: inline-block; 
+  border-bottom: 2px dashed #10b981;
+  cursor: pointer;
+  background-color: rgba(16, 185, 129, 0.08);
 }
 
-.cy-annotated-word::after {
-  content: attr(data-tooltip);
+.annotated .tooltip {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
   position: absolute;
-  bottom: 125%;
+  bottom: 130%; 
   left: 50%;
   transform: translateX(-50%);
-  background-color: #1e1e24;
+  background-color: #1f2937;
   color: #ffffff;
-  padding: 6px 10px;
-  border-radius: 4px;
+  text-align: left;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  width: 250px;
+  z-index: 100000; 
+  font-family: sans-serif;
   font-size: 13px;
-  white-space: nowrap;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease-in-out;
-  z-index: 99999;
+  line-height: 1.4;
+  white-space: normal;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
 }
 
-.cy-annotated-word:hover::after {
+.annotated:hover .tooltip,
+.annotated.show-tooltip .tooltip {
+  visibility: visible;
   opacity: 1;
 }
 
-/* Styled curriculum badge for the new Course & Unit table column */
-.unit-tag {
-  font-size: 11px;
-  background: #e0f2fe;
-  color: #0369a1;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-weight: bold;
-  white-space: nowrap;
-  display: inline-block;
+.tooltip-branch {
+  display: block;
+  margin-bottom: 4px;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 4px;
 }
 
+.tooltip-label {
+  color: #34d399;
+  font-weight: bold;
+}
+
+.annotated .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #1f2937 transparent transparent transparent;
+}
