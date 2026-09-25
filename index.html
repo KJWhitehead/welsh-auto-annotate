@@ -247,48 +247,46 @@ function collectMatches(word, glossary) {
       }
     }
   }
-
-   // 4. ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
-  // Targets regular endings: -ach (comparative), -af (superlative), -ed (equative)
-  const adjSuffixes = ["ach", "af", "ed"];
-  for (const suffix of adjSuffixes) {
+ // 4. ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
+  const adjSuffixes = { "ach": "comparative", "af": "superlative", "ed": "equative" };
+  for (const [suffix, formType] of Object.entries(adjSuffixes)) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
       
-      // A. Check the direct naked stem (e.g., mwynach -> mwyn)
-      checkAndAdd(nakedStem);
-      scanMutations(nakedStem);
-
-      // B. 🛠️ HARDENED STEM RESTORATION (e.g., tecach -> tec -> teg)
-      // If the stem ends in a hardened consonant, soften it back to find the root!
-      if (nakedStem.endsWith("c")) {
-        const softGStemm = nakedStem.slice(0, -1) + "g";
-        checkAndAdd(softGStemm);
-        scanMutations(softGStemm);
-      }
-      if (nakedStem.endsWith("t")) {
-        const softDStem = nakedStem.slice(0, -1) + "d";
-        checkAndAdd(softDStem);
-        scanMutations(softDStem);
-      }
-      if (nakedStem.endsWith("p")) {
-        const softBStem = nakedStem.slice(0, -1) + "b";
-        checkAndAdd(softBStem);
-        scanMutations(softBStem);
+      // We will temporarily intercept found keys to attach the form label to them
+      function checkAddWithForm(candidate) {
+        if (glossary[candidate]) {
+          // Store the match as an object with its grammatical form mapped
+          foundKeys.add(JSON.stringify({ root: candidate, form: formType }));
+        }
       }
 
-      // C. Handle standard dropped terminal vowel restorations
-      const vowelRestorations = ["e", "o", "a"];
-      for (const v of vowelRestorations) {
-        let reconstructedAdj = nakedStem + v;
-        checkAndAdd(reconstructedAdj);
-        scanMutations(reconstructedAdj);
-      }
+      // Check standard mutations with the form tag attached
+      checkAddWithForm(nakedStem);
+      
+      // Re-map scanMutations to use our form tracker inside this loop block
+      const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
+      for (const m in soft) if (nakedStem.startsWith(m)) soft[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
+      
+      const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
+      for (const m in nasal) if (nakedStem.startsWith(m)) nasal[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
+      
+      const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
+      for (const m in aspirate) if (nakedStem.startsWith(m)) aspirate[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
+
+      // Harden stem reversals
+      if (nakedStem.endsWith("c")) { const s = nakedStem.slice(0, -1) + "g"; checkAddWithForm(s); }
+      if (nakedStem.endsWith("t")) { const s = nakedStem.slice(0, -1) + "d"; checkAddWithForm(s); }
+      if (nakedStem.endsWith("p")) { const s = nakedStem.slice(0, -1) + "b"; checkAddWithForm(s); }
     }
   }
 
-  return Array.from(foundKeys).map(key => {
-    return { root: key, definition: glossary[key] };
+  return Array.from(foundKeys).map(item => {
+    if (item.startsWith("{")) {
+      const parsed = JSON.parse(item);
+      return { root: parsed.root, definition: glossary[parsed.root], form: parsed.form };
+    }
+    return { root: item, definition: glossary[item], form: "" };
   });
 }
 
