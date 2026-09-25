@@ -143,23 +143,26 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-/* FIXED SCOPE: Scopes the table selectors to prevent global page distortion */
-body table, 
+* ======================================================= */
+/* SCOPED SYSTEM STUDY TABLE STYLING                       */
+/* ======================================================= */
+/* These rules are isolated via .study-table so they can NEVER break public web page elements */
+
 .study-table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
   font-size: 0.95em;
+  font-family: sans-serif;
 }
 
-body th, body td,
-.study-table th, .study-table td {
+.study-table th, 
+.study-table td {
   border: 1px solid #dee2e6;
   padding: 12px;
   text-align: left;
 }
 
-body th,
 .study-table th {
   background-color: #f8f9fa;
   color: #495057;
@@ -221,7 +224,7 @@ body th,
   opacity: 1;
 }
 
-/* NEW: Styled curriculum badge for the new Course & Unit table column */
+/* Styled curriculum badge for the new Course & Unit table column */
 .unit-tag {
   font-size: 11px;
   background: #e0f2fe;
@@ -232,3 +235,4 @@ body th,
   white-space: nowrap;
   display: inline-block;
 }
+
