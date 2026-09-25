@@ -130,59 +130,66 @@ body {
     margin-bottom: 5px;
   }
 
-  /* RE-STYLED SCANNABLE STUDY LIST PANELS */
-  .study-list-container {
-    margin-top: 40px;
-    background: #fff;
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    padding: 20px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
+/* SCOPED SYSTEM STUDY TABLE STYLING                       */
+/* ======================================================= */
+/* These rules are tightly scoped so they can NEVER break public web page elements */
 
-  .study-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-    font-size: 0.95em;
-  }
+.study-list-container {
+  margin-top: 40px;
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
 
-  .study-table th, .study-table td {
-    border: 1px solid #dee2e6;
-    padding: 12px;
-    text-align: left;
-  }
+/* FIXED SCOPE: Scopes the table selectors to prevent global page distortion */
+body table, 
+.study-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  font-size: 0.95em;
+}
 
-  .study-table th {
-    background-color: #f8f9fa;
-    color: #495057;
-    font-weight: bold;
-  }
+body th, body td,
+.study-table th, .study-table td {
+  border: 1px solid #dee2e6;
+  padding: 12px;
+  text-align: left;
+}
 
-  .empty-msg {
-    color: #6c757d;
-    font-style: italic;
-    text-align: center !important;
-    padding: 20px !important;
-  }
+body th,
+.study-table th {
+  background-color: #f8f9fa;
+  color: #495057;
+  font-weight: bold;
+}
 
-  .table-word {
-    font-weight: bold;
-    color: #0056b3;
-    background-color: #f0f7ff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    display: inline-block;
-  }
+.empty-msg {
+  color: #6c757d;
+  font-style: italic;
+  text-align: center !important;
+  padding: 20px !important;
+}
 
-  .table-branch-item {
-    display: block;
-    padding: 2px 0;
-    border-bottom: 1px dotted #e2e8f0;
-  }
-  .table-branch-item:last-child {
-    border-bottom: none;
-  }
+.table-word {
+  font-weight: bold;
+  color: #0056b3;
+  background-color: #f0f7ff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.table-branch-item {
+  display: block;
+  padding: 2px 0;
+  border-bottom: 1px dotted #e2e8f0;
+}
+.table-branch-item:last-child {
+  border-bottom: none;
+}
 
 .cy-annotated-word {
   border-bottom: 2px dashed #0056b3;
@@ -191,7 +198,6 @@ body {
   display: inline-block;
 }
 
-/* Tooltip container styling */
 .cy-annotated-word::after {
   content: attr(data-tooltip);
   position: absolute;
@@ -215,7 +221,7 @@ body {
   opacity: 1;
 }
 
-//* NEW: Styled curriculum badge for the new Course & Unit table column */
+/* NEW: Styled curriculum badge for the new Course & Unit table column */
 .unit-tag {
   font-size: 11px;
   background: #e0f2fe;
