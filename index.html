@@ -567,12 +567,15 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
         }).join("");
 
         // 2. STRUCTURALLY PACK THE DATA OBJECT FOR THE COMPACT STUDY TABLE
-        const firstMatch = matches[0].definition;
+        // 🛠️ FIXED: Pull the entire match object so properties can be extracted cleanly!
+        const firstMatch = matches[0]; 
+        const rawDef = firstMatch.definition;
+        
         const packedData = {
           word: word,
-          def: (firstMatch && typeof firstMatch === 'object') ? firstMatch.definition : firstMatch,
-          course: (firstMatch && firstMatch.course) ? firstMatch.course : "",
-          unit: (firstMatch && firstMatch.unit) ? firstMatch.unit : ""
+          def: (rawDef && typeof rawDef === 'object') ? rawDef.definition : rawDef,
+          course: (rawDef && typeof rawDef === 'object' && rawDef.course) ? rawDef.course : "",
+          unit: (rawDef && typeof rawDef === 'object' && rawDef.unit) ? rawDef.unit : ""
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         
@@ -623,12 +626,19 @@ function renderStudyListTable() {
     return;
   }
 
-  tableBody.innerHTML = loggedWords.map(item => `<tr>
-    <td><span class="table-word">${item.word}</span></td>
-    <td>${item.displayDef}</td>
-    <td><span class="unit-tag">${item.course} • ${item.unit}</span></td>
-    <td style="text-align: center; font-weight: bold; color: #dc3545;">${item.count}×</td>
-  </tr>`).join("");
+  tableBody.innerHTML = loggedWords.map(item => {
+    // 🛠️ FIXED: Build the label dynamically so it never displays a stray hanging bullet!
+    const courseText = item.course ? item.course.trim() : "";
+    const unitText = item.unit ? item.unit.trim() : "";
+    const sourceLabel = (courseText && unitText) ? `${courseText} • ${unitText}` : (courseText || unitText || "");
+
+    return `<tr>
+      <td><span class="table-word">${item.word}</span></td>
+      <td>${item.displayDef}</td>
+      <td>${sourceLabel ? `<span class="unit-tag">\${sourceLabel}</span>` : ""}</td>
+      <td style="text-align: center; font-weight: bold; color: #dc3545;">${item.count}×</td>
+    </tr>`;
+  }).join("");
 }
 
 // --- SYSTEM XML EXPORT CONTROLLER ---
