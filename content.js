@@ -336,6 +336,14 @@ document.addEventListener('click', (event) => {
     }
     return;
   }
+  function triggerVisualSuccessFeedback(targetButton) {
+  targetButton.innerText = "✅ Added!";
+  targetButton.style.background = "#059669";
+  
+  setTimeout(() => {
+    document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+  }, 800);
+}
   // Dismiss tooltips on general clicks
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
 });
