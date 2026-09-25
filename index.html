@@ -290,12 +290,27 @@ function collectMatches(word, glossary) {
       if (nakedStem.endsWith("p")) { const s = nakedStem.slice(0, -1) + "b"; checkAddWithForm(s); }
     }
   }
-  return Array.from(foundKeys).map(item => {
+ // --- FIXED: FINAL DE-DUPLICATION FILTER GATE ---
+  // Loops through all gathered keys and filters out generic plain roots 
+  // if a richer, grammatically tagged version of that same root exists!
+  const finalArray = Array.from(foundKeys).map(item => {
     if (item.startsWith("{")) {
       const parsed = JSON.parse(item);
       return { root: parsed.root, definition: glossary[parsed.root], form: parsed.form };
     }
     return { root: item, definition: glossary[item], form: "" };
+  });
+
+  // Filter out the plain root if the exact same root exists with a grammar form tag
+  return finalArray.filter((item, index, self) => {
+    if (item.form === "") {
+      // If a tagged version of this exact same root exists anywhere in the array, drop this plain one!
+      const hasTaggedVersion = self.some(x => x.root === item.root && x.form !== "");
+      if (hasTaggedVersion) return false;
+    }
+    
+    // Also drop absolute identical duplicates
+    return self.findIndex(x => x.root === item.root && x.definition === item.definition && x.form === item.form) === index;
   });
 }
 
