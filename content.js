@@ -1,11 +1,15 @@
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
-  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
+  // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
+  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+|[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+$/g, "").trim();
   if (!w) return [];
 
   // 1. WELSH CONTRACTION SPLITTER
-  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
-    w = w.slice(0, -2); 
+  // Only trim context attachments if the absolute contraction isn't explicitly in the glossary first!
+  if (!glossary[w]) {
+    if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
+      w = w.slice(0, -2); 
+    }
   }
 
   // 2. WELSH VOWEL-LINK STRIPPER
@@ -76,6 +80,45 @@ function collectMatches(word, glossary) {
         let reconstructedVerb = nakedStem + inf;
         checkAndAdd(reconstructedVerb);
         scanMutations(reconstructedVerb);
+      }
+    }
+  }
+
+ // 4. ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
+  // Targets regular endings: -ach (comparative), -af (superlative), -ed (equative)
+  const adjSuffixes = ["ach", "af", "ed"];
+  for (const suffix of adjSuffixes) {
+    if (w.endsWith(suffix) && w.length > suffix.length) {
+      const nakedStem = w.slice(0, -suffix.length);
+      
+      // A. Check the direct naked stem (e.g., mwynach -> mwyn)
+      checkAndAdd(nakedStem);
+      scanMutations(nakedStem);
+
+      // B. 🛠️ HARDENED STEM RESTORATION (e.g., tecach -> tec -> teg)
+      // If the stem ends in a hardened consonant, soften it back to find the root!
+      if (nakedStem.endsWith("c")) {
+        const softGStemm = nakedStem.slice(0, -1) + "g";
+        checkAndAdd(softGStemm);
+        scanMutations(softGStemm);
+      }
+      if (nakedStem.endsWith("t")) {
+        const softDStem = nakedStem.slice(0, -1) + "d";
+        checkAndAdd(softDStem);
+        scanMutations(softDStem);
+      }
+      if (nakedStem.endsWith("p")) {
+        const softBStem = nakedStem.slice(0, -1) + "b";
+        checkAndAdd(softBStem);
+        scanMutations(softBStem);
+      }
+
+      // C. Handle standard dropped terminal vowel restorations
+      const vowelRestorations = ["e", "o", "a"];
+      for (const v of vowelRestorations) {
+        let reconstructedAdj = nakedStem + v;
+        checkAndAdd(reconstructedAdj);
+        scanMutations(reconstructedAdj);
       }
     }
   }
