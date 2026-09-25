@@ -52,22 +52,33 @@
 </div>
 
 <!-- CONTROL PANEL (UPDATED FOR 4 CHECKBOX OPTIONS) -->
-<div class="control-panel">
-  <label>Select Vocabulary Levels to Include:</label>
-  <div class="checkbox-group">
-    <label class="checkbox-label">
-      <input type="checkbox" id="chkMynediad" checked> Mynediad (Entry level)
-    </label>
-    <label class="checkbox-label">
-      <input type="checkbox" id="chkSylfaen" checked> Sylfaen (Foundation level)
-    </label>
-    <label class="checkbox-label">
-      <input type="checkbox" id="chkCanolradd" checked> Canolradd (Intermediate level)
-    </label>
-    <label class="checkbox-label">
-      <input type="checkbox" id="chkBBC"> BBC News Vocab
-    </label>
+<div class="study-list-container">
+  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 8px; margin-bottom: 15px;">
+    <h3 style="margin: 0;">My Vocabulary Study List</h3>
+    <div style="display: flex; gap: 10px;">
+      <!-- FIXED: The new blue XML downloader action button -->
+      <button class="btn-primary" style="margin: 0; background-color: #3b82f6;" onclick="triggerXMLExport()">📥 Export to XML</button>
+      <button class="btn-danger" style="margin: 0;" onclick="clearStudyList()">Clear Study List</button>
+    </div>
   </div>
+
+  <table class="study-table">
+    <thead>
+      <tr>
+        <th style="width: 25%;">Word / Phrase</th>
+        <th style="width: 45%;">Definition Mapping</th>
+        <!-- FIXED: The structural 4th column header for curriculum units -->
+        <th style="width: 20%;">Curriculum Source</th>
+        <th style="width: 10%; text-align: center;">Count</th>
+      </tr>
+    </thead>
+    <tbody id="studyListBody">
+      <!-- Fixed cell count: spanning across all 4 columns for clean alignments -->
+      <tr>
+        <td colspan="4" class="empty-msg">No words saved to study list yet. Tap the [+] inside any translation bubble to start tracking.</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- MAIN TEXT AREA -->
@@ -101,290 +112,217 @@
 </div>
 
 <script>
-// Declare your single runtime dictionary globally at the top
+// Global initialization runtime database cache variables
 let runtimeGlossary = {};
 
-// THE BARRICADE: Safe execution guard waiting for the loader's signal
+// Listen for the signal from the <head> that data is ready
 window.addEventListener('dictionariesReady', () => {
-  console.log("🚀 Signal received! Compiling initial active runtime glossary...");
   compileActiveGlossary();
+  renderStudyListTable();
 });
 
-// GLOSSARY PARSING ENGINE
 function compileActiveGlossary() {
   runtimeGlossary = {};
+  const sets = [
+    { chk: 'chkMynediad', data: window.mynediadGlossary },
+    { chk: 'chkSylfaen', data: window.sylfaenGlossary },
+    { chk: 'chkCanolradd', data: window.canolraddGlossary },
+    { chk: 'chkBBC', data: window.bbcGlossary }
+  ];
 
-  const useMynediad = document.getElementById('chkMynediad').checked;
-  const useSylfaen = document.getElementById('chkSylfaen').checked;
-  const useCanolradd = document.getElementById('chkCanolradd').checked;
-  const useBBC = document.getElementById('chkBBC').checked;
-
-  function mergeSource(sourceGlossary) {
-    if (!sourceGlossary || typeof sourceGlossary !== 'object') return;
-
-    for (const key in sourceGlossary) {
-      const cleanKey = key.trim().toLowerCase();
-      const rawData = sourceGlossary[key];
-
-      let textTranslation = "";
-      let courseInfo = "";
-
-      // Smart hybrid check for object containers or flat strings
-      if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
-        textTranslation = rawData.definition;
-        if (rawData.course && rawData.unit) {
-          courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
-        }
-      } else {
-        textTranslation = rawData;
-      }
-
-      const finalDisplayString = textTranslation + courseInfo;
-
-      if (runtimeGlossary[cleanKey]) {
-        const currentDefs = runtimeGlossary[cleanKey].split(" / ");
-        if (!currentDefs.includes(finalDisplayString)) {
-          runtimeGlossary[cleanKey] += " / " + finalDisplayString;
-        }
-      } else {
-        runtimeGlossary[cleanKey] = finalDisplayString;
+  sets.forEach(set => {
+    const checkbox = document.getElementById(set.chk);
+    if (checkbox && checkbox.checked && set.data) {
+      for (const key in set.data) {
+        const cleanKey = key.trim().toLowerCase();
+        runtimeGlossary[cleanKey] = set.data[key];
       }
     }
-  }
-
-  // Safely merge checkboxes to global variables populated by the fetch script
-  if (useMynediad) mergeSource(window.mynediadGlossary);
-  if (useSylfaen) mergeSource(window.sylfaenGlossary);
-  if (useCanolradd) mergeSource(window.canolraddGlossary);
-  if (useBBC) mergeSource(window.bbcGlossary);
-
-  console.log("📊 Active glossary compiled. Total terms:", Object.keys(runtimeGlossary).length);
+  });
+  console.log("📊 Active glossary compiled. Total keys:", Object.keys(runtimeGlossary).length);
 }
 
-// --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
+// --- TOKENIZER MATRIX ENGINE ---
 function collectMatches(word, glossary) {
-  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+$/g, "");
+  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF]+|[^\w\u00C0-\u017F\u1E00-\u1EFF]+\$/g, "");
   if (!w) return [];
 
-  // 1. WELSH CONTRACTION SPLITTER
-  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
-    w = w.slice(0, -2); 
-  }
-
-  // 2. WELSH VOWEL-LINK STRIPPER
-  if (!glossary[w]) {
-    const vowelLinks = { "nag": "na", "ac": "a", "ag": "â", "tuag": "tua", "gydag": "gyda" };
-    if (vowelLinks[w]) w = vowelLinks[w];
-  }
-
+  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) w = w.slice(0, -2);
   if (!w) return [];
+
   let foundKeys = new Set();
-
   function checkAndAdd(candidate) {
     if (glossary[candidate]) foundKeys.add(candidate);
-    if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
-      const candidateWithF = candidate + "f";
-      if (glossary[candidateWithF]) foundKeys.add(candidateWithF);
-    }
   }
 
   checkAndAdd(w);
 
-  function scanMutations(candidate) {
-    // Soft Mutations
-    const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
-    for (const mut in soft) {
-      if (candidate.startsWith(mut)) {
-        soft[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
-      }
-    }
+  // Soft/Nasal/Aspirate mutation matrices checks
+  const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
+  for (const m in soft) if (w.startsWith(m)) soft[m].forEach(t => checkAndAdd(w.replace(new RegExp("^" + m), t)));
 
-    // Nasal Mutations
-    const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
-    for (const mut in nasal) {
-      if (candidate.startsWith(mut)) {
-        nasal[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
-      }
-    }
+  const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
+  for (const m in nasal) if (w.startsWith(m)) nasal[m].forEach(t => checkAndAdd(w.replace(new RegExp("^" + m), t)));
 
-    // Aspirate Mutations
-    const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
-    for (const mut in aspirate) {
-      if (candidate.startsWith(mut)) {
-        aspirate[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
-      }
-    }
+  const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
+  for (const m in aspirate) if (w.startsWith(m)) aspirate[m].forEach(t => checkAndAdd(w.replace(new RegExp("^" + m), t)));
 
-    if (/^[aeiouwŷâêîôû]/i.test(candidate)) checkAndAdd("g" + candidate);
+  if (/^[aeiouwŷâêîôû]/i.test(w)) checkAndAdd("g" + w);
+  if (w.startsWith("h") && w.length > 1 && /^[aeiouwŷâêîôû]/i.test(w.slice(1))) checkAndAdd(w.slice(1));
 
-    // ASPIRATE VOWEL PASS
-    if (candidate.startsWith("h") && candidate.length > 1) {
-      const vowelRoot = candidate.slice(1);
-      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) checkAndAdd(vowelRoot);
-    }
-  }
-
-  scanMutations(w);
-
-  // 3. VERB STEM SUFFIX STRIPPER
-  const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
-  for (const suffix of verbSuffixes) {
-    if (w.endsWith(suffix) && w.length > suffix.length) {
-      const nakedStem = w.slice(0, -suffix.length);
-      checkAndAdd(nakedStem);
-      scanMutations(nakedStem);
-
-      const infinitiveEndings = ["u", "i", "o", "io", "a"];
-      for (const inf of infinitiveEndings) {
-        let reconstructedVerb = nakedStem + inf;
-        checkAndAdd(reconstructedVerb);
-        scanMutations(reconstructedVerb);
-      }
-    }
-  }
-
-  return Array.from(foundKeys).map(key => {
-    return { root: key, definition: glossary[key] };
-  });
+  return Array.from(foundKeys).map(key => ({ root: key, definition: glossary[key] }));
 }
 
-// --- AUTO-ANNOTATION ENGINE ---
 function annotate(text, glossary) {
-  const phrases = Object.keys(glossary).filter(key => key.includes(" "));
-  phrases.sort((a, b) => b.length - a.length);
-
+  const phrases = Object.keys(glossary).filter(k => k.includes(" ")).sort((a, b) => b.length - a.length);
   let processedText = text;
 
-phrases.forEach(phrase => {
+  phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-    const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
-    processedText = processedText.replace(regex, (match) => {
-      const rawDef = glossary[phrase];
-      let displayDefText = rawDef;
-      let courseInfo = "";
-
-      if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
-        displayDefText = rawDef.definition;
-        if (rawDef.course && rawDef.unit) {
-          courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
-        }
-      }
-
-      const finalDisplayString = displayDefText + courseInfo;
-      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${finalDisplayString}___PHRASE_END___`;
+    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])(${safePhrase})(?=$|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])`, 'gi');
+    processedText = processedText.replace(regex, match => {
+      const d = glossary[phrase];
+      const txt = (d && typeof d === 'object') ? d.definition : d;
+      const c = (d && d.course) ? d.course : "N/A";
+      const u = (d && d.unit) ? d.unit : "N/A";
+      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${txt}|||${c}|||${u}___PHRASE_END___`;
     });
   });
 
   const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
-
   return tokens.map(token => {
     if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
-      const textPhrase = parts[0];
-      const translationPhrase = parts[1];
-      const htmlTextContent = `<span class="tooltip-branch"><span class="tooltip-label">(${textPhrase}):</span> ${translationPhrase}</span>`;
-      const cleanParam = `(${textPhrase}): ${translationPhrase}`.replace(/['"]/g, '&quot;');
-      let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${textPhrase}', '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-
-      return `<span class="annotated" onclick="handleWordActivation(event, this, '${textPhrase}', '${cleanParam}')">${textPhrase}<span class="tooltip">${htmlTextContent}${addBtnHtml}</span></span>`;
+      const phraseText = parts[0];
+      const dataBits = parts[1].split("|||");
+      
+      const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${phraseText}):</span> ${dataBits[0]} [${dataBits[1]} • ${dataBits[2]}]</span>`;
+      const cleanParam = encodeURIComponent(JSON.stringify({ word: phraseText, def: dataBits[0], course: dataBits[1], unit: dataBits[2] }));
+      let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+      return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
     }
 
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
-        // 🛠️ UPDATED FOR CHAPTER ORIGINS:
-        let tooltipContent = matches.map(m => {
-          const rawDef = m.definition;
-          let displayDefText = rawDef;
-          let courseInfo = "";
-
-          if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
-            displayDefText = rawDef.definition;
-            if (rawDef.course && rawDef.unit) {
-              courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
-            }
-          }
-          
-          const finalDisplayString = displayDefText + courseInfo;
-          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${finalDisplayString}</span>`;
+        let tooltipHtml = matches.map(m => {
+          const d = m.definition;
+          const txt = (d && typeof d === 'object') ? d.definition : d;
+          const c = (d && d.course) ? d.course : "N/A";
+          const u = (d && d.unit) ? d.unit : "N/A";
+          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt} [${c} • ${u}]</span>`;
         }).join("");
 
-        const plainTextLabel = matches.map(m => {
-          const rawDef = m.definition;
-          const displayDefText = (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) ? rawDef.definition : rawDef;
-          return `(${m.root}): ${displayDefText}`;
-        }).join(' / ');
-
-        const cleanParamLabel = plainTextLabel.replace(/['"]/g, '&quot;');
-        let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${word}', '${cleanParamLabel}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-
-        return `<span class="annotated" onclick="handleWordActivation(event, this, '${word}', '${cleanParamLabel}')">${word}<span class="tooltip">${tooltipContent}${addBtnHtml}</span></span>`;
+        const firstMatch = matches[0].definition;
+        const packedData = {
+          word: word,
+          def: (firstMatch && typeof firstMatch === 'object') ? firstMatch.definition : firstMatch,
+          course: (firstMatch && firstMatch.course) ? firstMatch.course : "N/A",
+          unit: (firstMatch && firstMatch.unit) ? firstMatch.unit : "N/A"
+        };
+        const cleanParam = encodeURIComponent(JSON.stringify(packedData));
+        let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+        return `<span class="annotated" onclick="handleToggle(event, this)">${word}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
       }
       return word;
     }).join("");
   }).join("");
 }
 
-// --- LAYER INTERACTION HANDLERS ---
-  function handleWordActivation(event, element, plainWord, encodedTranslation) {
-  event.stopPropagation(); 
-  const isOpen = element.classList.contains('show-tooltip');
-  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-  if (!isOpen) element.classList.add('show-tooltip');
+// --- INTERACTION & DATA STORAGE PIPELINES ---
+function handleToggle(event, el) {
+  event.stopPropagation();
+  const isOpen = el.classList.contains('show-tooltip');
+  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
+  if (!isOpen) el.classList.add('show-tooltip');
 }
 
-function handleAddButtonClick(event, plainWord, encodedTranslation) {
-  event.stopPropagation(); 
-  const cleanWord = plainWord.trim();
-  let listCache = sessionStorage.getItem("welshActiveStudySession");
+function handleAddClick(event, encodedData) {
+  event.stopPropagation();
+  const data = JSON.parse(decodeURIComponent(encodedData));
+  
+  let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
-  const existingItemIndex = loggedWords.findIndex(item => item.word.toLowerCase() === cleanWord.toLowerCase());
 
-  if (existingItemIndex !== -1) {
-    loggedWords[existingItemIndex].count += 1;
+  const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === data.word.toLowerCase());
+  if (matchIdx !== -1) {
+    loggedWords[matchIdx].count += 1;
   } else {
-    let cellularRows = encodedTranslation.split(' / ').map(item => `<span class="table-branch-item">${item}</span>`).join('');
-    loggedWords.push({ word: cleanWord, displayDef: cellularRows, count: 1 });
+    loggedWords.push({ word: data.word, displayDef: data.def, course: data.course, unit: data.unit, count: 1 });
   }
 
-  loggedWords.sort((a, b) => b.count - a.count);
-  sessionStorage.setItem("welshActiveStudySession", JSON.stringify(loggedWords));
+  localStorage.setItem("welshLocalStudySession", JSON.stringify(loggedWords));
   renderStudyListTable();
-  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
 }
 
 function renderStudyListTable() {
   const tableBody = document.getElementById("studyListBody");
-  if (!tableBody) return; 
-  
-  let listCache = sessionStorage.getItem("welshActiveStudySession");
+  if (!tableBody) return;
+
+  let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
   if (loggedWords.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="3" class="empty-msg">No words saved yet. Tap [+] inside bubbles to track.</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="4" class="empty-msg">No words saved yet. Tap [+] to track.</td></tr>`;
     return;
   }
 
   tableBody.innerHTML = loggedWords.map(item => `<tr>
     <td><span class="table-word">${item.word}</span></td>
     <td>${item.displayDef}</td>
-    <td style="text-align: center; font-weight: bold; color: #dc3545; background-color: #fff5f5;">${item.count}×</td>
+    <td><span class="unit-tag">${item.course} • ${item.unit}</span></td>
+    <td style="text-align: center; font-weight: bold; color: #dc3545;">${item.count}×</td>
   </tr>`).join("");
 }
 
-// --- STANDARD LOCAL OFFLINE PROCESSING EXECUTION ---
-function runAnnotation() {
-  compileActiveGlossary();
-  const text = document.getElementById("inputText").value;
+// --- SYSTEM XML EXPORT CONTROLLER ---
+function triggerXMLExport() {
+  let listCache = localStorage.getItem("welshLocalStudySession");
+  let loggedWords = listCache ? JSON.parse(listCache) : [];
 
-  if (!text.trim()) {
-    document.getElementById("output").innerHTML = "Please type some Welsh text first to annotate.";
+  if (loggedWords.length === 0) {
+    alert("Your study list is currently empty. Add some words first!");
     return;
   }
 
-  const localAnnotatedHtml = annotate(text, runtimeGlossary);
-  document.getElementById("output").innerHTML = localAnnotatedHtml;
+  let xmlString = `<?xml version="1.0" encoding="UTF-8"?>\n<studylist>\n`;
+  loggedWords.forEach(item => {
+    xmlString += `  <item>\n`;
+    xmlString += `    <word>${escapeXML(item.word)}</word>\n`;
+    xmlString += `    <definition>${escapeXML(item.displayDef)}</definition>\n`;
+    xmlString += `    <course>${escapeXML(item.course)}</course>\n`;
+    xmlString += `    <unit>${escapeXML(item.unit)}</unit>\n`;
+    xmlString += `    <count>${item.count}</count>\n`;
+    xmlString += `  </item>\n`;
+  });
+  xmlString += `</studylist>`;
+
+  const blob = new Blob([xmlString], { type: "text/xml" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "welsh_vocabulary_study_list.xml";
+  link.click();
+}
+
+function escapeXML(str) {
+  if (!str) return "";
+  return str.toString()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+function runAnnotation() {
+  const text = document.getElementById("inputText").value;
+  if (!text.trim()) {
+    document.getElementById("output").innerHTML = "Please type some Welsh text first.";
+    return;
+  }
+  document.getElementById("output").innerHTML = annotate(text, runtimeGlossary);
 }
 
 function clearAnnotation() {
@@ -392,16 +330,18 @@ function clearAnnotation() {
   document.getElementById("output").innerHTML = "";
 }
 
-window.onload = function() {
-  renderStudyListTable();
-};
+function clearStudyList() {
+  if (confirm("Are you sure you want to clear your current vocabulary study list?")) {
+    localStorage.removeItem("welshLocalStudySession");
+    renderStudyListTable();
+  }
+}
 
-document.addEventListener('click', function() {
-  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+document.addEventListener('click', () => {
+  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
 });
-
-
 </script>
+  
   <script data-goatcounter="https://welshannotation.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
 <!-- MINIMALIST SUPPORT FOOTER -->
