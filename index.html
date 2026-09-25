@@ -255,11 +255,23 @@ function annotate(text, glossary) {
 
   let processedText = text;
 
-  phrases.forEach(phrase => {
+phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
     const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
     processedText = processedText.replace(regex, (match) => {
-      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
+      const rawDef = glossary[phrase];
+      let displayDefText = rawDef;
+      let courseInfo = "";
+
+      if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
+        displayDefText = rawDef.definition;
+        if (rawDef.course && rawDef.unit) {
+          courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
+        }
+      }
+
+      const finalDisplayString = displayDefText + courseInfo;
+      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${finalDisplayString}___PHRASE_END___`;
     });
   });
 
@@ -281,8 +293,29 @@ function annotate(text, glossary) {
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
-        let tooltipContent = matches.map(m => `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${m.definition}</span>`).join("");
-        const plainTextLabel = matches.map(m => `(${m.root}): ${m.definition}`).join(' / ');
+        // 🛠️ UPDATED FOR CHAPTER ORIGINS:
+        let tooltipContent = matches.map(m => {
+          const rawDef = m.definition;
+          let displayDefText = rawDef;
+          let courseInfo = "";
+
+          if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
+            displayDefText = rawDef.definition;
+            if (rawDef.course && rawDef.unit) {
+              courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
+            }
+          }
+          
+          const finalDisplayString = displayDefText + courseInfo;
+          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${finalDisplayString}</span>`;
+        }).join("");
+
+        const plainTextLabel = matches.map(m => {
+          const rawDef = m.definition;
+          const displayDefText = (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) ? rawDef.definition : rawDef;
+          return `(${m.root}): ${displayDefText}`;
+        }).join(' / ');
+
         const cleanParamLabel = plainTextLabel.replace(/['"]/g, '&quot;');
         let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${word}', '${cleanParamLabel}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
 
