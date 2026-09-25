@@ -180,8 +180,8 @@ function annotate(text, glossary) {
     processedText = processedText.replace(regex, match => {
       const d = glossary[phrase];
       const txt = (d && typeof d === 'object') ? d.definition : d;
-      const c = (d && d.course) ? d.course : "N/A";
-      const u = (d && d.unit) ? d.unit : "N/A";
+      const c = (d && d.course) ? d.course : "";
+      const u = (d && d.unit) ? d.unit : "";
       return `___PHRASE_START___${match}___PHRASE_DIVIDER___${txt}|||${c}|||${u}___PHRASE_END___`;
     });
   });
@@ -206,8 +206,8 @@ function annotate(text, glossary) {
         let tooltipHtml = matches.map(m => {
           const d = m.definition;
           const txt = (d && typeof d === 'object') ? d.definition : d;
-          const c = (d && d.course) ? d.course : "N/A";
-          const u = (d && d.unit) ? d.unit : "N/A";
+          const c = (d && d.course) ? d.course : "";
+          const u = (d && d.unit) ? d.unit : "";
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt} [${c} • ${u}]</span>`;
         }).join("");
 
