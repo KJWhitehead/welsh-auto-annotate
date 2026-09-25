@@ -52,6 +52,33 @@
 </div>
 
 <!-- CONTROL PANEL (UPDATED FOR 4 CHECKBOX OPTIONS) -->
+<div class="control-panel">
+  <label>Select Vocabulary Levels to Include:</label>
+  <div class="checkbox-group">
+    <label class="checkbox-label">
+      <input type="checkbox" id="chkMynediad" checked> Mynediad (Entry level)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="chkSylfaen" checked> Sylfaen (Foundation level)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="chkCanolradd" checked> Canolradd (Intermediate level)
+    </label>
+    <label class="checkbox-label">
+      <input type="checkbox" id="chkBBC"> BBC News Vocab
+    </label>
+  </div>
+</div>
+
+<!-- MAIN TEXT AREA -->
+<label for="inputText">Welsh Text to Annotate:</label>
+<textarea id="inputText" lang="cy" spellcheck="false" autocorrect="off" autocomplete="off" autocapitalize="off" placeholder="Rhowch eich testun Cymraeg yma..."></textarea>
+<button class="btn-primary" onclick="runAnnotation()">Annotate Text</button>
+<button class="btn-danger" style="margin-left: 10px;" onclick="clearAnnotation()">Clear Text</button>
+
+<div id="output"></div>
+
+<!-- LAYER 3: DYNAMIC STUDY LIST VIEW (UPDATED FOR 3 COLUMNS) -->
 <div class="study-list-container">
   <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 8px; margin-bottom: 15px;">
     <h3 style="margin: 0;">My Vocabulary Study List</h3>
@@ -76,36 +103,6 @@
       <!-- Fixed cell count: spanning across all 4 columns for clean alignments -->
       <tr>
         <td colspan="4" class="empty-msg">No words saved to study list yet. Tap the [+] inside any translation bubble to start tracking.</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- MAIN TEXT AREA -->
-<label for="inputText">Welsh Text to Annotate:</label>
-<textarea id="inputText" lang="cy" spellcheck="false" autocorrect="off" autocomplete="off" autocapitalize="off" placeholder="Rhowch eich testun Cymraeg yma..."></textarea>
-<button class="btn-primary" onclick="runAnnotation()">Annotate Text</button>
-<button class="btn-danger" style="margin-left: 10px;" onclick="clearAnnotation()">Clear Text</button>
-
-<div id="output"></div>
-
-<!-- LAYER 3: DYNAMIC STUDY LIST VIEW (UPDATED FOR 3 COLUMNS) -->
-<div class="study-list-container">
-  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 8px;">
-    <h3 style="margin: 0;">My Vocabulary Study List</h3>
-    <button class="btn-danger" style="margin: 0;" onclick="clearStudyList()">Clear Study List</button>
-  </div>
-  <table class="study-table">
-    <thead>
-      <tr>
-        <th style="width: 30%;">Word / Phrase in Context</th>
-        <th style="width: 55%;">Dictionary Root & Translations</th>
-        <th style="width: 15%; text-align: center;">Times Looked Up</th>
-      </tr>
-    </thead>
-    <tbody id="studyListBody">
-      <tr>
-        <td colspan="3" class="empty-msg">No words saved to study list yet. Tap the [+] inside any translation bubble to start tracking.</td>
       </tr>
     </tbody>
   </table>
