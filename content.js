@@ -291,40 +291,32 @@ document.addEventListener('click', (event) => {
   }
 
   // Handle study list buttons inside live pages safely
-if (target.classList.contains('study-btn')) {
+  // 1. EXTENSION IN-PAGE CLICK INTERACTION DELEGATION
+  if (target.classList.contains('study-btn')) {
     event.stopPropagation();
     
-    // Safely decode parameters packed by token engines
+    // Safely decode the structured parameters packed by the annotation engine
     const word = decodeURIComponent(target.getAttribute('data-word')).trim();
     const encodedData = JSON.parse(decodeURIComponent(target.getAttribute('data-param')));
     
-    // Pull existing tracking matrix array elements from Chrome's cloud sync system storage
-    chrome.storage.sync.get(["welshExtensionStudySession"], (result) => {
-      let loggedWords = result.welshExtensionStudySession ? JSON.parse(result.welshExtensionStudySession) : [];
-      
-      const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === word.toLowerCase());
-      
-      if (matchIdx !== -1) {
-        loggedWords[matchIdx].count += 1;
-      } else {
-        loggedWords.push({ 
-          word: word, 
-          displayDef: encodedData.def, 
-          course: encodedData.course, 
-          unit: encodedData.unit, 
-          count: 1 
-        });
+    // BULLETPROOF: Send a clean message up to background.js to execute storage updates safely!
+    chrome.runtime.sendMessage({
+      action: "SAVE_VOCAB_WORD",
+      payload: {
+        word: word,
+        def: encodedData.def,
+        course: encodedData.course,
+        unit: encodedData.unit
       }
+    }, (response) => {
+      // Visual feedback: Confirm save action success dynamically inside the tooltip bubble
+      target.innerText = "✅ Added!";
+      target.style.background = "#059669";
       
-      // Save state adjustments seamlessly back up to profile profile storage registers
-      chrome.storage.sync.set({ "welshExtensionStudySession": JSON.stringify(loggedWords) }, () => {
-        target.innerText = "✅ Added!";
-        target.style.background = "#059669";
-        
-        setTimeout(() => {
-          document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-        }, 800);
-      });
+      // Auto-close tooltip bubble shortly after saving
+      setTimeout(() => {
+        document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+      }, 800);
     });
     return;
   }
