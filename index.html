@@ -164,12 +164,16 @@ function compileActiveGlossary() {
 
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
-  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+|[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+\$/g, "").trim();
+  // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
+  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+|[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+$/g, "").trim();
   if (!w) return [];
 
   // 1. WELSH CONTRACTION SPLITTER
-  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
-    w = w.slice(0, -2); 
+  // Only trim context attachments if the absolute contraction isn't explicitly in the glossary first!
+  if (!glossary[w]) {
+    if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
+      w = w.slice(0, -2); 
+    }
   }
 
   // 2. WELSH VOWEL-LINK STRIPPER
@@ -244,23 +248,18 @@ function collectMatches(word, glossary) {
     }
   }
 
-  return Array.from(foundKeys).map(key => {
-    return { root: key, definition: glossary[key] };
-  });
-}
-    // --- NEW: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper ---
+  // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
   // Targets regular endings: -ach (comparative), -af (superlative), -ed (equative)
   const adjSuffixes = ["ach", "af", "ed"];
   for (const suffix of adjSuffixes) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
       
-      // 1. Check the direct naked stem (e.g., mwynach -> mwyn)
+      // Check the direct naked stem (e.g., fwynach -> mwynach -> mwyn)
       checkAndAdd(nakedStem);
       scanMutations(nakedStem);
 
-      // 2. Handle spelling restoration: if the root dropped a terminal 'e' or 'o'
-      // before adding the suffix, test those variations too
+      // Handle spelling restoration: if the root dropped a terminal vowel before suffixing
       const vowelRestorations = ["e", "o", "a"];
       for (const v of vowelRestorations) {
         let reconstructedAdj = nakedStem + v;
@@ -269,6 +268,11 @@ function collectMatches(word, glossary) {
       }
     }
   }
+
+  return Array.from(foundKeys).map(key => {
+    return { root: key, definition: glossary[key] };
+  });
+}
 
 // --- AUTO-ANNOTATION ENGINE ---
 function annotate(text, glossary) {
