@@ -322,7 +322,8 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
-        // 1. BUILD INTUITIVE VISUAL HOVER TOOLTIP TEXT WITH GRAMMAR LABELS
+         // 1. BUILD INTUITIVE VISUAL HOVER TOOLTIP TEXT WITH DUPLICATE DE-DUPLICATION
+        let uniqueBranches = new Set();
         let tooltipHtml = matches.map(m => {
           const d = m.definition;
           const txt = (d && typeof d === 'object') ? d.definition : d;
@@ -331,6 +332,11 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
           
           const formLabel = m.form ? ` (${m.form})` : "";
           const curriculum = (c || u) ? ` [${c} ${u ? '• ' + u : ''}]` : "";
+          
+          // Generate a unique signature for this specific definition text string
+          const entrySignature = `${m.root}|||${txt}|||${formLabel}`;
+          if (uniqueBranches.has(entrySignature)) return ""; // Skip if we already added it!
+          uniqueBranches.add(entrySignature);
           
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
         }).join("");
