@@ -214,3 +214,15 @@ body {
 .cy-annotated-word:hover::after {
   opacity: 1;
 }
+
+//* NEW: Styled curriculum badge for the new Course & Unit table column */
+.unit-tag {
+  font-size: 11px;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  white-space: nowrap;
+  display: inline-block;
+}
