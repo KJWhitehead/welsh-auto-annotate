@@ -224,13 +224,41 @@ document.addEventListener('click', (event) => {
   }
 
   // Handle study list buttons inside live pages safely
-  if (target.classList.contains('study-btn')) {
+if (target.classList.contains('study-btn')) {
     event.stopPropagation();
-    const word = target.getAttribute('data-word');
-    const param = target.getAttribute('data-param');
-    console.log("Word saved via extension context:", word, param);
-    // (We will wire this to a global sync storage list next!)
-    document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+    
+    // Safely decode parameters packed by token engines
+    const word = decodeURIComponent(target.getAttribute('data-word')).trim();
+    const encodedData = JSON.parse(decodeURIComponent(target.getAttribute('data-param')));
+    
+    // Pull existing tracking matrix array elements from Chrome's cloud sync system storage
+    chrome.storage.sync.get(["welshExtensionStudySession"], (result) => {
+      let loggedWords = result.welshExtensionStudySession ? JSON.parse(result.welshExtensionStudySession) : [];
+      
+      const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === word.toLowerCase());
+      
+      if (matchIdx !== -1) {
+        loggedWords[matchIdx].count += 1;
+      } else {
+        loggedWords.push({ 
+          word: word, 
+          displayDef: encodedData.def, 
+          course: encodedData.course, 
+          unit: encodedData.unit, 
+          count: 1 
+        });
+      }
+      
+      // Save state adjustments seamlessly back up to profile profile storage registers
+      chrome.storage.sync.set({ "welshExtensionStudySession": JSON.stringify(loggedWords) }, () => {
+        target.innerText = "✅ Added!";
+        target.style.background = "#059669";
+        
+        setTimeout(() => {
+          document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+        }, 800);
+      });
+    });
     return;
   }
 
