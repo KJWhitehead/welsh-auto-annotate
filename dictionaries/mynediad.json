@@ -822,6 +822,36 @@
   "bydoedd": {
     "definition": "worlds"
   },
+  "bydd": {
+    "definition": "will be",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+    "byddi di": {
+    "definition": "you will be",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
+  },
+  "bydda i": {
+    "definition": "I will be",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "byddwch chi": {
+    "definition": "you will be",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "byddwn": {
+    "definition": "we/they will be",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
+  },
+    "yw": {
+    "definition": "to be (emphatic form)",
+    "course": "Mynediad",
+    "unit": "Uned 13"
+  },
   "byr": {
     "definition": "short",
     "course": "Mynediad",
@@ -2366,6 +2396,31 @@
     "definition": "vinegar",
     "course": "Mynediad", 
     "unit": "Uned 3"
+  },
+  "fydd": {
+    "definition": "will be (with negative or question)",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "fyddi di": {
+    "definition": "you will be (with negative or question)",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
+  },
+  "fydda i": {
+    "definition": "I will be (with negative or question)",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "fyddwch chi": {
+    "definition": "you will be (with negative or question)",
+    "course": "Mynediad", 
+    "unit": "Uned 17"
+  },
+  "fyddwn": {
+    "definition": "we/they will be (with negative or question)",
+    "course": "Mynediad", 
+    "unit": "Uned 18"
   },
   "ffair": {
     "definition": "fair",
@@ -4917,6 +4972,36 @@
     "course": "Mynediad",
     "unit": "Uned 8"
   },
+  "roedd": {
+    "definition": "he/she/it was",
+    "course": "Mynediad",
+    "unit": "Uned 13"
+  },
+  "ro'n": {
+    "definition": "was/were",
+    "course": "Mynediad",
+    "unit": "Uned 14"
+  },
+  "oedd": {
+    "definition": "he/she/it was (form of roedd)",
+    "course": "Mynediad",
+    "unit": "Uned 13"
+  },
+  "o'n": {
+    "definition": "was/were (form of ro'n)",
+    "course": "Mynediad",
+    "unit": "Uned 14"
+  },
+    "doedd": {
+    "definition": "he/she/it was (in the negative)",
+    "course": "Mynediad",
+    "unit": "Uned 13"
+  },
+  "do'n": {
+    "definition": "was/were (negative form of ro'n)",
+    "course": "Mynediad",
+    "unit": "Uned 14"
+  },
   "saesnes": {
     "definition": "Englishwoman",
     "course": "Mynediad",
@@ -6813,4 +6898,5 @@
   "ymadaw": {
     "definition": "irregular stem of ymadael (to leave)"
   }
+}
 }
