@@ -248,6 +248,27 @@ function collectMatches(word, glossary) {
     return { root: key, definition: glossary[key] };
   });
 }
+    // --- NEW: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper ---
+  // Targets regular endings: -ach (comparative), -af (superlative), -ed (equative)
+  const adjSuffixes = ["ach", "af", "ed"];
+  for (const suffix of adjSuffixes) {
+    if (w.endsWith(suffix) && w.length > suffix.length) {
+      const nakedStem = w.slice(0, -suffix.length);
+      
+      // 1. Check the direct naked stem (e.g., mwynach -> mwyn)
+      checkAndAdd(nakedStem);
+      scanMutations(nakedStem);
+
+      // 2. Handle spelling restoration: if the root dropped a terminal 'e' or 'o'
+      // before adding the suffix, test those variations too
+      const vowelRestorations = ["e", "o", "a"];
+      for (const v of vowelRestorations) {
+        let reconstructedAdj = nakedStem + v;
+        checkAndAdd(reconstructedAdj);
+        scanMutations(reconstructedAdj);
+      }
+    }
+  }
 
 // --- AUTO-ANNOTATION ENGINE ---
 function annotate(text, glossary) {
