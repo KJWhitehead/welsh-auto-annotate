@@ -519,14 +519,7 @@ function collectMatches(word, glossary) {
     return self.findIndex(x => x.root === item.root && x.definition === item.definition && x.form === item.form) === index;
   });
 }
-  return Array.from(foundKeys).map(item => {
-    if (item.startsWith("{")) {
-      const parsed = JSON.parse(item);
-      return { root: parsed.root, definition: glossary[parsed.root], form: parsed.form };
-    }
-    return { root: item, definition: glossary[item], form: "" };
-  });
-}
+
 function annotate(text, glossary) {
   const phrases = Object.keys(glossary).filter(k => k.includes(" ")).sort((a, b) => b.length - a.length);
   let processedText = text;
