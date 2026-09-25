@@ -4,8 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnExport = document.getElementById("btnExport");
   const btnClear = document.getElementById("btnClear");
 
-  function renderTable() {
-    // Read securely from Chrome's persistent profile cloud storage bucket
+    function renderTable() {
     chrome.storage.sync.get(["welshExtensionStudySession"], (result) => {
       let loggedWords = result.welshExtensionStudySession ? JSON.parse(result.welshExtensionStudySession) : [];
 
@@ -14,14 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-const sourceLabel = (item.course || item.unit) ? `${item.course} ${item.unit ? '• ' + item.unit : ''}`.trim() : "";
-
-tableBody.innerHTML = loggedWords.map(item => `<tr>
-  <td><span class="table-word">${item.word}</span></td>
-  <td>${item.displayDef}</td>
-  <td>${sourceLabel ? `<span class="unit-tag">\${sourceLabel}</span>` : ""}</td>
-  <td style="text-align: center;"><span class="count-badge">${item.count}×</span></td>
-</tr>`).join("");
+      tableBody.innerHTML = loggedWords.map(item => {
+        // Build the clean label cleanly without stray escape slashes
+        const sourceLabel = (item.course || item.unit) ? `${item.course} ${item.unit ? '• ' + item.unit : ''}`.trim() : "";
+        
+        return `<tr>
+          <td><span class="table-word">${item.word}</span></td>
+          <td>${item.displayDef}</td>
+          <td>${sourceLabel ? `<span class="unit-tag">\${sourceLabel}</span>` : ""}</td>
+          <td style="text-align: center;"><span class="count-badge">${item.count}×</span></td>
+        </tr>`;
+      }).join("");
     });
   }
 
