@@ -247,7 +247,7 @@ function collectMatches(word, glossary) {
       }
     }
   }
- /  // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
+ // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
   // Targets regular endings, including modern spoken dropped-f superlatives!
   const adjSuffixes = { "ach": "comparative", "af": "superlative", "a": "superlative", "ed": "equative" };
   for (const [suffix, formType] of Object.entries(adjSuffixes)) {
