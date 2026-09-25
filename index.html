@@ -182,7 +182,7 @@ function collectMatches(word, glossary) {
     if (vowelLinks[w]) w = vowelLinks[w];
   }
 
-  if (!w) return [];
+ if (!w) return [];
   let foundKeys = new Set();
 
   function checkAndAdd(candidate) {
@@ -193,7 +193,14 @@ function collectMatches(word, glossary) {
     }
   }
 
-  checkAndAdd(w);
+  // ─── NEW: ADJECTIVE SUFFIX DETECTION GUARD ──────────────────────────
+  // Checks if the word token ends with one of your active suffixes
+  const isAdjSuffix = ["ach", "af", "a", "ed"].some(suffix => w.endsWith(suffix) && w.length > suffix.length);
+
+  // FIXED: Only run the direct base pass if this is NOT a word with an adjective suffix!
+  if (!isAdjSuffix) {
+    checkAndAdd(w);
+  }
 
   function scanMutations(candidate) {
     // Soft Mutations
@@ -229,7 +236,10 @@ function collectMatches(word, glossary) {
     }
   }
 
-  scanMutations(w);
+  // FIXED: Only trigger standard mutation sweeps if it wasn't intercepted as a suffix word!
+  if (!isAdjSuffix) {
+    scanMutations(w);
+  }
 
   // 3. VERB STEM SUFFIX STRIPPER
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
