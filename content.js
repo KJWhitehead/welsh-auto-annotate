@@ -181,15 +181,20 @@ function annotate(text, glossary) {
   const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
 
   return tokens.map(token => {
-    if (token.startsWith("___PHRASE_START___")) {
+if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
       const phraseText = parts[0];
-      const dataBits = parts[1].split("|||");
+      const finalDisplayString = parts[1]; // Pulls the clean definition string cleanly
       
-      const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${phraseText}):</span> ${dataBits[0]} [${dataBits[1]} • ${dataBits[2]}]</span>`;
+      const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${phraseText}):</span> ${finalDisplayString}</span>`;
       
-      // FIXED: Packages the parameter as a structural data object
-      const cleanParam = encodeURIComponent(JSON.stringify({ word: phraseText, def: dataBits[0], course: dataBits[1], unit: dataBits[2] }));
+      // Pull out the base parameters safely for the study table tracking object
+      const rawDef = glossary[phraseText];
+      const txt = (rawDef && typeof rawDef === 'object') ? rawDef.definition : rawDef;
+      const c = (rawDef && rawDef.course) ? rawDef.course : "";
+      const u = (rawDef && rawDef.unit) ? rawDef.unit : "";
+
+      const cleanParam = encodeURIComponent(JSON.stringify({ word: phraseText, def: txt, course: c, unit: u }));
       let btn = `<button class="study-btn" data-word="${phraseText}" data-param="${cleanParam}" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
       
       return `<span class="annotated">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
@@ -222,8 +227,8 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         
-        let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-        return `<span class="annotated" onclick="handleToggle(event, this)">${word}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
+        let btn = `<button class="study-btn" data-word="${word}" data-param="${cleanParam}" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+return `<span class="annotated">${word}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
       }
       return word;
     }).join("");
@@ -290,16 +295,14 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-  // 1. EXTENSION & WORKBENCH CLICK INTERACTION DELEGATION
+// 1. EXTENSION & WORKBENCH CLICK INTERACTION DELEGATION
   if (target.classList.contains('study-btn')) {
     event.stopPropagation();
     
-    // Safely decode the structured parameters packed by the annotation engine
     const word = decodeURIComponent(target.getAttribute('data-word')).trim();
     const encodedData = JSON.parse(decodeURIComponent(target.getAttribute('data-param')));
     
     // 🧠 THE HYBRID GATEKEEPER SWITCH:
-    // If the 'chrome.runtime' object exists, use the background cloud sync messenger!
     if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage({
         action: "SAVE_VOCAB_WORD",
@@ -313,7 +316,7 @@ document.addEventListener('click', (event) => {
         triggerVisualSuccessFeedback(target);
       });
     } 
-    // FALLBACK TRACK: If running offline on your 200 OK server, use safe localStorage!
+    // FALLBACK TRACK:
     else {
       let listCache = localStorage.getItem("welshLocalStudySession");
       let loggedWords = listCache ? JSON.parse(listCache) : [];
@@ -327,7 +330,6 @@ document.addEventListener('click', (event) => {
 
       localStorage.setItem("welshLocalStudySession", JSON.stringify(loggedWords));
       
-      // If the local workbench table renderer function exists on the screen, reload it instantly!
       if (typeof renderStudyListTable === 'function') {
         renderStudyListTable();
       }
@@ -336,7 +338,13 @@ document.addEventListener('click', (event) => {
     }
     return;
   }
-  function triggerVisualSuccessFeedback(targetButton) {
+
+  // 🛠️ FIXED: Dismiss tooltips on general clicks ONLY if we didn't hit a button or target span!
+  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+});
+
+// 🛠️ FIXED: Moved outside the event listener block to maintain standard scoping boundaries cleanly
+function triggerVisualSuccessFeedback(targetButton) {
   targetButton.innerText = "✅ Added!";
   targetButton.style.background = "#059669";
   
