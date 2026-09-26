@@ -352,6 +352,4 @@ function triggerVisualSuccessFeedback(targetButton) {
     document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
   }, 800);
 }
-  // Dismiss tooltips on general clicks
-  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-});
+
