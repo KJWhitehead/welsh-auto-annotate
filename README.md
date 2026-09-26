@@ -23,6 +23,8 @@ There's now the option of clicking to add to a study list and the number of clic
 
 19 Sept: Realisation that the API doesn't actually help as it only works for individual words.  Lame. Branches deleted.
 
+26 Sept: I am working on a Chrome Extension.  So many issues!
+
 Possibilities of next steps:
 1. comparative & superlative irregulars
 2. making sure the tool recognises command forms
