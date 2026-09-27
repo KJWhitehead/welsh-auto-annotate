@@ -296,7 +296,7 @@ document.addEventListener('click', (event) => {
   }
 
 // 1. EXTENSION & WORKBENCH CLICK INTERACTION DELEGATION
-  // Handle study list buttons inside live extension pages safely via background channels
+ // Handle study list buttons inside live extension pages safely via background channels
   if (target.classList.contains('study-btn')) {
     event.stopPropagation();
     
@@ -304,32 +304,29 @@ document.addEventListener('click', (event) => {
     const word = target.getAttribute('data-word') || "";
     const param = target.getAttribute('data-param') || "";
     
-    // Parse out the definition text block out of the packed plain string label
-    // Example format: "(root): definition [Course • Unit]" or just "(root): definition"
     let definitionText = param;
     let courseText = "";
     let unitText = "";
 
-    // Extract the core description by stripping the leading "(root): " token
+    // 🛠️ FIXED: Safe String Extractors that bypass the Array crashing loop
     if (param.includes("): ")) {
-      definitionText = param.split("): ")[1];
+      definitionText = param.split("): ")[1] || param;
     }
     
-    // Extract curriculum bracket contents if they exist in the text label
     if (definitionText.includes(" [") && definitionText.includes(" • ")) {
       const parts = definitionText.split(" [");
-      definitionText = parts[0].trim(); // Pure definition
+      definitionText = (parts[0] || "").trim();
       
-      const curriculumBits = parts[1].replace("]", "").split(" • ");
-      courseText = curriculumBits[0] || "";
-      unitText = curriculumBits[1] || "";
+      const curriculumBits = (parts[1] || "").replace("]", "").split(" • ");
+      courseText = (curriculumBits[0] || "").trim();
+      unitText = (curriculumBits[1] || "").trim();
     } else if (definitionText.includes(" [")) {
       const parts = definitionText.split(" [");
-      definitionText = parts[0].trim();
-      courseText = parts[1].replace("]", "") || "";
+      definitionText = (parts[0] || "").trim();
+      courseText = (parts[1] || "").replace("]", "").trim();
     }
 
-    // Securely fire the data packet up to background.js service worker channels!
+    // Securely fire the data packet up to background.js service worker channels
     if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage({
         action: "SAVE_VOCAB_WORD",
