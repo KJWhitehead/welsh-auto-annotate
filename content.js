@@ -296,49 +296,62 @@ document.addEventListener('click', (event) => {
   }
 
 // 1. EXTENSION & WORKBENCH CLICK INTERACTION DELEGATION
+  // Handle study list buttons inside live extension pages safely via background channels
   if (target.classList.contains('study-btn')) {
     event.stopPropagation();
     
-    const word = decodeURIComponent(target.getAttribute('data-word')).trim();
-    const encodedData = JSON.parse(decodeURIComponent(target.getAttribute('data-param')));
+    // Extract the raw text properties passed down by the annotation loops
+    const word = target.getAttribute('data-word') || "";
+    const param = target.getAttribute('data-param') || "";
     
-    // 🧠 THE HYBRID GATEKEEPER SWITCH:
+    // Parse out the definition text block out of the packed plain string label
+    // Example format: "(root): definition [Course • Unit]" or just "(root): definition"
+    let definitionText = param;
+    let courseText = "";
+    let unitText = "";
+
+    // Extract the core description by stripping the leading "(root): " token
+    if (param.includes("): ")) {
+      definitionText = param.split("): ")[1];
+    }
+    
+    // Extract curriculum bracket contents if they exist in the text label
+    if (definitionText.includes(" [") && definitionText.includes(" • ")) {
+      const parts = definitionText.split(" [");
+      definitionText = parts[0].trim(); // Pure definition
+      
+      const curriculumBits = parts[1].replace("]", "").split(" • ");
+      courseText = curriculumBits[0] || "";
+      unitText = curriculumBits[1] || "";
+    } else if (definitionText.includes(" [")) {
+      const parts = definitionText.split(" [");
+      definitionText = parts[0].trim();
+      courseText = parts[1].replace("]", "") || "";
+    }
+
+    // Securely fire the data packet up to background.js service worker channels!
     if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage({
         action: "SAVE_VOCAB_WORD",
         payload: {
           word: word,
-          def: encodedData.def,
-          course: encodedData.course,
-          unit: encodedData.unit
+          def: definitionText,
+          course: courseText,
+          unit: unitText
         }
       }, (response) => {
-        triggerVisualSuccessFeedback(target);
+        // Provide immediate visual success feedback on the webpage button
+        target.innerText = "✅ Added!";
+        target.style.background = "#059669";
+        
+        setTimeout(() => {
+          document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+        }, 800);
       });
-    } 
-    // FALLBACK TRACK:
-    else {
-      let listCache = localStorage.getItem("welshLocalStudySession");
-      let loggedWords = listCache ? JSON.parse(listCache) : [];
-
-      const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === word.toLowerCase());
-      if (matchIdx !== -1) {
-        loggedWords[matchIdx].count += 1;
-      } else {
-        loggedWords.push({ word: word, displayDef: encodedData.def, course: encodedData.course, unit: encodedData.unit, count: 1 });
-      }
-
-      localStorage.setItem("welshLocalStudySession", JSON.stringify(loggedWords));
-      
-      if (typeof renderStudyListTable === 'function') {
-        renderStudyListTable();
-      }
-      
-      triggerVisualSuccessFeedback(target);
     }
     return;
   }
-
+  
   // 🛠️ FIXED: Dismiss tooltips on general clicks ONLY if we didn't hit a button or target span!
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
 });
