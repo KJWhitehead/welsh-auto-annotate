@@ -296,7 +296,7 @@ document.addEventListener('click', (event) => {
   }
 
 // 1. EXTENSION & WORKBENCH CLICK INTERACTION DELEGATION
- // Handle study list buttons inside live extension pages safely via background channels
+// Handle study list buttons inside live extension pages safely via background channels
   if (target.classList.contains('study-btn')) {
     event.stopPropagation();
     
@@ -308,22 +308,19 @@ document.addEventListener('click', (event) => {
     let courseText = "";
     let unitText = "";
 
-    // 🛠️ FIXED: Safe String Extractors that bypass the Array crashing loop
-    if (param.includes("): ")) {
-      definitionText = param.split("): ")[1] || param;
-    }
-    
-    if (definitionText.includes(" [") && definitionText.includes(" • ")) {
-      const parts = definitionText.split(" [");
-      definitionText = (parts[0] || "").trim();
-      
-      const curriculumBits = (parts[1] || "").replace("]", "").split(" • ");
-      courseText = (curriculumBits[0] || "").trim();
-      unitText = (curriculumBits[1] || "").trim();
-    } else if (definitionText.includes(" [")) {
-      const parts = definitionText.split(" [");
-      definitionText = (parts[0] || "").trim();
-      courseText = (parts[1] || "").replace("]", "").trim();
+    try {
+      // 🧠 THE ULTIMATE SHORTCUT:
+      // If the parameter is an encoded JSON string, unpack it instantly with zero complex splits!
+      if (param.startsWith("%7B") || param.startsWith("{") || param.includes("%")) {
+        const decodedData = JSON.parse(decodeURIComponent(param));
+        definitionText = decodedData.def || "";
+        courseText = decodedData.course || "";
+        unitText = decodedData.unit || "";
+      }
+    } catch (e) {
+      // Robust Fallback: If it's old plain text, pull it raw as an emergency fallback
+      console.log("Parsing plain text fallback template string instead.");
+      definitionText = param;
     }
 
     // Securely fire the data packet up to background.js service worker channels
