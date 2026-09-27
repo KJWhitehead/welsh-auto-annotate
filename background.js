@@ -5,11 +5,12 @@ chrome.action.onClicked.addListener((tab) => {
 });
 
 // 2. EXTENSION PERSISTENT SYNC STORAGE CONTROLLER
+// Receives vocabulary words from content.js and securely commits them to the user's Profile
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "SAVE_VOCAB_WORD") {
     const data = message.payload;
 
-    // Securely pull existing data from Chrome's persistent profile cloud storage bucket
+    // Pull existing data from Chrome's persistent profile sync storage bucket
     chrome.storage.sync.get(["welshExtensionStudySession"], (result) => {
       let loggedWords = result.welshExtensionStudySession ? JSON.parse(result.welshExtensionStudySession) : [];
       
@@ -27,10 +28,10 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
       }
       
-      // Sort words by review count so the trickiest flags naturally float to the top
+      // Sort words by review count so high-priority words naturally float to the top
       loggedWords.sort((a, b) => b.count - a.count);
 
-      // Save state adjustments seamlessly back up into profile cloud memory storage registers
+      // Save state adjustments seamlessly back up into profile storage registers
       chrome.storage.sync.set({ "welshExtensionStudySession": JSON.stringify(loggedWords) }, () => {
         console.log("💾 Vocabulary successfully committed to sync storage profile:", data.word);
         sendResponse({ status: "SUCCESS" });
