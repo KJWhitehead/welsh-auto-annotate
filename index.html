@@ -342,14 +342,13 @@ function annotate(text, glossary) {
       const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${localPhraseText}):</span> ${dataBits[0]} [${dataBits[1]} • ${dataBits[2]}]</span>`;
       const cleanParam = encodeURIComponent(JSON.stringify({ word: localPhraseText, def: dataBits[0], course: dataBits[1], unit: dataBits[2] }));
       
-      // 🛠️ FIXED: Uses localPhraseText variable matching your exact structural array split!
       let audioBtn = `<button class="speak-btn" data-text="${localPhraseText}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
       let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
       
       return `<span class="annotated" onclick="handleToggle(event, this)">${localPhraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
     }
 
-// B. TRACK INDIVIDUAL SINGLE WORDS
+    // B. TRACK INDIVIDUAL SINGLE WORDS
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
@@ -366,7 +365,6 @@ function annotate(text, glossary) {
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
         }).join("");
 
-        // 🛠️ FIXED: Point directly to the parent match object container so properties extract cleanly!
         const firstMatchObj = matches[0];
         const rawDef = firstMatchObj.definition;
         
@@ -388,65 +386,105 @@ function annotate(text, glossary) {
   }).join("");
 }
 
-// --- LAYER INTERACTION HANDLERS ---
-  function handleWordActivation(event, element, plainWord, encodedTranslation) {
-  event.stopPropagation(); 
-  const isOpen = element.classList.contains('show-tooltip');
-  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-  if (!isOpen) element.classList.add('show-tooltip');
+// --- INTERACTION & DATA STORAGE PIPELINES ---
+function handleToggle(event, el) {
+  event.stopPropagation();
+  const isOpen = el.classList.contains('show-tooltip');
+  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
+  if (!isOpen) el.classList.add('show-tooltip');
 }
 
-function handleAddButtonClick(event, plainWord, encodedTranslation) {
-  event.stopPropagation(); 
-  const cleanWord = plainWord.trim();
-  let listCache = sessionStorage.getItem("welshActiveStudySession");
+function handleAddClick(event, encodedData) {
+  event.stopPropagation();
+  const data = JSON.parse(decodeURIComponent(encodedData));
+  
+  let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
-  const existingItemIndex = loggedWords.findIndex(item => item.word.toLowerCase() === cleanWord.toLowerCase());
 
-  if (existingItemIndex !== -1) {
-    loggedWords[existingItemIndex].count += 1;
+  const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === data.word.toLowerCase());
+  if (matchIdx !== -1) {
+    loggedWords[matchIdx].count += 1;
   } else {
-    let cellularRows = encodedTranslation.split(' / ').map(item => `<span class="table-branch-item">${item}</span>`).join('');
-    loggedWords.push({ word: cleanWord, displayDef: cellularRows, count: 1 });
+    loggedWords.push({ word: data.word, displayDef: data.def, course: data.course, unit: data.unit, count: 1 });
   }
 
-  loggedWords.sort((a, b) => b.count - a.count);
-  sessionStorage.setItem("welshActiveStudySession", JSON.stringify(loggedWords));
+  localStorage.setItem("welshLocalStudySession", JSON.stringify(loggedWords));
   renderStudyListTable();
-  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
+  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
 }
 
 function renderStudyListTable() {
   const tableBody = document.getElementById("studyListBody");
-  if (!tableBody) return; 
-  
-  let listCache = sessionStorage.getItem("welshActiveStudySession");
+  if (!tableBody) return;
+
+  let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
   if (loggedWords.length === 0) {
-    tableBody.innerHTML = `<tr><td colspan="3" class="empty-msg">No words saved yet. Tap [+] inside bubbles to track.</td></tr>`;
+    tableBody.innerHTML = `<tr><td colspan="4" class="empty-msg">No words saved yet. Tap [+] to track.</td></tr>`;
     return;
   }
 
-  tableBody.innerHTML = loggedWords.map(item => `<tr>
-    <td><span class="table-word">${item.word}</span></td>
-    <td>${item.displayDef}</td>
-    <td style="text-align: center; font-weight: bold; color: #dc3545; background-color: #fff5f5;">${item.count}×</td>
-  </tr>`).join("");
+  tableBody.innerHTML = loggedWords.map(item => {
+    const courseText = item.course ? item.course.trim() : "";
+    const unitText = item.unit ? item.unit.trim() : "";
+    const sourceLabel = (courseText && unitText) ? `${courseText} • ${unitText}` : (courseText || unitText || "");
+
+    return `<tr>
+      <td><span class="table-word">${item.word}</span></td>
+      <td>${item.displayDef}</td>
+      <td>${sourceLabel ? `<span class="unit-tag">\${sourceLabel}</span>` : ""}</td>
+      <td style="text-align: center; font-weight: bold; color: #dc3545;">${item.count}×</td>
+    </tr>`;
+  }).join("");
 }
 
-// --- STANDARD LOCAL OFFLINE PROCESSING EXECUTION ---
-function runAnnotation() {
-  compileActiveGlossary();
-  const text = document.getElementById("inputText").value;
+// --- SYSTEM XML EXPORT CONTROLLER ---
+function triggerXMLExport() {
+  let listCache = localStorage.getItem("welshLocalStudySession");
+  let loggedWords = listCache ? JSON.parse(listCache) : [];
 
-  if (!text.trim()) {
-    document.getElementById("output").innerHTML = "Please type some Welsh text first to annotate.";
+  if (loggedWords.length === 0) {
+    alert("Your study list is currently empty. Add some words first!");
     return;
   }
 
-  const localAnnotatedHtml = annotate(text, runtimeGlossary);
-  document.getElementById("output").innerHTML = localAnnotatedHtml;
+  let xmlString = `<?xml version="1.0" encoding="UTF-8"?>\n<studylist>\n`;
+  loggedWords.forEach(item => {
+    xmlString += `  <item>\n`;
+    xmlString += `    <word>${escapeXML(item.word)}</word>\n`;
+    xmlString += `    <definition>${escapeXML(item.displayDef)}</definition>\n`;
+    xmlString += `    <course>${escapeXML(item.course)}</course>\n`;
+    xmlString += `    <unit>${escapeXML(item.unit)}</unit>\n`;
+    xmlString += `    <count>${item.count}</count>\n`;
+    xmlString += `  </item>\n`;
+  });
+  xmlString += `</studylist>`;
+
+  const blob = new Blob([xmlString], { type: "text/xml" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "welsh_vocabulary_study_list.xml";
+  link.click();
+}
+
+function escapeXML(str) {
+  if (!str) return "";
+  return str.toString()
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
+}
+
+function runAnnotation() {
+  const text = document.getElementById("inputText").value;
+  if (!text.trim()) {
+    document.getElementById("output").innerHTML = "Please type some Welsh text first.";
+    return;
+  }
+  document.getElementById("output").innerHTML = annotate(text, runtimeGlossary);
 }
 
 function clearAnnotation() {
@@ -454,13 +492,12 @@ function clearAnnotation() {
   document.getElementById("output").innerHTML = "";
 }
 
-window.onload = function() {
-  renderStudyListTable();
-};
-
-document.addEventListener('click', function() {
-  document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-});
+function clearStudyList() {
+  if (confirm("Are you sure you want to clear your current vocabulary study list?")) {
+    localStorage.removeItem("welshLocalStudySession");
+    renderStudyListTable();
+  }
+}
 
 // --- NATIVE WORKBENCH TECHIAITH VOICE CONTROLLER ---
 document.addEventListener('click', (event) => {
@@ -473,8 +510,7 @@ document.addEventListener('click', (event) => {
     const originalText = target.innerHTML;
     target.innerHTML = "⏳ Connecting...";
 
-    // Direct web fetch routine straight to Bangor University's Orpheus production channels
-    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+    fetch("https://techiaith.cymru", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -482,18 +518,16 @@ document.addEventListener('click', (event) => {
       },
       body: JSON.stringify({
         text: String(textToPronounce).trim(),
-        speaker_id: "benyw-deheuol-pro" // High-fidelity professional Southern Female voice profile
+        speaker_id: "benyw-deheuol-pro"
       })
     })
     .then(response => {
       if (!response.ok) throw new Error("Techiaith web synthesis connection failure.");
-      return response.blob(); // Gather raw binary streaming chunks natively as a blob object!
+      return response.blob();
     })
     .then(blob => {
-      // 🛠️ MODERN WEB PIPELINE: Generate a secure browser link from the blob data instantly!
       const nativeAudioUrl = URL.createObjectURL(blob);
       const audio = new Audio(nativeAudioUrl);
-      
       audio.play();
       target.innerHTML = originalText;
     })
@@ -502,7 +536,11 @@ document.addEventListener('click', (event) => {
       target.innerHTML = "❌ Audio Unavailable";
       setTimeout(() => { target.innerHTML = originalText; }, 1500);
     });
+    return;
   }
+
+  // Dismiss all tooltips on general outside clicks
+  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
 });
 </script>
   <script data-goatcounter="https://welshannotation.goatcounter.com/count"
