@@ -13,34 +13,88 @@
   
 <!-- EXTERNAL GLOSSARIES-->
 <script>
-  (async function loadDictionaries() {
-    // Relative paths to your modern JSON files
-    const files = {
-      mynediadGlossary: 'dictionaries/mynediad.json',
-      sylfaenGlossary: 'dictionaries/sylfaen.json',
-      canolraddGlossary: 'dictionaries/canolradd.json',
-      bbcGlossary: 'dictionaries/bbc.json'
-    };
+// Master registries targeting raw data profiles cleanly
+let loadedDictionaries = {}; 
+let runtimeGlossary = {};    
 
-    for (const [globalName, path] of Object.entries(files)) {
-      try {
-        const response = await fetch(path);
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        
-        // Bind the clean data directly to the global window context
-        window[globalName] = await response.json();
-      } catch (error) {
-        console.error(`Failed to load local dictionary from ${path}:`, error);
+// 🔄 Dynamic Recompilation Engine: Retains full data objects in real-time!
+function recompileGlossary() {
+  runtimeGlossary = {}; // Wipe active cache clean
+
+  const checkboxMapping = [
+    { id: 'cbMynediad', key: 'mynediadGlossary' },
+    { id: 'cbSylfaen', key: 'sylfaenGlossary' },
+    { id: 'cbCanolradd', key: 'canolraddGlossary' },
+    { id: 'cbBBC', key: 'bbcGlossary' }
+  ];
+
+  let activeSetCount = 0;
+
+  checkboxMapping.forEach(track => {
+    const el = document.getElementById(track.id);
+    
+    if (el && el.checked && loadedDictionaries[track.key]) {
+      const activeFile = loadedDictionaries[track.key];
+      
+      // deep copy entries
+      for (const [termKey, termValue] of Object.entries(activeFile)) {
+        if (termValue && typeof termValue === 'object') {
+          runtimeGlossary[termKey] = {
+            definition: termValue.definition || "",
+            course: termValue.course || "",
+            unit: termValue.unit || ""
+          };
+        } else {
+          // Fallback wrapper for old, flat string dictionary layouts
+          runtimeGlossary[termKey] = {
+            definition: termValue,
+            course: "",
+            unit: ""
+          };
+        }
       }
+      activeSetCount++;
     }
-    
-    console.log("✅ All Welsh JSON dictionaries loaded successfully into the window context.");
-    
-    // Yell to the page that the data is ready to use!
-    window.dispatchEvent(new Event('dictionariesReady'));
-  })();
-</script>
+  });
 
+  const termCount = Object.keys(runtimeGlossary).length;
+  console.log(`🔄 Glossary compiled structurally! Active sets: ${activeSetCount}. Total terms: ${termCount}`);
+}
+
+// Initial bootstrap script loader routine
+(async function initGlossaryPipeline() {
+  const files = {
+    mynediadGlossary: 'dictionaries/mynediad.json',
+    sylfaenGlossary: 'dictionaries/sylfaen.json',
+    canolraddGlossary: 'dictionaries/canolradd.json',
+    bbcGlossary: 'dictionaries/bbc.json'
+  };
+
+  for (const [globalName, path] of Object.entries(files)) {
+    try {
+      const response = await fetch(path);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      loadedDictionaries[globalName] = await response.json();
+      window[globalName] = loadedDictionaries[globalName]; 
+    } catch (error) {
+      console.error(`Failed to load local dictionary from ${path}:`, error);
+    }
+  }
+  
+  console.log("✅ All Welsh JSON dictionaries loaded successfully into background registries.");
+  
+  recompileGlossary();
+
+  ['cbMynediad', 'cbSylfaen', 'cbCanolradd', 'cbBBC'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('change', recompileGlossary);
+    }
+  });
+
+  window.dispatchEvent(new Event('dictionariesReady'));
+})();
+</script>
 
 </head>
 
@@ -321,9 +375,9 @@ function annotate(text, glossary) {
 
   phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])(${safePhrase環境})`, 'gi');
+    // 🛠️ FIXED: Cleaned out rogue character blocks completely!
+    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])(${safePhrase})(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`, 'gi');
     
-    // 🛠️ FIXED: Re-mapped phrase text tracking parameters to utilize native match properties safely!
     processedText = processedText.replace(regex, match => {
       const d = glossary[phrase];
       const txt = (d && typeof d === 'object') ? d.definition : d;
@@ -368,9 +422,9 @@ function annotate(text, glossary) {
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
         }).join("");
 
-        // 🛠️ FIXED: Access the first element index matching array constraints completely!
-        const firstMatchObj = matches[0];
-        const rawDef = firstMatchObj.definition;
+        // 🛠️ FIXED: Pull the index element cleanly so properties match your exact data shapes!
+        const firstMatch = matches[0];
+        const rawDef = firstMatch.definition;
         
         const packedData = {
           word: word,
