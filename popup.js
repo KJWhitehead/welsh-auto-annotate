@@ -1,10 +1,15 @@
+// =======================================================
+// MASTER EXTENSION DROPDOWN CONTROL DECK CONTROLLER
+// =======================================================
+
 document.addEventListener('DOMContentLoaded', () => {
   const tableBody = document.getElementById("studyListBody");
   const btnScan = document.getElementById("btnScan");
   const btnExport = document.getElementById("btnExport");
   const btnClear = document.getElementById("btnClear");
 
-    function renderTable() {
+  function renderTable() {
+    // Read securely from Chrome's persistent profile cloud storage bucket
     chrome.storage.sync.get(["welshExtensionStudySession"], (result) => {
       let loggedWords = result.welshExtensionStudySession ? JSON.parse(result.welshExtensionStudySession) : [];
 
@@ -14,13 +19,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       tableBody.innerHTML = loggedWords.map(item => {
-        // Build the clean label cleanly without stray escape slashes
-        const sourceLabel = (item.course || item.unit) ? `${item.course} ${item.unit ? '• ' + item.unit : ''}`.trim() : "";
+        // Build the label dynamically so it never displays a stray hanging bullet
+        const courseText = item.course ? item.course.trim() : "";
+        const unitText = item.unit ? item.unit.trim() : "";
+        const sourceLabel = (courseText && unitText) ? `${courseText} • ${unitText}` : (courseText || unitText || "");
         
         return `<tr>
           <td><span class="table-word">${item.word}</span></td>
           <td>${item.displayDef}</td>
-          <td>\${sourceLabel ? `<span class="unit-tag">${sourceLabel}</span>` : ""}</td>
+          <td>${sourceLabel ? `<span class="unit-tag">\${sourceLabel}</span>` : ""}</td>
           <td style="text-align: center;"><span class="count-badge">${item.count}×</span></td>
         </tr>`;
       }).join("");
