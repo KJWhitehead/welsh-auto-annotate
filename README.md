@@ -23,11 +23,12 @@ There's now the option of clicking to add to a study list and the number of clic
 
 19 Sept: Realisation that the API doesn't actually help as it only works for individual words.  Lame. Branches deleted.
 
+28 Sept: Managed to include an API that gives pronunciation! TTS!!!
+
 Possibilities of next steps:
 1. comparative & superlative irregulars
 2. making sure the tool recognises command forms
 3. all the bod forms - incl. the formal forms
-4. converting to a Chrome extension
-5. adding Uwch vocab
-6. adding which chapter the word first appeared: in progress
+4. adding Uwch vocab
+5. adding which chapter the word first appeared: in progress
 
