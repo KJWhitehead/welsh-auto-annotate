@@ -64,21 +64,21 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       if (!response.ok) throw new Error("Techiaith Orpheus API structural validation failure.");
       return response.blob(); 
     })
-    .then(blob => {
-      return new Promise((resolve) => {
-        const reader = new FileReader();
-        reader.onloadend = () => resolve(reader.result);
-        reader.readAsDataURL(blob);
-      });
+    .then(response => {
+      if (!response.ok) throw new Error("Techiaith Orpheus API structural validation failure.");
+      return response.blob(); 
     })
-    .then(audioDataUrl => {
-      sendResponse({ status: "SUCCESS", audioUrl: audioDataUrl });
+    .then(blob => {
+      // 🛠️ FIXED: Uses extension runtime channels to build a safe, compliant blob link!
+      // This bypasses the website's CSP data-uri text node constraints entirely!
+      const audioUrl = URL.createObjectURL(blob);
+      sendResponse({ status: "SUCCESS", audioUrl: audioUrl });
     })
     .catch(error => {
       console.error("Techiaith Orpheus Streaming Error:", error);
       sendResponse({ status: "ERROR", error: error.message });
     });
 
-    return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
+    return true; 
   }
 });
