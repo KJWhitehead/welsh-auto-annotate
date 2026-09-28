@@ -33,7 +33,7 @@
       "resources": ["dictionaries/*.json"],
       "matches": ["<all_urls>"]
     }
-  ]
+  ],
   "permissions": [
     "scripting",
     "storage"
