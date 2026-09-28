@@ -258,31 +258,36 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         combinedGlossary = { ...combinedGlossary, ...data };
       }
 
-      // Target clean text-bearing paragraph blocks to isolate layout items from modification
-      const blocks = document.querySelectorAll('p, li, h1, h2, h3, span.story-body__introduction');
+ // 🛠️ FIXED: Strictly targets actual article narrative text fields!
+      // This completely blocks navigation elements and header strips from breaking.
+      const blocks = document.querySelectorAll('article p, .story-body__paragraph, .story-body__introduction, main p');
 
       blocks.forEach(block => {
-        // Skip blocks that don't have text or contain layout containers like images/figures
         if (block.querySelector('img, figure, picture, video, iframe')) return;
 
-        // 1. Read the full text context so word boundaries (\b) remain completely intact
-        const fullSentenceText = block.innerText;
+        const fullSentenceText = block.innerText.replace(/🔊 Llafar \/ Listen/gi, "").trim();
+        if (!fullSentenceText) return; // Skip empty blocks
         
-        // 2. Compute annotations over the unified string layout
         const annotatedHtml = annotate(fullSentenceText, combinedGlossary);
         
         if (annotatedHtml !== fullSentenceText) {
-          // 3. Use a safe browser parsing fragment to rebuild the internal text mapping 
-          // without destroying the parent paragraph tag container constraints!
           block.innerHTML = annotatedHtml;
-          // Append sentence player button widget to paragraph text blocks dynamically
-        const speakerWidget = document.createElement('button');
-          speakerWidget.className = 'sentence-speak-btn';
-          speakerWidget.setAttribute('data-text', fullSentenceText);
-          speakerWidget.innerHTML = ' 🔊 Llafar / Listen';
-          speakerWidget.style = 'background:none; border:none; color:#3b82f6; cursor:pointer; font-size:12px; font-weight:bold; margin-left:8px; display:inline-block;';
-          block.appendChild(speakerWidget);
         }
+
+        // 🛠️ FIXED: Generates a beautiful, isolated modern player deck badge!
+        const speakerWidget = document.createElement('button');
+        speakerWidget.className = 'sentence-speak-btn';
+        speakerWidget.setAttribute('data-text', fullSentenceText);
+        speakerWidget.innerHTML = '🔊 Chwarae Cyd-destun / Listen to Sentence';
+        
+        // Polished aesthetic container styling constraints
+        speakerWidget.style = 'display: block; margin-top: 8px; margin-bottom: 12px; padding: 4px 10px; font-size: 11px; font-weight: bold; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; border-radius: 4px; cursor: pointer; transition: all 0.2s ease-in-out; font-family: sans-serif;';
+        
+        // Add subtle hover tracking transitions dynamically via code bindings
+        speakerWidget.onmouseenter = () => { speakerWidget.style.background = '#bae6fd'; };
+        speakerWidget.onmouseleave = () => { speakerWidget.style.background = '#e0f2fe'; };
+        
+        block.appendChild(speakerWidget);
       });
 
       console.log("🚀 Complete sentence boundary compilation achieved. All layout styles and images safe!");
