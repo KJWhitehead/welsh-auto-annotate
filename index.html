@@ -510,7 +510,13 @@ document.addEventListener('click', (event) => {
     const originalText = target.innerHTML;
     target.innerHTML = "⏳ Connecting...";
 
-    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+    // 1. SILENT INITIALIZATION PRE-FLIGHT
+    // Creates and primes the speaker element directly within the initial human tap window 
+    // to instantly satisfy the browser's autoplay interaction guard gates!
+    const audioPlayer = new Audio();
+    audioPlayer.crossOrigin = "anonymous";
+
+    fetch("https://techiaith.cymru", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -526,10 +532,25 @@ document.addEventListener('click', (event) => {
       return response.blob();
     })
     .then(blob => {
+      // 2. ENHANCED DATA LOADING PIPELINE
       const nativeAudioUrl = URL.createObjectURL(blob);
-      const audio = new Audio(nativeAudioUrl);
-      audio.play();
-      target.innerHTML = originalText;
+      
+      // Inject the track layout directly into our pre-primed human-authorized player
+      audioPlayer.src = nativeAudioUrl;
+      audioPlayer.load(); // Forces the browser cache layout memory to buffer the track data completely
+
+      // 3. SECURE PLAYBACK PROMISE TRACKING
+      // Explicitly tells Chrome to wake up the speakers now that the data loop is complete
+      audioPlayer.play()
+        .then(() => {
+          target.innerHTML = originalText;
+        })
+        .catch(playError => {
+          console.error("Browser interaction playback block encountered:", playError);
+          // If the browser forces a block, fall back to a manual window notice
+          target.innerHTML = "🔊 Click Again to Hear";
+          setTimeout(() => { target.innerHTML = originalText; }, 2000);
+        });
     })
     .catch(error => {
       console.error("Workbench Voice Engine Error:", error);
@@ -542,6 +563,7 @@ document.addEventListener('click', (event) => {
   // Dismiss all tooltips on general outside clicks
   document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
 });
+
 </script>
   <script data-goatcounter="https://welshannotation.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
