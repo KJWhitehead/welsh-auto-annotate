@@ -338,7 +338,7 @@ function annotate(text, glossary) {
       const translationPhrase = parts[1];
       const htmlTextContent = `<span class="tooltip-branch"><span class="tooltip-label">(${textPhrase}):</span> ${translationPhrase}</span>`;
       const cleanParam = `(${textPhrase}): ${translationPhrase}`.replace(/['"]/g, '&quot;');
-        let audioBtn = `<button class="speak-btn" data-text="${phraseText}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
+        let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
         let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
         return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
 
