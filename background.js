@@ -44,35 +44,39 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 
   // ─── ACTION B: TECHIAITH ORPHEUS TEXT-TO-SPEECH STREAMER ──────────
-  // 🛠️ FIXED: Wrapped securely inside the message listener scope so return statements are legal!
   if (message.action === "SPEAK_TEXT") {
     const textToSpeak = message.payload.text;
     const chosenSpeaker = "benyw-deheuol-pro"; 
 
-    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+    // POST request matching the strict API layout
+    fetch("https://techiaith.cymru", {
       method: "POST",
       headers: {
         "accept": "*/*",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        text: textToSpeak,
-        speaker_id: chosenSpeaker 
+        text: String(textToSpeak).trim(), // 🛠️ FIXED: Force clean string parameters
+        speaker_id: String(chosenSpeaker).trim() // 🛠️ FIXED: Strictly align properties with openAPI specs
       })
     })
     .then(response => {
-      if (!response.ok) throw new Error("Techiaith Orpheus API structural validation failure.");
-      return response.blob(); 
+      // 🧠 HELP DEBUG: If it still fails, log the precise response code to see what it wants!
+      if (!response.ok) {
+        console.error("Techiaith returned status:", response.status);
+        throw new Error("Techiaith Orpheus API structural validation failure.");
+      }
+      return response.arrayBuffer(); 
     })
-    .then(response => {
-      if (!response.ok) throw new Error("Techiaith Orpheus API structural validation failure.");
-      return response.blob(); 
-    })
-    .then(blob => {
-      // 🛠️ FIXED: Uses extension runtime channels to build a safe, compliant blob link!
-      // This bypasses the website's CSP data-uri text node constraints entirely!
-      const audioUrl = URL.createObjectURL(blob);
-      sendResponse({ status: "SUCCESS", audioUrl: audioUrl });
+    .then(buffer => {
+      const bytes = new Uint8Array(buffer);
+      let binary = "";
+      for (let i = 0; i < bytes.byteLength; i++) {
+        binary += String.fromCharCode(bytes[i]);
+      }
+      const base64String = btoa(binary);
+      
+      sendResponse({ status: "SUCCESS", audioData: base64String });
     })
     .catch(error => {
       console.error("Techiaith Orpheus Streaming Error:", error);
