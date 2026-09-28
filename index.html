@@ -349,7 +349,7 @@ function annotate(text, glossary) {
       return `<span class="annotated" onclick="handleToggle(event, this)">${localPhraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
     }
 
-    // B. TRACK INDIVIDUAL SINGLE WORDS
+// B. TRACK INDIVIDUAL SINGLE WORDS
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
@@ -366,16 +366,18 @@ function annotate(text, glossary) {
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
         }).join("");
 
-        const firstMatch = matches[0].definition;
+        // 🛠️ FIXED: Point directly to the parent match object container so properties extract cleanly!
+        const firstMatchObj = matches[0];
+        const rawDef = firstMatchObj.definition;
+        
         const packedData = {
           word: word,
-          def: (firstMatch && typeof firstMatch === 'object') ? firstMatch.definition : firstMatch,
-          course: (firstMatch && firstMatch.course) ? firstMatch.course : "",
-          unit: (firstMatch && firstMatch.unit) ? firstMatch.unit : ""
+          def: (rawDef && typeof rawDef === 'object') ? rawDef.definition : rawDef,
+          course: (rawDef && typeof rawDef === 'object' && rawDef.course) ? rawDef.course : "",
+          unit: (rawDef && typeof rawDef === 'object' && rawDef.unit) ? rawDef.unit : ""
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         
-        // 🛠️ FIXED: Uses single-word variable mapping context safely!
         let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
         let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
         
