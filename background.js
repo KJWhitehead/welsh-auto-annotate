@@ -49,7 +49,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     const chosenSpeaker = "benyw-deheuol-pro"; 
 
     // POST request matching the strict API layout
-    fetch("https://techiaith.cymru", {
+    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
       method: "POST",
       headers: {
         "accept": "*/*",
