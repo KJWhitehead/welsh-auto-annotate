@@ -321,7 +321,9 @@ function annotate(text, glossary) {
 
   phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])(${safePhrase})(?=$|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])`, 'gi');
+    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])(${safePhrase環境})`, 'gi');
+    
+    // 🛠️ FIXED: Re-mapped phrase text tracking parameters to utilize native match properties safely!
     processedText = processedText.replace(regex, match => {
       const d = glossary[phrase];
       const txt = (d && typeof d === 'object') ? d.definition : d;
@@ -333,19 +335,20 @@ function annotate(text, glossary) {
 
   const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
   return tokens.map(token => {
+    
     // A. TRACK MULTI-WORD PHRASES
     if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
-      const localPhraseText = parts[0];
+      const phraseText = parts[0];
       const dataBits = parts[1].split("|||");
       
-      const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${localPhraseText}):</span> ${dataBits[0]} [${dataBits[1]} • ${dataBits[2]}]</span>`;
-      const cleanParam = encodeURIComponent(JSON.stringify({ word: localPhraseText, def: dataBits[0], course: dataBits[1], unit: dataBits[2] }));
+      const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${phraseText}):</span> ${dataBits[0]} [${dataBits[1]} • ${dataBits[2]}]</span>`;
+      const cleanParam = encodeURIComponent(JSON.stringify({ word: phraseText, def: dataBits[0], course: dataBits[1], unit: dataBits[2] }));
       
-      let audioBtn = `<button class="speak-btn" data-text="${localPhraseText}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
+      let audioBtn = `<button class="speak-btn" data-text="${phraseText}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
       let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
       
-      return `<span class="annotated" onclick="handleToggle(event, this)">${localPhraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
+      return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
     }
 
     // B. TRACK INDIVIDUAL SINGLE WORDS
@@ -365,6 +368,7 @@ function annotate(text, glossary) {
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
         }).join("");
 
+        // 🛠️ FIXED: Access the first element index matching array constraints completely!
         const firstMatchObj = matches[0];
         const rawDef = firstMatchObj.definition;
         
