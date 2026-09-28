@@ -388,6 +388,13 @@ function annotate(text, glossary) {
 
 // --- INTERACTION & DATA STORAGE PIPELINES ---
 function handleToggle(event, el) {
+  // 🛠️ THE MASTER INTERCEPTION GUARD:
+  // If the user is trying to click the audio button or the add button, 
+  // forcefully block the parent span from toggling or closing the tooltip!
+  if (event.target.classList.contains('speak-btn') || event.target.tagName === 'BUTTON') {
+    return; // Stop right here, let the button handle its own click event!
+  }
+
   event.stopPropagation();
   const isOpen = el.classList.contains('show-tooltip');
   document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
