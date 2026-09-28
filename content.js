@@ -238,7 +238,9 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
   }).join("");
 }
 
-// 2. EXTENSION RECEIVER (Preserves photos/layouts while keeping sentence text context intact)
+// =======================================================
+// 2. EXTENSION RECEIVER PIPELINE (Sentence boundary scanner)
+// =======================================================
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
   if (message.action === "RUN_ANNOTATION") {
     try {
@@ -258,39 +260,52 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         combinedGlossary = { ...combinedGlossary, ...data };
       }
 
- // 🛠️ FIXED: Strictly targets actual article narrative text fields!
-      // This completely blocks navigation elements and header strips from breaking.
-      const blocks = document.querySelectorAll('article p, .story-body__paragraph, .story-body__introduction, main p');
+      // 🛠️ THE TARGET MATRIX: Sweeps headings and paragraph nodes for text
+      const annotationTargets = document.querySelectorAll('p, li, h1, h2, h3, span.story-body__introduction');
 
-      blocks.forEach(block => {
+      annotationTargets.forEach(block => {
         if (block.querySelector('img, figure, picture, video, iframe')) return;
 
-        const fullSentenceText = block.innerText.replace(/🔊 Llafar \/ Listen/gi, "").trim();
-        if (!fullSentenceText) return; // Skip empty blocks
-        
+        // 🛠️ CLEANUP: Delete any old buttons BEFORE reading the text node
+        block.querySelectorAll('.sentence-speak-btn').forEach(el => el.remove());
+
+        // Read the pure Welsh text context safely
+        const fullSentenceText = block.innerText.trim();
+        if (!fullSentenceText) return; 
+
         const annotatedHtml = annotate(fullSentenceText, combinedGlossary);
-        
         if (annotatedHtml !== fullSentenceText) {
           block.innerHTML = annotatedHtml;
         }
 
-        // 🛠️ FIXED: Generates a beautiful, isolated modern player deck badge!
-        const speakerWidget = document.createElement('button');
-        speakerWidget.className = 'sentence-speak-btn';
-        speakerWidget.setAttribute('data-text', fullSentenceText);
-        speakerWidget.innerHTML = '🔊 Chwarae Cyd-destun / Listen to Sentence';
-        
-        // Polished aesthetic container styling constraints
-        speakerWidget.style = 'display: block; margin-top: 8px; margin-bottom: 12px; padding: 4px 10px; font-size: 11px; font-weight: bold; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; border-radius: 4px; cursor: pointer; transition: all 0.2s ease-in-out; font-family: sans-serif;';
-        
-        // Add subtle hover tracking transitions dynamically via code bindings
-        speakerWidget.onmouseenter = () => { speakerWidget.style.background = '#bae6fd'; };
-        speakerWidget.onmouseleave = () => { speakerWidget.style.background = '#e0f2fe'; };
-        
-        block.appendChild(speakerWidget);
+        // FILTER: Check if the element is a core story block or headline
+        const isCoreContent = block.closest('article, main, [role="main"]') || 
+                              block.classList.contains('story-body__paragraph') ||
+                              block.classList.contains('story-body__introduction') ||
+                              /h1|h2|h3/i.test(block.tagName);
+
+        // Filter out site navigation menus entirely
+        const isInsideNavMenu = block.closest('nav, header, #header, .nav-menu, .navigation');
+
+        if (isCoreContent && !isInsideNavMenu) {
+          const speakerWidget = document.createElement('button');
+          speakerWidget.className = 'sentence-speak-btn';
+          speakerWidget.setAttribute('data-text', fullSentenceText);
+          
+          // Shortened aesthetic label
+          speakerWidget.innerHTML = '🔊 Chwarae Cyd-destun / Listen';
+          
+          // Modern, light-blue dashboard layout styling constraints
+          speakerWidget.style = 'display: block; margin-top: 6px; margin-bottom: 10px; padding: 4px 10px; font-size: 11px; font-weight: bold; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; border-radius: 4px; cursor: pointer; transition: all 0.2s ease-in-out; font-family: sans-serif; width: fit-content;';
+          
+          speakerWidget.onmouseenter = () => { speakerWidget.style.background = '#bae6fd'; };
+          speakerWidget.onmouseleave = () => { speakerWidget.style.background = '#e0f2fe'; };
+          
+          block.appendChild(speakerWidget);
+        }
       });
 
-      console.log("🚀 Complete sentence boundary compilation achieved. All layout styles and images safe!");
+      console.log("🚀 Complete sentence boundary compilation achieved. All layout styles safe!");
 
     } catch (error) {
       console.error("Failed to execute extension mapping loops:", error);
