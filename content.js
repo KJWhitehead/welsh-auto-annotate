@@ -363,17 +363,36 @@ if (target.classList.contains('study-btn')) {
         action: "SPEAK_TEXT",
         payload: { text: textToPronounce }
       }, (response) => {
-        if (response && response.status === "SUCCESS" && response.audioUrl) {
-          const audio = new Audio(response.audioUrl);
-          audio.play();
-          target.innerHTML = originalButtonText;
+        // 🛠️ FIXED: Reads audioData instead of the invalid service worker audioUrl parameter!
+        if (response && response.status === "SUCCESS" && response.audioData) {
+          try {
+            // Unpack the safe base64 text payload back into a local playable binary structure
+            const binaryString = atob(response.audioData);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+              bytes[i] = binaryString.charCodeAt(i);
+            }
+            
+            // Generate a secure browser blob link that fully satisfies the website's CSP rules!
+            const audioBlob = new Blob([bytes.buffer], { type: 'audio/wav' });
+            const compliantBlobUrl = URL.createObjectURL(audioBlob);
+            
+            const audio = new Audio(compliantBlobUrl);
+            audio.play();
+            target.innerHTML = originalButtonText;
+          } catch (e) {
+            console.error("Content script audio playback conversion failure:", e);
+            target.innerHTML = "❌ Playback Error";
+            setTimeout(() => { target.innerHTML = originalButtonText; }, 1500);
+          }
         } else {
           target.innerHTML = "❌ Audio Unavailable";
           setTimeout(() => { target.innerHTML = originalButtonText; }, 1500);
         }
       });
     }
-    return; // 🌟 FIXED: Cleanly ends the speak-btn logic pass safely!
+    return; // 🌟 Cleanly ends the speak-btn logic pass safely!
   }
   
   // 🛠️ FIXED: Dismiss tooltips on general clicks ONLY if we didn't hit a button or target span!
