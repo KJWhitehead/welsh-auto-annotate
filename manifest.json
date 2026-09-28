@@ -34,4 +34,11 @@
       "matches": ["<all_urls>"]
     }
   ]
+  "permissions": [
+    "scripting",
+    "storage"
+  ],
+  "sandbox": {
+    "pages": []
+  }
 }
