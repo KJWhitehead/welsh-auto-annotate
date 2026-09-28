@@ -293,7 +293,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
           speakerWidget.setAttribute('data-text', fullSentenceText);
           
           // Shortened aesthetic label
-          speakerWidget.innerHTML = '🔊 Chwarae Cyd-destun / Listen';
+          speakerWidget.innerHTML = '🔊 Llafar / Listen';
           
           // Modern, light-blue dashboard layout styling constraints
           speakerWidget.style = 'display: block; margin-top: 6px; margin-bottom: 10px; padding: 4px 10px; font-size: 11px; font-weight: bold; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; border-radius: 4px; cursor: pointer; transition: all 0.2s ease-in-out; font-family: sans-serif; width: fit-content;';
