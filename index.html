@@ -504,30 +504,59 @@ document.addEventListener('click', (event) => {
   const target = event.target;
 
   if (target.classList.contains('speak-btn')) {
+// --- NATIVE WORKBENCH TECHIAITH VOICE CONTROLLER ---
+document.addEventListener('click', (event) => {
+  const target = event.target;
+
+  if (target.classList.contains('speak-btn')) {
     event.stopPropagation();
 
     const textToPronounce = target.getAttribute('data-text');
     const originalText = target.innerHTML;
     target.innerHTML = "⏳ Connecting...";
 
-    // 🛠️ THE ULTIMATE SHORTCUT: Compile parameters cleanly directly onto the URL query string!
-    // This removes the need for complex request body JSON arrays completely.
-    const cleanText = encodeURIComponent(String(textToPronounce).trim());
-    const targetUrl = `https://api.techiaith.cymru/speak/v3/api.orpheus{cleanText}&speaker_id=benyw-deheuol-pro`;
+    // Prime a clean browser audio player object instantly inside the human click tracking loop
+    const audioPlayer = new Audio();
 
-    // Fire the source directly into a native browser audio tracking element
-    const audio = new Audio(targetUrl);
-    
-    audio.play()
-      .then(() => {
-        target.innerHTML = originalText;
+    // 🛠️ DOCUMENTATION COMPLIANT PATH: POST directly to the verified Orpheus endpoint route
+    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text: String(textToPronounce).trim(),
+        speaker_id: "benyw-deheuol-pro" // Matches your working curl schema exactly!
       })
-      .catch(error => {
-        console.error("Local web audio playback stream block:", error);
-        target.innerHTML = "❌ Audio Unavailable";
-        setTimeout(() => { target.innerHTML = originalText; }, 1500);
-      });
+    })
+    .then(response => {
+      if (!response.ok) {
+        console.error("Techiaith server error code response:", response.status);
+        throw new Error(`Server returned status code: ${response.status}`);
+      }
+      // Read the true raw audio binary array elements directly from the network track
+      return response.arrayBuffer(); 
+    })
+    .then(buffer => {
+      // Package the binary chunks into a safe browser audio file blob container
+      const audioBlob = new Blob([buffer], { type: 'audio/wav' });
+      const nativeAudioUrl = URL.createObjectURL(audioBlob);
       
+      // Inject and play natively
+      audioPlayer.src = nativeAudioUrl;
+      audioPlayer.load();
+      
+      return audioPlayer.play();
+    })
+    .then(() => {
+      target.innerHTML = originalText;
+    })
+    .catch(error => {
+      console.error("Workbench Voice Engine Error:", error);
+      target.innerHTML = "❌ Audio Unavailable";
+      setTimeout(() => { target.innerHTML = originalText; }, 1500);
+    });
     return;
   }
 
