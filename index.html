@@ -515,7 +515,6 @@ document.addEventListener('click', (event) => {
     const originalText = target.innerHTML;
     target.innerHTML = "⏳ Connecting...";
 
-    // Prime a clean browser audio player object instantly inside the human click tracking loop
     const audioPlayer = new Audio();
 
     // 🛠️ DOCUMENTATION COMPLIANT PATH: POST directly to the verified Orpheus endpoint route
@@ -559,7 +558,7 @@ document.addEventListener('click', (event) => {
     });
     return;
   }
-
+        
   // Dismiss all tooltips on general outside clicks
   document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
 });
