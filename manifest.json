@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Welsh Auto-Annotation Tool",
-  "version": "1.9",
+  "version": "2.0",
   "description": "Injects hover tooltips over processed Welsh text using offline curriculum dictionaries.",
   "permissions": [
     "activeTab",
