@@ -512,42 +512,57 @@ document.addEventListener('click', (event) => {
 
     const audioPlayer = new Audio();
 
-    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        text: String(textToPronounce).trim(),
-        speaker_id: "benyw-deheuol-pro"
-      })
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Server returned status code: ${response.status}`);
-        }
-        return response.arrayBuffer();
-      })
-      .then(buffer => {
-        const audioBlob = new Blob([buffer], { type: 'audio/wav' });
-        const nativeAudioUrl = URL.createObjectURL(audioBlob);
+fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+  method: "POST",
+  mode: "cors",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "audio/wav"
+  },
+  body: JSON.stringify({
+    text: String(textToPronounce).trim(),
+    speaker_id: "benyw-deheuol-pro"
+  })
+})
+.then(async response => {
+  const contentType = response.headers.get("content-type") || "";
+  const body = await response.arrayBuffer();
 
-        audioPlayer.src = nativeAudioUrl;
-        audioPlayer.load();
+  if (!response.ok) {
+    const errorText = new TextDecoder().decode(body);
+    throw new Error(
+      `TTS request failed: ${response.status} ${response.statusText}\n${errorText}`
+    );
+  }
 
-        return audioPlayer.play();
-      })
-      .then(() => {
-        target.innerHTML = originalText;
-      })
-      .catch(error => {
-        console.error("Workbench Voice Engine Error:", error);
-        target.innerHTML = "❌ Audio Unavailable";
-        setTimeout(() => {
-          target.innerHTML = originalText;
-        }, 1500);
-      });
+  if (!contentType.startsWith("audio/")) {
+    const responseText = new TextDecoder().decode(body);
+    throw new Error(
+      `Expected audio but received ${contentType}: ${responseText}`
+    );
+  }
+
+  return new Blob([body], { type: contentType });
+})
+.then(audioBlob => {
+  const nativeAudioUrl = URL.createObjectURL(audioBlob);
+  audioPlayer.src = nativeAudioUrl;
+
+  return audioPlayer.play().finally(() => {
+    URL.revokeObjectURL(nativeAudioUrl);
+  });
+})
+.then(() => {
+  target.innerHTML = originalText;
+})
+.catch(error => {
+  console.error("Workbench Voice Engine Error:", error);
+  target.innerHTML = "❌ Audio Unavailable";
+
+  setTimeout(() => {
+    target.innerHTML = originalText;
+  }, 1500);
+});
 
     return;
   }
