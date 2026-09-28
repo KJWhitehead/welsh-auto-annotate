@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="cy">
 <head>
 <meta charset="UTF-8">
@@ -338,9 +338,10 @@ function annotate(text, glossary) {
       const translationPhrase = parts[1];
       const htmlTextContent = `<span class="tooltip-branch"><span class="tooltip-label">(${textPhrase}):</span> ${translationPhrase}</span>`;
       const cleanParam = `(${textPhrase}): ${translationPhrase}`.replace(/['"]/g, '&quot;');
-      let addBtnHtml = `<button onclick="handleAddButtonClick(event, '${textPhrase}', '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+        let audioBtn = `<button class="speak-btn" data-text="${phraseText}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
+        let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+        return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
 
-      return `<span class="annotated" onclick="handleWordActivation(event, this, '${textPhrase}', '${cleanParam}')">${textPhrase}<span class="tooltip">${htmlTextContent}${addBtnHtml}</span></span>`;
     }
 
 const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
@@ -376,8 +377,10 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         
-        let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-        return `<span class="annotated" onclick="handleToggle(event, this)">${word}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
+        let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
+        let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+        return `<span class="annotated" onclick="handleToggle(event, this)">${word}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
+
       }
       return word;
     }).join("");
@@ -458,7 +461,48 @@ document.addEventListener('click', function() {
   document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
 });
 
+// --- NATIVE WORKBENCH TECHIAITH VOICE CONTROLLER ---
+document.addEventListener('click', (event) => {
+  const target = event.target;
 
+  if (target.classList.contains('speak-btn')) {
+    event.stopPropagation();
+
+    const textToPronounce = target.getAttribute('data-text');
+    const originalText = target.innerHTML;
+    target.innerHTML = "⏳ Connecting...";
+
+    // Direct web fetch routine straight to Bangor University's Orpheus production channels
+    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text: String(textToPronounce).trim(),
+        speaker_id: "benyw-deheuol-pro" // High-fidelity professional Southern Female voice profile
+      })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Techiaith web synthesis connection failure.");
+      return response.blob(); // Gather raw binary streaming chunks natively as a blob object!
+    })
+    .then(blob => {
+      // 🛠️ MODERN WEB PIPELINE: Generate a secure browser link from the blob data instantly!
+      const nativeAudioUrl = URL.createObjectURL(blob);
+      const audio = new Audio(nativeAudioUrl);
+      
+      audio.play();
+      target.innerHTML = originalText;
+    })
+    .catch(error => {
+      console.error("Workbench Voice Engine Error:", error);
+      target.innerHTML = "❌ Audio Unavailable";
+      setTimeout(() => { target.innerHTML = originalText; }, 1500);
+    });
+  }
+});
 </script>
   <script data-goatcounter="https://welshannotation.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
