@@ -41,3 +41,44 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
   }
 });
+
+ // 3. TECHIAITH ORPHEUS TEXT-TO-SPEECH STREAMER
+  if (message.action === "SPEAK_TEXT") {
+    const textToSpeak = message.payload.text;
+    
+
+    const chosenSpeaker = "benyw-deheuol-pro"; 
+
+    // Hitting the verified Orpheus endpoint route matching your curl schema
+    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+      method: "POST",
+      headers: {
+        "accept": "*/*",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        text: textToSpeak,
+        speaker_id: chosenSpeaker 
+      })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Techiaith Orpheus API structural validation failure.");
+      return response.blob(); 
+    })
+    .then(blob => {
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      });
+    })
+    .then(audioDataUrl => {
+      sendResponse({ status: "SUCCESS", audioUrl: audioDataUrl });
+    })
+    .catch(error => {
+      console.error("Techiaith Orpheus Streaming Error:", error);
+      sendResponse({ status: "ERROR", error: error.message });
+    });
+
+    return true; 
+  }
