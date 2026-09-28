@@ -510,50 +510,30 @@ document.addEventListener('click', (event) => {
     const originalText = target.innerHTML;
     target.innerHTML = "⏳ Connecting...";
 
-    // Prime the audio player element immediately inside the human click window context
-    const audioPlayer = new Audio();
+    // 🛠️ THE ULTIMATE SHORTCUT: Compile parameters cleanly directly onto the URL query string!
+    // This removes the need for complex request body JSON arrays completely.
+    const cleanText = encodeURIComponent(String(textToPronounce).trim());
+    const targetUrl = `https://api.techiaith.cymru/speak/v3/api.orpheus{cleanText}&speaker_id=benyw-deheuol-pro`;
 
-    // Hitting the verified Orpheus endpoint route with a direct arrayBuffer file-stream extraction path
-    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        text: String(textToPronounce).trim(),
-        speaker_id: "benyw-deheuol-pro"
+    // Fire the source directly into a native browser audio tracking element
+    const audio = new Audio(targetUrl);
+    
+    audio.play()
+      .then(() => {
+        target.innerHTML = originalText;
       })
-    })
-    .then(response => {
-      if (!response.ok) throw new Error("Techiaith web synthesis connection failure.");
-      // 🛠️ FIXED: Forces the browser to capture the raw binary audio array stream directly from the server network tracks!
-      return response.arrayBuffer(); 
-    })
-    .then(buffer => {
-      // 🛠️ FIXED: Construct the audio blob directly out of the raw binary data array elements!
-      const audioBlob = new Blob([buffer], { type: 'audio/wav' });
-      const nativeAudioUrl = URL.createObjectURL(audioBlob);
+      .catch(error => {
+        console.error("Local web audio playback stream block:", error);
+        target.innerHTML = "❌ Audio Unavailable";
+        setTimeout(() => { target.innerHTML = originalText; }, 1500);
+      });
       
-      // Bind and fire the streaming object natively through the pre-primed speaker channel
-      audioPlayer.src = nativeAudioUrl;
-      audioPlayer.load();
-      
-      return audioPlayer.play();
-    })
-    .then(() => {
-      target.innerHTML = originalText;
-    })
-    .catch(error => {
-      console.error("Workbench Voice Engine Error:", error);
-      target.innerHTML = "❌ Audio Unavailable";
-      setTimeout(() => { target.innerHTML = originalText; }, 1500);
-    });
     return;
   }
 
   // Dismiss all tooltips on general outside clicks
   document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
+});All('.annotated').forEach(x => x.classList.remove('show-tooltip'));
 });
 
 </script>
