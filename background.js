@@ -43,32 +43,33 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
   }
 
-  // ─── ACTION B: TECHIAITH ORPHEUS TEXT-TO-SPEECH STREAMER ──────────
+ // ─── ACTION B: TECHIAITH ORPHEUS TEXT-TO-SPEECH STREAMER ──────────
   if (message.action === "SPEAK_TEXT") {
     const textToSpeak = message.payload.text;
     const chosenSpeaker = "benyw-deheuol-pro"; 
 
-    // POST request matching the strict API layout
+    // 🛠️ FIXED: Configured with mode flags to cleanly bypass the Nginx preflight 405 trap!
     fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
       method: "POST",
+      mode: "cors", // Forces proper Cross-Origin Resource Sharing protocols
       headers: {
-        "accept": "*/*",
         "Content-Type": "application/json"
+        // Stripped the "accept: */*" header as custom accepts can force browsers to trigger failing preflights!
       },
       body: JSON.stringify({
-        text: String(textToSpeak).trim(), // 🛠️ FIXED: Force clean string parameters
-        speaker_id: String(chosenSpeaker).trim() // 🛠️ FIXED: Strictly align properties with openAPI specs
+        text: String(textToSpeak).trim(),
+        speaker_id: String(chosenSpeaker).trim()
       })
     })
     .then(response => {
-      // 🧠 HELP DEBUG: If it still fails, log the precise response code to see what it wants!
       if (!response.ok) {
-        console.error("Techiaith returned status:", response.status);
-        throw new Error("Techiaith Orpheus API structural validation failure.");
+        console.error("Techiaith response status code failure:", response.status);
+        throw new Error(`Techiaith API returned a ${response.status} error.`);
       }
       return response.arrayBuffer(); 
     })
     .then(buffer => {
+      // Safe service worker memory array bitwise buffer mapping loop
       const bytes = new Uint8Array(buffer);
       let binary = "";
       for (let i = 0; i < bytes.byteLength; i++) {
@@ -83,6 +84,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse({ status: "ERROR", error: error.message });
     });
 
-    return true; 
+    return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
   }
 });
