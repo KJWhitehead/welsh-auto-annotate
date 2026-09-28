@@ -314,42 +314,46 @@ function collectMatches(word, glossary) {
   });
 }
 
-// --- AUTO-ANNOTATION ENGINE ---
+// --- WORKBENCH ANNOTATION ENGINE ---
 function annotate(text, glossary) {
-  const phrases = Object.keys(glossary).filter(key => key.includes(" "));
-  phrases.sort((a, b) => b.length - a.length);
-
+  const phrases = Object.keys(glossary).filter(k => k.includes(" ")).sort((a, b) => b.length - a.length);
   let processedText = text;
 
   phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-    const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
-    processedText = processedText.replace(regex, (match) => {
-      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${glossary[phrase]}___PHRASE_END___`;
+    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])(${safePhrase})(?=$|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])`, 'gi');
+    processedText = processedText.replace(regex, match => {
+      const d = glossary[phrase];
+      const txt = (d && typeof d === 'object') ? d.definition : d;
+      const c = (d && d.course) ? d.course : "";
+      const u = (d && d.unit) ? d.unit : "";
+      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${txt}|||${c}|||${u}___PHRASE_END___`;
     });
   });
 
   const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
-
   return tokens.map(token => {
+    // A. TRACK MULTI-WORD PHRASES
     if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
-      const textPhrase = parts[0];
-      const translationPhrase = parts[1];
-      const htmlTextContent = `<span class="tooltip-branch"><span class="tooltip-label">(${textPhrase}):</span> ${translationPhrase}</span>`;
-      const cleanParam = `(${textPhrase}): ${translationPhrase}`.replace(/['"]/g, '&quot;');
-        let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
-        let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-        return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
-
+      const localPhraseText = parts[0];
+      const dataBits = parts[1].split("|||");
+      
+      const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${localPhraseText}):</span> ${dataBits[0]} [${dataBits[1]} • ${dataBits[2]}]</span>`;
+      const cleanParam = encodeURIComponent(JSON.stringify({ word: localPhraseText, def: dataBits[0], course: dataBits[1], unit: dataBits[2] }));
+      
+      // 🛠️ FIXED: Uses localPhraseText variable matching your exact structural array split!
+      let audioBtn = `<button class="speak-btn" data-text="${localPhraseText}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
+      let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+      
+      return `<span class="annotated" onclick="handleToggle(event, this)">${localPhraseText}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
     }
 
-const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
+    // B. TRACK INDIVIDUAL SINGLE WORDS
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
-         // 1. BUILD INTUITIVE VISUAL HOVER TOOLTIP TEXT WITH DUPLICATE DE-DUPLICATION
-        let uniqueBranches = new Set();
         let tooltipHtml = matches.map(m => {
           const d = m.definition;
           const txt = (d && typeof d === 'object') ? d.definition : d;
@@ -359,15 +363,9 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
           const formLabel = m.form ? ` (${m.form})` : "";
           const curriculum = (c || u) ? ` [${c} ${u ? '• ' + u : ''}]` : "";
           
-          // Generate a unique signature for this specific definition text string
-          const entrySignature = `${m.root}|||${txt}|||${formLabel}`;
-          if (uniqueBranches.has(entrySignature)) return ""; // Skip if we already added it!
-          uniqueBranches.add(entrySignature);
-          
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
         }).join("");
 
-        // 2. STRUCTURALLY PACK THE DATA OBJECT FOR THE COMPACT STUDY TABLE
         const firstMatch = matches[0].definition;
         const packedData = {
           word: word,
@@ -377,10 +375,11 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         
+        // 🛠️ FIXED: Uses single-word variable mapping context safely!
         let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
         let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+        
         return `<span class="annotated" onclick="handleToggle(event, this)">${word}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
-
       }
       return word;
     }).join("");
