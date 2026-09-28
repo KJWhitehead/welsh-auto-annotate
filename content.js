@@ -227,8 +227,11 @@ const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         
-        let btn = `<button class="study-btn" data-word="${word}" data-param="${cleanParam}" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-return `<span class="annotated">${word}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
+        // Added: Audio button specifically targeted for individual mutated tokens
+        let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Pronounce Word</button>`;
+        let btn = `<button class="study-btn" data-word="${word}" data-param="${cleanParam}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
+        
+        return `<span class="annotated">${word}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
       }
       return word;
     }).join("");
@@ -272,6 +275,13 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
           // 3. Use a safe browser parsing fragment to rebuild the internal text mapping 
           // without destroying the parent paragraph tag container constraints!
           block.innerHTML = annotatedHtml;
+          // Append sentence player button widget to paragraph text blocks dynamically
+        const speakerWidget = document.createElement('button');
+          speakerWidget.className = 'sentence-speak-btn';
+          speakerWidget.setAttribute('data-text', fullSentenceText);
+          speakerWidget.innerHTML = ' 🔊 Llafar / Listen';
+          speakerWidget.style = 'background:none; border:none; color:#3b82f6; cursor:pointer; font-size:12px; font-weight:bold; margin-left:8px; display:inline-block;';
+          block.appendChild(speakerWidget);
         }
       });
 
@@ -295,12 +305,9 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-// 1. EXTENSION & WORKBENCH CLICK INTERACTION DELEGATION
-// Handle study list buttons inside live extension pages safely via background channels
-  if (target.classList.contains('study-btn')) {
+if (target.classList.contains('study-btn')) {
     event.stopPropagation();
     
-    // Extract the raw text properties passed down by the annotation loops
     const word = target.getAttribute('data-word') || "";
     const param = target.getAttribute('data-param') || "";
     
@@ -309,8 +316,6 @@ document.addEventListener('click', (event) => {
     let unitText = "";
 
     try {
-      // 🧠 THE ULTIMATE SHORTCUT:
-      // If the parameter is an encoded JSON string, unpack it instantly with zero complex splits!
       if (param.startsWith("%7B") || param.startsWith("{") || param.includes("%")) {
         const decodedData = JSON.parse(decodeURIComponent(param));
         definitionText = decodedData.def || "";
@@ -318,12 +323,10 @@ document.addEventListener('click', (event) => {
         unitText = decodedData.unit || "";
       }
     } catch (e) {
-      // Robust Fallback: If it's old plain text, pull it raw as an emergency fallback
       console.log("Parsing plain text fallback template string instead.");
       definitionText = param;
     }
 
-    // Securely fire the data packet up to background.js service worker channels
     if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
       chrome.runtime.sendMessage({
         action: "SAVE_VOCAB_WORD",
@@ -334,7 +337,6 @@ document.addEventListener('click', (event) => {
           unit: unitText
         }
       }, (response) => {
-        // Provide immediate visual success feedback on the webpage button
         target.innerText = "✅ Added!";
         target.style.background = "#059669";
         
@@ -343,7 +345,35 @@ document.addEventListener('click', (event) => {
         }, 800);
       });
     }
-    return;
+    return; // 🌟 FIXED: Cleanly ends the study-btn logic pass safely!
+  }
+
+  // =======================================================
+  // B. TECHIAITH ORPHEUS VOICE SYNTHESIS CONTROLLER (Plays audio)
+  // =======================================================
+  if (target.classList.contains('speak-btn') || target.classList.contains('sentence-speak-btn')) {
+    event.stopPropagation();
+    
+    const textToPronounce = target.getAttribute('data-text');
+    const originalButtonText = target.innerHTML;
+    target.innerHTML = "⏳ Connecting...";
+
+    if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+      chrome.runtime.sendMessage({
+        action: "SPEAK_TEXT",
+        payload: { text: textToPronounce }
+      }, (response) => {
+        if (response && response.status === "SUCCESS" && response.audioUrl) {
+          const audio = new Audio(response.audioUrl);
+          audio.play();
+          target.innerHTML = originalButtonText;
+        } else {
+          target.innerHTML = "❌ Audio Unavailable";
+          setTimeout(() => { target.innerHTML = originalButtonText; }, 1500);
+        }
+      });
+    }
+    return; // 🌟 FIXED: Cleanly ends the speak-btn logic pass safely!
   }
   
   // 🛠️ FIXED: Dismiss tooltips on general clicks ONLY if we didn't hit a button or target span!
