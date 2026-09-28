@@ -504,11 +504,6 @@ document.addEventListener('click', (event) => {
   const target = event.target;
 
   if (target.classList.contains('speak-btn')) {
-// --- NATIVE WORKBENCH TECHIAITH VOICE CONTROLLER ---
-document.addEventListener('click', (event) => {
-  const target = event.target;
-
-  if (target.classList.contains('speak-btn')) {
     event.stopPropagation();
 
     const textToPronounce = target.getAttribute('data-text');
@@ -517,7 +512,6 @@ document.addEventListener('click', (event) => {
 
     const audioPlayer = new Audio();
 
-    // 🛠️ DOCUMENTATION COMPLIANT PATH: POST directly to the verified Orpheus endpoint route
     fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
       method: "POST",
       mode: "cors",
@@ -526,41 +520,42 @@ document.addEventListener('click', (event) => {
       },
       body: JSON.stringify({
         text: String(textToPronounce).trim(),
-        speaker_id: "benyw-deheuol-pro" // Matches your working curl schema exactly!
+        speaker_id: "benyw-deheuol-pro"
       })
     })
-    .then(response => {
-      if (!response.ok) {
-        console.error("Techiaith server error code response:", response.status);
-        throw new Error(`Server returned status code: ${response.status}`);
-      }
-      // Read the true raw audio binary array elements directly from the network track
-      return response.arrayBuffer(); 
-    })
-    .then(buffer => {
-      // Package the binary chunks into a safe browser audio file blob container
-      const audioBlob = new Blob([buffer], { type: 'audio/wav' });
-      const nativeAudioUrl = URL.createObjectURL(audioBlob);
-      
-      // Inject and play natively
-      audioPlayer.src = nativeAudioUrl;
-      audioPlayer.load();
-      
-      return audioPlayer.play();
-    })
-    .then(() => {
-      target.innerHTML = originalText;
-    })
-    .catch(error => {
-      console.error("Workbench Voice Engine Error:", error);
-      target.innerHTML = "❌ Audio Unavailable";
-      setTimeout(() => { target.innerHTML = originalText; }, 1500);
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Server returned status code: ${response.status}`);
+        }
+        return response.arrayBuffer();
+      })
+      .then(buffer => {
+        const audioBlob = new Blob([buffer], { type: 'audio/wav' });
+        const nativeAudioUrl = URL.createObjectURL(audioBlob);
+
+        audioPlayer.src = nativeAudioUrl;
+        audioPlayer.load();
+
+        return audioPlayer.play();
+      })
+      .then(() => {
+        target.innerHTML = originalText;
+      })
+      .catch(error => {
+        console.error("Workbench Voice Engine Error:", error);
+        target.innerHTML = "❌ Audio Unavailable";
+        setTimeout(() => {
+          target.innerHTML = originalText;
+        }, 1500);
+      });
+
     return;
   }
-        
+
   // Dismiss all tooltips on general outside clicks
-  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
+  document.querySelectorAll('.annotated').forEach(x => {
+    x.classList.remove('show-tooltip');
+  });
 });
 
 </script>
