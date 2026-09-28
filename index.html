@@ -510,12 +510,10 @@ document.addEventListener('click', (event) => {
     const originalText = target.innerHTML;
     target.innerHTML = "⏳ Connecting...";
 
-    // 1. SILENT INITIALIZATION PRE-FLIGHT
-    // Creates and primes the speaker element directly within the initial human tap window 
-    // to instantly satisfy the browser's autoplay interaction guard gates!
+    // Prime the audio player element immediately inside the human click window context
     const audioPlayer = new Audio();
-    audioPlayer.crossOrigin = "anonymous";
 
+    // Hitting the verified Orpheus endpoint route with a direct arrayBuffer file-stream extraction path
     fetch("https://techiaith.cymru", {
       method: "POST",
       mode: "cors",
@@ -529,28 +527,22 @@ document.addEventListener('click', (event) => {
     })
     .then(response => {
       if (!response.ok) throw new Error("Techiaith web synthesis connection failure.");
-      return response.blob();
+      // 🛠️ FIXED: Forces the browser to capture the raw binary audio array stream directly from the server network tracks!
+      return response.arrayBuffer(); 
     })
-    .then(blob => {
-      // 2. ENHANCED DATA LOADING PIPELINE
-      const nativeAudioUrl = URL.createObjectURL(blob);
+    .then(buffer => {
+      // 🛠️ FIXED: Construct the audio blob directly out of the raw binary data array elements!
+      const audioBlob = new Blob([buffer], { type: 'audio/wav' });
+      const nativeAudioUrl = URL.createObjectURL(audioBlob);
       
-      // Inject the track layout directly into our pre-primed human-authorized player
+      // Bind and fire the streaming object natively through the pre-primed speaker channel
       audioPlayer.src = nativeAudioUrl;
-      audioPlayer.load(); // Forces the browser cache layout memory to buffer the track data completely
-
-      // 3. SECURE PLAYBACK PROMISE TRACKING
-      // Explicitly tells Chrome to wake up the speakers now that the data loop is complete
-      audioPlayer.play()
-        .then(() => {
-          target.innerHTML = originalText;
-        })
-        .catch(playError => {
-          console.error("Browser interaction playback block encountered:", playError);
-          // If the browser forces a block, fall back to a manual window notice
-          target.innerHTML = "🔊 Click Again to Hear";
-          setTimeout(() => { target.innerHTML = originalText; }, 2000);
-        });
+      audioPlayer.load();
+      
+      return audioPlayer.play();
+    })
+    .then(() => {
+      target.innerHTML = originalText;
     })
     .catch(error => {
       console.error("Workbench Voice Engine Error:", error);
