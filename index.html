@@ -22,11 +22,11 @@ function recompileGlossary() {
   runtimeGlossary = {}; // Wipe active cache clean
 
   const checkboxMapping = [
-    { id: 'cbMynediad', key: 'mynediadGlossary' },
-    { id: 'cbSylfaen', key: 'sylfaenGlossary' },
-    { id: 'cbCanolradd', key: 'canolraddGlossary' },
-    { id: 'cbBBC', key: 'bbcGlossary' }
-  ];
+  { id: 'chkMynediad', key: 'mynediadGlossary' },
+  { id: 'chkSylfaen', key: 'sylfaenGlossary' },
+  { id: 'chkCanolradd', key: 'canolraddGlossary' },
+  { id: 'chkBBC', key: 'bbcGlossary' }
+];
 
   let activeSetCount = 0;
 
@@ -85,7 +85,7 @@ function recompileGlossary() {
   
   recompileGlossary();
 
-  ['cbMynediad', 'cbSylfaen', 'cbCanolradd', 'cbBBC'].forEach(id => {
+  ['chkMynediad', 'chkSylfaen', 'chkCanolradd', 'chkBBC'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener('change', recompileGlossary);
@@ -156,8 +156,6 @@ function recompileGlossary() {
 </div>
 
 <script>
-// Declare your single runtime dictionary globally at the top
-let runtimeGlossary = {};
 
 // THE BARRICADE: Safe execution guard waiting for the loader's signal
 window.addEventListener('dictionariesReady', () => {
