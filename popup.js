@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return `<tr>
           <td><span class="table-word">${item.word}</span></td>
           <td>${item.displayDef}</td>
-          <td>${sourceLabel ? `<span class="unit-tag">\${sourceLabel}</span>` : ""}</td>
+          <td>\${sourceLabel ? `<span class="unit-tag">${sourceLabel}</span>` : ""}</td>
           <td style="text-align: center;"><span class="count-badge">${item.count}×</span></td>
         </tr>`;
       }).join("");
