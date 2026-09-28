@@ -514,7 +514,7 @@ document.addEventListener('click', (event) => {
     const audioPlayer = new Audio();
 
     // Hitting the verified Orpheus endpoint route with a direct arrayBuffer file-stream extraction path
-    fetch("https://techiaith.cymru", {
+    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
       method: "POST",
       mode: "cors",
       headers: {
