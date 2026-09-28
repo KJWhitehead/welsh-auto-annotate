@@ -1,16 +1,20 @@
-// Listen for the user clicking the extension's icon in their toolbar
+// =======================================================
+// MASTER WELSH EXTENSION BACKGROUND SERVICE WORKER CENTRAL BRAIN
+// =======================================================
+
+// 1. TOOLBAR ICON CLICK INTERCEPTOR
+// Listens for the toolbar icon trigger and broadcasts the annotation signal down to the active tab
 chrome.action.onClicked.addListener((tab) => {
-  // Send a message to the active tab telling it to start annotating
   chrome.tabs.sendMessage(tab.id, { action: "RUN_ANNOTATION" });
 });
 
-// 2. EXTENSION PERSISTENT SYNC STORAGE CONTROLLER
-// Receives vocabulary words from content.js and securely commits them to the user's Profile
+// 2. CENTRAL EXTENSION MESSAGE ACTION ROUTER
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  
+  // ─── ACTION A: SAVE VOCAB WORD TO STORAGE ──────────────────────────
   if (message.action === "SAVE_VOCAB_WORD") {
     const data = message.payload;
 
-    // Pull existing data from Chrome's persistent profile sync storage bucket
     chrome.storage.sync.get(["welshExtensionStudySession"], (result) => {
       let loggedWords = result.welshExtensionStudySession ? JSON.parse(result.welshExtensionStudySession) : [];
       
@@ -28,10 +32,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         });
       }
       
-      // Sort words by review count so high-priority words naturally float to the top
       loggedWords.sort((a, b) => b.count - a.count);
 
-      // Save state adjustments seamlessly back up into profile storage registers
       chrome.storage.sync.set({ "welshExtensionStudySession": JSON.stringify(loggedWords) }, () => {
         console.log("💾 Vocabulary successfully committed to sync storage profile:", data.word);
         sendResponse({ status: "SUCCESS" });
@@ -40,16 +42,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     
     return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
   }
-});
 
- // 3. TECHIAITH ORPHEUS TEXT-TO-SPEECH STREAMER
+  // ─── ACTION B: TECHIAITH ORPHEUS TEXT-TO-SPEECH STREAMER ──────────
+  // 🛠️ FIXED: Wrapped securely inside the message listener scope so return statements are legal!
   if (message.action === "SPEAK_TEXT") {
     const textToSpeak = message.payload.text;
-    
-
     const chosenSpeaker = "benyw-deheuol-pro"; 
 
-    // Hitting the verified Orpheus endpoint route matching your curl schema
     fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
       method: "POST",
       headers: {
@@ -80,5 +79,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse({ status: "ERROR", error: error.message });
     });
 
-    return true; 
+    return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
   }
+});
