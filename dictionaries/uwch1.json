@@ -1,0 +1,957 @@
+{
+  "her": {
+    "definition": "challenge",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "heriau": {
+    "definition": "challenges",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "llinell derfyn": {
+    "definition": "finishing line",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "llinellau terfyn": {
+    "definition": "finishing lines",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "ysgyfarnog": {
+    "definition": "hare",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "ysgyfarnogod": {
+    "definition": "hares",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "cyflawni": {
+    "definition": "to achieve, to fulfil",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "datrys": {
+    "definition": "to solve",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "gwibio": {
+    "definition": "to dart, to sprint",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "herio": {
+    "definition": "to challenge",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "llongyfarch": {
+    "definition": "to congratulate",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "trechu": {
+    "definition": "to defeat, to beat",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "balchder": {
+    "definition": "pride",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "cyhyr": {
+    "definition": "muscle",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "cyhyrau": {
+    "definition": "muscles",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "ffefryn": {
+    "definition": "favourite",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "ffefrynnau": {
+    "definition": "favourites",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "ffreutur": {
+    "definition": "canteen",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "gwn": {
+    "definition": "gun",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "gynnau": {
+    "definition": "guns",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "lleithder": {
+    "definition": "humidity, dampness",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "llysenw": {
+    "definition": "nickname",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "llysenwau": {
+    "definition": "nicknames",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "milwr": {
+    "definition": "soldier",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "milwyr": {
+    "definition": "soldiers",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "buddugol": {
+    "definition": "triumphant",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "corfforol": {
+    "definition": "physical",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "cystadleuol": {
+    "definition": "competitive",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "eithafol": {
+    "definition": "extreme",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "hunangynhaliol": {
+    "definition": "self-sufficient",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "penderfynol": {
+    "definition": "determined",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "a’i wynt yn ei ddwrn": {
+    "definition": "gasping, breathless",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "cael gwared ar": {
+    "definition": "to get rid of",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "rhoi cynnig ar": {
+    "definition": "to give it a go",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "wnaiff hynny ddim drwg": {
+    "definition": "that won’t do any harm",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "yn gymwys": {
+    "definition": "exactly",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  },
+  "yn y fan a’r lle": {
+    "definition": "there and then",
+    "course": "Uwch 1",
+    "unit": "Uned 1"
+  }
+"planed": {
+"definition": "planet",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"planedau": {
+"definition": "planets",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"rheolaeth": {
+"definition": "control; management",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"tudalen flaen": {
+"definition": "front page",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"gostwng": {
+"definition": "to decrease",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"ymosod": {
+"definition": "to attack (+ ar)",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"ar gais": {
+"definition": "at the request of",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"at eich dant": {
+"definition": "to your taste",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"bod yn berchen": {
+"definition": "to own (+ ar)",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"i’r gwrthwyneb": {
+"definition": "quite the opposite",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"annibynnol": {
+"definition": "independent",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"cytbwys": {
+"definition": "balanced",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"gwyddonol": {
+"definition": "scientific",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"uniongyrchol": {
+"definition": "direct",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"gofodwr": {
+"definition": "astronaut",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"gofodwyr": {
+"definition": "astronauts",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"gwyddonydd": {
+"definition": "scientist",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"gwyddonwyr": {
+"definition": "scientists",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"preifatrwydd": {
+"definition": "privacy",
+"course": "Uwch 1",
+"unit": "Uned 2"
+},
+"sicrwydd": {
+"definition": "certainty",
+"course": "Uwch 1",
+"unit": "Uned 2"
+}
+
+"madarchen": {
+"definition": "mushroom",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"madarch": {
+"definition": "mushrooms",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"poblogaeth": {
+"definition": "population",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"poblogaethau": {
+"definition": "populations",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"y deyrnas unedig": {
+"definition": "The UK",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"y ffindir": {
+"definition": "Finland",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"cynnau": {
+"definition": "to light, to ignite",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"nythu": {
+"definition": "to nest",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"parchu": {
+"definition": "to respect",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"blaidd": {
+"definition": "wolf",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"bleiddiaid": {
+"definition": "wolves",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"clogyn": {
+"definition": "cloak",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"clogynnau": {
+"definition": "cloaks",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"coedwigwr": {
+"definition": "forester, ranger",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"coedwigwyr": {
+"definition": "foresters, rangers",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"cras": {
+"definition": "rough",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"maith": {
+"definition": "long, lengthy",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"syn": {
+"definition": "surprised",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"traws": {
+"definition": "cross-, trans-",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"magu hyder": {
+"definition": "to gain confidence, to develop confidence",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"dan do": {
+"definition": "indoor, indoors",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"pedwar ban y byd": {
+"definition": "the four corners of the earth",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"rheoli risg": {
+"definition": "risk management",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"tân agored": {
+"definition": "open fire",
+"course": "Uwch 1",
+"unit": "Uned 3"
+},
+"tanau agored": {
+"definition": "open fires",
+"course": "Uwch 1",
+"unit": "Uned 3"
+}
+
+"anrhydedd": {
+"definition": "honour",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"anrhydeddau": {
+"definition": "honours",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"cyfrwng": {
+"definition": "medium",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"cyfryngau": {
+"definition": "media",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"cywilydd": {
+"definition": "shame, disgrace",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"derbyniad": {
+"definition": "reception",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"derbyniadau": {
+"definition": "receptions",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"dilledyn": {
+"definition": "garment",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"dillad": {
+"definition": "clothes",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"dwli": {
+"definition": "nonsense",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"rhywfaint": {
+"definition": "some, a little",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"cysurus": {
+"definition": "comfortable, cosy",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"democrataidd": {
+"definition": "democratic",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"derbyniol": {
+"definition": "acceptable",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"emosiynol": {
+"definition": "emotional",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"lletchwith": {
+"definition": "awkward",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"pennaf": {
+"definition": "main, major, principal",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"pwyllog": {
+"definition": "level-headed, measured",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"rheolaidd": {
+"definition": "regular",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"rhwystredig": {
+"definition": "frustrated",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"rhyngwladol": {
+"definition": "international",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"alaw": {
+"definition": "melody",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"alawon": {
+"definition": "melodies",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"cymeradwyaeth": {
+"definition": "applause",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"penbleth": {
+"definition": "quandary, dilemma",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"cweryla": {
+"definition": "to argue (with someone), to quarrel (+ â)",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"difaru": {
+"definition": "to regret",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"dychmygu": {
+"definition": "to imagine",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"maddau": {
+"definition": "to forgive (someone) (+ i)",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"peri": {
+"definition": "to cause",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"pylu": {
+"definition": "to fade",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"sylwebu": {
+"definition": "to commentate",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"trawsnewid": {
+"definition": "to transform, to transition",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"braint ac anrhydedd": {
+"definition": "an honour and a privilege",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"bron â marw eisiau mynd": {
+"definition": "dying to go",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"hyd braich": {
+"definition": "at arm’s length",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"megis": {
+"definition": "such as, like",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"pwy a ŵyr?": {
+"definition": "Who knows?",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"siarad dwli": {
+"definition": "to talk nonsense",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"slawer dydd": {
+"definition": "back in the day, a long time ago",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"y gamp lawn": {
+"definition": "The Grand Slam",
+"course": "Uwch 1",
+"unit": "Uned 4"
+},
+"yn bennaf": {
+"definition": "mainly",
+"course": "Uwch 1",
+"unit": "Uned 4"
+}
+
+"delw teiliwr": {
+"definition": "tailor’s dummy",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"gwinllan": {
+"definition": "vineyard",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"gwinllannoedd": {
+"definition": "vineyards",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"siôl": {
+"definition": "shawl",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"siolau": {
+"definition": "shawls",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"cyfaddef": {
+"definition": "to admit",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"denu": {
+"definition": "to attract",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"tynnu sylw": {
+"definition": "to draw attention (+ at)",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"y gwir amdani yw": {
+"definition": "the truth is...",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"yn fwriadol": {
+"definition": "deliberately",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"cerflun": {
+"definition": "sculpture",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"cerfluniau": {
+"definition": "sculptures",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"cymal": {
+"definition": "clause; joint",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"cymalau": {
+"definition": "clauses; joints",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"diafol": {
+"definition": "devil",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"eog": {
+"definition": "salmon",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"eogiaid": {
+"definition": "salmons",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"rhwd": {
+"definition": "rust",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"testun trafod": {
+"definition": "subject of discussion",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"testunau trafod": {
+"definition": "subjects of discussion",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"anghyffredin": {
+"definition": "uncommon",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"di-nod": {
+"definition": "insignificant",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"hanfodol": {
+"definition": "essential",
+"course": "Uwch 1",
+"unit": "Uned 5"
+},
+"trefol": {
+"definition": "urban",
+"course": "Uwch 1",
+"unit": "Uned 5"
+}
+
+"gwledd": {
+"definition": "feast",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"gwleddoedd": {
+"definition": "feasts",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"llifddor": {
+"definition": "floodgate",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"llifddorau": {
+"definition": "floodgates",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"ogof": {
+"definition": "cave",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"ogofâu": {
+"definition": "caves",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"trychineb": {
+"definition": "disaster",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"trychinebau": {
+"definition": "disasters",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"boddi": {
+"definition": "to drown",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"cysgodi": {
+"definition": "to shelter (+ rhag)",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"chwalu": {
+"definition": "to wreck",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"hollti": {
+"definition": "to split",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"tincial": {
+"definition": "to tinkle, to jingle",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"tueddu": {
+"definition": "to tend (+ i)",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"tywynnu": {
+"definition": "to shine",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"esgeulustod": {
+"definition": "negligence",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"gweddill": {
+"definition": "residue",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"gweddillion": {
+"definition": "remains",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"llanw": {
+"definition": "tide",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"llanwau": {
+"definition": "tides",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"llongddrylliad": {
+"definition": "shipwreck",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"llongddrylliadau": {
+"definition": "shipwrecks",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"medd": {
+"definition": "mead",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"morglawdd": {
+"definition": "barrage, sea wall",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"morgloddiau": {
+"definition": "barrages, sea walls",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"morlo": {
+"definition": "seal",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"morloi": {
+"definition": "seals",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"nofelydd": {
+"definition": "novelist",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"nofelwyr": {
+"definition": "novelists",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"trai": {
+"definition": "ebb",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"cadarn": {
+"definition": "firm, robust",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"esgeulus": {
+"definition": "negligent",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"ofer": {
+"definition": "futile",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"tlws": {
+"definition": "pert, hardd",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"ar drai": {
+"definition": "at low tide; on the decrease, waning",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"i’r lan": {
+"definition": "to the shore",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"mynd dros ben llestri": {
+"definition": "to go overboard",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"o’r golwg": {
+"definition": "out of sight",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"pen ei thaith": {
+"definition": "end of her / his / its journey",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"pen ei daith": {
+"definition": "end of her / his / its journey",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"yn araf bach": {
+"definition": "gradually",
+"course": "Uwch 1",
+"unit": "Uned 6"
+},
+"yn ddiarwybod": {
+"definition": "unbeknown to (+ i)",
+"course": "Uwch 1",
+"unit": "Uned 6"
+}
+
+}
