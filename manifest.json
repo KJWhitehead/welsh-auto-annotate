@@ -8,6 +8,12 @@
     "scripting",
     "storage"
   ],
+  "icons": {
+    "16": "assets/icon48.png",
+    "32": "assets/icon48.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon48.png"
+  },
   "background": {
     "service_worker": "background.js"
   },
@@ -33,12 +39,5 @@
       "resources": ["dictionaries/*.json"],
       "matches": ["<all_urls>"]
     }
-  ],
-  "permissions": [
-    "scripting",
-    "storage"
-  ],
-  "sandbox": {
-    "pages": []
-  }
+  ]
 }
