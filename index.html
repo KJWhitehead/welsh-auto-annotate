@@ -701,19 +701,26 @@ function clearStudyList() {
   }
 }
 
-document.addEventListener('click', () => {
-  document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
-});
-    // Native workbench fallback trigger using the browser's free speech api engine
+// 🛠️ FIXED: Re-unified into one single, safe click listener block!
+document.addEventListener('click', (event) => {
+  const target = event.target;
+
+  // 1. Native workbench fallback trigger using the browser's free speech API engine
   if (target.classList.contains('speak-btn') || target.classList.contains('sentence-speak-btn')) {
     event.stopPropagation();
     const textToPronounce = target.getAttribute('data-text');
     
     const utterance = new SpeechSynthesisUtterance(textToPronounce);
-    utterance.lang = 'cy-GB'; // Forces the local sound engine to try parsing Welsh vowels
+    utterance.lang = 'cy-GB'; // Forces the local sound engine to parse Welsh vowels natively
     window.speechSynthesis.speak(utterance);
     return;
   }
+
+  // 2. Dismiss all open hover tooltips if clicking on an empty background space
+  if (!target.closest('.annotated')) {
+    document.querySelectorAll('.annotated').forEach(x => x.classList.remove('show-tooltip'));
+  }
+});
 </script>
   
   <script data-goatcounter="https://welshannotation.goatcounter.com/count"
