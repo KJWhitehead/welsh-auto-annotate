@@ -158,8 +158,6 @@ function recompileGlossary() {
 
 <script>
 
-
-
 // GLOSSARY PARSING ENGINE
 function compileActiveGlossary() {
   runtimeGlossary = {};
@@ -177,27 +175,34 @@ function compileActiveGlossary() {
       const rawData = sourceGlossary[key];
 
       let textTranslation = "";
-      let courseInfo = "";
+      let courseText = "";
+      let unitText = "";
 
-      // Smart hybrid check for object containers or flat strings
+      // Unpack object containers or flat strings cleanly
       if (rawData && typeof rawData === 'object' && 'definition' in rawData) {
-        textTranslation = rawData.definition;
-        if (rawData.course && rawData.unit) {
-          courseInfo = ` [${rawData.course} • ${rawData.unit}]`;
-        }
+        textTranslation = rawData.definition || "";
+        courseText = rawData.course || "";
+        unitText = rawData.unit || "";
       } else {
-        textTranslation = rawData;
+        textTranslation = rawData || "";
       }
 
-      const finalDisplayString = textTranslation + courseInfo;
-
       if (runtimeGlossary[cleanKey]) {
-        const currentDefs = runtimeGlossary[cleanKey].split(" / ");
-        if (!currentDefs.includes(finalDisplayString)) {
-          runtimeGlossary[cleanKey] += " / " + finalDisplayString;
+        // If the term already exists, append the new definition cleanly with a slash divider
+        const currentDefs = runtimeGlossary[cleanKey].definition.split(" / ");
+        if (!currentDefs.includes(textTranslation)) {
+          runtimeGlossary[cleanKey].definition += " / " + textTranslation;
         }
+        // Retain the course and unit strings if they aren't already set
+        if (!runtimeGlossary[cleanKey].course) runtimeGlossary[cleanKey].course = courseText;
+        if (!runtimeGlossary[cleanKey].unit) runtimeGlossary[cleanKey].unit = unitText;
       } else {
-        runtimeGlossary[cleanKey] = finalDisplayString;
+        // 🛠️ FIXED: Keep the entry explicitly as an object structure!
+        runtimeGlossary[cleanKey] = {
+          definition: textTranslation,
+          course: courseText,
+          unit: unitText
+        };
       }
     }
   }
@@ -208,9 +213,10 @@ function compileActiveGlossary() {
   if (useCanolradd) mergeSource(window.canolraddGlossary);
   if (useBBC) mergeSource(window.bbcGlossary);
 
-  console.log("📊 Active glossary compiled. Total terms:", Object.keys(runtimeGlossary).length);
+  console.log("📊 Active glossary compiled structurally. Total terms:", Object.keys(runtimeGlossary).length);
 }
 
+        
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
   // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
@@ -417,15 +423,15 @@ function annotate(text, glossary) {
           return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
         }).join("");
 
-        // 🛠️ FIXED: Pull the index element cleanly so properties match your exact data shapes!
         const firstMatch = matches[0];
         const rawDef = firstMatch.definition;
         
+        // 🛠️ FIXED: Properties extract directly from the rawDef root layout safely!
         const packedData = {
           word: word,
           def: (rawDef && typeof rawDef === 'object') ? rawDef.definition : rawDef,
-          course: (rawDef && typeof rawDef === 'object' && rawDef.course) ? rawDef.course : "",
-          unit: (rawDef && typeof rawDef === 'object' && rawDef.unit) ? rawDef.unit : ""
+          course: (rawDef && typeof rawDef === 'object') ? rawDef.course : "",
+          unit: (rawDef && typeof rawDef === 'object') ? rawDef.unit : ""
         };
         const cleanParam = encodeURIComponent(JSON.stringify(packedData));
         
@@ -506,11 +512,11 @@ function triggerXMLExport() {
   let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
-if (loggedWords.length === 0) {
-  tableBody.innerHTML =
-    `<tr><td colspan="4" class="empty-msg">No words saved yet. Tap [+] to track.</td></tr>`;
-  return;
-}
+  // 🛠️ FIXED: Replaced the undefined tableBody reference with a clean, defensive native alert!
+  if (loggedWords.length === 0) {
+    alert("Your vocabulary study list is currently empty. Add some words first!");
+    return;
+  }
 
   let xmlString = `<?xml version="1.0" encoding="UTF-8"?>\n<studylist>\n`;
   loggedWords.forEach(item => {
@@ -547,6 +553,7 @@ function runAnnotation() {
     document.getElementById("output").innerHTML = "Please type some Welsh text first.";
     return;
   }
+  // This uses runtimeGlossary perfectly to track checkbox state adjustments!
   document.getElementById("output").innerHTML = annotate(text, runtimeGlossary);
 }
 
@@ -575,57 +582,60 @@ document.addEventListener('click', (event) => {
 
     const audioPlayer = new Audio();
 
-fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
-  method: "POST",
-  mode: "cors",
-  headers: {
-    "Content-Type": "application/json",
-    "Accept": "audio/wav"
-  },
-  body: JSON.stringify({
-    text: String(textToPronounce).trim(),
-    speaker_id: "benyw-deheuol-pro"
-  })
-})
-.then(async response => {
-  const contentType = response.headers.get("content-type") || "";
-  const body = await response.arrayBuffer();
+    fetch("https://api.techiaith.cymru/speak/v3/api/orpheus", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "audio/wav"
+      },
+      body: JSON.stringify({
+        text: String(textToPronounce).trim(),
+        speaker_id: "benyw-deheuol-pro"
+      })
+    })
+    .then(async response => {
+      const contentType = response.headers.get("content-type") || "";
+      const body = await response.arrayBuffer();
 
-  if (!response.ok) {
-    const errorText = new TextDecoder().decode(body);
-    throw new Error(
-      `TTS request failed: ${response.status} ${response.statusText}\n${errorText}`
-    );
-  }
+      if (!response.ok) {
+        const errorText = new TextDecoder().decode(body);
+        throw new Error(
+          `TTS request failed: ${response.status} ${response.statusText}\n${errorText}`
+        );
+      }
 
-  if (!contentType.startsWith("audio/")) {
-    const responseText = new TextDecoder().decode(body);
-    throw new Error(
-      `Expected audio but received ${contentType}: ${responseText}`
-    );
-  }
+      if (!contentType.startsWith("audio/")) {
+        const responseText = new TextDecoder().decode(body);
+        throw new Error(
+          `Expected audio but received ${contentType}: ${responseText}`
+        );
+      }
 
-  return new Blob([body], { type: contentType });
-})
-.then(audioBlob => {
-  const nativeAudioUrl = URL.createObjectURL(audioBlob);
-  audioPlayer.src = nativeAudioUrl;
+      return new Blob([body], { type: contentType });
+    })
+    .then(audioBlob => {
+      const nativeAudioUrl = URL.createObjectURL(audioBlob);
+      audioPlayer.src = nativeAudioUrl;
 
-  return audioPlayer.play().finally(() => {
-    URL.revokeObjectURL(nativeAudioUrl);
-  });
-})
-.then(() => {
-  target.innerHTML = originalText;
-})
-.catch(error => {
-  console.error("Workbench Voice Engine Error:", error);
-  target.innerHTML = "❌ Audio Unavailable";
+      // 🛠️ FIXED: Wait until the word finishes speaking before cleaning up the URL memory!
+      audioPlayer.onended = () => {
+        URL.revokeObjectURL(nativeAudioUrl);
+      };
 
-  setTimeout(() => {
-    target.innerHTML = originalText;
-  }, 1500);
-});
+      return audioPlayer.play();
+    })
+    .then(() => {
+      target.innerHTML = originalText;
+    })
+    .catch(error => {
+      console.error("Workbench Voice Engine Error:", error);
+      target.innerHTML = "❌ Audio Unavailable";
+
+      setTimeout(() => {
+        target.innerHTML = originalText;
+      }, 1500);
+    });
 
     return;
   }
