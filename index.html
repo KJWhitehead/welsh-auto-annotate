@@ -534,7 +534,7 @@ function annotate(text, glossary) {
   let processedText = text;
 
   phrases.forEach(phrase => {
-    const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
+    const safePhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 const regex = new RegExp(
   `(^|[^\\p{L}])(${safePhrase})(?=$|[^\\p{L}])`,
   "giu"
