@@ -106,12 +106,19 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         const binary = atob(audioData);
         const bytes = Uint8Array.from(binary, ch => ch.charCodeAt(0));
 
-        const audioBlob = new Blob([bytes], {
-          type: mimeType || "audio/wav"
-        });
+const extension = getAudioExtension(mimeType);
+
+const audioBlob = new Blob([bytes], {
+  type: mimeType || "audio/wav"
+});
+
+console.log("Audio upload details:", {
+  mimeType: audioBlob.type,
+  size: audioBlob.size,
+  extension
+});
 
         const formData = new FormData();
-        const extension = getAudioExtension(mimeType);
 
 formData.append(
   "soundfile",
@@ -119,13 +126,6 @@ formData.append(
   `recording.${extension}`
 );
 
-        const response = await fetch(
-          "https://api.techiaith.cymru/speech-to-text/v2/transcribe_long_form/",
-          {
-            method: "POST",
-            body: formData
-          }
-        );
 
 const submitResponse = await fetch(
   "https://api.techiaith.cymru/speech-to-text/v2/transcribe_long_form/",
@@ -272,7 +272,10 @@ transcript = String(transcript).trim();
 
 if (!transcript) {
   throw new Error(
-    `Speech API returned no transcript. Raw result: ${resultText}`
+    `Transcription completed but contained no speech. ` +
+    `Language detected: ${resultData.language || "unknown"}. ` +
+    `The API returned ${Array.isArray(resultData.segments) ? resultData.segments.length : 0} segments. ` +
+    `Audio size: ${audioBlob.size} bytes.`
   );
 }
 
