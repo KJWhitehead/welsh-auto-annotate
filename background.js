@@ -118,7 +118,6 @@ formData.append(
   audioBlob,
   `recording.${extension}`
 );
-        formData.append("priority", "high");
 
         const response = await fetch(
           "https://api.techiaith.cymru/speech-to-text/v2/transcribe_long_form/",
@@ -128,63 +127,152 @@ formData.append(
           }
         );
 
-        const responseText = await response.text();
+const submitResponse = await fetch(
+  "https://api.techiaith.cymru/speech-to-text/v2/transcribe_long_form/",
+  {
+    method: "POST",
+    body: formData
+  }
+);
 
-        if (!response.ok) {
-          throw new Error(
-            `Speech API returned HTTP ${response.status}: ${responseText}`
-          );
-        }
+const submitText = await submitResponse.text();
+
+if (!submitResponse.ok) {
+  throw new Error(
+    `Speech API returned HTTP ${submitResponse.status}: ${submitText}`
+  );
+}
+
+let submitData;
+
+try {
+  submitData = JSON.parse(submitText);
+} catch {
+  throw new Error(
+    `Speech API returned invalid JSON: ${submitText}`
+  );
+}
+
+console.log("Techiaith long-form submission response:", submitData);
+
+const sttId = submitData.id;
+
+if (!sttId) {
+  throw new Error(
+    `Speech API did not return a transcription ID: ${submitText}`
+  );
+}
+
+// Long-form transcription runs asynchronously.
+const maxWaitMs = 5 * 60 * 1000;
+const pollIntervalMs = 2000;
+const deadline = Date.now() + maxWaitMs;
+
+let statusData;
+
+while (Date.now() < deadline) {
+  const statusResponse = await fetch(
+    `https://api.techiaith.cymru/speech-to-text/v2/get_status/?stt_id=${encodeURIComponent(sttId)}`
+  );
+
+  const statusText = await statusResponse.text();
+
+  if (!statusResponse.ok) {
+    throw new Error(
+      `Speech status API returned HTTP ${statusResponse.status}: ${statusText}`
+    );
+  }
+
+  try {
+    statusData = JSON.parse(statusText);
+  } catch {
+    throw new Error(
+      `Speech status API returned invalid JSON: ${statusText}`
+    );
+  }
+
+  console.log("Techiaith transcription status:", statusData);
+
+  if (statusData.status === "SUCCESS") {
+    break;
+  }
+
+  if (statusData.status === "FAILURE") {
+    throw new Error(
+      `Speech transcription failed: ${
+        statusData.error || "Unknown processing error"
+      }`
+    );
+  }
+
+  await new Promise(resolve => setTimeout(resolve, pollIntervalMs));
+}
+
+if (!statusData || statusData.status !== "SUCCESS") {
+  throw new Error(
+    `Speech transcription timed out after ${maxWaitMs / 1000} seconds.`
+  );
+}
+
+// Retrieve the completed transcription JSON.
+const resultResponse = await fetch(
+  `https://api.techiaith.cymru/speech-to-text/v2/get_json/?stt_id=${encodeURIComponent(sttId)}`
+);
+
+const resultText = await resultResponse.text();
+
+if (!resultResponse.ok) {
+  throw new Error(
+    `Speech result API returned HTTP ${resultResponse.status}: ${resultText}`
+  );
+}
+
+let resultData;
+
+try {
+  resultData = JSON.parse(resultText);
+} catch {
+  throw new Error(
+    `Speech result API returned invalid JSON: ${resultText}`
+  );
+}
+
+console.log("Techiaith transcription result:", resultData);
 
 let transcript = "";
 
-try {
-  const parsed = JSON.parse(responseText);
-
-  console.log("Techiaith transcription response:", parsed);
-
-  if (typeof parsed === "string") {
-    transcript = parsed;
-  } else if (Array.isArray(parsed.segments)) {
-    transcript = parsed.segments
-      .map(segment => segment.text || segment.normalized || "")
-      .filter(Boolean)
-      .join(" ");
-  } else if (Array.isArray(parsed)) {
-    transcript = parsed
-      .map(item =>
-        item.text ||
-        item.transcript ||
-        item.transcription ||
-        ""
-      )
-      .filter(Boolean)
-      .join(" ");
-  } else {
-    transcript =
-      parsed.text ||
-      parsed.transcript ||
-      parsed.transcription ||
-      parsed.result ||
-      parsed.output ||
-      "";
-  }
-} catch {
-  transcript = responseText;
+if (typeof resultData === "string") {
+  transcript = resultData;
+} else if (Array.isArray(resultData.segments)) {
+  transcript = resultData.segments
+    .map(segment => segment.text || segment.normalized || "")
+    .filter(Boolean)
+    .join(" ");
+} else if (Array.isArray(resultData)) {
+  transcript = resultData
+    .map(item =>
+      item.text ||
+      item.transcript ||
+      item.transcription ||
+      ""
+    )
+    .filter(Boolean)
+    .join(" ");
+} else {
+  transcript =
+    resultData.text ||
+    resultData.transcript ||
+    resultData.transcription ||
+    resultData.result ||
+    resultData.output ||
+    "";
 }
 
 transcript = String(transcript).trim();
 
 if (!transcript) {
-  console.error(
-    "Techiaith returned no transcript. Raw response:",
-    responseText
-  );
-
   throw new Error(
-    `Speech API returned no transcript. Raw response: ${
-      responseText || "[empty response]"
-    }`
+    `Speech API returned no transcript. Raw result: ${resultText}`
   );
 }
 
