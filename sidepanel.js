@@ -16,10 +16,24 @@ const stopButton = document.getElementById("stopButton");
 const statusElement = document.getElementById("status");
 const transcriptElement = document.getElementById("transcript");
 
-startButton.addEventListener("click", startRecording);
+startButton.addEventListener("click", () => {
+  startRecording(false);
+});
 stopButton.addEventListener("click", stopRecording);
 
-async function startRecording() {
+async function startRecording(permissionAlreadyGranted = false) {
+  if (!permissionAlreadyGranted && !permissionTabOpened) {
+    permissionTabOpened = true;
+
+    await chrome.tabs.create({
+      url: chrome.runtime.getURL("request-mic.html")
+    });
+
+    statusElement.textContent =
+      "A new tab opened. Click Allow microphone there, then return here.";
+    return;
+  }
+
   try {
     mediaStream = await navigator.mediaDevices.getUserMedia({
       audio: true
