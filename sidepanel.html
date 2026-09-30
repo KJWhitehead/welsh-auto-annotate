@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cy">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welsh Dictation Assistant</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 16px;
+      color: #1e293b;
+      background: #fafafa;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      margin-top: 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 0;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    #startButton {
+      background: #16a34a;
+      color: white;
+    }
+
+    #stopButton {
+      background: #dc2626;
+      color: white;
+    }
+
+    #stopButton:disabled,
+    #startButton:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    #status {
+      margin: 14px 0;
+      min-height: 1.4em;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 180px;
+      box-sizing: border-box;
+      resize: vertical;
+      padding: 10px;
+      font: inherit;
+      border: 1px solid #cbd5e1;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welsh Dictation Assistant</h1>
+
+  <button id="startButton">🎙️ Start recording</button>
+  <button id="stopButton" disabled>⏹ Stop recording</button>
+
+  <div id="status">Ready.</div>
+
+  <label for="transcript">Transcription:</label>
+  <textarea id="transcript" placeholder="Bydd eich trawsgrifiad yn ymddangos yma..."></textarea>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
