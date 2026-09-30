@@ -9,6 +9,9 @@
     "storage",
     "sidePanel"
   ],
+"side_panel": {
+"default_path": "sidepanel.html"
+},
     "host_permissions": [
     "https://api.techiaith.cymru/*"
   ],
