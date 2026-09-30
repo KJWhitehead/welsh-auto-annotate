@@ -6,7 +6,8 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "storage"
+    "storage",
+    "sidePanel"
   ],
     "host_permissions": [
     "https://api.techiaith.cymru/*"
@@ -22,7 +23,6 @@
   },
   "action": {
     "default_title": "Annotate Page",
-    "default_popup": "popup.html",
     "default_icon": {
       "16": "assets/icon48.png",
       "32": "assets/icon48.png",
