@@ -145,6 +145,11 @@ try {
 
   if (typeof parsed === "string") {
     transcript = parsed;
+  } else if (Array.isArray(parsed.segments)) {
+    transcript = parsed.segments
+      .map(segment => segment.text || segment.normalized || "")
+      .filter(Boolean)
+      .join(" ");
   } else if (Array.isArray(parsed)) {
     transcript = parsed
       .map(item =>
@@ -153,6 +158,7 @@ try {
         item.transcription ||
         ""
       )
+      .filter(Boolean)
       .join(" ");
   } else {
     transcript =
@@ -170,13 +176,22 @@ try {
 transcript = String(transcript).trim();
 
 if (!transcript) {
-  console.error("Techiaith returned no transcript. Raw response:", responseText);
+  console.error(
+    "Techiaith returned no transcript. Raw response:",
+    responseText
+  );
 
   throw new Error(
-    `Speech API returned no transcript. Raw response: ${responseText || "[empty response]"}`
+    `Speech API returned no transcript. Raw response: ${
+      responseText || "[empty response]"
+    }`
   );
 }
 
+sendResponse({
+  status: "SUCCESS",
+  text: transcript
+});
         sendResponse({
           status: "SUCCESS",
           text: transcript
