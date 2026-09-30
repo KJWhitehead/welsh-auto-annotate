@@ -136,29 +136,46 @@ formData.append(
           );
         }
 
-        let transcript = "";
+let transcript = "";
 
-        try {
-          const parsed = JSON.parse(responseText);
+try {
+  const parsed = JSON.parse(responseText);
 
-          if (typeof parsed === "string") {
-            transcript = parsed;
-          } else {
-            transcript =
-              parsed.text ||
-              parsed.transcript ||
-              parsed.transcription ||
-              "";
-          }
-        } catch {
-          transcript = responseText;
-        }
+  console.log("Techiaith transcription response:", parsed);
 
-        transcript = transcript.trim();
+  if (typeof parsed === "string") {
+    transcript = parsed;
+  } else if (Array.isArray(parsed)) {
+    transcript = parsed
+      .map(item =>
+        item.text ||
+        item.transcript ||
+        item.transcription ||
+        ""
+      )
+      .join(" ");
+  } else {
+    transcript =
+      parsed.text ||
+      parsed.transcript ||
+      parsed.transcription ||
+      parsed.result ||
+      parsed.output ||
+      "";
+  }
+} catch {
+  transcript = responseText;
+}
 
-        if (!transcript) {
-          throw new Error("Speech API returned an empty transcription.");
-        }
+transcript = String(transcript).trim();
+
+if (!transcript) {
+  console.error("Techiaith returned no transcript. Raw response:", responseText);
+
+  throw new Error(
+    `Speech API returned no transcript. Raw response: ${responseText || "[empty response]"}`
+  );
+}
 
         sendResponse({
           status: "SUCCESS",
