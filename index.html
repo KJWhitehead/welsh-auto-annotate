@@ -247,9 +247,7 @@ function collectMatches(word, glossary) {
       if (glossary[candidateWithF]) foundKeys.add(candidateWithF);
     }
   }
-  if (glossary[w]) {
-    checkAndAdd(w);
-  }
+
   // ─── NEW: ADJECTIVE SUFFIX DETECTION GUARD ──────────────────────────
   // Checks if the word token ends with one of your active suffixes
   const isAdjSuffix = ["ach", "af", "a", "ed"].some(suffix => w.endsWith(suffix) && w.length > suffix.length);
