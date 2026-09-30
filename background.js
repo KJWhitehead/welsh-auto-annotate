@@ -121,7 +121,7 @@ formData.append(
         formData.append("priority", "high");
 
         const response = await fetch(
-          "https://api.techiaith.cymru/speech-to-text/v2/transcribe/",
+          "https://api.techiaith.cymru/speech-to-text/v2/transcribe_long_form/",
           {
             method: "POST",
             body: formData
