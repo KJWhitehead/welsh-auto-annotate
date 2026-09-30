@@ -87,97 +87,84 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
   }
 
-  
-    if (message.action === "TRANSCRIBE_AUDIO") {
-    try {
-      const { audioData, mimeType } = message.payload;
-
-      if (!audioData) {
-        sendResponse({
-          status: "ERROR",
-          error: "No audio data was supplied."
-        });
-        return;
-      }
-
-      // Convert base64 audio back into a Blob.
-      const binary = atob(audioData);
-      const bytes = Uint8Array.from(binary, character =>
-        character.charCodeAt(0)
-      );
-
-      const audioBlob = new Blob([bytes], {
-        type: mimeType || "audio/wav"
-      });
-
-      const formData = new FormData();
-
-      // This field name must match the API documentation.
-      formData.append("soundfile", audioBlob, "recording.wav");
-      formData.append("priority", "high");
-
-      const response = await fetch(
-        "https://api.techiaith.cymru/speech-to-text/v2/transcribe/",
-        {
-          method: "POST",
-          body: formData
-        }
-      );
-
-      const responseText = await response.text();
-
-      console.log("Speech recognition HTTP status:", response.status);
-      console.log("Speech recognition response:", responseText);
-
-      if (!response.ok) {
-        sendResponse({
-          status: "ERROR",
-          error: `Speech API returned HTTP ${response.status}: ${responseText}`
-        });
-        return;
-      }
-
-      let transcript = "";
-
+  //ACTION C
+      if (message.action === "TRANSCRIBE_AUDIO") {
+    (async () => {
       try {
-        const parsed = JSON.parse(responseText);
+        const { audioData, mimeType } = message.payload;
 
-        if (typeof parsed === "string") {
-          transcript = parsed;
-        } else {
-          transcript =
-            parsed.text ||
-            parsed.transcript ||
-            parsed.transcription ||
-            "";
+        if (!audioData) {
+          sendResponse({
+            status: "ERROR",
+            error: "No audioData was supplied."
+          });
+          return;
         }
-      } catch {
-        // The API may return plain text rather than JSON.
-        transcript = responseText;
-      }
 
-      transcript = transcript.trim();
+        const binary = atob(audioData);
+        const bytes = Uint8Array.from(binary, ch => ch.charCodeAt(0));
 
-      if (!transcript) {
+        const audioBlob = new Blob([bytes], {
+          type: mimeType || "audio/wav"
+        });
+
+        const formData = new FormData();
+        formData.append("soundfile", audioBlob, "recording.wav");
+        formData.append("priority", "high");
+
+        const response = await fetch(
+          "https://api.techiaith.cymru/speech-to-text/v2/transcribe/",
+          {
+            method: "POST",
+            body: formData
+          }
+        );
+
+        const responseText = await response.text();
+
+        if (!response.ok) {
+          throw new Error(
+            `Speech API returned HTTP ${response.status}: ${responseText}`
+          );
+        }
+
+        let transcript = "";
+
+        try {
+          const parsed = JSON.parse(responseText);
+
+          if (typeof parsed === "string") {
+            transcript = parsed;
+          } else {
+            transcript =
+              parsed.text ||
+              parsed.transcript ||
+              parsed.transcription ||
+              "";
+          }
+        } catch {
+          transcript = responseText;
+        }
+
+        transcript = transcript.trim();
+
+        if (!transcript) {
+          throw new Error("Speech API returned an empty transcription.");
+        }
+
+        sendResponse({
+          status: "SUCCESS",
+          text: transcript
+        });
+      } catch (error) {
+        console.error("Speech transcription failed:", error);
+
         sendResponse({
           status: "ERROR",
-          error: "The speech API returned an empty transcription."
+          error: error.message
         });
-        return;
       }
-
-      sendResponse({
-        status: "SUCCESS",
-        text: transcript
-      });
-    } catch (error) {
-      console.error("Speech recognition request failed:", error);
-
-      sendResponse({
-        status: "ERROR",
-        error: error.message
-      });
-    }
+    })();
 
     return true;
   }
