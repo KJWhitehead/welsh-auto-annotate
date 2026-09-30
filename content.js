@@ -166,28 +166,49 @@ function annotate(text, glossary) {
 
   let processedText = text;
 
-  phrases.forEach(phrase => {
-    const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-const regex = new RegExp(
-  `(?<!\\p{L})(${safePhrase})(?!\\p{L})`,
-  "giu"
-);
-    processedText = processedText.replace(regex, (match) => {
-      const rawDef = glossary[phraseText.toLowerCase()];
+phrases.forEach(phrase => {
+  // Do not escape hyphens. In a Unicode RegExp, "\-" is invalid
+  // outside a character class.
+  const safePhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+  // The prefix capture avoids lookbehind and works with quotation marks,
+  // punctuation, and the beginning of the sentence.
+  const regex = new RegExp(
+    `(^|[^\\p{L}])(${safePhrase})(?=$|[^\\p{L}])`,
+    "giu"
+  );
+
+  processedText = processedText.replace(
+    regex,
+    (match, prefix, phraseMatch) => {
+      const rawDef = glossary[phrase];
+
       let displayDefText = rawDef;
       let courseInfo = "";
 
-      if (rawDef && typeof rawDef === 'object' && 'definition' in rawDef) {
+      if (
+        rawDef &&
+        typeof rawDef === "object" &&
+        "definition" in rawDef
+      ) {
         displayDefText = rawDef.definition;
+
         if (rawDef.course && rawDef.unit) {
           courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
         }
       }
 
       const finalDisplayString = displayDefText + courseInfo;
-      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${finalDisplayString}___PHRASE_END___`;
-    });
-  });
+
+      return (
+        `${prefix}` +
+        `___PHRASE_START___${phraseMatch}` +
+        `___PHRASE_DIVIDER___${finalDisplayString}` +
+        `___PHRASE_END___`
+      );
+    }
+  );
+});
 
   const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
 
@@ -200,7 +221,7 @@ if (token.startsWith("___PHRASE_START___")) {
       const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${phraseText}):</span> ${finalDisplayString}</span>`;
       
       // Pull out the base parameters safely for the study table tracking object
-      const rawDef = glossary[phraseText];
+const rawDef = glossary[phraseText.toLowerCase()];
       const txt = (rawDef && typeof rawDef === 'object') ? rawDef.definition : rawDef;
       const c = (rawDef && rawDef.course) ? rawDef.course : "";
       const u = (rawDef && rawDef.unit) ? rawDef.unit : "";
