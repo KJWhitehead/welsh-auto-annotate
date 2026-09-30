@@ -318,7 +318,12 @@
     "unit": "Uned 13" 
   },
   "arall": {
-    "definition": "other",
+    "definition": "other (singular)",
+    "course": "Mynediad", 
+    "unit": "Uned 3"
+  },
+    "eraill": {
+    "definition": "other (plural)",
     "course": "Mynediad", 
     "unit": "Uned 3"
   },
