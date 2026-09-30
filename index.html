@@ -549,7 +549,7 @@ function annotate(text, glossary) {
       return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
     }
 
-const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
