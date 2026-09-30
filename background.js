@@ -11,7 +11,7 @@ chrome.sidePanel
   });
 
 // 2. CENTRAL EXTENSION MESSAGE ACTION ROUTER
-chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   
   // ─── ACTION A: SAVE VOCAB WORD TO STORAGE ──────────────────────────
   if (message.action === "SAVE_VOCAB_WORD") {
