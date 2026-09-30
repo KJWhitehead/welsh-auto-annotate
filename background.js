@@ -188,10 +188,6 @@ if (!transcript) {
   );
 }
 
-sendResponse({
-  status: "SUCCESS",
-  text: transcript
-});
         sendResponse({
           status: "SUCCESS",
           text: transcript
