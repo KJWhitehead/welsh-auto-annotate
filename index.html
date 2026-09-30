@@ -370,7 +370,10 @@ function compileActiveGlossary() {
 // --- TOKENIZER MATRIX ENGINE ---
 function collectMatches(word, glossary) {
   // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
-  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+|[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+$/g, "").trim();
+  let w = word
+  .toLocaleLowerCase("cy")
+  .replace(/^[^\p{L}'’]+|[^\p{L}'’]+$/gu, "")
+  .trim();
   if (!w) return [];
 
   // 1. WELSH CONTRACTION SPLITTER
@@ -521,18 +524,29 @@ function collectMatches(word, glossary) {
 }
 
 function annotate(text, glossary) {
-  const phrases = Object.keys(glossary).filter(k => k.includes(" ")).sort((a, b) => b.length - a.length);
+  text = text
+    .replace(/[\u2018\u2019\u201A\u201B]/g, "'")
+    .replace(/[\u201C\u201D\u201E\u201F\u00AB\u00BB]/g, '"');
+
+  const phrases = Object.keys(glossary)
+    .filter(k => k.includes(" "))
+    .sort((a, b) => b.length - a.length);
   let processedText = text;
 
   phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])(${safePhrase})(?=$|[^a-zA-Z\\u00C0-\u017F\\u1E00-\u1EFF])`, 'gi');
-    processedText = processedText.replace(regex, match => {
+const regex = new RegExp(
+  `(^|[^\\p{L}])(${safePhrase})(?=$|[^\\p{L}])`,
+  "giu"
+);
+
+processedText = processedText.replace(regex, (match, prefix, phraseMatch) => {
       const d = glossary[phrase];
       const txt = (d && typeof d === 'object') ? d.definition : d;
       const c = (d && d.course) ? d.course : "";
       const u = (d && d.unit) ? d.unit : "";
-      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${txt}|||${c}|||${u}___PHRASE_END___`;
+      return `${prefix}___PHRASE_START___${phraseMatch}___PHRASE_DIVIDER___${txt}|||${c}|||${u}___PHRASE_END___`;
+
     });
   });
 
@@ -549,7 +563,7 @@ function annotate(text, glossary) {
       return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
     }
 
-    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*)/g);
+    const words = token.split(/(\p{L}+(?:['’]\p{L}+)*)/gu);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
