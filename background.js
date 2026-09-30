@@ -4,9 +4,11 @@
 
 // 1. TOOLBAR ICON CLICK INTERCEPTOR
 // Listens for the toolbar icon trigger and broadcasts the annotation signal down to the active tab
-chrome.action.onClicked.addListener((tab) => {
-  chrome.tabs.sendMessage(tab.id, { action: "RUN_ANNOTATION" });
-});
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch(error => {
+    console.error("Failed to configure side panel:", error);
+  });
 
 // 2. CENTRAL EXTENSION MESSAGE ACTION ROUTER
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
