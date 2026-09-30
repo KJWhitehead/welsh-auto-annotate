@@ -200,7 +200,7 @@ if (token.startsWith("___PHRASE_START___")) {
       return `<span class="annotated">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
     }
 
-const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF\u2019\u0027]+)/g);
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF'’]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
