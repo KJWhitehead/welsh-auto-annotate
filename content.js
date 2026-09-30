@@ -1,7 +1,10 @@
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
   // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
-  let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+|[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+$/g, "").trim();
+  let w = word
+    .toLocaleLowerCase("cy")
+    .replace(/^[^\p{L}'’]+|[^\p{L}'’]+$/gu, "")
+    .trim();
   if (!w) return [];
 
   // 1. WELSH CONTRACTION SPLITTER
@@ -153,6 +156,11 @@ if (!w) return [];
 
 // 1. MASTER ANNOTATION ENGINE (Matches your verified index.html logic)
 function annotate(text, glossary) {
+  text = text
+    .replace(/[\u2018\u2019\u201A\u201B]/g, "'")
+    .replace(/[\u201C\u201D\u201E\u201F]/g, '"')
+    .replace(/[\u00AB\u00BB]/g, '"');
+
   const phrases = Object.keys(glossary).filter(key => key.includes(" "));
   phrases.sort((a, b) => b.length - a.length);
 
@@ -160,9 +168,12 @@ function annotate(text, glossary) {
 
   phrases.forEach(phrase => {
     const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-    const regex = new RegExp(`\\b(${safePhrase})\\b`, 'gi');
+const regex = new RegExp(
+  `(?<!\\p{L})(${safePhrase})(?!\\p{L})`,
+  "giu"
+);
     processedText = processedText.replace(regex, (match) => {
-      const rawDef = glossary[phrase];
+      const rawDef = glossary[phraseText.toLowerCase()];
       let displayDefText = rawDef;
       let courseInfo = "";
 
@@ -200,7 +211,7 @@ if (token.startsWith("___PHRASE_START___")) {
       return `<span class="annotated">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
     }
 
-    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF'’]+)/g);
+    const words = token.split(/(\p{L}+(?:['’]\p{L}+)*)/gu);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
