@@ -113,8 +113,6 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         const formData = new FormData();
         const extension = getAudioExtension(mimeType);
 
-const extension = getAudioExtension(mimeType);
-
 formData.append(
   "soundfile",
   audioBlob,
