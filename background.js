@@ -111,7 +111,13 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         });
 
         const formData = new FormData();
-        formData.append("soundfile", audioBlob, "recording.wav");
+        const extension = getAudioExtension(mimeType);
+
+formData.append(
+  "soundfile",
+  audioBlob,
+  `recording.${extension}`
+);
         formData.append("priority", "high");
 
         const response = await fetch(
@@ -165,9 +171,32 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
           status: "ERROR",
           error: error.message
         });
+        
       }
     })();
 
     return true;
   }
 });
+// Add this after the complete message listener.
+function getAudioExtension(mimeType) {
+  const type = String(mimeType || "").toLowerCase();
+
+  if (type.includes("ogg")) {
+    return "ogg";
+  }
+
+  if (type.includes("webm")) {
+    return "webm";
+  }
+
+  if (type.includes("mpeg") || type.includes("mp3")) {
+    return "mp3";
+  }
+
+  if (type.includes("mp4") || type.includes("m4a")) {
+    return "m4a";
+  }
+
+  return "wav";
+}
