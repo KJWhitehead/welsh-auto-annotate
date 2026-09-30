@@ -1,6 +1,15 @@
 let mediaRecorder = null;
 let audioChunks = [];
 let mediaStream = null;
+let permissionTabOpened = false;
+
+chrome.runtime.onMessage.addListener(message => {
+  if (message.action === "MIC_PERMISSION_GRANTED") {
+    permissionTabOpened = false;
+    statusElement.textContent = "Permission granted. Starting recording…";
+    startRecording(true);
+  }
+});
 
 const startButton = document.getElementById("startButton");
 const stopButton = document.getElementById("stopButton");
