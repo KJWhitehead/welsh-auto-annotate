@@ -8,6 +8,9 @@
     "scripting",
     "storage"
   ],
+    "host_permissions": [
+    "https://api.techiaith.cymru/*"
+  ],
   "icons": {
     "16": "assets/icon48.png",
     "32": "assets/icon48.png",
