@@ -7142,5 +7142,35 @@
   },
   "dylech": {
     "definition": "2nd person plural/formal (you) 'should'"
+  },
+  "baswn": {
+    "definition": "1st person singular (I) conditional form of bod"
+  },
+  "baset": {
+    "definition": "2nd person singular (you) conditional form of bod"
+  },
+  "basai": {
+    "definition": "3rd person singular (he/she/it) conditional form of bod"
+  },
+  "basen": {
+    "definition": "1st person plural (we) / 3rd person plural (they) conditional form of bod"
+  },
+  "basech": {
+    "definition": "2nd person plural/formal (you) conditional form of bod"
+  },
+  "taswn": {
+    "definition": "if I were"
+  },
+  "taset": {
+    "definition": "if you were"
+  },
+  "tasai": {
+    "definition": "if he/she/it was"
+  },
+  "tasen": {
+    "definition": "if we/they were"
+  },
+  "tasech": {
+    "definition": "if you were"
   }
 }
