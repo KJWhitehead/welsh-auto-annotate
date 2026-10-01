@@ -254,11 +254,17 @@ if (!glossary[w]) {
     }
   }
 
-  // ─── NEW: ADJECTIVE SUFFIX DETECTION GUARD ──────────────────────────
-  // Checks if the word token ends with one of your active suffixes
+// Checks if the word token ends with one of your active suffixes
   const isAdjSuffix = ["ach", "af", "a", "ed"].some(suffix => w.endsWith(suffix) && w.length > suffix.length);
 
-  // FIXED: Only run the direct base pass if this is NOT a word with an adjective suffix!
+  // ─── 🛠️ THE COMPREHENSIVE BUG FIX: ROOT DIRECT PASS ────────────────
+  // Check the whole, unmodified word in the glossary FIRST. If it's a real 
+  // standalone dictionary word (like "cyntaf"), log it instantly and bypass the suffix trap!
+  if (glossary[w]) {
+    checkAndAdd(w);
+  }
+
+  // Only run the rest of the direct base pass if this is NOT a word with an adjective suffix!
   if (!isAdjSuffix) {
     checkAndAdd(w);
   }
@@ -318,17 +324,22 @@ if (!glossary[w]) {
       }
     }
   }
- // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
-  // Targets regular endings, including modern spoken dropped-f superlatives!
+// 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
   const adjSuffixes = { "ach": "comparative", "af": "superlative", "a": "superlative", "ed": "equative" };
   for (const [suffix, formType] of Object.entries(adjSuffixes)) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
       
-      // We will temporarily intercept found keys to attach the form label to them
       function checkAddWithForm(candidate) {
         if (glossary[candidate]) {
           foundKeys.add(JSON.stringify({ root: candidate, form: formType }));
+        }
+        // 🌟 DROPPED-F VARIANT SAFEGUARD: If the stem has a dictionary counterpart ending in -f, catch it!
+        if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
+          const candidateWithF = candidate + "f";
+          if (glossary[candidateWithF]) {
+            foundKeys.add(JSON.stringify({ root: candidateWithF, form: formType }));
+          }
         }
       }
 
