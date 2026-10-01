@@ -230,7 +230,7 @@ const rawDef = glossary[phraseText.toLowerCase()];
       return `<span class="annotated">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
     }
 
-    const words = token.split(/(\p{L}+(?:['’]\p{L}+)*)/gu);
+const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
     return words.map(word => {
       const matches = collectMatches(word, glossary);
       if (matches.length > 0) {
