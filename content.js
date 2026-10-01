@@ -7,13 +7,13 @@ function collectMatches(word, glossary) {
     .trim();
   if (!w) return [];
 
-  // 1. WELSH CONTRACTION SPLITTER
-  // Only trim context attachments if the absolute contraction isn't explicitly in the glossary first!
-  if (!glossary[w]) {
-    if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
-      w = w.slice(0, -2); 
-    }
+// 1. WELSH CONTRACTION SPLITTER
+if (!glossary[w]) {
+  // 🛠️ ADDED: "'ch" and "’ch" right alongside your existing rules!
+  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n") || w.endsWith("'ch") || w.endsWith("’ch")) {
+    w = w.slice(0, -3); // Slices off the 3-character contraction boundary neatly
   }
+}
 
   // 2. WELSH VOWEL-LINK STRIPPER
   if (!glossary[w]) {
