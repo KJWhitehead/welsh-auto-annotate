@@ -6906,8 +6906,33 @@
   "gwaedd": {
     "definition": "irregular stem of gweiddi (to shout, to yell)"
   },
+    },
   "dydy": {
     "definition": "is not"
+  },
+      "nhw": {
+    "definition": "they, them"
+  },
+        "hi": {
+    "definition": "she, her"
+  },
+    "fe": {
+    "definition": "he, him"
+  },
+      "ni": {
+    "definition": "we, us"
+  },
+    "mae": {
+    "definition": "is"
+  },
+      "maen": {
+    "definition": "are"
+  },
+    "ydy": {
+    "definition": "is; yes"
+  },
+      "ydyn": {
+    "definition": "are; yes"
   },
     "dyw": {
     "definition": "is not"
@@ -6915,13 +6940,25 @@
     "dwyt": {
     "definition": "are not"
   },
+   "wyt": {
+    "definition": "are"
+  },
     "dydyn": {
     "definition": "are not"
+  },
+      "dydy": {
+    "definition": "is not"
   },
    "dydych": {
     "definition": "are not"
   },
+     "ydych": {
+    "definition": "are; yes"
+  },
     "dyn": {
-    "definition": "are not (from 'dydyn')"
+    "definition": "are (from 'rydyn'); are not (from 'dydyn')"
+  },
+      "ydw": {
+    "definition": "am; yes"
   }
 }
