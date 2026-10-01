@@ -7,29 +7,11 @@ function collectMatches(word, glossary) {
     .trim();
   if (!w) return [];
 
-  // 1. WELSH CONTRACTION & HYPHENATED PRONOUN SPLITTER
-  // Only trim context attachments if the absolute token isn't explicitly in the glossary first!
-  if (!glossary[w]) {
-    // A. Trim 3-character pronoun contractions ('ch, ’ch)
-    if (w.endsWith("'ch") || w.endsWith("’ch")) {
-      w = w.slice(0, -3); 
-    }
-    // B. Trim 2-character standard contractions ('r, ’r, 'n, ’n)
-    else if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n")) {
-      w = w.slice(0, -2); 
-    }
-    
-    // ─── 🛠️ NEW: TARGETED HYPHENATED PRONOUN REMOVER ──────────────────
-    // If a word ends with a hyphenated auxiliary pronoun emphasis attachment,
-    // strip it away so the core root word can be analyzed cleanly!
-    const trailingPronouns = ["-i", "-di", "-o", "-hi", "-ni", "-chi", "-nhw", "-fe", "-fo"];
-    for (const pronoun of trailingPronouns) {
-      if (w.endsWith(pronoun) && w.length > pronoun.length) {
-        w = w.slice(0, -pronoun.length);
-        break; // Stop checking once we clip the hyphen tag
-      }
-    }
-  }
+// 1. WELSH CONTRACTION SPLITTER
+if (!glossary[w]) {
+  // 🛠️ ADDED: "'ch" and "’ch" right alongside your existing rules!
+  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n") || w.endsWith("'ch") || w.endsWith("’ch")) {
+    w = w.slice(0, -3); // Slices off the 3-character contraction boundary neatly
 
   // 2. WELSH VOWEL-LINK STRIPPER
   if (!glossary[w]) {
