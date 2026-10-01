@@ -380,7 +380,7 @@ function collectMatches(word, glossary) {
 if (!glossary[w]) {
   // 🛠️ ADDED: "'ch" and "’ch" right alongside your existing rules!
   if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n") || w.endsWith("'ch") || w.endsWith("’ch")) {
-    w = w.slice(0, -2); // Slices off the 3-character contraction boundary neatly
+    w = w.slice(0, -3); // Slices off the 3-character contraction boundary neatly
   }
 }
 
