@@ -1,5 +1,4 @@
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
-// --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
   // Preserve straight and curly apostrophes during word cleanup.
   let w = word
@@ -357,6 +356,15 @@ function collectMatches(word, glossary) {
   });
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 // 1. MASTER ANNOTATION ENGINE (Matches your verified index.html logic)
 function annotate(text, glossary) {
   const phrases = Object.keys(glossary)
@@ -404,8 +412,16 @@ if (token.startsWith("___PHRASE_START___")) {
       const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
       const phraseText = parts[0];
       const finalDisplayString = parts[1]; // Pulls the clean definition string cleanly
+  const safePhraseText = escapeHtml(phraseText);
+const safeFinalDisplayString = escapeHtml(finalDisplayString);
+
       
-      const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${phraseText}):</span> ${finalDisplayString}</span>`;
+      const tooltipHtml = `
+  <span class="tooltip-branch">
+    <span class="tooltip-label">(${safePhraseText}):</span>
+    ${safeFinalDisplayString}
+  </span>
+`;
       
       // Pull out the base parameters safely for the study table tracking object
 const rawDef = glossary[phraseText.toLowerCase()];
@@ -425,7 +441,7 @@ const rawDef = glossary[phraseText.toLowerCase()];
 const btn = `
   <button
     class="study-btn"
-    data-word="${phraseText}"
+    data-word="${safePhraseText}"
     data-param="${cleanParam}"
     style="
       display: block;
@@ -446,7 +462,7 @@ const btn = `
 
 return `
   <span class="annotated">
-    ${phraseText}
+    ${safePhraseText}
     <span class="tooltip">
       ${tooltipHtml}
       ${btn}
@@ -466,11 +482,23 @@ const matches = collectMatches(word, glossary) || [];
           const c = (d && d.course) ? d.course : "";
           const u = (d && d.unit) ? d.unit : "";
           
-          const formLabel = m.form ? ` (${m.form})` : "";
-          const curriculum = (c || u) ? ` [${c} ${u ? '• ' + u : ''}]` : "";
-          
-          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
-        }).join("");
+      const safeDefinition = escapeHtml(txt);
+      const safeRoot = escapeHtml(m.root);
+      const safeForm = escapeHtml(m.form || "");
+      const safeCourse = escapeHtml(c);
+      const safeUnit = escapeHtml(u);
+
+      const formLabel = m.form ? ` (${safeForm})` : "";
+      const curriculum = (c || u)
+        ? ` [${safeCourse}${u ? ` • ${safeUnit}` : ""}]`
+        : "";
+
+      return `
+        <span class="tooltip-branch">
+          <span class="tooltip-label">(${safeRoot}):</span>
+          ${safeDefinition}${formLabel}${curriculum}
+        </span>
+      `;
 
         // 2. STRUCTURALLY PACK THE DATA OBJECT FOR THE COMPACT STUDY TABLE
         const firstMatch = matches[0].definition;
@@ -485,7 +513,7 @@ const cleanParam = encodeURIComponent(JSON.stringify(packedData));
 const audioBtn = `
   <button
     class="speak-btn"
-    data-text="${word}"
+    data-text="${safeWord}"
     style="
       display: block;
       width: 100%;
@@ -506,7 +534,7 @@ const audioBtn = `
 const btn = `
   <button
     class="study-btn"
-    data-word="${word}"
+    data-word="${safeWord}"
     data-param="${cleanParam}"
     style="
       display: block;
@@ -527,7 +555,7 @@ const btn = `
 
 return `
   <span class="annotated">
-    ${word}
+    ${safeWord}
     <span class="tooltip">
       ${tooltipHtml}
       ${audioBtn}
@@ -601,7 +629,6 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
           
           // Modern, light-blue dashboard layout styling constraints
           
-JavaScript
 speakerWidget.style.cssText = `
   display: block;
   margin-top: 6px;
@@ -634,6 +661,9 @@ speakerWidget.style.cssText = `
 document.addEventListener('click', (event) => {
   const target = event.target;
   
+    if (!(target instanceof Element)) {
+    return;
+  }
   // Handle toggling tooltips on live pages safely
   if (target.classList.contains('annotated')) {
     event.stopPropagation();
