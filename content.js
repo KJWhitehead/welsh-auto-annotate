@@ -124,11 +124,26 @@ if (!glossary[w]) {
       const nakedStem = w.slice(0, -suffix.length);
       
       // We will temporarily intercept found keys to attach the form label to them
-      function checkAddWithForm(candidate) {
-        if (glossary[candidate]) {
-          foundKeys.add(JSON.stringify({ root: candidate, form: formType }));
-        }
-      }
+function checkAddWithForm(candidate) {
+  if (glossary[candidate]) {
+    foundKeys.add(JSON.stringify({
+      root: candidate,
+      form: formType
+    }));
+  }
+
+  // Catch dictionary roots ending in -f after a dropped-f form.
+  if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
+    const candidateWithF = candidate + "f";
+
+    if (glossary[candidateWithF]) {
+      foundKeys.add(JSON.stringify({
+        root: candidateWithF,
+        form: formType
+      }));
+    }
+  }
+}
 
       // Check standard mutations with the form tag attached
       checkAddWithForm(nakedStem);
