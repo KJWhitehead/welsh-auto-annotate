@@ -121,6 +121,9 @@ uwch1Glossary: 'dictionaries/uwch1.json',
     <label class="checkbox-label">
       <input type="checkbox" id="chkCanolradd" checked> Canolradd (Intermediate level)
     </label>
+              <label class="checkbox-label">
+      <input type="checkbox" id="chkUwch1" checked> Uwch 1 (Advanced 1 level)
+    </label>
     <label class="checkbox-label">
       <input type="checkbox" id="chkBBC"> BBC News Vocab
     </label>
@@ -167,6 +170,7 @@ function compileActiveGlossary() {
   const useMynediad = document.getElementById('chkMynediad').checked;
   const useSylfaen = document.getElementById('chkSylfaen').checked;
   const useCanolradd = document.getElementById('chkCanolradd').checked;
+const useUwch1 = document.getElementById('chkUwch1').checked;
   const useBBC = document.getElementById('chkBBC').checked;
 
   function mergeSource(sourceGlossary) {
@@ -213,6 +217,7 @@ function compileActiveGlossary() {
   if (useMynediad) mergeSource(window.mynediadGlossary);
   if (useSylfaen) mergeSource(window.sylfaenGlossary);
   if (useCanolradd) mergeSource(window.canolraddGlossary);
+if (useUwch1) mergeSource(window.uwch1Glossary);
   if (useBBC) mergeSource(window.bbcGlossary);
 
   console.log("📊 Active glossary compiled structurally. Total terms:", Object.keys(runtimeGlossary).length);
