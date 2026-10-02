@@ -500,6 +500,7 @@ const matches = collectMatches(word, glossary) || [];
           ${safeDefinition}${formLabel}${curriculum}
         </span>
       `;
+              }).join("");
 
         // 2. STRUCTURALLY PACK THE DATA OBJECT FOR THE COMPACT STUDY TABLE
         const firstMatch = matches[0].definition;
