@@ -25,6 +25,7 @@ function recompileGlossary() {
   { id: 'chkMynediad', key: 'mynediadGlossary' },
   { id: 'chkSylfaen', key: 'sylfaenGlossary' },
   { id: 'chkCanolradd', key: 'canolraddGlossary' },
+  { id: 'chkUwch1', key: 'uwch1Glossary' },
   { id: 'chkBBC', key: 'bbcGlossary' }
 ];
 
@@ -67,6 +68,7 @@ function recompileGlossary() {
     mynediadGlossary: 'dictionaries/mynediad.json',
     sylfaenGlossary: 'dictionaries/sylfaen.json',
     canolraddGlossary: 'dictionaries/canolradd.json',
+uwch1Glossary: 'dictionaries/uwch1.json',
     bbcGlossary: 'dictionaries/bbc.json'
   };
 
@@ -85,7 +87,7 @@ function recompileGlossary() {
   
   recompileGlossary();
 
-  ['chkMynediad', 'chkSylfaen', 'chkCanolradd', 'chkBBC'].forEach(id => {
+  ['chkMynediad', 'chkSylfaen', 'chkCanolradd', 'chkUwch1', 'chkBBC'].forEach(id => {
     const el = document.getElementById(id);
     if (el) {
       el.addEventListener('change', recompileGlossary);
