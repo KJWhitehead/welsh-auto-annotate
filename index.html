@@ -597,7 +597,13 @@ function annotate(text, glossary) {
       const dataBits = parts[1].split("|||");
       
       const tooltipHtml = `<span class="tooltip-branch"><span class="tooltip-label">(${phraseText}):</span> ${dataBits[0]} [${dataBits[1]} • ${dataBits[2]}]</span>`;
-      const cleanParam = encodeURIComponent(JSON.stringify({ word: phraseText, def: dataBits[0], course: dataBits[1], unit: dataBits[2] }));
+      const cleanParam = encodeURIComponent(JSON.stringify({
+  word: phraseText,
+  root: phraseText,
+  def: dataBits[0],
+  course: dataBits[1],
+  unit: dataBits[2]
+}));
       let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
       return `<span class="annotated" onclick="handleToggle(event, this)">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
     }
@@ -636,12 +642,13 @@ const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
       ? ` [${course}${unit ? ` • ${unit}` : ""}]`
       : "";
 
-    const packedData = {
-      word,
-      def: definitionText,
-      course,
-      unit
-    };
+const packedData = {
+  word,
+  root: match.root,
+  def: definitionText,
+  course,
+  unit
+};
 
     const cleanParam = encodeURIComponent(
       JSON.stringify(packedData)
@@ -737,22 +744,26 @@ function handleAddClick(event, encodedData) {
   let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
-  const matchIdx = loggedWords.findIndex(item => 
-    item.word.toLowerCase() === data.word.toLowerCase() &&
-    (item.displayDef || "") === (data.def || "") &&
-    (item.course || "") === (data.course || "") &&
-    (item.unit || "") === (data.unit || "")
-                                        );
+const matchIdx = loggedWords.findIndex(item =>
+  (item.word || "").toLowerCase() ===
+    (data.word || "").toLowerCase() &&
+  (item.root || item.word || "").toLowerCase() ===
+    (data.root || data.word || "").toLowerCase() &&
+  (item.displayDef || "") === (data.def || "") &&
+  (item.course || "") === (data.course || "") &&
+  (item.unit || "") === (data.unit || "")
+);
   if (matchIdx !== -1) {
     loggedWords[matchIdx].count += 1;
   } else {
-    loggedWords.push({ 
-      word: data.word, 
-      displayDef: data.def || "",
-      course: data.course || "",
-      unit: data.unit || "",
-      count: 1
-    });
+loggedWords.push({
+  word: data.word,
+  root: data.root || data.word,
+  displayDef: data.def || "",
+  course: data.course || "",
+  unit: data.unit || "",
+  count: 1
+});
   }
 
   localStorage.setItem("welshLocalStudySession", JSON.stringify(loggedWords));
@@ -778,10 +789,19 @@ function renderStudyListTable() {
     const sourceLabel = (courseText && unitText) ? `${courseText} • ${unitText}` : (courseText || unitText || "");
 
     return `<tr>
-      <td><span class="table-word">${item.word}</span></td>
-      <td>${item.displayDef || ""}</td>
-      <!-- 🛠️ FIXED: Completely cleaned out the rogue backslash escape character! -->
-      <td>${sourceLabel ? `<span class="unit-tag">${sourceLabel}</span>` : ""}</td>
+  <td>
+    <span class="table-word">${item.word}</span>
+  </td>
+  <td>
+    <strong>${item.root || item.word}</strong>
+    <br>
+    ${item.displayDef || ""}
+  </td>
+  <td>
+    ${sourceLabel
+      ? `<span class="unit-tag">${sourceLabel}</span>`
+      : ""}
+  </td>
       <td style="text-align: center; font-weight: bold; color: #dc3545;">${item.count}×</td>
     </tr>`;
   }).join("");
@@ -801,10 +821,11 @@ function triggerXMLExport() {
   let xmlString = `<?xml version="1.0" encoding="UTF-8"?>\n<studylist>\n`;
   loggedWords.forEach(item => {
     xmlString += `  <item>\n`;
-    xmlString += `    <word>${escapeXML(item.word)}</word>\n`;
-    xmlString += `    <definition>${escapeXML(item.displayDef)}</definition>\n`;
-    xmlString += `    <course>${escapeXML(item.course)}</course>\n`;
-    xmlString += `    <unit>${escapeXML(item.unit)}</unit>\n`;
+xmlString += `    <word>${escapeXML(item.word)}</word>\n`;
+xmlString += `    <root>${escapeXML(item.root || item.word)}</root>\n`;
+xmlString += `    <definition>${escapeXML(item.displayDef)}</definition>\n`;
+xmlString += `    <course>${escapeXML(item.course)}</course>\n`;
+xmlString += `    <unit>${escapeXML(item.unit)}</unit>\n`;
     xmlString += `    <count>${item.count}</count>\n`;
     xmlString += `  </item>\n`;
   });
