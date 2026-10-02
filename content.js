@@ -8,28 +8,24 @@ function collectMatches(word, glossary) {
   if (!w) return [];
 
  // 1. WELSH CONTRACTION SPLITTER
- if (!glossary[w]) {
-   // "'ch" and "’ch" are included alongside the other contractions
-   if (
-     w.endsWith("'r") ||
-     w.endsWith("’r") ||
-     w.endsWith("'n") ||
-     w.endsWith("’n") ||
-     w.endsWith("'ch") ||
-     w.endsWith("’ch")
-   ) {
-     w = w.slice(0, -3);
+if (!glossary[w]) {
+  if (w.endsWith("'ch") || w.endsWith("’ch")) {
+    w = w.slice(0, -3);
+  } else if (
+    w.endsWith("'r") || w.endsWith("’r") ||
+    w.endsWith("'n") || w.endsWith("’n")
+  ) {
+    w = w.slice(0, -2);
   }
-}
- 
- // 2. WELSH VOWEL-LINK STRIPPER
+
+  // 2. WELSH VOWEL-LINK STRIPPER
   if (!glossary[w]) {
     const vowelLinks = {
-      "nag": "na",
-      "ac": "a",
-      "ag": "â",
-      "tuag": "tua",
-      "gydag": "gyda"
+      nag: "na",
+      ac: "a",
+      ag: "â",
+      tuag: "tua",
+      gydag: "gyda"
     };
 
     if (vowelLinks[w]) {
