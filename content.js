@@ -1,40 +1,48 @@
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
+// --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
-  // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
+  // Preserve straight and curly apostrophes during word cleanup.
   let w = word
     .toLocaleLowerCase("cy")
     .replace(/^[^\p{L}'’]+|[^\p{L}'’]+$/gu, "")
     .trim();
+
   if (!w) return [];
 
- // 1. WELSH CONTRACTION SPLITTER
-if (!glossary[w]) {
-  if (w.endsWith("'ch") || w.endsWith("’ch")) {
-    w = w.slice(0, -3);
-  } else if (
-    w.endsWith("'r") || w.endsWith("’r") ||
-    w.endsWith("'n") || w.endsWith("’n")
-  ) {
-    w = w.slice(0, -2);
-  }
-
-  // 2. WELSH VOWEL-LINK STRIPPER
+  // 1. WELSH CONTRACTION SPLITTER
+  // Only split contractions when the complete word is not already present.
   if (!glossary[w]) {
-    const vowelLinks = {
-      nag: "na",
-      ac: "a",
-      ag: "â",
-      tuag: "tua",
-      gydag: "gyda"
-    };
+    if (w.endsWith("'ch") || w.endsWith("’ch")) {
+      w = w.slice(0, -3);
+    } else if (
+      w.endsWith("'r") ||
+      w.endsWith("’r") ||
+      w.endsWith("'n") ||
+      w.endsWith("’n")
+    ) {
+      w = w.slice(0, -2);
+    }
 
-    if (vowelLinks[w]) {
-      w = vowelLinks[w];
+    // 2. WELSH VOWEL-LINK STRIPPER
+    if (!glossary[w]) {
+      const vowelLinks = {
+        nag: "na",
+        ac: "a",
+        ag: "â",
+        tuag: "tua",
+        gydag: "gyda"
+      };
+
+      if (vowelLinks[w]) {
+        w = vowelLinks[w];
+      }
     }
   }
 
   if (!w) return [];
 
+  // This must be outside the original `if (!glossary[w])` block.
+  // Exact glossary matches must also produce an array.
   const foundKeys = new Set();
 
   function checkAndAdd(candidate) {
@@ -42,8 +50,9 @@ if (!glossary[w]) {
       foundKeys.add(candidate);
     }
 
+    // Support dictionary roots ending in -f after a vowel.
     if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
-      const candidateWithF = candidate + "f";
+      const candidateWithF = `${candidate}f`;
 
       if (glossary[candidateWithF]) {
         foundKeys.add(candidateWithF);
@@ -52,141 +61,300 @@ if (!glossary[w]) {
   }
 
   // ADJECTIVE SUFFIX DETECTION GUARD
-  const isAdjSuffix = ["ach", "af", "a", "ed"]
-    .some(suffix => w.endsWith(suffix) && w.length > suffix.length);
+  const isAdjSuffix = ["ach", "af", "a", "ed"].some(
+    suffix => w.endsWith(suffix) && w.length > suffix.length
+  );
 
-  // FIXED: Only run the direct base pass if this is NOT a word with an adjective suffix!
+  // Do not treat adjective forms as direct roots.
   if (!isAdjSuffix) {
     checkAndAdd(w);
   }
 
   function scanMutations(candidate) {
-    // Soft Mutations
-    const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
-    for (const mut in soft) {
-      if (candidate.startsWith(mut)) {
-        soft[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+    // Soft mutations.
+    const soft = {
+      g: ["c"],
+      b: ["p"],
+      d: ["t"],
+      f: ["b", "m"],
+      dd: ["d"],
+      l: ["ll"],
+      r: ["rh"]
+    };
+
+    for (const mutation in soft) {
+      if (candidate.startsWith(mutation)) {
+        soft[mutation].forEach(target => {
+          const mutatedCandidate = candidate.replace(
+            new RegExp(`^${mutation}`),
+            target
+          );
+
+          checkAndAdd(mutatedCandidate);
+        });
       }
     }
 
-    // Nasal Mutations
-    const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
-    for (const mut in nasal) {
-      if (candidate.startsWith(mut)) {
-        nasal[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+    // Nasal mutations.
+    const nasal = {
+      ngh: ["c"],
+      mh: ["p"],
+      nh: ["t"],
+      ng: ["g"],
+      m: ["b"],
+      n: ["d"]
+    };
+
+    for (const mutation in nasal) {
+      if (candidate.startsWith(mutation)) {
+        nasal[mutation].forEach(target => {
+          const mutatedCandidate = candidate.replace(
+            new RegExp(`^${mutation}`),
+            target
+          );
+
+          checkAndAdd(mutatedCandidate);
+        });
       }
     }
 
-    // Aspirate Mutations
-    const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
-    for (const mut in aspirate) {
-      if (candidate.startsWith(mut)) {
-        aspirate[mut].forEach(target => checkAndAdd(candidate.replace(new RegExp("^" + mut), target)));
+    // Aspirate mutations.
+    const aspirate = {
+      ch: ["c"],
+      ph: ["p"],
+      th: ["t"]
+    };
+
+    for (const mutation in aspirate) {
+      if (candidate.startsWith(mutation)) {
+        aspirate[mutation].forEach(target => {
+          const mutatedCandidate = candidate.replace(
+            new RegExp(`^${mutation}`),
+            target
+          );
+
+          checkAndAdd(mutatedCandidate);
+        });
       }
     }
 
-    if (/^[aeiouwŷâêîôû]/i.test(candidate)) checkAndAdd("g" + candidate);
+    // Initial vowel mutation.
+    if (/^[aeiouwŷâêîôû]/i.test(candidate)) {
+      checkAndAdd(`g${candidate}`);
+    }
 
-    // ASPIRATE VOWEL PASS
+    // Aspirate vowel pass.
     if (candidate.startsWith("h") && candidate.length > 1) {
       const vowelRoot = candidate.slice(1);
-      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) checkAndAdd(vowelRoot);
+
+      if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) {
+        checkAndAdd(vowelRoot);
+      }
     }
   }
 
-  // FIXED: Only trigger standard mutation sweeps if it wasn't intercepted as a suffix word!
+  // Only run the standard mutation sweep for non-adjective forms.
   if (!isAdjSuffix) {
     scanMutations(w);
   }
 
   // 3. VERB STEM SUFFIX STRIPPER
-  const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
-  for (const suffix of verbSuffixes) {
-    if (w.endsWith(suffix) && w.length > suffix.length) {
-      const nakedStem = w.slice(0, -suffix.length);
-      checkAndAdd(nakedStem);
-      scanMutations(nakedStem);
+  const verbSuffixes = [
+    "odd",
+    "ais",
+    "es",
+    "aeth",
+    "on",
+    "och",
+    "asant",
+    "wch",
+    "a"
+  ];
 
-      const infinitiveEndings = ["u", "i", "o", "io", "a"];
-      for (const inf of infinitiveEndings) {
-        let reconstructedVerb = nakedStem + inf;
-        checkAndAdd(reconstructedVerb);
-        scanMutations(reconstructedVerb);
+  for (const suffix of verbSuffixes) {
+    if (!w.endsWith(suffix) || w.length <= suffix.length) {
+      continue;
+    }
+
+    const nakedStem = w.slice(0, -suffix.length);
+
+    checkAndAdd(nakedStem);
+    scanMutations(nakedStem);
+
+    const infinitiveEndings = ["u", "i", "o", "io", "a"];
+
+    for (const ending of infinitiveEndings) {
+      const reconstructedVerb = nakedStem + ending;
+
+      checkAndAdd(reconstructedVerb);
+      scanMutations(reconstructedVerb);
+    }
+  }
+
+  // 4. ADJECTIVE COMPARATIVE / SUPERLATIVE SUFFIX STRIPPER
+  // Includes modern spoken dropped-f superlatives.
+  const adjectiveSuffixes = {
+    ach: "comparative",
+    af: "superlative",
+    a: "superlative",
+    ed: "equative"
+  };
+
+  for (const [suffix, formType] of Object.entries(adjectiveSuffixes)) {
+    if (!w.endsWith(suffix) || w.length <= suffix.length) {
+      continue;
+    }
+
+    const nakedStem = w.slice(0, -suffix.length);
+
+    function checkAddWithForm(candidate) {
+      if (glossary[candidate]) {
+        foundKeys.add(
+          JSON.stringify({
+            root: candidate,
+            form: formType
+          })
+        );
+      }
+
+      // Catch dictionary roots ending in -f after a dropped-f form.
+      if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
+        const candidateWithF = `${candidate}f`;
+
+        if (glossary[candidateWithF]) {
+          foundKeys.add(
+            JSON.stringify({
+              root: candidateWithF,
+              form: formType
+            })
+          );
+        }
       }
     }
-  }
 
-   // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
-  // Targets regular endings, including modern spoken dropped-f superlatives!
-  const adjSuffixes = { "ach": "comparative", "af": "superlative", "a": "superlative", "ed": "equative" };
-  for (const [suffix, formType] of Object.entries(adjSuffixes)) {
-    if (w.endsWith(suffix) && w.length > suffix.length) {
-      const nakedStem = w.slice(0, -suffix.length);
-      
-      // We will temporarily intercept found keys to attach the form label to them
-function checkAddWithForm(candidate) {
-  if (glossary[candidate]) {
-    foundKeys.add(JSON.stringify({
-      root: candidate,
-      form: formType
-    }));
-  }
+    // Check the unmutated stem.
+    checkAddWithForm(nakedStem);
 
-  // Catch dictionary roots ending in -f after a dropped-f form.
-  if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
-    const candidateWithF = candidate + "f";
+    // Check soft mutations.
+    const soft = {
+      g: ["c"],
+      b: ["p"],
+      d: ["t"],
+      f: ["b", "m"],
+      dd: ["d"],
+      l: ["ll"],
+      r: ["rh"]
+    };
 
-    if (glossary[candidateWithF]) {
-      foundKeys.add(JSON.stringify({
-        root: candidateWithF,
-        form: formType
-      }));
+    for (const mutation in soft) {
+      if (nakedStem.startsWith(mutation)) {
+        soft[mutation].forEach(target => {
+          const candidate = nakedStem.replace(
+            new RegExp(`^${mutation}`),
+            target
+          );
+
+          checkAddWithForm(candidate);
+        });
+      }
+    }
+
+    // Check nasal mutations.
+    const nasal = {
+      ngh: ["c"],
+      mh: ["p"],
+      nh: ["t"],
+      ng: ["g"],
+      m: ["b"],
+      n: ["d"]
+    };
+
+    for (const mutation in nasal) {
+      if (nakedStem.startsWith(mutation)) {
+        nasal[mutation].forEach(target => {
+          const candidate = nakedStem.replace(
+            new RegExp(`^${mutation}`),
+            target
+          );
+
+          checkAddWithForm(candidate);
+        });
+      }
+    }
+
+    // Check aspirate mutations.
+    const aspirate = {
+      ch: ["c"],
+      ph: ["p"],
+      th: ["t"]
+    };
+
+    for (const mutation in aspirate) {
+      if (nakedStem.startsWith(mutation)) {
+        aspirate[mutation].forEach(target => {
+          const candidate = nakedStem.replace(
+            new RegExp(`^${mutation}`),
+            target
+          );
+
+          checkAddWithForm(candidate);
+        });
+      }
+    }
+
+    // Harden stem reversals, for example teca -> tec -> teg.
+    if (nakedStem.endsWith("c")) {
+      checkAddWithForm(`${nakedStem.slice(0, -1)}g`);
+    }
+
+    if (nakedStem.endsWith("t")) {
+      checkAddWithForm(`${nakedStem.slice(0, -1)}d`);
+    }
+
+    if (nakedStem.endsWith("p")) {
+      checkAddWithForm(`${nakedStem.slice(0, -1)}b`);
     }
   }
-}
 
-      // Check standard mutations with the form tag attached
-      checkAddWithForm(nakedStem);
-      
-      // Re-map scanMutations to use our form tracker inside this loop block
-      const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
-      for (const m in soft) if (nakedStem.startsWith(m)) soft[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
-      
-      const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
-      for (const m in nasal) if (nakedStem.startsWith(m)) nasal[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
-      
-      const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
-      for (const m in aspirate) if (nakedStem.startsWith(m)) aspirate[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
-
-      // Harden stem reversals (e.g., teca -> tec -> teg)
-      if (nakedStem.endsWith("c")) { const s = nakedStem.slice(0, -1) + "g"; checkAddWithForm(s); }
-      if (nakedStem.endsWith("t")) { const s = nakedStem.slice(0, -1) + "d"; checkAddWithForm(s); }
-      if (nakedStem.endsWith("p")) { const s = nakedStem.slice(0, -1) + "b"; checkAddWithForm(s); }
-    }
-  }
- // --- FIXED: FINAL DE-DUPLICATION FILTER GATE ---
-  // Loops through all gathered keys and filters out generic plain roots 
-  // if a richer, grammatically tagged version of that same root exists!
+  // 5. FINAL DE-DUPLICATION FILTER
   const finalArray = Array.from(foundKeys).map(item => {
-    if (item.startsWith("{")) {
+    if (typeof item === "string" && item.startsWith("{")) {
       const parsed = JSON.parse(item);
-      return { root: parsed.root, definition: glossary[parsed.root], form: parsed.form };
+
+      return {
+        root: parsed.root,
+        definition: glossary[parsed.root],
+        form: parsed.form
+      };
     }
-    return { root: item, definition: glossary[item], form: "" };
+
+    return {
+      root: item,
+      definition: glossary[item],
+      form: ""
+    };
   });
 
-  // Filter out the plain root if the exact same root exists with a grammar form tag
   return finalArray.filter((item, index, self) => {
     if (item.form === "") {
-      // If a tagged version of this exact same root exists anywhere in the array, drop this plain one!
-      const hasTaggedVersion = self.some(x => x.root === item.root && x.form !== "");
-      if (hasTaggedVersion) return false;
+      const hasTaggedVersion = self.some(
+        other => other.root === item.root && other.form !== ""
+      );
+
+      if (hasTaggedVersion) {
+        return false;
+      }
     }
-    
-    // Also drop absolute identical duplicates
-    return self.findIndex(x => x.root === item.root && x.definition === item.definition && x.form === item.form) === index;
+
+    return (
+      self.findIndex(
+        other =>
+          other.root === item.root &&
+          other.definition === item.definition &&
+          other.form === item.form
+      ) === index
+    );
   });
-}
 }
 
 // 1. MASTER ANNOTATION ENGINE (Matches your verified index.html logic)
@@ -253,7 +421,7 @@ const rawDef = glossary[phraseText.toLowerCase()];
 
 const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
     return words.map(word => {
-      const matches = collectMatches(word, glossary);
+const matches = collectMatches(word, glossary) || [];
       if (matches.length > 0) {
         // 1. BUILD INTUITIVE VISUAL HOVER TOOLTIP TEXT WITH GRAMMAR LABELS
         let tooltipHtml = matches.map(m => {
