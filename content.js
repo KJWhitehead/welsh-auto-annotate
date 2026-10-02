@@ -473,6 +473,7 @@ return `
 
 const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
     return words.map(word => {
+      const safeWord = escapeHtml(word);
 const matches = collectMatches(word, glossary) || [];
       if (matches.length > 0) {
         // 1. BUILD INTUITIVE VISUAL HOVER TOOLTIP TEXT WITH GRAMMAR LABELS
