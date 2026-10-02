@@ -42,6 +42,8 @@ tableBody.innerHTML = loggedWords.map(item => {
     </td>
   </tr>`;
 }).join("");
+          });
+  }
 
   // 🚀 Triggers annotation injection via background channels onto the current tab layout context
   btnScan.addEventListener('click', async () => {
