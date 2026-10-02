@@ -23,20 +23,41 @@ function collectMatches(word, glossary) {
 }
  
  // 2. WELSH VOWEL-LINK STRIPPER
- if (!glossary[w]) {
-   const vowelLinks = {
-     "nag": "na",
-     "ac": "a",
-     "ag": "â",
-     "tuag": "tua",
-     "gydag": "gyda"
-   };
-   if (vowelLinks[w]) w = vowelLinks[w];
- }
-  
-  // ─── NEW: ADJECTIVE SUFFIX DETECTION GUARD ──────────────────────────
-  // Checks if the word token ends with one of your active suffixes
-  const isAdjSuffix = ["ach", "af", "a", "ed"].some(suffix => w.endsWith(suffix) && w.length > suffix.length);
+  if (!glossary[w]) {
+    const vowelLinks = {
+      "nag": "na",
+      "ac": "a",
+      "ag": "â",
+      "tuag": "tua",
+      "gydag": "gyda"
+    };
+
+    if (vowelLinks[w]) {
+      w = vowelLinks[w];
+    }
+  }
+
+  if (!w) return [];
+
+  const foundKeys = new Set();
+
+  function checkAndAdd(candidate) {
+    if (glossary[candidate]) {
+      foundKeys.add(candidate);
+    }
+
+    if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
+      const candidateWithF = candidate + "f";
+
+      if (glossary[candidateWithF]) {
+        foundKeys.add(candidateWithF);
+      }
+    }
+  }
+
+  // ADJECTIVE SUFFIX DETECTION GUARD
+  const isAdjSuffix = ["ach", "af", "a", "ed"]
+    .some(suffix => w.endsWith(suffix) && w.length > suffix.length);
 
   // FIXED: Only run the direct base pass if this is NOT a word with an adjective suffix!
   if (!isAdjSuffix) {
