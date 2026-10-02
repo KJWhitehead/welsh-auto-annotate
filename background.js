@@ -11,37 +11,93 @@ chrome.action.onClicked.addListener((tab) => {
 // 2. CENTRAL EXTENSION MESSAGE ACTION ROUTER
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   
-  // ─── ACTION A: SAVE VOCAB WORD TO STORAGE ──────────────────────────
-  if (message.action === "SAVE_VOCAB_WORD") {
-    const data = message.payload;
+// ─── ACTION A: SAVE VOCAB WORD TO STORAGE ──────────────────────────
+if (message.action === "SAVE_VOCAB_WORD") {
+  const data = message.payload || {};
 
-    chrome.storage.sync.get(["welshExtensionStudySession"], (result) => {
-      let loggedWords = result.welshExtensionStudySession ? JSON.parse(result.welshExtensionStudySession) : [];
-      
-      const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === data.word.toLowerCase());
-      
+  chrome.storage.sync.get(
+    { welshExtensionStudySession: "[]" },
+    (result) => {
+      let loggedWords;
+
+      try {
+        loggedWords = JSON.parse(result.welshExtensionStudySession);
+      } catch (error) {
+        console.error("Could not parse saved vocabulary list:", error);
+        loggedWords = [];
+      }
+
+      const word = String(data.word || "").trim();
+
+      if (!word) {
+        sendResponse({
+          status: "ERROR",
+          error: "No vocabulary word was provided."
+        });
+        return;
+      }
+
+      const matchIdx = loggedWords.findIndex(
+        item => item.word.toLowerCase() === word.toLowerCase()
+      );
+
       if (matchIdx !== -1) {
-        loggedWords[matchIdx].count += 1;
+        loggedWords[matchIdx].count =
+          Number(loggedWords[matchIdx].count || 0) + 1;
+
+        // Preserve or refresh metadata for existing words.
+        loggedWords[matchIdx].displayDef =
+          data.def || loggedWords[matchIdx].displayDef || "";
+
+        loggedWords[matchIdx].course =
+          data.course || loggedWords[matchIdx].course || "";
+
+        loggedWords[matchIdx].unit =
+          data.unit || loggedWords[matchIdx].unit || "";
       } else {
-        loggedWords.push({ 
-          word: data.word, 
-          displayDef: data.def, 
-          course: data.course, 
-          unit: data.unit, 
-          count: 1 
+        loggedWords.push({
+          word,
+          displayDef: data.def || "",
+          course: data.course || "",
+          unit: data.unit || "",
+          count: 1
         });
       }
-      
+
       loggedWords.sort((a, b) => b.count - a.count);
 
-      chrome.storage.sync.set({ "welshExtensionStudySession": JSON.stringify(loggedWords) }, () => {
-        console.log("💾 Vocabulary successfully committed to sync storage profile:", data.word);
-        sendResponse({ status: "SUCCESS" });
-      });
-    });
-    
-    return true; // Keeps the messaging pipeline channel open for asynchronous callbacks
-  }
+      chrome.storage.sync.set(
+        {
+          welshExtensionStudySession: JSON.stringify(loggedWords)
+        },
+        () => {
+          if (chrome.runtime.lastError) {
+            console.error(
+              "Failed to save vocabulary:",
+              chrome.runtime.lastError
+            );
+
+            sendResponse({
+              status: "ERROR",
+              error: chrome.runtime.lastError.message
+            });
+            return;
+          }
+
+          console.log(
+            "Vocabulary saved to sync storage:",
+            word
+          );
+
+          sendResponse({ status: "SUCCESS" });
+        }
+      );
+    }
+  );
+
+  // Required because storage operations are asynchronous.
+  return true;
+}
 
  // ─── ACTION B: TECHIAITH ORPHEUS TEXT-TO-SPEECH STREAMER ──────────
   if (message.action === "SPEAK_TEXT") {
