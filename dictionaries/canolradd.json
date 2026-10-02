@@ -1,6 +1,8 @@
 {
   "a bod yn onest": {
-    "definition": "to be honest"
+    "definition": "to be honest",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "aber": {
     "definition": "estuary",
@@ -13,10 +15,14 @@
     "unit": "Uned 7"
   },
   "absennol": {
-    "definition": "absent"
+    "definition": "absent",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "ac yn y blaen": {
-    "definition": "etc."
+    "definition": "etc.",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "achosi": {
     "definition": "to cause",
@@ -40,10 +46,14 @@
     "unit": "Uned 12"
   },
   "adnabyddus": {
-    "definition": "well-known"
+    "definition": "well-known",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "adnewyddu": {
-    "definition": "to renew, to refurbish"
+    "definition": "to renew, to refurbish",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "adran": {
     "definition": "department",
@@ -71,7 +81,14 @@
     "unit": "Uned 7"
   },
   "addo": {
-    "definition": "to promise"
+    "definition": "to promise",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
+  },
+  "addurno": {
+    "definition": "to decorate",
+    "course": "Canolradd", 
+    "unit": "Uned 9"
   },
   "addurn": {
     "definition": "decoration",
@@ -123,7 +140,9 @@
     "definition": "diseases"
   },
   "agored": {
-    "definition": "open"
+    "definition": "open (adjective)",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "agoriad": {
     "definition": "opening",
@@ -136,10 +155,14 @@
     "unit": "Uned 1"
   },
   "agwedd": {
-    "definition": "attitude"
+    "definition": "attitude",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "agweddau": {
-    "definition": "attitudes"
+    "definition": "attitudes",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "ailadrodd": {
     "definition": "to repeat"
@@ -182,7 +205,9 @@
     "definition": "agricultural"
   },
   "ambell": {
-    "definition": "a few"
+    "definition": "a few",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "amlen": {
     "definition": "envelope",
@@ -208,10 +233,14 @@
     "unit": "Uned 3"
   },
   "amrywiaeth": {
-    "definition": "variety, variation"
+    "definition": "variety, variation",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "amrywiaethau": {
-    "definition": "varieties, variations"
+    "definition": "varieties, variations",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "amser maith yn ôl": {
     "definition": "a long time ago",
@@ -222,7 +251,9 @@
     "definition": "to time"
   },
   "amynedd": {
-    "definition": "patience"
+    "definition": "patience",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "anadlu": {
     "definition": "to breathe",
@@ -245,13 +276,19 @@
     "unit": "Uned 4"
   },
   "anarferol": {
-    "definition": "unusual"
+    "definition": "unusual",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "anfantais": {
-    "definition": "disadvantage"
+    "definition": "disadvantage",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "anfanteision": {
-    "definition": "disadvantages"
+    "definition": "disadvantages",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "anferth": {
     "definition": "huge",
@@ -264,7 +301,9 @@
     "unit": "Uned 8"
   },
   "angenrheidiol": {
-    "definition": "necessary"
+    "definition": "necessary",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "anhapus": {
     "definition": "unhappy",
@@ -277,7 +316,9 @@
     "unit": "Uned 1"
   },
   "anlwcus": {
-    "definition": "unlucky"
+    "definition": "unlucky",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "anniben": {
     "definition": "untidy (South Wales)",
@@ -290,7 +331,9 @@
     "unit": "Uned 3"
   },
   "annog": {
-    "definition": "to urge, to encourage"
+    "definition": "to urge, to encourage",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "apelio": {
     "definition": "to appeal (+ at/to)",
@@ -311,10 +354,14 @@
     "definition": "locked"
   },
   "ar gyhuddiad o": {
-    "definition": "accused of"
+    "definition": "accused of",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "ar gyrion": {
-    "definition": "on the outskirts of"
+    "definition": "on the outskirts of",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "ar hyd": {
     "definition": "along"
@@ -331,7 +378,9 @@
     "definition": "orally"
   },
   "ar osod": {
-    "definition": "for rent"
+    "definition": "for rent",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "ar ran": {
     "definition": "on behalf of",
@@ -339,10 +388,14 @@
     "unit": "Uned 11"
   },
   "ar y blaen": {
-    "definition": "in the lead"
+    "definition": "in the lead",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "ar y cyfan": {
-    "definition": "on the whole"
+    "definition": "on the whole",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "ar y pryd": {
     "definition": "at the time",
@@ -355,10 +408,14 @@
     "unit": "Uned 3"
   },
   "archeb": {
-    "definition": "order"
+    "definition": "order",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "archebion": {
-    "definition": "orders"
+    "definition": "orders",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "arddangos": {
     "definition": "to exhibit",
@@ -381,13 +438,19 @@
     "unit": "Uned 11"
   },
   "arfer": {
-    "definition": "habit"
+    "definition": "habit",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "arferion": {
-    "definition": "habits"
+    "definition": "habits",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "arferol": {
-    "definition": "usual"
+    "definition": "usual",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "argraffu": {
     "definition": "to print",
@@ -405,10 +468,14 @@
     "unit": "Uned 12"
   },
   "arogl": {
-    "definition": "smell"
+    "definition": "smell",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "arogleuon": {
-    "definition": "smells"
+    "definition": "smells",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "arogli": {
     "definition": "to smell",
@@ -416,10 +483,14 @@
     "unit": "Uned 9"
   },
   "arolwg": {
-    "definition": "review, survey"
+    "definition": "review, survey",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "arolygon": {
-    "definition": "reviews, surveys"
+    "definition": "reviews, surveys",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "arolygydd": {
     "definition": "inspector",
@@ -442,7 +513,9 @@
     "unit": "Uned 7"
   },
   "arwain": {
-    "definition": "to lead"
+    "definition": "to lead",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "arweinydd": {
     "definition": "conductor, leader",
@@ -455,10 +528,14 @@
     "unit": "Uned 1"
   },
   "arwr": {
-    "definition": "hero"
+    "definition": "hero",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "arwyr": {
-    "definition": "heroes"
+    "definition": "heroes",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "arwydd": {
     "definition": "sign",
@@ -495,13 +572,19 @@
     "definition": "athletics"
   },
   "awdurdod": {
-    "definition": "authority"
+    "definition": "authority",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "awdurdodau": {
-    "definition": "authorities"
+    "definition": "authorities",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "awgrymu": {
-    "definition": "to suggest"
+    "definition": "to suggest",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "awyddus": {
     "definition": "keen",
@@ -553,16 +636,24 @@
     "definition": "judges"
   },
   "basged": {
-    "definition": "basket"
+    "definition": "basket",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "basgedi": {
-    "definition": "baskets"
+    "definition": "baskets",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "bat": {
-    "definition": "bat"
+    "definition": "bat",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "batiau": {
-    "definition": "bats"
+    "definition": "bats",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "baw": {
     "definition": "dirt",
@@ -570,16 +661,24 @@
     "unit": "Uned 2"
   },
   "bawd": {
-    "definition": "thumb"
+    "definition": "thumb",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "bodiau": {
-    "definition": "thumbs"
+    "definition": "thumbs",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "beiciwr": {
-    "definition": "cyclist"
+    "definition": "cyclist",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "beicwyr": {
-    "definition": "cyclists"
+    "definition": "cyclists",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "beirniad": {
     "definition": "judge, adjudicator"
@@ -619,7 +718,9 @@
     "unit": "Uned 9"
   },
   "blinder": {
-    "definition": "tiredness"
+    "definition": "tiredness",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "blinedig": {
     "definition": "tired, tiring",
@@ -637,19 +738,29 @@
     "unit": "Uned 2"
   },
   "blwyddyn naid": {
-    "definition": "leap year"
+    "definition": "leap year",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "blynyddol": {
-    "definition": "annual"
+    "definition": "annual",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "bom": {
-    "definition": "bomb"
+    "definition": "bomb",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "bomiau": {
-    "definition": "bombs"
+    "definition": "bombs",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "botwm bol": {
-    "definition": "belly button"
+    "definition": "belly button",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "boddi": {
     "definition": "to drown",
@@ -663,7 +774,9 @@
     "definition": "dreams"
   },
   "breuddwydio": {
-    "definition": "to dream"
+    "definition": "to dream",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "bricsen": {
     "definition": "brick"
@@ -697,7 +810,9 @@
     "unit": "Uned 7"
   },
   "bryd hynny": {
-    "definition": "at that time"
+    "definition": "at that time",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "bryn": {
     "definition": "hill"
@@ -737,7 +852,9 @@
     "definition": "to bully"
   },
   "bwriadu": {
-    "definition": "to intend"
+    "definition": "to intend",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "bwrw": {
     "definition": "to hit (South Wales)",
@@ -750,10 +867,14 @@
     "unit": "Uned 12"
   },
   "bylb": {
-    "definition": "bulb"
+    "definition": "bulb",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "bylbiau": {
-    "definition": "bulbs"
+    "definition": "bulbs",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "bys": {
     "definition": "finger"
@@ -797,19 +918,29 @@
     "unit": "Uned 9"
   },
   "cadarnhau": {
-    "definition": "to confirm"
+    "definition": "to confirm",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cadeirio": {
-    "definition": "to chair"
+    "definition": "to chair",
+    "course": "Canolradd", 
+    "unit": "Uned 9"
   },
   "cadeirydd": {
-    "definition": "chairperson"
+    "definition": "chairperson",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "cadeiryddion": {
-    "definition": "chairpersons"
+    "definition": "chairpersons",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
-  "cadw golwg ar": {
-    "definition": "to keep an eye on, to keep track of"
+  "cadw golwg": {
+    "definition": "to keep an eye on, to keep track of (+ ar)",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cadw sŵn": {
     "definition": "to make a noise",
@@ -821,8 +952,10 @@
     "course": "Canolradd", 
     "unit": "Uned 12"
   },
-  "cael gwared ar": {
-    "definition": "to get rid of"
+  "cael gwared": {
+    "definition": "to get rid of (+ ar)",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "cael hyd i": {
     "definition": "to find, to discover",
@@ -841,7 +974,9 @@
     "definition": "cages"
   },
   "calan mai": {
-    "definition": "May Day"
+    "definition": "May Day",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "calendr": {
     "definition": "calendar",
@@ -889,10 +1024,14 @@
     "unit": "Uned 12"
   },
   "cangarŵ": {
-    "definition": "kangaroo"
+    "definition": "kangaroo",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cangarwod": {
-    "definition": "kangaroos"
+    "definition": "kangaroos",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cangen": {
     "definition": "branch",
@@ -905,10 +1044,14 @@
     "unit": "Uned 2"
   },
   "canlyniad": {
-    "definition": "result"
+    "definition": "result",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "canlyniadau": {
-    "definition": "results"
+    "definition": "results",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cannwyll": {
     "definition": "candle"
@@ -945,10 +1088,14 @@
     "unit": "Uned 11"
   },
   "carchar": {
-    "definition": "prison"
+    "definition": "prison",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "carchardai": {
-    "definition": "prisons"
+    "definition": "prisons",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "carcharu": {
     "definition": "to imprison",
@@ -989,10 +1136,14 @@
     "unit": "Uned 3"
   },
   "catalog": {
-    "definition": "catalogue"
+    "definition": "catalogue",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "catalogau": {
-    "definition": "catalogues"
+    "definition": "catalogues",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "cawell": {
     "definition": "cage"
@@ -1014,10 +1165,14 @@
     "definition": "goats’ cheese"
   },
   "cefndir": {
-    "definition": "background"
+    "definition": "background",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cefndiroedd": {
-    "definition": "backgrounds"
+    "definition": "backgrounds",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cefnogaeth": {
     "definition": "support",
@@ -1025,10 +1180,14 @@
     "unit": "Uned 6"
   },
   "cefnogwr": {
-    "definition": "supporter"
+    "definition": "supporter",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cefnogwyr": {
-    "definition": "supporters"
+    "definition": "supporters",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "celwydd": {
     "definition": "lie",
@@ -1041,10 +1200,14 @@
     "unit": "Uned 2"
   },
   "cemegyn": {
-    "definition": "chemical"
+    "definition": "chemical (noun)",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "cemegau": {
-    "definition": "chemicals"
+    "definition": "chemicals",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "cenhinen": {
     "definition": "leek",
@@ -1057,16 +1220,34 @@
     "unit": "Uned 8"
   },
   "cerbyd": {
-    "definition": "vehicle"
+    "definition": "vehicle",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cerbydau": {
-    "definition": "vehicles"
+    "definition": "vehicles",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cerdd": {
-    "definition": "poem"
+    "definition": "poem",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cerddi": {
-    "definition": "poems"
+    "definition": "poems",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
+  },
+  "cerddorion": {
+    "definition": "musicians",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
+  },
+  "cerddor": {
+    "definition": "musician",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cerddorfa": {
     "definition": "orchestra",
@@ -1094,7 +1275,9 @@
     "unit": "Uned 1"
   },
   "clebran": {
-    "definition": "to chatter"
+    "definition": "to chatter",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "clo": {
     "definition": "lock",
@@ -1126,7 +1309,9 @@
     "definition": "chat (South Wales)"
   },
   "cludo": {
-    "definition": "to transport"
+    "definition": "to transport",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "clustog": {
     "definition": "cushion",
@@ -1148,7 +1333,9 @@
     "definition": "cloths, rags"
   },
   "clyfar": {
-    "definition": "clever"
+    "definition": "clever",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "clymu": {
     "definition": "to tie, to knot",
@@ -1156,22 +1343,37 @@
     "unit": "Uned 11"
   },
   "cneuen": {
-    "definition": "nut"
+    "definition": "nut",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cnau": {
-    "definition": "nuts"
+    "definition": "nuts",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cneuen goco": {
-    "definition": "coconut"
+    "definition": "coconut",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cnau coco": {
-    "definition": "coconuts"
+    "definition": "coconuts",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
+  },
+  "cnoi": {
+    "definition": "to chew, to bite",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cochi": {
     "definition": "to blush"
   },
   "codi llaw": {
-    "definition": "to wave (to)"
+    "definition": "to wave to (+ ar)",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "codi ofn": {
     "definition": "to frighten (+ ar)",
@@ -1179,7 +1381,9 @@
     "unit": "Uned 7"
   },
   "codi pwysau": {
-    "definition": "weightlifting"
+    "definition": "weightlifting",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "cof": {
     "definition": "memory",
@@ -1203,7 +1407,9 @@
     "unit": "Uned 6"
   },
   "colur": {
-    "definition": "make-up"
+    "definition": "make-up",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "colled": {
     "definition": "loss",
@@ -1216,7 +1422,9 @@
     "unit": "Uned 12"
   },
   "colli gafael": {
-    "definition": "to lose hold of"
+    "definition": "to lose hold of (+ ar)",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "copa": {
     "definition": "summit",
@@ -1245,7 +1453,9 @@
     "unit": "Uned 12"
   },
   "coroni": {
-    "definition": "to crown"
+    "definition": "to crown",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cors": {
     "definition": "bog"
@@ -1262,10 +1472,14 @@
     "unit": "Uned 5"
   },
   "cotwm": {
-    "definition": "cotton"
+    "definition": "cotton",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cownter": {
-    "definition": "counter"
+    "definition": "counter",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cownteri": {
     "definition": "counters"
@@ -1277,7 +1491,9 @@
     "definition": "scars"
   },
   "crand": {
-    "definition": "grand"
+    "definition": "grand",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "creadigol": {
     "definition": "creative",
@@ -1300,7 +1516,9 @@
     "unit": "Uned 2"
   },
   "cribo": {
-    "definition": "to comb"
+    "definition": "to comb",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cricedwr": {
     "definition": "cricketer"
@@ -1309,16 +1527,24 @@
     "definition": "cricketers"
   },
   "criw": {
-    "definition": "crew"
+    "definition": "crew",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "criwiau": {
-    "definition": "crews"
+    "definition": "crews",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "croes": {
-    "definition": "cross"
+    "definition": "cross",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "croesau": {
-    "definition": "crosses"
+    "definition": "crosses",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "croesawu": {
     "definition": "to welcome"
@@ -1361,7 +1587,9 @@
     "definition": "strengths"
   },
   "cul": {
-    "definition": "narrow"
+    "definition": "narrow",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "curo": {
     "definition": "to beat, to knock",
@@ -1369,13 +1597,17 @@
     "unit": "Uned 9"
   },
   "curo dwylo": {
-    "definition": "to clap, to applaud"
+    "definition": "to clap, to applaud",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "curo'r drws": {
     "definition": "to knock the door"
   },
   "cwblhau": {
-    "definition": "to complete"
+    "definition": "to complete",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cwlwm": {
     "definition": "knot",
@@ -1388,10 +1620,14 @@
     "unit": "Uned 11"
   },
   "cwr": {
-    "definition": "edge, fringe"
+    "definition": "edge, fringe",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cyrion": {
-    "definition": "edges, fringes"
+    "definition": "edges, fringes",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cwrtais": {
     "definition": "courteous, polite",
@@ -1404,22 +1640,34 @@
     "unit": "Uned 9"
   },
   "cwt gwair": {
-    "definition": "hay hut"
+    "definition": "hay hut",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cytiau gwair": {
-    "definition": "hay huts"
+    "definition": "hay huts",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cwt ieir": {
-    "definition": "hen coop"
+    "definition": "hen coop",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cytiau ieir": {
-    "definition": "hen coops"
+    "definition": "hen coops",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cwyn": {
-    "definition": "complaint"
+    "definition": "complaint",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cwynion": {
-    "definition": "complaints"
+    "definition": "complaints",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cydio": {
     "definition": "to hold on to (+ yn)",
@@ -1512,7 +1760,9 @@
     "unit": "Uned 1"
   },
   "cyfoes": {
-    "definition": "contemporary"
+    "definition": "contemporary",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "cyfoeth": {
     "definition": "wealth",
@@ -1545,13 +1795,19 @@
     "unit": "Uned 3"
   },
   "cyfrif": {
-    "definition": "account"
+    "definition": "account",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cyfrifon": {
-    "definition": "accounts"
+    "definition": "accounts",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cyfrifol": {
-    "definition": "responsible"
+    "definition": "responsible",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cyfrifydd": {
     "definition": "accountant",
@@ -1574,10 +1830,14 @@
     "unit": "Uned 12"
   },
   "cyfwelydd": {
-    "definition": "interviewer"
+    "definition": "interviewer",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cyfwelwyr": {
-    "definition": "interviewers"
+    "definition": "interviewers",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cyffordd": {
     "definition": "junction",
@@ -1599,11 +1859,18 @@
     "course": "Canolradd", 
     "unit": "Uned 11"
   },
+  "cyffredinol": {
+    "definition": "general",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
+  },
   "cyffro": {
     "definition": "excitement"
   },
   "cyffroi": {
-    "definition": "to excite"
+    "definition": "to excite",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cyffur": {
     "definition": "drug",
@@ -1616,7 +1883,9 @@
     "unit": "Uned 2"
   },
   "cynghori": {
-    "definition": "to advise"
+    "definition": "to advise",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "cynghorydd": {
     "definition": "councillor",
@@ -1629,22 +1898,34 @@
     "unit": "Uned 2"
   },
   "cyhoeddus": {
-    "definition": "public"
+    "definition": "public",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "cyhuddiad": {
-    "definition": "charge, accusation"
+    "definition": "charge, accusation",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cyhuddiadau": {
-    "definition": "charges, accusations"
+    "definition": "charges, accusations",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cylch": {
-    "definition": "circle"
+    "definition": "circle",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cylchoedd": {
-    "definition": "circles"
+    "definition": "circles",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cylch chwarae": {
-    "definition": "playgroup"
+    "definition": "playgroup",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "cymar": {
     "definition": "partner, companion"
@@ -1689,6 +1970,11 @@
     "course": "Canolradd", 
     "unit": "Uned 4"
   },
+  "cymunedol": {
+    "definition": "community (adjective)",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
+  },
   "cymwynas": {
     "definition": "favour",
     "course": "Canolradd", 
@@ -1700,7 +1986,9 @@
     "unit": "Uned 2"
   },
   "cymysgu": {
-    "definition": "to mix (with)"
+    "definition": "to mix (+ â)",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cynhesu": {
     "definition": "to heat up",
@@ -1708,10 +1996,14 @@
     "unit": "Uned 2"
   },
   "cynllun": {
-    "definition": "plan, design"
+    "definition": "plan, design",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cynlluniau": {
-    "definition": "plans, designs"
+    "definition": "plans, designs",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cynllunio": {
     "definition": "to plan, to design",
@@ -1724,7 +2016,9 @@
     "unit": "Uned 5"
   },
   "cynnal a chadw": {
-    "definition": "maintenance"
+    "definition": "maintenance",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "cyntedd": {
     "definition": "hallway",
@@ -1761,14 +2055,23 @@
     "course": "Canolradd", 
     "unit": "Uned 10"
   },
+  "cyson": {
+    "definition": "consistent; regular",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
+  },
   "cyswllt": {
-    "definition": "contact"
+    "definition": "contact",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "cywir": {
     "definition": "correct"
   },
   "chwant bwyd": {
-    "definition": "food craving"
+    "definition": "food craving",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "chwarel": {
     "definition": "quarry"
@@ -1788,6 +2091,11 @@
   },
   "chwerthin am ben": {
     "definition": "to laugh at"
+  },
+  "chwydu": {
+    "definition": "to be sick",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "chwynnu": {
     "definition": "to weed",
@@ -1820,13 +2128,19 @@
     "unit": "Uned 8"
   },
   "dal ati": {
-    "definition": "to keep at it, to persevere"
+    "definition": "to keep at it, to persevere",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "dan bwysau": {
-    "definition": "under pressure"
+    "definition": "under pressure",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "dan ei sang": {
-    "definition": "full to the rafters"
+    "definition": "full to the rafters",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "dant gosod": {
     "definition": "false tooth",
@@ -1839,10 +2153,14 @@
     "unit": "Uned 6"
   },
   "darlith": {
-    "definition": "lecture"
+    "definition": "lecture",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "darlithoedd": {
-    "definition": "lectures"
+    "definition": "lectures",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "darlun": {
     "definition": "drawing",
@@ -1868,7 +2186,9 @@
     "unit": "Uned 11"
   },
   "deallus": {
-    "definition": "intelligent"
+    "definition": "intelligent",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "defnydd": {
     "definition": "use"
@@ -1877,7 +2197,9 @@
     "definition": "useful"
   },
   "deiet": {
-    "definition": "diet"
+    "definition": "diet",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "deigryn": {
     "definition": "tear"
@@ -1886,7 +2208,9 @@
     "definition": "tears"
   },
   "delio": {
-    "definition": "to deal with"
+    "definition": "to deal with (+ â)",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "deniadol": {
     "definition": "attractive"
@@ -1911,7 +2235,9 @@
     "unit": "Uned 12"
   },
   "dieithr": {
-    "definition": "strange"
+    "definition": "strange",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "dieuog": {
     "definition": "innocent, not guilty"
@@ -1965,7 +2291,9 @@
     "unit": "Uned 1"
   },
   "di-gymraeg": {
-    "definition": "non-Welsh speaking"
+    "definition": "non-Welsh speaking",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "dinistrio": {
     "definition": "to destroy",
@@ -1997,7 +2325,9 @@
     "definition": "countless"
   },
   "distawrwydd": {
-    "definition": "silence"
+    "definition": "silence",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "diswyddo": {
     "definition": "to dismiss, to sack",
@@ -2005,13 +2335,19 @@
     "unit": "Uned 3"
   },
   "diweithdra": {
-    "definition": "unemployment"
+    "definition": "unemployment",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "diwydiant": {
-    "definition": "industry"
+    "definition": "industry",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "diwydiannau": {
-    "definition": "industries"
+    "definition": "industries",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "diwylliant": {
     "definition": "culture",
@@ -2075,7 +2411,9 @@
     "definition": "climbers"
   },
   "drosodd": {
-    "definition": "over, overleaf"
+    "definition": "over, overleaf",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "druan â ti": {
     "definition": "poor you (South Wales)",
@@ -2106,7 +2444,9 @@
     "unit": "Uned 11"
   },
   "dur": {
-    "definition": "steel"
+    "definition": "steel",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "dwbl": {
     "definition": "double",
@@ -2134,7 +2474,9 @@
     "unit": "Uned 8"
   },
   "dwys": {
-    "definition": "intense, intensive"
+    "definition": "intense, intensive",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "dychrynllyd": {
     "definition": "frightening",
@@ -2142,19 +2484,29 @@
     "unit": "Uned 5"
   },
   "dydd ffolant": {
-    "definition": "Valentine’s day"
+    "definition": "Valentine’s Day",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "dyddiad cau": {
-    "definition": "closing date"
+    "definition": "closing date",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "dyddiol": {
-    "definition": "daily"
+    "definition": "daily",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "dyffryn": {
-    "definition": "valley"
+    "definition": "valley",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "dyffrynnoedd": {
-    "definition": "valleys"
+    "definition": "valleys",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "dyled": {
     "definition": "debt",
@@ -2209,13 +2561,17 @@
     "unit": "Uned 9"
   },
   "effeithio": {
-    "definition": "at affect, to have an effect on"
+    "definition": "at affect, to have an effect on (+ ar)",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "eglur": {
     "definition": "evident, clear"
   },
   "egluro": {
-    "definition": "to explain"
+    "definition": "to explain",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "eglwys gadeiriol": {
     "definition": "cathedral",
@@ -2289,10 +2645,14 @@
     "unit": "Uned 3"
   },
   "esboniad": {
-    "definition": "explanation"
+    "definition": "explanation",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "esboniadau": {
-    "definition": "explanations"
+    "definition": "explanations",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "esgus": {
     "definition": "excuse",
@@ -2336,7 +2696,9 @@
     "unit": "Uned 7"
   },
   "eto i gyd": {
-    "definition": "even so"
+    "definition": "even so",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "euog": {
     "definition": "guilty",
@@ -2344,13 +2706,19 @@
     "unit": "Uned 12"
   },
   "ewyn": {
-    "definition": "foam"
+    "definition": "foam",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "feirws": {
-    "definition": "virus"
+    "definition": "virus",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "feirysau": {
-    "definition": "viruses"
+    "definition": "viruses",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "fesul un": {
     "definition": "one by one"
@@ -2366,7 +2734,9 @@
     "unit": "Uned 8"
   },
   "figan": {
-    "definition": "vegan"
+    "definition": "vegan (noun and adjective)",
+    "course": "Canolradd", 
+    "unit": "Uned 16 (adjective)"
   },
   "figaniaid": {
     "definition": "vegans"
@@ -2415,13 +2785,19 @@
     "unit": "Uned 9"
   },
   "ffilmio": {
-    "definition": "to film"
+    "definition": "to film",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "ffin": {
-    "definition": "border"
+    "definition": "border",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "ffiniau": {
-    "definition": "borders"
+    "definition": "borders",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "ffitrwydd": {
     "definition": "fitness",
@@ -2449,7 +2825,9 @@
     "unit": "Uned 11"
   },
   "ffodus": {
-    "definition": "fortunate"
+    "definition": "fortunate",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "ffon": {
     "definition": "stick"
@@ -2464,7 +2842,9 @@
     "definition": "frames"
   },
   "ffrwydro": {
-    "definition": "to explode"
+    "definition": "to explode",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "ffurflen gais": {
     "definition": "application form",
@@ -2480,7 +2860,9 @@
     "definition": "fierce"
   },
   "galluog": {
-    "definition": "capable, brainy"
+    "definition": "capable, brainy",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "gan gynnwys": {
     "definition": "including",
@@ -2488,7 +2870,9 @@
     "unit": "Uned 6"
   },
   "gefeillio": {
-    "definition": "to twin"
+    "definition": "to twin (+ â)",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "gêm gyfartal": {
     "definition": "a draw",
@@ -2507,7 +2891,9 @@
     "definition": "births"
   },
   "genedigol": {
-    "definition": "native"
+    "definition": "native",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "glan": {
     "definition": "shore, bank",
@@ -2555,19 +2941,29 @@
     "unit": "Uned 7"
   },
   "gofalwr": {
-    "definition": "carer, caretaker"
+    "definition": "carer, caretaker",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "gofalwyr": {
-    "definition": "carers, caretakers"
+    "definition": "carers, caretakers",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "gofod": {
-    "definition": "space"
+    "definition": "space",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "goleudy": {
-    "definition": "lighthouse"
+    "definition": "lighthouse",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "goleudai": {
-    "definition": "lighthouses"
+    "definition": "lighthouses",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "golygu": {
     "definition": "to mean, to edit",
@@ -2604,10 +3000,14 @@
     "unit": "Uned 7"
   },
   "gostyngiad": {
-    "definition": "reduction"
+    "definition": "reduction",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "gostyngiadau": {
-    "definition": "reductions"
+    "definition": "reductions",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "gradd feistr": {
     "definition": "master’s degree"
@@ -2660,10 +3060,14 @@
     "definition": "to serve"
   },
   "gwasg": {
-    "definition": "printing press"
+    "definition": "printing press",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "gweisg": {
-    "definition": "printing presses"
+    "definition": "printing presses",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "gwasgu": {
     "definition": "to squeeze, to squash",
@@ -2699,10 +3103,14 @@
     "unit": "Uned 11"
   },
   "gweini": {
-    "definition": "to serve"
+    "definition": "to serve",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "gweithgar": {
-    "definition": "hardworking"
+    "definition": "hardworking",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "gweithgaredd": {
     "definition": "activity",
@@ -2769,6 +3177,16 @@
     "course": "Canolradd", 
     "unit": "Uned 10"
   },
+  "gwleidydd": {
+    "definition": "politician",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
+  },
+  "gwleidyddion": {
+    "definition": "politicians",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
+  },
   "gwleidyddiaeth": {
     "definition": "politics",
     "course": "Canolradd", 
@@ -2784,13 +3202,19 @@
     "definition": "chewing gum"
   },
   "gwneud cawl o": {
-    "definition": "to make a mess of (South Wales)"
+    "definition": "to make a mess of (South Wales)",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "gwneud llanast o": {
-    "definition": "to make a mess of (North Wales)"
+    "definition": "to make a mess of (North Wales)",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "gwneud y tro": {
-    "definition": "to make do, to answer the purpose"
+    "definition": "to make do, to answer the purpose",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "gwrach": {
     "definition": "witch"
@@ -2835,7 +3259,9 @@
     "unit": "Uned 5"
   },
   "gwyllt": {
-    "definition": "wild"
+    "definition": "wild",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "gyda llaw": {
     "definition": "by the way",
@@ -2848,7 +3274,9 @@
     "unit": "Uned 6"
   },
   "gymnasteg": {
-    "definition": "gymnastics"
+    "definition": "gymnastics",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "hael": {
     "definition": "generous"
@@ -2868,7 +3296,9 @@
     "definition": "historians"
   },
   "hanesyddol": {
-    "definition": "historical"
+    "definition": "historical",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "hapusrwydd": {
     "definition": "happiness"
@@ -2928,7 +3358,9 @@
     "unit": "Uned 11"
   },
   "hoffus": {
-    "definition": "likeable"
+    "definition": "likeable",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "holiadur": {
     "definition": "questionnaire",
@@ -2941,7 +3373,9 @@
     "unit": "Uned 2"
   },
   "hollbwysig": {
-    "definition": "all-important"
+    "definition": "all-important",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "hwyliog": {
     "definition": "full of fun"
@@ -2953,7 +3387,9 @@
     "definition": "up until now"
   },
   "hyder": {
-    "definition": "confidence"
+    "definition": "confidence",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "hyfforddiant": {
     "definition": "training",
@@ -2971,18 +3407,22 @@
     "unit": "Uned 2"
   },
   "i'r dim": {
-    "definition": "exactly",
+    "definition": "exactly, perfect",
     "course": "Canolradd", 
-    "unit": "Uned 12"
+    "unit": "Uned 12; Uned 15"
   },
   "iachus": {
     "definition": "healthy (food)"
   },
   "iard": {
-    "definition": "yard"
+    "definition": "yard",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "iardiau": {
-    "definition": "yards"
+    "definition": "yards",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "iechyd a diogelwch": {
     "definition": "health and safety",
@@ -3019,22 +3459,34 @@
     "definition": "jungles"
   },
   "lansio": {
-    "definition": "to launch"
+    "definition": "to launch",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "lapio": {
-    "definition": "to wrap"
+    "definition": "to wrap",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "lawr grisiau": {
-    "definition": "downstairs (North Wales)"
+    "definition": "downstairs (North Wales)",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "lawr llawr": {
-    "definition": "downstairs (South Wales)"
+    "definition": "downstairs (South Wales)",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "lefel": {
-    "definition": "level"
+    "definition": "level",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "lefelau": {
-    "definition": "levels"
+    "definition": "levels",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "lolipop": {
     "definition": "lollypop"
@@ -3061,10 +3513,14 @@
     "unit": "Uned 12"
   },
   "lladrad": {
-    "definition": "burglary"
+    "definition": "burglary",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "lladradau": {
-    "definition": "burglaries"
+    "definition": "burglaries",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "llafar": {
     "definition": "oral"
@@ -3109,7 +3565,9 @@
     "unit": "Uned 9; Uned 11"
   },
   "lledr": {
-    "definition": "leather"
+    "definition": "leather",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "lledu": {
     "definition": "to spread, to widen",
@@ -3145,10 +3603,14 @@
     "definition": "literature"
   },
   "lleoliad": {
-    "definition": "location"
+    "definition": "location",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "lleoliadau": {
-    "definition": "locations"
+    "definition": "locations",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "llethr": {
     "definition": "slope"
@@ -3175,7 +3637,9 @@
     "unit": "Uned 11"
   },
   "llifo": {
-    "definition": "to flow"
+    "definition": "to flow",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "llithrig": {
     "definition": "slippery",
@@ -3198,25 +3662,37 @@
     "definition": "bellyful (fed up) (South Wales)"
   },
   "lluosog": {
-    "definition": "plural"
+    "definition": "plural",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "lluosogion": {
-    "definition": "plurals"
+    "definition": "plurals",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "llwch": {
     "definition": "dust"
   },
   "llwy garu": {
-    "definition": "lovespoon"
+    "definition": "lovespoon",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "llwyau caru": {
-    "definition": "lovespoons"
+    "definition": "lovespoons",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "llwyaid": {
-    "definition": "spoonful"
+    "definition": "spoonful",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "llwyeidiau": {
-    "definition": "spoonfuls"
+    "definition": "spoonfuls",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "llwyddiannus": {
     "definition": "successful",
@@ -3249,19 +3725,29 @@
     "unit": "Uned 10"
   },
   "llwyth": {
-    "definition": "load"
+    "definition": "load",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "llwythi": {
-    "definition": "loads"
+    "definition": "loads",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "llydan": {
-    "definition": "wide"
+    "definition": "wide",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "llyfr gosod": {
-    "definition": "set book"
+    "definition": "set book",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "llyfrau gosod": {
-    "definition": "set books"
+    "definition": "set books",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "llym": {
     "definition": "severe"
@@ -3287,6 +3773,11 @@
     "course": "Canolradd", 
     "unit": "Uned 7"
   },
+  "llysieuol": {
+    "definition": "vegetarian",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
+  },
   "llywodraeth": {
     "definition": "government",
     "course": "Canolradd", 
@@ -3308,10 +3799,14 @@
     "unit": "Uned 8"
   },
   "maer": {
-    "definition": "mayor"
+    "definition": "mayor",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "meiri": {
-    "definition": "mayors"
+    "definition": "mayors",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "man": {
     "definition": "place",
@@ -3326,7 +3821,7 @@
   "mân siarad": {
     "definition": "chit-chat",
     "course": "Canolradd", 
-    "unit": "Uned 2"
+    "unit": "Uned 14"
   },
   "mân": {
     "definition": "small",
@@ -3334,10 +3829,14 @@
     "unit": "Uned 2"
   },
   "mantais": {
-    "definition": "advantage"
+    "definition": "advantage",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "manteision": {
-    "definition": "advantages"
+    "definition": "advantages",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "manwl": {
     "definition": "detailed",
@@ -3377,10 +3876,14 @@
     "unit": "Uned 2"
   },
   "medal": {
-    "definition": "medal"
+    "definition": "medal",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "medalau": {
-    "definition": "medals"
+    "definition": "medals",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "meddal": {
     "definition": "soft",
@@ -3413,10 +3916,14 @@
     "unit": "Uned 5"
   },
   "menter": {
-    "definition": "venture, initiative"
+    "definition": "venture, initiative",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "mentrau": {
-    "definition": "ventures, initiatives"
+    "definition": "ventures, initiatives",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "mentro": {
     "definition": "to venture, to dare",
@@ -3429,7 +3936,9 @@
     "unit": "Uned 7"
   },
   "mesur": {
-    "definition": "to measure"
+    "definition": "to measure",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "metel": {
     "definition": "metal"
@@ -3490,7 +3999,9 @@
     "definition": "mud"
   },
   "mwdlyd": {
-    "definition": "muddy"
+    "definition": "muddy",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "mwg": {
     "definition": "smoke",
@@ -3541,7 +4052,9 @@
     "unit": "Uned 9"
   },
   "nerth": {
-    "definition": "strength"
+    "definition": "strength",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "newid mân": {
     "definition": "small change",
@@ -3573,10 +4086,14 @@
     "unit": "Uned 7"
   },
   "nyth": {
-    "definition": "nest"
+    "definition": "nest",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "nythod": {
-    "definition": "nests"
+    "definition": "nests",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "o amgylch": {
     "definition": "around",
@@ -3584,10 +4101,14 @@
     "unit": "Uned 10"
   },
   "o bell": {
-    "definition": "from afar"
+    "definition": "from afar",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "o ddifri": {
-    "definition": "seriously"
+    "definition": "seriously",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "o ddrwg i waeth": {
     "definition": "from bad to worse",
@@ -3595,7 +4116,9 @@
     "unit": "Uned 11"
   },
   "o dro i dro": {
-    "definition": "from time to time"
+    "definition": "from time to time",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "o fewn": {
     "definition": "within"
@@ -3624,10 +4147,14 @@
     "unit": "Uned 10"
   },
   "obsesiwn": {
-    "definition": "obsession"
+    "definition": "obsession",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "obsesiynau": {
-    "definition": "obsessions"
+    "definition": "obsessions",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "ocsiwn": {
     "definition": "auction",
@@ -3645,7 +4172,9 @@
     "unit": "Uned 8"
   },
   "oddi ar": {
-    "definition": "from (on), off, down from"
+    "definition": "from (on), off, down from",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "oddi cartre": {
     "definition": "away from home",
@@ -3671,7 +4200,9 @@
     "definition": "cold (weather)"
   },
   "oesoedd canol": {
-    "definition": "middle ages"
+    "definition": "The Middle Ages",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "offeryn": {
     "definition": "instrument",
@@ -3684,7 +4215,9 @@
     "unit": "Uned 2"
   },
   "ofni": {
-    "definition": "to fear"
+    "definition": "to fear",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "ofnus": {
     "definition": "fearful, frightened"
@@ -3725,13 +4258,19 @@
     "unit": "Uned 5"
   },
   "osgoi": {
-    "definition": "to avoid"
+    "definition": "to avoid",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "paith": {
-    "definition": "prairie"
+    "definition": "prairie",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "peithiau": {
-    "definition": "prairies"
+    "definition": "prairies",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "palu": {
     "definition": "to dig",
@@ -3739,10 +4278,14 @@
     "unit": "Uned 4"
   },
   "palmant": {
-    "definition": "pavement"
+    "definition": "pavement",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "palmentydd": {
-    "definition": "pavements"
+    "definition": "pavements",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "para": {
     "definition": "to last",
@@ -3805,10 +4348,14 @@
     "definition": "far end, long run"
   },
   "pencampwriaeth": {
-    "definition": "championship"
+    "definition": "championship",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "pencampwriaethau": {
-    "definition": "championships"
+    "definition": "championships",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "pendant": {
     "definition": "definite",
@@ -3816,19 +4363,29 @@
     "unit": "Uned 4"
   },
   "penderfyniad": {
-    "definition": "decision"
+    "definition": "decision",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "penderfyniadau": {
-    "definition": "decisions"
+    "definition": "decisions",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "pennawd": {
-    "definition": "headline"
+    "definition": "headline",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "penawdau": {
-    "definition": "headlines"
+    "definition": "headlines",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "penodi": {
-    "definition": "to appoint"
+    "definition": "to appoint",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "perchennog": {
     "definition": "owner",
@@ -3925,7 +4482,9 @@
     "unit": "Uned 11"
   },
   "pob dim": {
-    "definition": "everything"
+    "definition": "everything",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "poblogaidd": {
     "definition": "popular"
@@ -3959,7 +4518,9 @@
     "definition": "to prance, to gambol"
   },
   "preifat": {
-    "definition": "private"
+    "definition": "private",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "presgripsiwn": {
     "definition": "prescription",
@@ -3972,7 +4533,9 @@
     "unit": "Uned 6"
   },
   "pridd": {
-    "definition": "earth, soil"
+    "definition": "earth, soil",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "prif weinidog": {
     "definition": "First Minister (Wales), Prime Minister (UK)",
@@ -3986,7 +4549,9 @@
     "definition": "main roads"
   },
   "prin": {
-    "definition": "rare, scarce"
+    "definition": "rare, scarce",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "proffesiwn": {
     "definition": "profession"
@@ -4000,7 +4565,9 @@
     "unit": "Uned 10"
   },
   "profiadol": {
-    "definition": "experienced"
+    "definition": "experienced",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "project": {
     "definition": "project",
@@ -4013,10 +4580,14 @@
     "unit": "Uned 4"
   },
   "proses": {
-    "definition": "process"
+    "definition": "process",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "prosesau": {
-    "definition": "processes"
+    "definition": "processes",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "protestio": {
     "definition": "to protest",
@@ -4030,28 +4601,40 @@
     "definition": "protesters"
   },
   "prydeiniwr": {
-    "definition": "a man from Britain"
+    "definition": "a man from Britain",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "prydeinwyr": {
-    "definition": "British people"
+    "definition": "British people",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "prydeinwraig": {
-    "definition": "a woman from Britain"
+    "definition": "a woman from Britain",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "prydferthwch": {
     "definition": "beauty"
   },
   "prydlon": {
-    "definition": "punctual, prompt"
+    "definition": "punctual, prompt",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "pur": {
     "definition": "pure"
   },
   "pŵer": {
-    "definition": "power"
+    "definition": "power",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "pwerau": {
-    "definition": "powers"
+    "definition": "powers",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "pwnc": {
     "definition": "subject"
@@ -4080,16 +4663,24 @@
     "unit": "Uned 4"
   },
   "pwyntiau bwled": {
-    "definition": "bullet points"
+    "definition": "bullet points",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "pwyntio": {
-    "definition": "to point"
+    "definition": "to point",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "pwysleisio": {
-    "definition": "to emphasise"
+    "definition": "to emphasise",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "pwyso": {
-    "definition": "to press, to weigh"
+    "definition": "to press, to weigh",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "raced": {
     "definition": "racket"
@@ -4115,10 +4706,14 @@
     "definition": "regattas"
   },
   "roced": {
-    "definition": "rocket"
+    "definition": "rocket",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "rocedi": {
-    "definition": "rockets"
+    "definition": "rockets",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "rhaff": {
     "definition": "rope"
@@ -4150,10 +4745,14 @@
     "unit": "Uned 4"
   },
   "rhedwr": {
-    "definition": "runner"
+    "definition": "runner",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "rhedwyr": {
-    "definition": "runners"
+    "definition": "runners",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "rhegi": {
     "definition": "to swear, to curse",
@@ -4191,13 +4790,19 @@
     "unit": "Uned 3"
   },
   "rhiant maeth": {
-    "definition": "foster parent"
+    "definition": "foster parent",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "rhieni maeth": {
-    "definition": "foster parents"
+    "definition": "foster parents",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "rhifo": {
-    "definition": "to count, to calculate"
+    "definition": "to count, to calculate",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "rhoi'r gorau i": {
     "definition": "to give up",
@@ -4211,7 +4816,9 @@
     "definition": "heaths, moors"
   },
   "rhostio": {
-    "definition": "to roast"
+    "definition": "to roast",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "rhufain": {
     "definition": "Rome",
@@ -4257,7 +4864,9 @@
     "unit": "Uned 12"
   },
   "rhyddhau": {
-    "definition": "to free"
+    "definition": "to free",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "rhyfedd": {
     "definition": "strange, odd, peculiar",
@@ -4265,10 +4874,14 @@
     "unit": "Uned 3"
   },
   "rhyfel": {
-    "definition": "war"
+    "definition": "war",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "rhyfeloedd": {
-    "definition": "wars"
+    "definition": "wars",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "rhyngwladol": {
     "definition": "international",
@@ -4276,10 +4889,14 @@
     "unit": "Uned 5"
   },
   "rhyw": {
-    "definition": "sex"
+    "definition": "sex",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "rhywiau": {
-    "definition": "sexes"
+    "definition": "sexes",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "rhywbeth o'i le": {
     "definition": "something wrong"
@@ -4325,10 +4942,14 @@
     "unit": "Uned 5"
   },
   "saws": {
-    "definition": "sauce"
+    "definition": "sauce",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "sawsiau": {
-    "definition": "sauces"
+    "definition": "sauces",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "sbeis": {
     "definition": "spice",
@@ -4341,7 +4962,9 @@
     "unit": "Uned 8"
   },
   "sbio": {
-    "definition": "to look (North Wales)"
+    "definition": "to look (North Wales)",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "sbort a sbri": {
     "definition": "fun and games"
@@ -4388,7 +5011,9 @@
     "unit": "Uned 11"
   },
   "sengl": {
-    "definition": "single"
+    "definition": "single",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "serch": {
     "definition": "romantic love"
@@ -4481,7 +5106,9 @@
     "unit": "Uned 6"
   },
   "sleifio": {
-    "definition": "to slink, to sneak, to sidle"
+    "definition": "to slink, to sneak, to sidle",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "smotiog": {
     "definition": "spotty",
@@ -4516,25 +5143,37 @@
     "definition": "style"
   },
   "stordy": {
-    "definition": "storehouse"
+    "definition": "storehouse",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "stordai": {
-    "definition": "storehouses"
+    "definition": "storehouses",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "storio": {
     "definition": "to store"
   },
   "streic": {
-    "definition": "strike"
+    "definition": "strike",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "streiciau": {
-    "definition": "strikes"
+    "definition": "strikes",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "streiciwr": {
-    "definition": "striker (work)"
+    "definition": "striker (work)",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "streicwyr": {
-    "definition": "strikers"
+    "definition": "strikers",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "streipiog": {
     "definition": "striped",
@@ -4584,7 +5223,9 @@
     "definition": "drought, dryness"
   },
   "sychedig": {
-    "definition": "thirsty"
+    "definition": "thirsty",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "sydyn": {
     "definition": "sudden",
@@ -4592,7 +5233,9 @@
     "unit": "Uned 3"
   },
   "syllu": {
-    "definition": "to stare"
+    "definition": "to stare, to gaze at (+ ar)",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "syllu'n syn": {
     "definition": "to gaze in amazement"
@@ -4613,27 +5256,44 @@
     "unit": "Uned 9"
   },
   "symbol": {
-    "definition": "symbol"
+    "definition": "symbol",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "symbolau": {
-    "definition": "symbols"
+    "definition": "symbols",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "synnu": {
     "definition": "to surprise, to be surprised",
     "course": "Canolradd", 
     "unit": "Uned 3"
   },
+  "syndod": {
+    "definition": "suprise",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
+  },
   "synnwyr cyffredin": {
-    "definition": "common sense"
+    "definition": "common sense",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "syrcas": {
-    "definition": "circus"
+    "definition": "circus",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "syrcasau": {
-    "definition": "circuses"
+    "definition": "circuses",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "syrthio": {
-    "definition": "to fall (North Wales)"
+    "definition": "to fall (North Wales)",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "system": {
     "definition": "system",
@@ -4645,32 +5305,58 @@
     "course": "Canolradd", 
     "unit": "Uned 3"
   },
+  "taclen": {
+    "definition": "forehead",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
+  },
+  "taclenni": {
+    "definition": "foreheads",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
+  },
   "tafodiaith": {
-    "definition": "dialect"
+    "definition": "dialect",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "tafodieithoedd": {
-    "definition": "dialects"
+    "definition": "dialects",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "tagfa": {
-    "definition": "traffic jam"
+    "definition": "traffic jam",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "tagfeydd": {
-    "definition": "traffic jams"
+    "definition": "traffic jams",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "tagu": {
     "definition": "to splutter, to choke"
   },
   "tâl": {
-    "definition": "payment"
+    "definition": "payment",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "taliadau": {
-    "definition": "payments"
+    "definition": "payments",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "talaith": {
-    "definition": "state"
+    "definition": "state",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "taleithiau": {
-    "definition": "states"
+    "definition": "states",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "talcen": {
     "definition": "forehead"
@@ -4696,10 +5382,14 @@
     "definition": "tapes"
   },
   "taran": {
-    "definition": "thunder"
+    "definition": "thunder",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "taranau": {
-    "definition": "thunder"
+    "definition": "thunder",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "targed": {
     "definition": "target",
@@ -4722,10 +5412,14 @@
     "unit": "Uned 8"
   },
   "tasg": {
-    "definition": "task"
+    "definition": "task",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "tasgau": {
-    "definition": "tasks"
+    "definition": "tasks",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "tawelu": {
     "definition": "to become quiet, to calm down"
@@ -4762,7 +5456,9 @@
     "definition": "female harpists"
   },
   "tennyn": {
-    "definition": "lead"
+    "definition": "lead",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "testun": {
     "definition": "subject, text",
@@ -4805,16 +5501,24 @@
     "definition": "tops"
   },
   "torf": {
-    "definition": "crowd"
+    "definition": "crowd",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "torfeydd": {
-    "definition": "crowds"
+    "definition": "crowds",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "toriad": {
-    "definition": "cut"
+    "definition": "cut",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "toriadau": {
-    "definition": "cuts"
+    "definition": "cuts",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "tortsh": {
     "definition": "torch"
@@ -4823,16 +5527,24 @@
     "definition": "torches"
   },
   "trac": {
-    "definition": "track"
+    "definition": "track",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "traciau": {
-    "definition": "tracks"
+    "definition": "tracks",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "traddodiad": {
-    "definition": "tradition"
+    "definition": "tradition",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "traddodiadau": {
-    "definition": "traditions"
+    "definition": "traditions",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "traethawd": {
     "definition": "essay",
@@ -4845,7 +5557,9 @@
     "unit": "Uned 6"
   },
   "trafnidiaeth": {
-    "definition": "transport"
+    "definition": "transport",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "trais": {
     "definition": "violence",
@@ -4853,7 +5567,9 @@
     "unit": "Uned 3"
   },
   "traws gwlad": {
-    "definition": "cross country"
+    "definition": "cross country",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "trefn": {
     "definition": "order",
@@ -4863,15 +5579,32 @@
   "trefniad": {
     "definition": "arrangement",
     "course": "Canolradd", 
-    "unit": "Uned 2"
+    "unit": "Uned 2; Uned 13"
   },
   "trefniadau": {
     "definition": "arrangements",
     "course": "Canolradd", 
-    "unit": "Uned 2"
+    "unit": "Uned 2; Uned 13"
+  },
+  "treiglad": {
+    "definition": "mutation",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
+  },
+  "treigladau": {
+    "definition": "mutation",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
+  },
+  "treiglo": {
+    "definition": "to mutate",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "trin": {
-    "definition": "to treat"
+    "definition": "to treat",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "triniaeth": {
     "definition": "treatment",
@@ -4895,25 +5628,39 @@
     "unit": "Uned 10"
   },
   "trwm ei glyw": {
-    "definition": "hard of hearing"
+    "definition": "hard of hearing",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "trwm ei chlyw": {
-    "definition": "hard of hearing"
+    "definition": "hard of hearing",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "trwydded": {
-    "definition": "licence"
+    "definition": "licence",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "trwyddedau": {
-    "definition": "licences"
+    "definition": "licences",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "trysor": {
-    "definition": "treasure"
+    "definition": "treasure",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "trysorau": {
-    "definition": "treasures"
+    "definition": "treasures",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "tsieina": {
-    "definition": "China"
+    "definition": "China",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "twlc": {
     "definition": "sty"
@@ -4954,6 +5701,11 @@
   "tai semi": {
     "definition": "semi-detached houses"
   },
+  "tynnu sylw": {
+    "definition": "to draw attention (+ at)",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
+  },
   "tylwythen deg": {
     "definition": "fairy",
     "course": "Canolradd", 
@@ -4973,22 +5725,32 @@
     "definition": "crowd"
   },
   "tyst": {
-    "definition": "witness"
+    "definition": "witness",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "tystion": {
-    "definition": "witnesses"
+    "definition": "witnesses",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "tywyllu": {
     "definition": "to grow dark"
   },
   "undeb": {
-    "definition": "union"
+    "definition": "union",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "undebau": {
-    "definition": "unions"
+    "definition": "unions",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "undydd": {
-    "definition": "one-day"
+    "definition": "one-day",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "unigolyn": {
     "definition": "individual",
@@ -5004,7 +5766,9 @@
     "definition": "to unite"
   },
   "uwchben": {
-    "definition": "above"
+    "definition": "above",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "ward": {
     "definition": "ward",
@@ -5022,7 +5786,9 @@
     "unit": "Uned 8"
   },
   "wedi blino'n lân": {
-    "definition": "exhausted"
+    "definition": "exhausted",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "wrth fy modd": {
     "definition": "in my element",
@@ -5030,7 +5796,9 @@
     "unit": "Uned 1"
   },
   "wythnosol": {
-    "definition": "weekly"
+    "definition": "weekly",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "y cant": {
     "definition": "per cent",
@@ -5106,7 +5874,9 @@
     "unit": "Uned 8"
   },
   "ymgeisio": {
-    "definition": "to apply"
+    "definition": "to apply",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "ymhen": {
     "definition": "within (time)",
@@ -5114,13 +5884,19 @@
     "unit": "Uned 11"
   },
   "ymhlith": {
-    "definition": "amongst"
+    "definition": "amongst",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "ymladd": {
-    "definition": "to fight"
+    "definition": "to fight",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "ymlaen llaw": {
-    "definition": "beforehand"
+    "definition": "beforehand",
+    "course": "Canolradd", 
+    "unit": "Uned 17"
   },
   "ymuno": {
     "definition": "to join (+ â)",
@@ -5128,7 +5904,9 @@
     "unit": "Uned 1"
   },
   "yn bennaf": {
-    "definition": "mainly"
+    "definition": "mainly",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "yn ddiweddar": {
     "definition": "lately, recently",
@@ -5151,7 +5929,9 @@
     "unit": "Uned 8"
   },
   "yn fyw ac yn iach": {
-    "definition": "alive and kicking"
+    "definition": "alive and kicking",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "yn hollol": {
     "definition": "completely, exactly"
@@ -5168,7 +5948,9 @@
     "definition": "immediately"
   },
   "ynni": {
-    "definition": "energy"
+    "definition": "energy",
+    "course": "Canolradd", 
+    "unit": "Uned 16"
   },
   "yr ariannin": {
     "definition": "Argentina"
@@ -5177,10 +5959,14 @@
     "definition": "the United States"
   },
   "ysbryd": {
-    "definition": "ghost, spirit"
+    "definition": "ghost, spirit",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "ysbrydion": {
-    "definition": "ghosts, spirits"
+    "definition": "ghosts, spirits",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "ysgol": {
     "definition": "ladder (South Wales)",
@@ -5253,10 +6039,14 @@
     "unit": "Uned 1"
   },
   "bwriad": {
-    "definition": "an intention"
+    "definition": "an intention",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "bwriadau": {
-    "definition": "intentions"
+    "definition": "intentions",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "camp": {
     "definition": "achievement, a sport",
@@ -5269,10 +6059,17 @@
     "unit": "Uned 7"
   },
   "caniatâd": {
-    "definition": "permission"
+    "definition": "permission",
+    "course": "Canolradd", 
+    "unit": "Uned 18"
   },
   "cartref hen bobl": {
     "definition": "an old people's home"
+  },
+  "cartref henoed": {
+    "definition": "an old people's home",
+    "course": "Canolradd", 
+    "unit": "Uned Arholiad"
   },
   "cist": {
     "definition": "a boot, a chest",
@@ -5285,13 +6082,19 @@
     "unit": "Uned 3"
   },
   "ciw": {
-    "definition": "a queue"
+    "definition": "a queue",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "ciwiau": {
-    "definition": "queues"
+    "definition": "queues",
+    "course": "Canolradd", 
+    "unit": "Uned 14"
   },
   "corfforol": {
-    "definition": "physical"
+    "definition": "physical",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "corwynt": {
     "definition": "a hurricane",
@@ -5304,12 +6107,19 @@
     "unit": "Uned 3"
   },
   "croesawgar": {
-    "definition": "welcoming"
+    "definition": "welcoming",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "cyfweld": {
     "definition": "to interview (+ â)",
     "course": "Canolradd", 
     "unit": "Uned 1"
+  },
+  "cymharu": {
+    "definition": "to compare",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "cysylltiad": {
     "definition": "connection",
@@ -5332,10 +6142,14 @@
     "unit": "Uned 2"
   },
   "dod at ei gilydd": {
-    "definition": "to come together"
+    "definition": "to come together",
+    "course": "Canolradd", 
+    "unit": "Uned 19"
   },
   "dwl": {
-    "definition": "daft"
+    "definition": "daft",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "fferyllwyr": {
     "definition": "chemists"
@@ -5402,7 +6216,9 @@
     "unit": "Uned 4"
   },
   "helfa drysor": {
-    "definition": "a treasure hunt"
+    "definition": "a treasure hunt",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "hwyl": {
     "definition": "mood",
@@ -5493,7 +6309,9 @@
     "unit": "Uned 6"
   },
   "pryd hynny": {
-    "definition": "at that time"
+    "definition": "at that time",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "pryfyn": {
     "definition": "an insect"
@@ -5543,10 +6361,14 @@
     "unit": "Uned 7"
   },
   "siwrnai": {
-    "definition": "a journey"
+    "definition": "a journey",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "siwrneiau": {
-    "definition": "journeys"
+    "definition": "journeys",
+    "course": "Canolradd", 
+    "unit": "Uned 15"
   },
   "syr": {
     "definition": "sir",
@@ -5554,10 +6376,14 @@
     "unit": "Uned 7"
   },
   "syrpréis": {
-    "definition": "a surprise"
+    "definition": "a surprise",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "syrpreisys": {
-    "definition": "surprises"
+    "definition": "surprises",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "tabl": {
     "definition": "a table",
@@ -5607,7 +6433,9 @@
     "unit": "Uned 12"
   },
   "uchod": {
-    "definition": "above"
+    "definition": "above",
+    "course": "Canolradd", 
+    "unit": "Uned 13"
   },
   "wynebu": {
     "definition": "to face",
