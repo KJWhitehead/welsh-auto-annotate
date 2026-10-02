@@ -395,24 +395,46 @@ if (!glossary[w]) {
 
 // --- WORKBENCH ANNOTATION ENGINE ---
 function annotate(text, glossary) {
-  const phrases = Object.keys(glossary).filter(k => k.includes(" ")).sort((a, b) => b.length - a.length);
+  const phrases = Object.keys(glossary)
+    .filter(k => k.includes(" "))
+    .sort((a, b) => b.length - a.length);
+
   let processedText = text;
 
-  phrases.forEach(phrase => {
-    const safePhrase = phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, '\\$&');
-    // 🛠️ FIXED: Cleaned out rogue character blocks completely!
-    const regex = new RegExp(`(?<=^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])(${safePhrase})(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`, 'gi');
-    
-    processedText = processedText.replace(regex, match => {
-      const d = glossary[phrase];
-      const txt = (d && typeof d === 'object') ? d.definition : d;
-      const c = (d && d.course) ? d.course : "";
-      const u = (d && d.unit) ? d.unit : "";
-      return `___PHRASE_START___${match}___PHRASE_DIVIDER___${txt}|||${c}|||${u}___PHRASE_END___`;
-    });
-  });
+  if (phrases.length > 0) {
+    const phraseLookup = Object.fromEntries(
+      phrases.map(phrase => [phrase.toLowerCase(), phrase])
+    );
 
-  const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
+    const escapedPhrases = phrases.map(phrase =>
+      phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")
+    );
+
+    const phraseRegex = new RegExp(
+      `(?<=^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])` +
+      `(${escapedPhrases.join("|")})` +
+      `(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`,
+      "gi"
+    );
+
+    processedText = processedText.replace(phraseRegex, match => {
+      const glossaryKey = phraseLookup[match.toLowerCase()];
+      const d = glossary[glossaryKey];
+
+      const txt = d && typeof d === "object" ? d.definition : d;
+      const c = d && d.course ? d.course : "";
+      const u = d && d.unit ? d.unit : "";
+
+      return `___PHRASE_START___${match}` +
+        `___PHRASE_DIVIDER___${txt}|||${c}|||${u}` +
+        `___PHRASE_END___`;
+    });
+  }
+
+  const tokens = processedText.split(
+    /(___PHRASE_START___.*?___PHRASE_END___)/g
+  );
+
   return tokens.map(token => {
     
     // A. TRACK MULTI-WORD PHRASES
