@@ -514,101 +514,118 @@ if (token.startsWith("___PHRASE_START___")) {
 
 const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
     return words.map(word => {
-      const safeWord = escapeHtml(word);
-const matches = collectMatches(word, glossary) || [];
-      if (matches.length > 0) {
-        // 1. BUILD INTUITIVE VISUAL HOVER TOOLTIP TEXT WITH GRAMMAR LABELS
-        let tooltipHtml = matches.map(m => {
-          const d = m.definition;
-          const txt = (d && typeof d === 'object') ? d.definition : d;
-          const c = (d && d.course) ? d.course : "";
-          const u = (d && d.unit) ? d.unit : "";
-          
-      const safeDefinition = escapeHtml(txt);
-      const safeRoot = escapeHtml(m.root);
-      const safeForm = escapeHtml(m.form || "");
-      const safeCourse = escapeHtml(c);
-      const safeUnit = escapeHtml(u);
+  const matches = collectMatches(word, glossary) || [];
 
-      const formLabel = m.form ? ` (${safeForm})` : "";
-      const curriculum = (c || u)
-        ? ` [${safeCourse}${u ? ` • ${safeUnit}` : ""}]`
+  if (matches.length === 0) {
+    return word;
+  }
+
+  const safeWord = escapeHtml(word);
+
+  const tooltipHtml = matches.map(match => {
+    const definition = match.definition;
+    const definitionText =
+      definition && typeof definition === "object"
+        ? definition.definition
+        : definition;
+
+    const course =
+      definition && typeof definition === "object"
+        ? definition.course || ""
         : "";
 
-      return `
-        <span class="tooltip-branch">
-          <span class="tooltip-label">(${safeRoot}):</span>
-          ${safeDefinition}${formLabel}${curriculum}
-        </span>
-      `;
-              }).join("");
+    const unit =
+      definition && typeof definition === "object"
+        ? definition.unit || ""
+        : "";
 
-        // 2. STRUCTURALLY PACK THE DATA OBJECT FOR THE COMPACT STUDY TABLE
-        const firstMatch = matches[0].definition;
-        const packedData = {
-          word: word,
-          def: (firstMatch && typeof firstMatch === 'object') ? firstMatch.definition : firstMatch,
-          course: (firstMatch && firstMatch.course) ? firstMatch.course : "",
-          unit: (firstMatch && firstMatch.unit) ? firstMatch.unit : ""
-        };
-const cleanParam = encodeURIComponent(JSON.stringify(packedData));
+    const safeRoot = escapeHtml(match.root);
+    const safeDefinition = escapeHtml(definitionText);
+    const safeForm = escapeHtml(match.form || "");
+    const safeCourse = escapeHtml(course);
+    const safeUnit = escapeHtml(unit);
 
-const audioBtn = `
-  <button
-    class="speak-btn"
-    data-text="${safeWord}"
-    style="
-      display: block;
-      width: 100%;
-      margin-top: 4px;
-      padding: 4px;
-      font-size: 11px;
-      background: #3b82f6;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    "
-  >
-    🔊 Hear word
-  </button>
-`;
+    const formLabel = match.form
+      ? ` (${safeForm})`
+      : "";
 
-const btn = `
-  <button
-    class="study-btn"
-    data-word="${safeWord}"
-    data-param="${cleanParam}"
-    style="
-      display: block;
-      width: 100%;
-      margin-top: 4px;
-      padding: 4px;
-      font-size: 11px;
-      background: #10b981;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    "
-  >
-    Add to study list
-  </button>
-`;
+    const curriculum = course || unit
+      ? ` [${safeCourse}${unit ? ` • ${safeUnit}` : ""}]`
+      : "";
 
-return `
-  <span class="annotated">
-    ${safeWord}
-    <span class="tooltip">
-      ${tooltipHtml}
-      ${audioBtn}
-      ${btn}
+    const packedData = {
+      word,
+      def: definitionText || "",
+      course,
+      unit
+    };
+
+    const cleanParam = encodeURIComponent(
+      JSON.stringify(packedData)
+    );
+
+    const studyButton = `
+      <button
+        class="study-btn"
+        data-word="${safeWord}"
+        data-param="${cleanParam}"
+        style="
+          display: block;
+          width: 100%;
+          margin-top: 4px;
+          padding: 4px;
+          font-size: 11px;
+          background: #10b981;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        "
+      >
+        Add “${safeRoot}” to study list
+      </button>
+    `;
+
+    return `
+      <span class="tooltip-branch">
+        <span class="tooltip-label">(${safeRoot}):</span>
+        ${safeDefinition}${formLabel}${curriculum}
+        ${studyButton}
+      </span>
+    `;
+  }).join("");
+
+  const audioButton = `
+    <button
+      class="speak-btn"
+      data-text="${safeWord}"
+      style="
+        display: block;
+        width: 100%;
+        margin-top: 4px;
+        padding: 4px;
+        font-size: 11px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      "
+    >
+      🔊 Hear word
+    </button>
+  `;
+
+  return `
+    <span class="annotated">
+      ${safeWord}
+      <span class="tooltip">
+        ${tooltipHtml}
+        ${audioButton}
+      </span>
     </span>
-  </span>
-`;
-      }
-      return word;
-    }).join("");
+  `;
+}).join("");
   }).join("");
 }
 
