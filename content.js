@@ -413,10 +413,46 @@ const rawDef = glossary[phraseText.toLowerCase()];
       const c = (rawDef && rawDef.course) ? rawDef.course : "";
       const u = (rawDef && rawDef.unit) ? rawDef.unit : "";
 
-      const cleanParam = encodeURIComponent(JSON.stringify({ word: phraseText, def: txt, course: c, unit: u }));
-      let btn = `<button class="study-btn" data-word="${phraseText}" data-param="${cleanParam}" style="display:block; width:100%; margin-top:8px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-      
-      return `<span class="annotated">${phraseText}<span class="tooltip">${tooltipHtml}${btn}</span></span>`;
+      const cleanParam = encodeURIComponent(
+  JSON.stringify({
+    word: phraseText,
+    def: txt,
+    course: c,
+    unit: u
+  })
+);
+
+const btn = `
+  <button
+    class="study-btn"
+    data-word="${phraseText}"
+    data-param="${cleanParam}"
+    style="
+      display: block;
+      width: 100%;
+      margin-top: 8px;
+      padding: 4px;
+      font-size: 11px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    "
+  >
+    Add to study list
+  </button>
+`;
+
+return `
+  <span class="annotated">
+    ${phraseText}
+    <span class="tooltip">
+      ${tooltipHtml}
+      ${btn}
+    </span>
+  </span>
+`;
     }
 
 const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
@@ -444,13 +480,61 @@ const matches = collectMatches(word, glossary) || [];
           course: (firstMatch && firstMatch.course) ? firstMatch.course : "",
           unit: (firstMatch && firstMatch.unit) ? firstMatch.unit : ""
         };
-        const cleanParam = encodeURIComponent(JSON.stringify(packedData));
-        
-        // Added: Audio button specifically targeted for individual mutated tokens
-        let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Pronounce Word</button>`;
-        let btn = `<button class="study-btn" data-word="${word}" data-param="${cleanParam}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-        
-        return `<span class="annotated">${word}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
+const cleanParam = encodeURIComponent(JSON.stringify(packedData));
+
+const audioBtn = `
+  <button
+    class="speak-btn"
+    data-text="${word}"
+    style="
+      display: block;
+      width: 100%;
+      margin-top: 4px;
+      padding: 4px;
+      font-size: 11px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    "
+  >
+    🔊 Hear word
+  </button>
+`;
+
+const btn = `
+  <button
+    class="study-btn"
+    data-word="${word}"
+    data-param="${cleanParam}"
+    style="
+      display: block;
+      width: 100%;
+      margin-top: 4px;
+      padding: 4px;
+      font-size: 11px;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    "
+  >
+    Add to study list
+  </button>
+`;
+
+return `
+  <span class="annotated">
+    ${word}
+    <span class="tooltip">
+      ${tooltipHtml}
+      ${audioBtn}
+      ${btn}
+    </span>
+  </span>
+`;
       }
       return word;
     }).join("");
@@ -516,7 +600,21 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
           speakerWidget.innerHTML = '🔊 Llafar / Listen';
           
           // Modern, light-blue dashboard layout styling constraints
-          speakerWidget.style = 'display: block; margin-top: 6px; margin-bottom: 10px; padding: 4px 10px; font-size: 11px; font-weight: bold; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; border-radius: 4px; cursor: pointer; transition: all 0.2s ease-in-out; font-family: sans-serif; width: fit-content;';
+          
+JavaScript
+speakerWidget.style.cssText = `
+  display: block;
+  margin-top: 6px;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: bold;
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  border-radius: 4px;
+  cursor: pointer;
+`;
           
           speakerWidget.onmouseenter = () => { speakerWidget.style.background = '#bae6fd'; };
           speakerWidget.onmouseleave = () => { speakerWidget.style.background = '#e0f2fe'; };
