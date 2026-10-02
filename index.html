@@ -737,11 +737,22 @@ function handleAddClick(event, encodedData) {
   let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
-  const matchIdx = loggedWords.findIndex(item => item.word.toLowerCase() === data.word.toLowerCase());
+  const matchIdx = loggedWords.findIndex(item => 
+    item.word.toLowerCase() === data.word.toLowerCase() &&
+    (item.displayDef || "") === (data.def || "") &&
+    (item.course || "") === (data.course || "") &&
+    (item.unit || "") === (data.unit || "")
+                                        );
   if (matchIdx !== -1) {
     loggedWords[matchIdx].count += 1;
   } else {
-    loggedWords.push({ word: data.word, displayDef: data.def, course: data.course, unit: data.unit, count: 1 });
+    loggedWords.push({ 
+      word: data.word, 
+      displayDef: data.def || "",
+      course: data.course || "",
+      unit: data.unit || "",
+      count: 1
+    });
   }
 
   localStorage.setItem("welshLocalStudySession", JSON.stringify(loggedWords));
