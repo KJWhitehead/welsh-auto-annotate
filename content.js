@@ -187,6 +187,7 @@ function checkAddWithForm(candidate) {
     return self.findIndex(x => x.root === item.root && x.definition === item.definition && x.form === item.form) === index;
   });
 }
+}
 
 // 1. MASTER ANNOTATION ENGINE (Matches your verified index.html logic)
 function annotate(text, glossary) {
