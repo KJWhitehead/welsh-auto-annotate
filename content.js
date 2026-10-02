@@ -472,11 +472,12 @@ if (token.startsWith("___PHRASE_START___")) {
 
   const cleanParam = encodeURIComponent(
     JSON.stringify({
-      word: phraseText,
-      def: definitionForStudy,
-      course: studyCourse,
-      unit: studyUnit
-    })
+  word: phraseText,
+  root: phraseText,
+  def: definitionForStudy,
+  course: studyCourse,
+  unit: studyUnit
+})
   );
 
   const btn = `
@@ -553,12 +554,13 @@ const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
       ? ` [${safeCourse}${unit ? ` • ${safeUnit}` : ""}]`
       : "";
 
-    const packedData = {
-      word,
-      def: definitionText || "",
-      course,
-      unit
-    };
+const packedData = {
+  word,
+  root: match.root,
+  def: definitionText || "",
+  course,
+  unit
+};
 
     const cleanParam = encodeURIComponent(
       JSON.stringify(packedData)
@@ -739,32 +741,42 @@ if (target.classList.contains('study-btn')) {
     const word = target.getAttribute('data-word') || "";
     const param = target.getAttribute('data-param') || "";
     
-    let definitionText = param;
-    let courseText = "";
-    let unitText = "";
+let rootText = word;
+let definitionText = param;
+let courseText = "";
+let unitText = "";
 
-    try {
-      if (param.startsWith("%7B") || param.startsWith("{") || param.includes("%")) {
-        const decodedData = JSON.parse(decodeURIComponent(param));
-        definitionText = decodedData.def || "";
-        courseText = decodedData.course || "";
-        unitText = decodedData.unit || "";
-      }
-    } catch (e) {
-      console.log("Parsing plain text fallback template string instead.");
-      definitionText = param;
-    }
+try {
+  if (
+    param.startsWith("%7B") ||
+    param.startsWith("{") ||
+    param.includes("%")
+  ) {
+    const decodedData = JSON.parse(
+      decodeURIComponent(param)
+    );
+
+    rootText = decodedData.root || word;
+    definitionText = decodedData.def || "";
+    courseText = decodedData.course || "";
+    unitText = decodedData.unit || "";
+  }
+} catch (error) {
+  console.log("Parsing plain text fallback template string instead.");
+  definitionText = param;
+}
 
     if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
-      chrome.runtime.sendMessage({
-        action: "SAVE_VOCAB_WORD",
-        payload: {
-          word: word,
-          def: definitionText,
-          course: courseText,
-          unit: unitText
-        }
-      }, (response) => {
+chrome.runtime.sendMessage({
+  action: "SAVE_VOCAB_WORD",
+  payload: {
+    word: word,
+    root: rootText,
+    def: definitionText,
+    course: courseText,
+    unit: unitText
+  }
+}, response => {
         target.innerText = "✅ Added!";
         target.style.background = "#059669";
         
