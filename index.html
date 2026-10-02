@@ -461,40 +461,122 @@ function annotate(text, glossary) {
     // 🛠️ FIXED: Added "\-"  curly and straight apostrophes!
     // This stops the regex engine from breaking hyphenated words like "pen-blwydd" apart!
     const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’\-][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*)/g);
-    return words.map(word => {
-      const matches = collectMatches(word, glossary);
-      if (matches.length > 0) {
-        let tooltipHtml = matches.map(m => {
-          const d = m.definition;
-          const txt = (d && typeof d === 'object') ? d.definition : d;
-          const c = (d && d.course) ? d.course : "";
-          const u = (d && d.unit) ? d.unit : "";
-          
-          const formLabel = m.form ? ` (${m.form})` : "";
-          const curriculum = (c || u) ? ` [${c} ${u ? '• ' + u : ''}]` : "";
-          
-          return `<span class="tooltip-branch"><span class="tooltip-label">(${m.root}):</span> ${txt}${formLabel}${curriculum}</span>`;
-        }).join("");
+return words.map(word => {
+  const matches = collectMatches(word, glossary) || [];
 
-        const firstMatch = matches[0];
-        const rawDef = firstMatch.definition;
-        
-        // 🛠️ FIXED: Properties extract directly from the rawDef root layout safely!
-        const packedData = {
-          word: word,
-          def: (rawDef && typeof rawDef === 'object') ? rawDef.definition : rawDef,
-          course: (rawDef && typeof rawDef === 'object') ? rawDef.course : "",
-          unit: (rawDef && typeof rawDef === 'object') ? rawDef.unit : ""
-        };
-        const cleanParam = encodeURIComponent(JSON.stringify(packedData));
-        
-        let audioBtn = `<button class="speak-btn" data-text="${word}" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#3b82f6; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">🔊 Llafar / Listen</button>`;
-        let btn = `<button onclick="handleAddClick(event, '${cleanParam}')" style="display:block; width:100%; margin-top:4px; padding:4px; font-size:11px; background:#10b981; color:white; border:none; border-radius:3px; cursor:pointer; font-weight:bold;">➕ Add to Study List</button>`;
-        
-        return `<span class="annotated" onclick="handleToggle(event, this)">${word}<span class="tooltip">${tooltipHtml}${audioBtn}${btn}</span></span>`;
-      }
-      return word;
-    }).join("");
+  if (matches.length === 0) {
+    return word;
+  }
+
+  const tooltipHtml = matches.map(match => {
+    const definition = match.definition;
+
+    const definitionText =
+      definition && typeof definition === "object"
+        ? definition.definition || ""
+        : definition || "";
+
+    const course =
+      definition && typeof definition === "object"
+        ? definition.course || ""
+        : "";
+
+    const unit =
+      definition && typeof definition === "object"
+        ? definition.unit || ""
+        : "";
+
+    const formLabel = match.form
+      ? ` (${match.form})`
+      : "";
+
+    const curriculum = course || unit
+      ? ` [${course}${unit ? ` • ${unit}` : ""}]`
+      : "";
+
+    const packedData = {
+      word,
+      def: definitionText,
+      course,
+      unit
+    };
+
+    const cleanParam = encodeURIComponent(
+      JSON.stringify(packedData)
+    );
+
+    /*
+     * Each match gets its own button and its own encoded data.
+     *
+     * &quot; is used around cleanParam so Welsh apostrophes in a word
+     * cannot break the inline onclick attribute.
+     */
+    const addButton = `
+      <button
+        class="study-btn"
+        onclick="handleAddClick(event, &quot;${cleanParam}&quot;)"
+        style="
+          display: block;
+          width: 100%;
+          margin-top: 4px;
+          padding: 4px;
+          font-size: 11px;
+          background: #10b981;
+          color: white;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        "
+      >
+        Add “${match.root}” to study list
+      </button>
+    `;
+
+    return `
+      <span class="tooltip-branch">
+        <span class="tooltip-label">
+          (${match.root}):
+        </span>
+        ${definitionText}${formLabel}${curriculum}
+        ${addButton}
+      </span>
+    `;
+  }).join("");
+
+  const audioButton = `
+    <button
+      class="speak-btn"
+      data-text="${word}"
+      style="
+        display: block;
+        width: 100%;
+        margin-top: 4px;
+        padding: 4px;
+        font-size: 11px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      "
+    >
+      🔊 Hear word
+    </button>
+  `;
+
+  return `
+    <span
+      class="annotated"
+      onclick="handleToggle(event, this)"
+    >
+      ${word}
+      <span class="tooltip">
+        ${tooltipHtml}
+        ${audioButton}
+      </span>
+    </span>
+  `;
+}).join("");
   }).join("");
 }
 
