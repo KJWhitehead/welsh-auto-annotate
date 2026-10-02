@@ -29,40 +29,40 @@ if (message.action === "SAVE_VOCAB_WORD") {
 
       const word = String(data.word || "").trim();
 
-      if (!word) {
-        sendResponse({
-          status: "ERROR",
-          error: "No vocabulary word was provided."
-        });
-        return;
-      }
+if (!word) {
+  sendResponse({
+    status: "ERROR",
+    error: "No vocabulary word was provided."
+  });
+  return;
+}
 
-      const matchIdx = loggedWords.findIndex(
-        item => item.word.toLowerCase() === word.toLowerCase()
-      );
+const root = String(data.root || word).trim();
+const definition = String(data.def || "").trim();
+const course = String(data.course || "").trim();
+const unit = String(data.unit || "").trim();
 
-      if (matchIdx !== -1) {
-        loggedWords[matchIdx].count =
-          Number(loggedWords[matchIdx].count || 0) + 1;
+const matchIdx = loggedWords.findIndex(item =>
+  String(item.word || "").toLowerCase() === word.toLowerCase() &&
+  String(item.root || item.word || "").toLowerCase() === root.toLowerCase() &&
+  String(item.displayDef || "") === definition &&
+  String(item.course || "") === course &&
+  String(item.unit || "") === unit
+);
 
-        // Preserve or refresh metadata for existing words.
-        loggedWords[matchIdx].displayDef =
-          data.def || loggedWords[matchIdx].displayDef || "";
-
-        loggedWords[matchIdx].course =
-          data.course || loggedWords[matchIdx].course || "";
-
-        loggedWords[matchIdx].unit =
-          data.unit || loggedWords[matchIdx].unit || "";
-      } else {
-        loggedWords.push({
-          word,
-          displayDef: data.def || "",
-          course: data.course || "",
-          unit: data.unit || "",
-          count: 1
-        });
-      }
+if (matchIdx !== -1) {
+  loggedWords[matchIdx].count =
+    Number(loggedWords[matchIdx].count || 0) + 1;
+} else {
+  loggedWords.push({
+    word,
+    root,
+    displayDef: definition,
+    course,
+    unit,
+    count: 1
+  });
+}
 
       loggedWords.sort((a, b) => b.count - a.count);
 
