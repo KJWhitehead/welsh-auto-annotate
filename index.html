@@ -232,10 +232,15 @@ function collectMatches(word, glossary) {
 
 // 1. WELSH CONTRACTION SPLITTER
 if (!glossary[w]) {
-  // 🛠️ ADDED: "'ch" and "’ch" right alongside your existing rules!
-  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n") || w.endsWith("'ch") || w.endsWith("’ch")) {
-    w = w.slice(0, -3); // Slices off the 3-character contraction boundary neatly
-  }
+
+if (w.endsWith("'ch") || w.endsWith("’ch")) {
+w = w.slice(0, -3);
+} else if (
+w.endsWith("'r") || w.endsWith("’r") ||
+w.endsWith("'n") || w.endsWith("’n")
+) {
+w = w.slice(0, -2);
+}
 }
 
   // 2. WELSH VOWEL-LINK STRIPPER
