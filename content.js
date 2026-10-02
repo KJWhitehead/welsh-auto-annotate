@@ -409,67 +409,108 @@ function annotate(text, glossary) {
 
   return tokens.map(token => {
 if (token.startsWith("___PHRASE_START___")) {
-      const parts = token.replace("___PHRASE_START___", "").replace("___PHRASE_END___", "").split("___PHRASE_DIVIDER___");
-      const phraseText = parts[0];
-      const finalDisplayString = parts[1]; // Pulls the clean definition string cleanly
+  const phraseStart = "___PHRASE_START___";
+  const phraseDivider = "___PHRASE_DIVIDER___";
+  const phraseEnd = "___PHRASE_END___";
+
+  const content = token
+    .slice(phraseStart.length)
+    .replace(new RegExp(`${phraseEnd}$`), "");
+
+  const dividerIndex = content.indexOf(phraseDivider);
+
+  if (dividerIndex === -1) {
+    return token;
+  }
+
+  const phraseText = content.slice(0, dividerIndex);
+  const metadata = content.slice(
+    dividerIndex + phraseDivider.length
+  );
+
+  // The metadata format is:
+  // definition|||course|||unit
+  const [definitionText = "", courseText = "", unitText = ""] =
+    metadata.split("|||");
+
   const safePhraseText = escapeHtml(phraseText);
-const safeFinalDisplayString = escapeHtml(finalDisplayString);
+  const safeDefinition = escapeHtml(definitionText);
+  const safeCourse = escapeHtml(courseText);
+  const safeUnit = escapeHtml(unitText);
 
-      
-      const tooltipHtml = `
-  <span class="tooltip-branch">
-    <span class="tooltip-label">(${safePhraseText}):</span>
-    ${safeFinalDisplayString}
-  </span>
-`;
-      
-      // Pull out the base parameters safely for the study table tracking object
-const rawDef = glossary[phraseText.toLowerCase()];
-      const txt = (rawDef && typeof rawDef === 'object') ? rawDef.definition : rawDef;
-      const c = (rawDef && rawDef.course) ? rawDef.course : "";
-      const u = (rawDef && rawDef.unit) ? rawDef.unit : "";
-
-      const cleanParam = encodeURIComponent(
-  JSON.stringify({
-    word: phraseText,
-    def: txt,
-    course: c,
-    unit: u
-  })
-);
-
-const btn = `
-  <button
-    class="study-btn"
-    data-word="${safePhraseText}"
-    data-param="${cleanParam}"
-    style="
-      display: block;
-      width: 100%;
-      margin-top: 8px;
-      padding: 4px;
-      font-size: 11px;
-      background: #10b981;
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    "
-  >
-    Add to study list
-  </button>
-`;
-
-return `
-  <span class="annotated">
-    ${safePhraseText}
-    <span class="tooltip">
-      ${tooltipHtml}
-      ${btn}
+  const tooltipHtml = `
+    <span class="tooltip-branch">
+      <span class="tooltip-label">(${safePhraseText}):</span>
+      ${safeDefinition}
+      ${
+        safeCourse || safeUnit
+          ? ` [${safeCourse}${safeUnit ? ` • ${safeUnit}` : ""}]`
+          : ""
+      }
     </span>
-  </span>
-`;
-    }
+  `;
+
+  const rawDef =
+    glossary[phraseText] ||
+    glossary[phraseText.toLowerCase()] ||
+    definitionText;
+
+  const definitionForStudy =
+    rawDef && typeof rawDef === "object"
+      ? rawDef.definition
+      : rawDef;
+
+  const studyCourse =
+    rawDef && typeof rawDef === "object" && rawDef.course
+      ? rawDef.course
+      : courseText;
+
+  const studyUnit =
+    rawDef && typeof rawDef === "object" && rawDef.unit
+      ? rawDef.unit
+      : unitText;
+
+  const cleanParam = encodeURIComponent(
+    JSON.stringify({
+      word: phraseText,
+      def: definitionForStudy,
+      course: studyCourse,
+      unit: studyUnit
+    })
+  );
+
+  const btn = `
+    <button
+      class="study-btn"
+      data-word="${safePhraseText}"
+      data-param="${cleanParam}"
+      style="
+        display: block;
+        width: 100%;
+        margin-top: 8px;
+        padding: 4px;
+        font-size: 11px;
+        background: #10b981;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      "
+    >
+      Add to study list
+    </button>
+  `;
+
+  return `
+    <span class="annotated">
+      ${safePhraseText}
+      <span class="tooltip">
+        ${tooltipHtml}
+        ${btn}
+      </span>
+    </span>
+  `;
+}
 
 const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
     return words.map(word => {
