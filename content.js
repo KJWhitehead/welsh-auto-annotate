@@ -154,61 +154,45 @@ if (!w) return [];
 
 // 1. MASTER ANNOTATION ENGINE (Matches your verified index.html logic)
 function annotate(text, glossary) {
-  text = text
-    .replace(/[\u2018\u2019\u201A\u201B]/g, "'")
-    .replace(/[\u201C\u201D\u201E\u201F]/g, '"')
-    .replace(/[\u00AB\u00BB]/g, '"');
-
-  const phrases = Object.keys(glossary).filter(key => key.includes(" "));
-  phrases.sort((a, b) => b.length - a.length);
+  const phrases = Object.keys(glossary)
+    .filter(k => k.includes(" "))
+    .sort((a, b) => b.length - a.length);
 
   let processedText = text;
 
-phrases.forEach(phrase => {
-  // Do not escape hyphens. In a Unicode RegExp, "\-" is invalid
-  // outside a character class.
-  const safePhrase = phrase.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  if (phrases.length > 0) {
+    const phraseLookup = Object.fromEntries(
+      phrases.map(phrase => [phrase.toLowerCase(), phrase])
+    );
 
-  // The prefix capture avoids lookbehind and works with quotation marks,
-  // punctuation, and the beginning of the sentence.
-  const regex = new RegExp(
-    `(^|[^\\p{L}])(${safePhrase})(?=$|[^\\p{L}])`,
-    "giu"
+    const escapedPhrases = phrases.map(phrase =>
+      phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")
+    );
+
+    const phraseRegex = new RegExp(
+      `(?<=^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])` +
+      `(${escapedPhrases.join("|")})` +
+      `(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`,
+      "gi"
+    );
+
+    processedText = processedText.replace(phraseRegex, match => {
+      const glossaryKey = phraseLookup[match.toLowerCase()];
+      const d = glossary[glossaryKey];
+
+      const txt = d && typeof d === "object" ? d.definition : d;
+      const c = d && d.course ? d.course : "";
+      const u = d && d.unit ? d.unit : "";
+
+      return `___PHRASE_START___${match}` +
+        `___PHRASE_DIVIDER___${txt}|||${c}|||${u}` +
+        `___PHRASE_END___`;
+    });
+  }
+
+  const tokens = processedText.split(
+    /(___PHRASE_START___.*?___PHRASE_END___)/g
   );
-
-  processedText = processedText.replace(
-    regex,
-    (match, prefix, phraseMatch) => {
-      const rawDef = glossary[phrase];
-
-      let displayDefText = rawDef;
-      let courseInfo = "";
-
-      if (
-        rawDef &&
-        typeof rawDef === "object" &&
-        "definition" in rawDef
-      ) {
-        displayDefText = rawDef.definition;
-
-        if (rawDef.course && rawDef.unit) {
-          courseInfo = ` [${rawDef.course} • ${rawDef.unit}]`;
-        }
-      }
-
-      const finalDisplayString = displayDefText + courseInfo;
-
-      return (
-        `${prefix}` +
-        `___PHRASE_START___${phraseMatch}` +
-        `___PHRASE_DIVIDER___${finalDisplayString}` +
-        `___PHRASE_END___`
-      );
-    }
-  );
-});
-
-  const tokens = processedText.split(/(___PHRASE_START___.*?___PHRASE_END___)/g);
 
   return tokens.map(token => {
 if (token.startsWith("___PHRASE_START___")) {
