@@ -18,21 +18,30 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      tableBody.innerHTML = loggedWords.map(item => {
-        // Build the label dynamically so it never displays a stray hanging bullet
-        const courseText = item.course ? item.course.trim() : "";
-        const unitText = item.unit ? item.unit.trim() : "";
-        const sourceLabel = (courseText && unitText) ? `${courseText} • ${unitText}` : (courseText || unitText || "");
-        
-        return `<tr>
-          <td><span class="table-word">${item.word}</span></td>
-          <td>${item.displayDef}</td>
-          <td>${sourceLabel ? `<span class="unit-tag">${sourceLabel}</span>` : ""}</td>
-          <td style="text-align: center;"><span class="count-badge">${item.count}×</span></td>
-        </tr>`;
-      }).join("");
-    });
-  }
+tableBody.innerHTML = loggedWords.map(item => {
+  const courseText = item.course ? item.course.trim() : "";
+  const unitText = item.unit ? item.unit.trim() : "";
+
+  const sourceLabel =
+    courseText && unitText
+      ? `${courseText} • ${unitText}`
+      : (courseText || unitText || "");
+
+  return `<tr>
+    <td><span class="table-word">${item.word || ""}</span></td>
+    <td>${item.displayDef || ""}</td>
+    <td>
+      ${
+        sourceLabel
+          ? `<span class="unit-tag">${sourceLabel}</span>`
+          : ""
+      }
+    </td>
+    <td style="text-align: center;">
+      <span class="count-badge">${item.count || 0}×</span>
+    </td>
+  </tr>`;
+}).join("");
 
   // 🚀 Triggers annotation injection via background channels onto the current tab layout context
   btnScan.addEventListener('click', async () => {
