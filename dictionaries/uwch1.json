@@ -183,7 +183,7 @@
     "definition": "there and then",
     "course": "Uwch 1",
     "unit": "Uned 1"
-  },
+},
 "planed": {
 "definition": "planet",
 "course": "Uwch 1",
@@ -948,6 +948,355 @@
 "definition": "unbeknown to (+ i)",
 "course": "Uwch 1",
 "unit": "Uned 6"
+},
+"adduned": {
+"definition": "resolution",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"addunedau": {
+"definition": "resolutions",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"sylfaen": {
+"definition": "basis",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"sylfeini": {
+"definition": "bases",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"baglu": {
+"definition": "to trip",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"brolio": {
+"definition": "to boast",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"canmol": {
+"definition": "to praise",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"cynhyrchu": {
+"definition": "to produce",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"ffidlan": {
+"definition": "to fiddle",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"gwerthfawrogi": {
+"definition": "to appreciate",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"llygru": {
+"definition": "to contaminate, to pollute",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"pigo": {
+"definition": "to pick",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"taenu": {
+"definition": "to spread (menyn, ac ati)",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"arbenigwr": {
+"definition": "specialist, expert",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"arbenigwyr": {
+"definition": "specialists, experts",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"briwsionyn": {
+"definition": "crumb",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"briwsion": {
+"definition": "crumbs",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"lleiafrif": {
+"definition": "minority",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"lleiafrifoedd": {
+"definition": "minorities",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"ôl": {
+"definition": "remain",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"olion": {
+"definition": "remains",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"pechod": {
+"definition": "sin",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"pechodau": {
+"definition": "sins",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"allweddol": {
+"definition": "key, critical",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"bwriadol": {
+"definition": "deliberate",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"gorlawn": {
+"definition": "llawn iawn, iawn",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"penwan": {
+"definition": "crac iawn",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"byth a beunydd": {
+"definition": "time and again",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"dod ar draws": {
+"definition": "to come across",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"ar draws": {
+"definition": "to come across (with the verb dod)",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"tân ar groen": {
+"definition": "a thorn in one's flesh",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"yn fy hala i’n benwan": {
+"definition": "drives me up the wall",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"hala i’n benwan": {
+"definition": "drives (someone) up the wall",
+"course": "Uwch 1",
+"unit": "Uned 7"
+},
+"brwydr": {
+"definition": "battle",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"brwydrau": {
+"definition": "battles",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"derwen": {
+"definition": "oak tree",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"deri": {
+"definition": "oak trees",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"hawl": {
+"definition": "right, entitlement",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"hawliau": {
+"definition": "rights, entitlements",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"ymgyrch": {
+"definition": "campaign",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"ymgyrchoedd": {
+"definition": "campaigns",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"aberthu": {
+"definition": "to sacrifice",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"anrhydeddu": {
+"definition": "to honour",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"beirniadu": {
+"definition": "to criticise; to adjudicate",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"claddu": {
+"definition": "to bury",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"cosbi": {
+"definition": "to punish",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"crogi": {
+"definition": "to hang",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"dadorchuddio": {
+"definition": "to uncover, to unveil",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"dylanwadu (ar)": {
+"definition": "to influence",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"edmygu": {
+"definition": "to admire",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"beili": {
+"definition": "bailiff",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"beiliaid": {
+"definition": "bailiffs",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"diffoddwr tân": {
+"definition": "firefighter",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"diffoddwyr tân": {
+"definition": "firefighters",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"gelyn": {
+"definition": "enemy",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"gelynion": {
+"definition": "enemies",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"statws": {
+"definition": "status",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"synnwyr": {
+"definition": "sense",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"synhwyrau": {
+"definition": "senses",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"ymgyrchydd": {
+"definition": "campaigner",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"ymgyrchwyr": {
+"definition": "campaigners",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"ynad": {
+"definition": "magistrate",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"ynadon": {
+"definition": "magistrates",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"amrywiol": {
+"definition": "varied; various",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"cyson": {
+"definition": "consistent; regular",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"dylanwadol": {
+"definition": "influential",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"dyledus": {
+"definition": "due; in debt",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"mynd â'r maen i'r wal": {
+"definition": "to follow something through to a successful conclusion",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"â'r maen i'r wal": {
+"definition": "to follow something through to a successful conclusion",
+"course": "Uwch 1",
+"unit": "Uned 8"
+},
+"wastad": {
+"definition": "always",
+"course": "Uwch 1",
+"unit": "Uned 8"
 }
-
 }
