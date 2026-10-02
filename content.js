@@ -262,6 +262,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
         'dictionaries/mynediad.json',
         'dictionaries/sylfaen.json',
         'dictionaries/canolradd.json',
+        'dictionaries/uwch1.json',
         'dictionaries/bbc.json'
       ];
 
