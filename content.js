@@ -7,29 +7,33 @@ function collectMatches(word, glossary) {
     .trim();
   if (!w) return [];
 
-// 1. WELSH CONTRACTION SPLITTER
-if (!glossary[w]) {
-  // 🛠️ ADDED: "'ch" and "’ch" right alongside your existing rules!
-  if (w.endsWith("'r") || w.endsWith("’r") || w.endsWith("'n") || w.endsWith("’n") || w.endsWith("'ch") || w.endsWith("’ch")) {
-    w = w.slice(0, -3); // Slices off the 3-character contraction boundary neatly
-
-  // 2. WELSH VOWEL-LINK STRIPPER
-  if (!glossary[w]) {
-    const vowelLinks = { "nag": "na", "ac": "a", "ag": "â", "tuag": "tua", "gydag": "gyda" };
-    if (vowelLinks[w]) w = vowelLinks[w];
+ // 1. WELSH CONTRACTION SPLITTER
+ if (!glossary[w]) {
+   // "'ch" and "’ch" are included alongside the other contractions
+   if (
+     w.endsWith("'r") ||
+     w.endsWith("’r") ||
+     w.endsWith("'n") ||
+     w.endsWith("’n") ||
+     w.endsWith("'ch") ||
+     w.endsWith("’ch")
+   ) {
+     w = w.slice(0, -3);
   }
-
-if (!w) return [];
-  let foundKeys = new Set();
-
-  function checkAndAdd(candidate) {
-    if (glossary[candidate]) foundKeys.add(candidate);
-    if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
-      const candidateWithF = candidate + "f";
-      if (glossary[candidateWithF]) foundKeys.add(candidateWithF);
-    }
-  }
-
+}
+ 
+ // 2. WELSH VOWEL-LINK STRIPPER
+ if (!glossary[w]) {
+   const vowelLinks = {
+     "nag": "na",
+     "ac": "a",
+     "ag": "â",
+     "tuag": "tua",
+     "gydag": "gyda"
+   };
+   if (vowelLinks[w]) w = vowelLinks[w];
+ }
+  
   // ─── NEW: ADJECTIVE SUFFIX DETECTION GUARD ──────────────────────────
   // Checks if the word token ends with one of your active suffixes
   const isAdjSuffix = ["ach", "af", "a", "ed"].some(suffix => w.endsWith(suffix) && w.length > suffix.length);
