@@ -28,8 +28,14 @@ tableBody.innerHTML = loggedWords.map(item => {
       : (courseText || unitText || "");
 
   return `<tr>
-    <td><span class="table-word">${item.word || ""}</span></td>
-    <td>${item.displayDef || ""}</td>
+    <td>
+  <span class="table-word">${item.word || ""}</span>
+</td>
+<td>
+  <strong>${item.root || item.word || ""}</strong>
+  <br>
+  ${item.displayDef || ""}
+</td>
     <td>
       ${
         sourceLabel
@@ -65,6 +71,7 @@ tableBody.innerHTML = loggedWords.map(item => {
       loggedWords.forEach(item => {
         xmlString += `  <item>\n`;
         xmlString += `    <word>${escapeXML(item.word)}</word>\n`;
+        xmlString += `    <root>${escapeXML(item.root || item.word)}</root>\n`;
         xmlString += `    <definition>${escapeXML(item.displayDef)}</definition>\n`;
         xmlString += `    <course>${escapeXML(item.course)}</course>\n`;
         xmlString += `    <unit>${escapeXML(item.unit)}</unit>\n`;
