@@ -2278,7 +2278,7 @@
     "unit": "Uned 10"
   },
   "enw": {
-    "definition": "name",
+    "definition": "name; noun",
     "course": "Mynediad", 
     "unit": "Uned 1"
   },
@@ -6984,5 +6984,155 @@
   },
   "paragraffau": {
     "definition": "paragraph"
+  },
+  "enw priod": {
+    "definition": "proper noun"
+  },
+"enwau priod": {
+    "definition": "proper nouns"
+  },
+"enw cyffredin": {
+    "definition": "common noun"
+  },
+"enwau cyffredin": {
+    "definition": "common nouns"
+  },
+"enw gwrywaidd": {
+    "definition": "masculine noun"
+  },
+"enwau gwrywaidd": {
+    "definition": "masculine nouns"
+  },
+"enw benywaidd": {
+    "definition": "feminine noun"
+  },
+"enwau benywaidd": {
+    "definition": "feminine nouns"
+  },
+"enw lluosog": {
+    "definition": "plural noun"
+  },
+"enwau lluosog": {
+    "definition": "plural nouns"
+  },
+"enw torfol": {
+    "definition": "collective noun"
+  },
+"enwau torfol": {
+    "definition": "collective nouns"
+  },
+"ansoddair": {
+    "definition": "adjective"
+  },
+"ansoddairiau": {
+    "definition": "adjectives"
+  },
+"berf": {
+    "definition": "verb"
+  },
+"berfau": {
+    "definition": "verbs"
+  },
+"bannod": {
+    "definition": "definite article; clause part"
+  },
+"banodau": {
+    "definition": "definite articles; clause parts"
+  },
+"arddodiad": {
+    "definition": "preposition"
+  },
+"arddodiaid": {
+    "definition": "prepositions"
+  },
+"adferf": {
+    "definition": "adverb"
+  },
+"adferfau": {
+    "definition": "adverbs"
+  },
+"rhifol": {
+    "definition": "numeral"
+  },
+"rhifolion": {
+    "definition": "numerals"
+  },
+"goddrych": {
+    "definition": "grammatical subject"
+  },
+"goddrychau": {
+    "definition": "grammatical subjects"
+  },
+"traethiad": {
+    "definition": "predicate"
+  },
+"traethiadau": {
+    "definition": "predicates"
+  },
+"gwrthrych": {
+    "definition": "grammatical object"
+  },
+"gwrthrychau": {
+    "definition": "grammatical object"
+  },
+"cymal enwol": {
+    "definition": "noun clause"
+  },
+"cymalau enwol": {
+    "definition": "noun clauses"
+  },
+"brawddeg enwol": {
+    "definition": "noun-predicate sentence (a sentence with no verb in its predicate)"
+  },
+"brawddegau enwol": {
+    "definition": "noun-predicate sentences (sentences with no verb in their predicates)"
+  },
+"genidol": {
+    "definition": "genitive construction"
+  },
+"sangiad": {
+    "definition": "interpolation (when basic word order is interrupted)"
+  },
+"amser presennol": {
+    "definition": "present tense"
+  },
+"amser amherffaith": {
+    "definition": "imperfect tense"
+  },
+"amser gorffennol": {
+    "definition": "past tense/preterite"
+  },
+"amser dyfodol": {
+    "definition": "future tense"
+  },
+"amser amodol": {
+    "definition": "conditional tense"
+  },
+"amser perffaith": {
+    "definition": "perfect tense"
+  },
+"amser gorffennol perffaith": {
+    "definition": "pluperfect tense"
+  },
+"amser gorberffaith": {
+    "definition": "pluperfect tense"
+  },
+"amser dyfodol perffaith": {
+    "definition": "future perfect tense"
+  },
+"amser amodol perffaith": {
+    "definition": "conditional perfect tense"
+  },
+"amser gorchymyn": {
+    "definition": "imperative (commands)"
+  },
+"amser subsiwntif": {
+    "definition": "subjective tense"
+  },
+"gwrywaidd": {
+    "definition": "masculine"
+  },
+"benywaidd": {
+    "definition": "feminine"
   }
 }
