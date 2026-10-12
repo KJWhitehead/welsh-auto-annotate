@@ -32,6 +32,11 @@
   transition: opacity 0.15s ease, visibility 0.15s ease;
 }
 
+.annotated.tooltip-below .tooltip {
+  top: 130%;
+  bottom: auto;
+}
+
 .annotated:hover .tooltip,
 .annotated.show-tooltip .tooltip {
   visibility: visible;
@@ -59,4 +64,10 @@
   border-width: 6px;
   border-style: solid;
   border-color: #1f2937 transparent transparent transparent;
+}
+
+.annotated.tooltip-below .tooltip::after {
+  top: auto;
+  bottom: 100%;
+  border-color: transparent transparent #1f2937 transparent;
 }
