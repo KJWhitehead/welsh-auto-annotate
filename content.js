@@ -724,45 +724,9 @@ function positionTooltip(el) {
   const tooltip = el.querySelector(".tooltip");
   if (!tooltip) return;
 
-  // Reset to the normal above-the-word position.
   el.classList.remove("tooltip-below");
 
   const wordRect = el.getBoundingClientRect();
-  const tooltipHeight = tooltip.getBoundingClientRect().height || 180;
-  const gap = 12;
-
-  // Move below the word if there is not enough room above it.
-  if (wordRect.top < tooltipHeight + gap) {
-    el.classList.add("tooltip-below");
-  }
-}
-
-function handleToggle(event, el) {
-  event.stopPropagation();
-
-  const isOpen = el.classList.contains("show-tooltip");
-
-  document.querySelectorAll(".annotated").forEach(item => {
-    item.classList.remove("show-tooltip", "tooltip-below");
-  });
-
-  if (!isOpen) {
-    el.classList.add("show-tooltip");
-
-    // The tooltip is visible now, so its height can be measured.
-    positionTooltip(el);
-  }
-}
-// 3. EXTENSION CLICK INTERACTION DELEGATION
-function positionTooltip(el) {
-  const tooltip = el.querySelector(".tooltip");
-  if (!tooltip) return;
-
-  el.classList.remove("tooltip-below");
-
-  const wordRect = el.getBoundingClientRect();
-
-  // The tooltip is visible at this point, so this should be measurable.
   const tooltipHeight = tooltip.offsetHeight || 180;
   const gap = 12;
 
@@ -783,13 +747,13 @@ function handleToggle(event, el) {
   if (!isOpen) {
     el.classList.add("show-tooltip");
 
-    // Wait one frame so the browser has applied visibility/layout.
     requestAnimationFrame(() => {
       positionTooltip(el);
     });
   }
 }
 
+// 3. EXTENSION CLICK INTERACTION DELEGATION
 document.addEventListener("click", event => {
   const target = event.target;
 
@@ -797,14 +761,12 @@ document.addEventListener("click", event => {
     return;
   }
 
-  // Handle the study-list button first.
-  const studyButton = target.closest(".study-btn");
-
-  if (studyButton) {
+  // Handle study-list buttons first.
+  if (target.classList.contains("study-btn")) {
     event.stopPropagation();
 
-    const word = studyButton.getAttribute("data-word") || "";
-    const param = studyButton.getAttribute("data-param") || "";
+    const word = target.getAttribute("data-word") || "";
+    const param = target.getAttribute("data-param") || "";
 
     let rootText = word;
     let definitionText = param;
@@ -834,17 +796,90 @@ document.addEventListener("click", event => {
         }
       },
       () => {
-        studyButton.innerText = "✅ Added!";
-        studyButton.style.background = "#059669";
+        target.innerText = "✅ Added!";
+        target.style.background = "#059669";
 
         setTimeout(() => {
-          document
-            .querySelectorAll(".annotated")
-            .forEach(el => el.classList.remove("show-tooltip", "tooltip-below"));
+          document.querySelectorAll(".annotated").forEach(el => {
+            el.classList.remove("show-tooltip", "tooltip-below");
+          });
         }, 800);
       }
     );
 
+    return;
+  }
+
+  // Handle the existing extension audio system.
+  if (
+    target.classList.contains("speak-btn") ||
+    target.classList.contains("sentence-speak-btn")
+  ) {
+    event.stopPropagation();
+
+    const textToPronounce = target.getAttribute("data-text") || "";
+    const originalButtonText = target.innerHTML;
+
+    target.innerHTML = "⏳ Connecting...";
+
+    chrome.runtime.sendMessage(
+      {
+        action: "SPEAK_TEXT",
+        payload: { text: textToPronounce }
+      },
+      response => {
+        if (response && response.status === "SUCCESS" && response.audioData) {
+          try {
+            const binaryString = atob(response.audioData);
+            const bytes = new Uint8Array(binaryString.length);
+
+            for (let i = 0; i < binaryString.length; i++) {
+              bytes[i] = binaryString.charCodeAt(i);
+            }
+
+            const audioBlob = new Blob([bytes.buffer], {
+              type: "audio/wav"
+            });
+
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const audio = new Audio(audioUrl);
+
+            audio.play();
+            audio.addEventListener("ended", () => {
+              URL.revokeObjectURL(audioUrl);
+            });
+
+            target.innerHTML = originalButtonText;
+          } catch (error) {
+            console.error("Audio conversion failed:", error);
+            target.innerHTML = "❌ Playback Error";
+          }
+        } else {
+          target.innerHTML = "❌ Audio Unavailable";
+        }
+
+        setTimeout(() => {
+          target.innerHTML = originalButtonText;
+        }, 1500);
+      }
+    );
+
+    return;
+  }
+
+  // Handle annotation clicks.
+  const annotated = target.closest(".annotated");
+
+  if (annotated) {
+    handleToggle(event, annotated);
+    return;
+  }
+
+  // Close tooltips when clicking elsewhere.
+  document.querySelectorAll(".annotated").forEach(el => {
+    el.classList.remove("show-tooltip", "tooltip-below");
+  });
+});
     return;
   }
 
