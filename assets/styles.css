@@ -33,9 +33,10 @@
 }
 
 .annotated.tooltip-below .tooltip {
-  top: 130%;
+  top: calc(100% + 12px);
   bottom: auto;
 }
+
 
 .annotated:hover .tooltip,
 .annotated.show-tooltip .tooltip {
