@@ -727,10 +727,10 @@ function positionTooltip(el) {
   el.classList.remove("tooltip-below");
 
   const wordRect = el.getBoundingClientRect();
-  const tooltipHeight = tooltip.offsetHeight || 180;
+  const tooltipRect = tooltip.getBoundingClientRect();
   const gap = 12;
 
-  if (wordRect.top < tooltipHeight + gap) {
+  if (wordRect.top < tooltipRect.height + gap) {
     el.classList.add("tooltip-below");
   }
 }
