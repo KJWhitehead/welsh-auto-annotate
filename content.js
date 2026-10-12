@@ -754,80 +754,127 @@ function handleToggle(event, el) {
   }
 }
 // 3. EXTENSION CLICK INTERACTION DELEGATION
-document.addEventListener('click', (event) => {
-  const target = event.target;
-  
-    if (!(target instanceof Element)) {
-    return;
+function positionTooltip(el) {
+  const tooltip = el.querySelector(".tooltip");
+  if (!tooltip) return;
+
+  el.classList.remove("tooltip-below");
+
+  const wordRect = el.getBoundingClientRect();
+
+  // The tooltip is visible at this point, so this should be measurable.
+  const tooltipHeight = tooltip.offsetHeight || 180;
+  const gap = 12;
+
+  if (wordRect.top < tooltipHeight + gap) {
+    el.classList.add("tooltip-below");
   }
+}
+
+function handleToggle(event, el) {
+  event.stopPropagation();
+
+  const isOpen = el.classList.contains("show-tooltip");
+
+  document.querySelectorAll(".annotated").forEach(item => {
+    item.classList.remove("show-tooltip", "tooltip-below");
+  });
+
+  if (!isOpen) {
+    el.classList.add("show-tooltip");
+
+    // Wait one frame so the browser has applied visibility/layout.
+    requestAnimationFrame(() => {
+      positionTooltip(el);
+    });
+  }
+}
+
+document.addEventListener("click", event => {
+  const target = event.target;
+
   if (!(target instanceof Element)) {
     return;
   }
 
-  // Do not toggle the annotation when clicking controls inside it.
-  if (
-    target.closest('.study-btn') ||
-    target.closest('.speak-btn')
-  ) {
+  // Handle the study-list button first.
+  const studyButton = target.closest(".study-btn");
+
+  if (studyButton) {
+    event.stopPropagation();
+
+    const word = studyButton.getAttribute("data-word") || "";
+    const param = studyButton.getAttribute("data-param") || "";
+
+    let rootText = word;
+    let definitionText = param;
+    let courseText = "";
+    let unitText = "";
+
+    try {
+      const decodedData = JSON.parse(decodeURIComponent(param));
+
+      rootText = decodedData.root || word;
+      definitionText = decodedData.def || "";
+      courseText = decodedData.course || "";
+      unitText = decodedData.unit || "";
+    } catch (error) {
+      console.warn("Could not parse study button data:", error);
+    }
+
+    chrome.runtime.sendMessage(
+      {
+        action: "SAVE_VOCAB_WORD",
+        payload: {
+          word,
+          root: rootText,
+          def: definitionText,
+          course: courseText,
+          unit: unitText
+        }
+      },
+      () => {
+        studyButton.innerText = "✅ Added!";
+        studyButton.style.background = "#059669";
+
+        setTimeout(() => {
+          document
+            .querySelectorAll(".annotated")
+            .forEach(el => el.classList.remove("show-tooltip", "tooltip-below"));
+        }, 800);
+      }
+    );
+
     return;
   }
 
-  const annotated = target.closest('.annotated');
+  // Handle pronunciation buttons before checking for the parent annotation.
+  const speakButton = target.closest(".speak-btn");
+
+  if (speakButton) {
+    event.stopPropagation();
+
+    const textToPronounce = speakButton.getAttribute("data-text") || "";
+    const utterance = new SpeechSynthesisUtterance(textToPronounce);
+    utterance.lang = "cy-GB";
+    window.speechSynthesis.speak(utterance);
+
+    return;
+  }
+
+  // Now handle clicks on the annotation itself.
+  const annotated = target.closest(".annotated");
 
   if (annotated) {
     handleToggle(event, annotated);
     return;
   }
 
-if (target.classList.contains('study-btn')) {
-    event.stopPropagation();
-    
-    const word = target.getAttribute('data-word') || "";
-    const param = target.getAttribute('data-param') || "";
-    
-let rootText = word;
-let definitionText = param;
-let courseText = "";
-let unitText = "";
-
-try {
-  if (
-    param.startsWith("%7B") ||
-    param.startsWith("{") ||
-    param.includes("%")
-  ) {
-    const decodedData = JSON.parse(
-      decodeURIComponent(param)
-    );
-
-    rootText = decodedData.root || word;
-    definitionText = decodedData.def || "";
-    courseText = decodedData.course || "";
-    unitText = decodedData.unit || "";
-  }
-} catch (error) {
-  console.log("Parsing plain text fallback template string instead.");
-  definitionText = param;
-}
-
-    if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
-chrome.runtime.sendMessage({
-  action: "SAVE_VOCAB_WORD",
-  payload: {
-    word: word,
-    root: rootText,
-    def: definitionText,
-    course: courseText,
-    unit: unitText
-  }
-}, response => {
-        target.innerText = "✅ Added!";
-        target.style.background = "#059669";
-        
-        setTimeout(() => {
-          document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-        }, 800);
-      });
+  // Clicking elsewhere closes open tooltips.
+  document
+    .querySelectorAll(".annotated")
+    .forEach(el => el.classList.remove("show-tooltip", "tooltip-below"));
+});
     }
     return; // 🌟 FIXED: Cleanly ends the study-btn logic pass safely!
   }
