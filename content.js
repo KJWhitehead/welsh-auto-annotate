@@ -719,6 +719,40 @@ speakerWidget.style.cssText = `
     }
   }
 });
+
+function positionTooltip(el) {
+  const tooltip = el.querySelector(".tooltip");
+  if (!tooltip) return;
+
+  // Reset to the normal above-the-word position.
+  el.classList.remove("tooltip-below");
+
+  const wordRect = el.getBoundingClientRect();
+  const tooltipHeight = tooltip.getBoundingClientRect().height || 180;
+  const gap = 12;
+
+  // Move below the word if there is not enough room above it.
+  if (wordRect.top < tooltipHeight + gap) {
+    el.classList.add("tooltip-below");
+  }
+}
+
+function handleToggle(event, el) {
+  event.stopPropagation();
+
+  const isOpen = el.classList.contains("show-tooltip");
+
+  document.querySelectorAll(".annotated").forEach(item => {
+    item.classList.remove("show-tooltip", "tooltip-below");
+  });
+
+  if (!isOpen) {
+    el.classList.add("show-tooltip");
+
+    // The tooltip is visible now, so its height can be measured.
+    positionTooltip(el);
+  }
+}
 // 3. EXTENSION CLICK INTERACTION DELEGATION
 document.addEventListener('click', (event) => {
   const target = event.target;
@@ -726,12 +760,22 @@ document.addEventListener('click', (event) => {
     if (!(target instanceof Element)) {
     return;
   }
-  // Handle toggling tooltips on live pages safely
-  if (target.classList.contains('annotated')) {
-    event.stopPropagation();
-    const isOpen = target.classList.contains('show-tooltip');
-    document.querySelectorAll('.annotated').forEach(el => el.classList.remove('show-tooltip'));
-    if (!isOpen) target.classList.add('show-tooltip');
+  if (!(target instanceof Element)) {
+    return;
+  }
+
+  // Do not toggle the annotation when clicking controls inside it.
+  if (
+    target.closest('.study-btn') ||
+    target.closest('.speak-btn')
+  ) {
+    return;
+  }
+
+  const annotated = target.closest('.annotated');
+
+  if (annotated) {
+    handleToggle(event, annotated);
     return;
   }
 
