@@ -632,7 +632,7 @@ const packedData = {
     </span>
   `;
 }).join("");
-}
+
 
 // =======================================================
 // 2. EXTENSION RECEIVER PIPELINE (Sentence boundary scanner)
