@@ -600,7 +600,8 @@ const packedData = {
       </span>
     `;
   }).join("");
-
+}).join("");
+  }
   const audioButton = `
     <button
       class="speak-btn"
