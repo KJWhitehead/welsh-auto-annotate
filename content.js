@@ -4,10 +4,10 @@ function collectMatches(word, glossary = {}) {
     return [];
   }
 
-  let w = word
-    .toLocaleLowerCase("cy")
-    .replace(/^[^\p{L}'’]+|[^\p{L}'’]+$/gu, "")
-    .trim();
+let w = word
+  .toLocaleLowerCase("cy")
+  .replace(/^[^A-Za-zÀ-ÖØ-öø-ÿ'’]+|[^A-Za-zÀ-ÖØ-öø-ÿ'’]+$/g, "")
+  .trim();
 
   if (!w) return [];
 
@@ -386,26 +386,30 @@ function annotate(text, glossary) {
       phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")
     );
 
-    const phraseRegex = new RegExp(
-      `(?<=^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])` +
-      `(${escapedPhrases.join("|")})` +
-      `(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`,
-      "gi"
+  const phraseRegex = new RegExp(
+  `(^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])` +
+  `(${escapedPhrases.join("|")})` +
+  `(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`,
+  "gi"
+);
+
+processedText = processedText.replace(
+  phraseRegex,
+  (match, boundary, phraseMatch) => {
+    const glossaryKey = phraseLookup[phraseMatch.toLowerCase()];
+    const d = glossary[glossaryKey];
+
+    const txt = d && typeof d === "object" ? d.definition : d;
+    const c = d && d.course ? d.course : "";
+    const u = d && d.unit ? d.unit : "";
+
+    return (
+      `${boundary}___PHRASE_START___${phraseMatch}` +
+      `___PHRASE_DIVIDER___${txt}|||${c}|||${u}` +
+      `___PHRASE_END___`
     );
-
-    processedText = processedText.replace(phraseRegex, match => {
-      const glossaryKey = phraseLookup[match.toLowerCase()];
-      const d = glossary[glossaryKey];
-
-      const txt = d && typeof d === "object" ? d.definition : d;
-      const c = d && d.course ? d.course : "";
-      const u = d && d.unit ? d.unit : "";
-
-      return `___PHRASE_START___${match}` +
-        `___PHRASE_DIVIDER___${txt}|||${c}|||${u}` +
-        `___PHRASE_END___`;
-    });
   }
+);
 
   const tokens = processedText.split(
     /(___PHRASE_START___.*?___PHRASE_END___)/g
