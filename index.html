@@ -311,10 +311,9 @@ function collectMatches(word, glossary) {
       if (/^[aeiouwŷâêîôû]/i.test(vowelRoot)) checkAndAdd(vowelRoot);
     }
   }
- // FIXED: Only trigger standard mutation sweeps if it wasn't intercepted as a suffix word!
-  if (!isAdjSuffix) {
-    scanMutations(w);
-  }
+// Always check mutations, including words ending in -ed.
+// The adjective suffix logic below still handles -ed as equative.
+scanMutations(w);
 
   // 3. VERB STEM SUFFIX STRIPPER
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
