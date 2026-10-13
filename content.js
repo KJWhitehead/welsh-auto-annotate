@@ -724,15 +724,32 @@ function positionTooltip(el) {
   const tooltip = el.querySelector(".tooltip");
   if (!tooltip) return;
 
-  el.classList.remove("tooltip-below");
-
   const wordRect = el.getBoundingClientRect();
-  const tooltipRect = tooltip.getBoundingClientRect();
+
+  // Clear any previous inline positioning.
+  tooltip.style.removeProperty("top");
+  tooltip.style.removeProperty("bottom");
+  tooltip.style.removeProperty("left");
+  tooltip.style.removeProperty("transform");
+
+  // Make the tooltip measurable.
+  el.classList.add("show-tooltip");
+
+  const tooltipHeight = tooltip.getBoundingClientRect().height;
   const gap = 12;
 
-  if (wordRect.top < tooltipRect.height + gap) {
-    el.classList.add("tooltip-below");
+  const shouldShowBelow = wordRect.top < tooltipHeight + gap;
+
+  if (shouldShowBelow) {
+    tooltip.style.setProperty("top", `calc(100% + ${gap}px)`, "important");
+    tooltip.style.setProperty("bottom", "auto", "important");
+  } else {
+    tooltip.style.setProperty("top", "auto", "important");
+    tooltip.style.setProperty("bottom", `calc(100% + ${gap}px)`, "important");
   }
+
+  tooltip.style.setProperty("left", "50%", "important");
+  tooltip.style.setProperty("transform", "translateX(-50%)", "important");
 }
 
 function handleToggle(event, el) {
@@ -742,6 +759,14 @@ function handleToggle(event, el) {
 
   document.querySelectorAll(".annotated").forEach(item => {
     item.classList.remove("show-tooltip", "tooltip-below");
+
+    const oldTooltip = item.querySelector(".tooltip");
+    if (oldTooltip) {
+      oldTooltip.style.removeProperty("top");
+      oldTooltip.style.removeProperty("bottom");
+      oldTooltip.style.removeProperty("left");
+      oldTooltip.style.removeProperty("transform");
+    }
   });
 
   if (!isOpen) {
