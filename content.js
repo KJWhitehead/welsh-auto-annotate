@@ -14,12 +14,7 @@ let w = word
 // 1. WELSH CONTRACTION SPLITTER
   if (!glossary[w]) {
     // ─── 🛠️ FIXED PORT: FRONT PREPOSITION CONTRACTION STRIPPER ─────
-    if (w === "o'i" || w === "o’i") {
-      w = "o";
-    } else if (w === "a'i" || w === "a’i") {
-      w = "a";
-    // ────────────────────────────────────────────────────────────────
-    } else if (w.endsWith("'ch") || w.endsWith("’ch")) {
+if (w.endsWith("'ch") || w.endsWith("’ch")) {
       w = w.slice(0, -3);
     } else if (
       w.endsWith("'r") || w.endsWith("’r") ||
@@ -27,7 +22,6 @@ let w = word
     ) {
       w = w.slice(0, -2);
     }
-  }
 
     // 2. WELSH VOWEL-LINK STRIPPER
     if (!glossary[w]) {
@@ -523,7 +517,7 @@ if (token.startsWith("___PHRASE_START___")) {
 
     // B. TRACK INDIVIDUAL SINGLE WORDS
     // 🛠️ FIXED: Captures single-letter pronoun contractions like "o'i" and "a'i" cleanly!
-    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’\-][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*|['’][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
+   const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
     return words.map(word => {
       const matches = collectMatches(word, glossary) || [];
 
