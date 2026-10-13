@@ -152,10 +152,7 @@ function collectMatches(word, glossary) {
     }
   }
 
-  // Only run the standard mutation sweep for non-adjective forms.
-  if (!isAdjSuffix) {
-    scanMutations(w);
-  }
+ scanMutations(w);
 
   // 3. VERB STEM SUFFIX STRIPPER
   const verbSuffixes = [
