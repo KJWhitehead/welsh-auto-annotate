@@ -259,36 +259,25 @@ function collectMatches(word, glossary) {
         
   let foundKeys = new Set();
 
-  function checkAndAdd(candidate) {
-    // 🛠️ THE COMPREHENSIVE BUG FIX:
-    // This express lane catches whole verbs (like "defnyddio") AND superlative adjectives 
-    // (like "cyntaf") instantly before suffix strippers can damage or skip them!
+  // 🛠️ UNIFIED: Pushes uniform JSON string objects so JSON.parse never crashes!
+  function checkAndAdd(candidate, formType = "") {
     if (glossary[candidate]) {
-      foundKeys.add(candidate);
+      foundKeys.add(JSON.stringify({ root: candidate, form: formType }));
     }
-    
-    // Your existing dropped-f spoken fallback checker continues safely below:
     if (/[aeiouwŷâêîôû]$/i.test(candidate)) {
       const candidateWithF = candidate + "f";
-      if (glossary[candidateWithF]) foundKeys.add(candidateWithF);
+      if (glossary[candidateWithF]) {
+        foundKeys.add(JSON.stringify({ root: candidateWithF, form: formType }));
+      }
     }
   }
 
-// Checks if the word token ends with one of your active suffixes
+  // 🛠️ DIRECT PASS FIRST: Run the root check on the base word immediately.
+  // This lets whole verbs ending in -ed (like clywed) match before suffixes can trap them!
+  checkAndAdd(w);
+
+  // Checks if the word token ends with one of your active suffixes
   const isAdjSuffix = ["ach", "af", "a", "ed"].some(suffix => w.endsWith(suffix) && w.length > suffix.length);
-
-  // ─── 🛠️ THE COMPREHENSIVE BUG FIX: ROOT DIRECT PASS ────────────────
-  // Check the whole, unmodified word in the glossary FIRST. If it's a real 
-  // standalone dictionary word (like "cyntaf"), log it instantly and bypass the suffix trap!
-  if (glossary[w]) {
-    checkAndAdd(w);
-  }
-
-  // Only run the rest of the direct base pass if this is NOT a word with an adjective suffix!
-  if (!isAdjSuffix) {
-    checkAndAdd(w);
-  }
-
   function scanMutations(candidate) {
     // Soft Mutations
     const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
