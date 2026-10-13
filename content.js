@@ -757,25 +757,34 @@ function handleToggle(event, el) {
 
   const isOpen = el.classList.contains("show-tooltip");
 
-  document.querySelectorAll(".annotated").forEach(item => {
-    item.classList.remove("show-tooltip", "tooltip-below");
+  if (isOpen) {
+    el.classList.remove("show-tooltip");
+    return;
+  }
 
-    const oldTooltip = item.querySelector(".tooltip");
-    if (oldTooltip) {
-      oldTooltip.style.removeProperty("top");
-      oldTooltip.style.removeProperty("bottom");
-      oldTooltip.style.removeProperty("left");
-      oldTooltip.style.removeProperty("transform");
+  openTooltip(el);
+}
+
+function openTooltip(el) {
+  document.querySelectorAll(".annotated").forEach(item => {
+    if (item !== el) {
+      item.classList.remove("show-tooltip");
+
+      const oldTooltip = item.querySelector(".tooltip");
+      if (oldTooltip) {
+        oldTooltip.style.removeProperty("top");
+        oldTooltip.style.removeProperty("bottom");
+        oldTooltip.style.removeProperty("left");
+        oldTooltip.style.removeProperty("transform");
+      }
     }
   });
 
-  if (!isOpen) {
-    el.classList.add("show-tooltip");
+  el.classList.add("show-tooltip");
 
-    requestAnimationFrame(() => {
-      positionTooltip(el);
-    });
-  }
+  requestAnimationFrame(() => {
+    positionTooltip(el);
+  });
 }
 
 // 3. EXTENSION CLICK INTERACTION DELEGATION
@@ -905,7 +914,47 @@ document.addEventListener("click", event => {
     el.classList.remove("show-tooltip", "tooltip-below");
   });
 });
+document.addEventListener("pointerover", event => {
+  const target = event.target;
 
+  if (!(target instanceof Element)) {
+    return;
+  }
+
+  const annotated = target.closest(".annotated");
+
+  if (!annotated) {
+    return;
+  }
+
+  // Do not repeatedly reopen while moving inside the tooltip.
+  if (event.relatedTarget instanceof Node && annotated.contains(event.relatedTarget)) {
+    return;
+  }
+
+  openTooltip(annotated);
+});
+
+document.addEventListener("pointerout", event => {
+  const target = event.target;
+
+  if (!(target instanceof Element)) {
+    return;
+  }
+
+  const annotated = target.closest(".annotated");
+
+  if (!annotated) {
+    return;
+  }
+
+  // Keep the tooltip open when moving from the word into its tooltip.
+  if (event.relatedTarget instanceof Node && annotated.contains(event.relatedTarget)) {
+    return;
+  }
+
+  annotated.classList.remove("show-tooltip");
+});
 
 // 🛠️ FIXED: Moved outside the event listener block to maintain standard scoping boundaries cleanly
 function triggerVisualSuccessFeedback(targetButton) {
