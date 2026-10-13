@@ -312,10 +312,13 @@ function collectMatches(word, glossary) {
     }
   }
 
-  // FIXED: Only trigger standard mutation sweeps if it wasn't intercepted as a suffix word!
-  if (!isAdjSuffix) {
-    scanMutations(w);
-  }
+   // ─── 🛠️ FIXED: UNCONDITIONAL MUTATION SCANNER ────────────────────────
+  // Always run the base mutation check immediately on the cleaned word token.
+  // This ensures words ending in -ed (like glywed) reverse their g → c mutation natively!
+  scanMutations(w);
+
+  // Checks if the word token ends with one of your active adjective suffixes
+  const isAdjSuffix = ["ach", "af", "a", "ed"].some(suffix => w.endsWith(suffix) && w.length > suffix.length);
 
   // 3. VERB STEM SUFFIX STRIPPER
   const verbSuffixes = ["odd", "ais", "es", "aeth", "on", "och", "asant", "wch", "a"];
@@ -333,12 +336,14 @@ function collectMatches(word, glossary) {
       }
     }
   }
-// 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
+
+  // 4. FIXED LOCATION: ADJECTIVE COMPARATIVE / SUPERLATIVE Suffix Stripper
   const adjSuffixes = { "ach": "comparative", "af": "superlative", "a": "superlative", "ed": "equative" };
   for (const [suffix, formType] of Object.entries(adjSuffixes)) {
     if (w.endsWith(suffix) && w.length > suffix.length) {
       const nakedStem = w.slice(0, -suffix.length);
       
+      // Declares the inner helper natively within the block loop constraints
       function checkAddWithForm(candidate) {
         if (glossary[candidate]) {
           foundKeys.add(JSON.stringify({ root: candidate, form: formType }));
@@ -355,20 +360,20 @@ function collectMatches(word, glossary) {
       // Check standard mutations with the form tag attached
       checkAddWithForm(nakedStem);
       
-      // Re-map scanMutations to use our form tracker inside this loop block
-      const soft = { "g": ["c"], "b": ["p"], "d": ["t"], "f": ["b", "m"], "dd": ["d"], "l": ["ll"], "r": ["rh"] };
-      for (const m in soft) if (nakedStem.startsWith(m)) soft[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
+      // Reverses standard soft/nasal/aspirate modifications on the stripped base stem
+      function scanMutationsWithForm(candidate) {
+        if (soft[candidate]) {
+          soft[candidate].forEach(rep => checkAddWithForm(rep + candidate.slice(1)));
+        }
+        if (nasal[candidate]) {
+          nasal[candidate].forEach(rep => checkAddWithForm(rep + candidate.slice(1)));
+        }
+        if (aspirate[candidate]) {
+          aspirate[candidate].forEach(rep => checkAddWithForm(rep + candidate.slice(1)));
+        }
+      }
       
-      const nasal = { "ngh": ["c"], "mh": ["p"], "nh": ["t"], "ng": ["g"], "m": ["b"], "n": ["d"] };
-      for (const m in nasal) if (nakedStem.startsWith(m)) nasal[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
-      
-      const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
-      for (const m in aspirate) if (nakedStem.startsWith(m)) aspirate[m].forEach(t => checkAddWithForm(nakedStem.replace(new RegExp("^" + m), t)));
-
-      // Harden stem reversals (e.g., teca -> tec -> teg)
-      if (nakedStem.endsWith("c")) { const s = nakedStem.slice(0, -1) + "g"; checkAddWithForm(s); }
-      if (nakedStem.endsWith("t")) { const s = nakedStem.slice(0, -1) + "d"; checkAddWithForm(s); }
-      if (nakedStem.endsWith("p")) { const s = nakedStem.slice(0, -1) + "b"; checkAddWithForm(s); }
+      scanMutationsWithForm(nakedStem);
     }
   }
  // --- FIXED: FINAL DE-DUPLICATION FILTER GATE ---
