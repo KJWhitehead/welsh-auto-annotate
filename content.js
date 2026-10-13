@@ -1,6 +1,9 @@
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
-function collectMatches(word, glossary) {
-  // Preserve straight and curly apostrophes during word cleanup.
+function collectMatches(word, glossary = {}) {
+  if (typeof word !== "string") {
+    return [];
+  }
+
   let w = word
     .toLocaleLowerCase("cy")
     .replace(/^[^\p{L}'’]+|[^\p{L}'’]+$/gu, "")
