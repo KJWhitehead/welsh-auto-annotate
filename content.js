@@ -8,19 +8,23 @@ function collectMatches(word, glossary) {
 
   if (!w) return [];
 
-  // 1. WELSH CONTRACTION SPLITTER
-  // Only split contractions when the complete word is not already present.
+// 1. WELSH CONTRACTION SPLITTER
   if (!glossary[w]) {
-    if (w.endsWith("'ch") || w.endsWith("’ch")) {
+    // ─── 🛠️ FIXED PORT: FRONT PREPOSITION CONTRACTION STRIPPER ─────
+    if (w === "o'i" || w === "o’i") {
+      w = "o";
+    } else if (w === "a'i" || w === "a’i") {
+      w = "a";
+    // ────────────────────────────────────────────────────────────────
+    } else if (w.endsWith("'ch") || w.endsWith("’ch")) {
       w = w.slice(0, -3);
     } else if (
-      w.endsWith("'r") ||
-      w.endsWith("’r") ||
-      w.endsWith("'n") ||
-      w.endsWith("’n")
+      w.endsWith("'r") || w.endsWith("’r") ||
+      w.endsWith("'n") || w.endsWith("’n")
     ) {
       w = w.slice(0, -2);
     }
+  }
 
     // 2. WELSH VOWEL-LINK STRIPPER
     if (!glossary[w]) {
@@ -510,9 +514,11 @@ if (token.startsWith("___PHRASE_START___")) {
   `;
 }
 
-const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
+    // B. TRACK INDIVIDUAL SINGLE WORDS
+    // 🛠️ FIXED: Captures single-letter pronoun contractions like "o'i" and "a'i" cleanly!
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’\-][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*|['’][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
     return words.map(word => {
-  const matches = collectMatches(word, glossary) || [];
+      const matches = collectMatches(word, glossary) || [];
 
   if (matches.length === 0) {
     return word;
