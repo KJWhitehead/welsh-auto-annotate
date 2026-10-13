@@ -226,22 +226,30 @@ if (useUwch1) mergeSource(window.uwch1Glossary);
         
 // --- AUTO-COLLECT MULTIPLE MATCHES & MUTATIONS ---
 function collectMatches(word, glossary) {
-  // FIXED: Explicitly preserves straight and curly apostrophes during word cleanup!
+  // 🌟 FULLY RETAINED: Your absolute base variable cleanup layer stays exactly as it is!
   let w = word.toLowerCase().replace(/^[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+|[^\w\u00C0-\u017F\u1E00-\u1EFF'’]+$/g, "").trim();
   if (!w) return [];
 
-// 1. WELSH CONTRACTION SPLITTER
-if (!glossary[w]) {
-
-if (w.endsWith("'ch") || w.endsWith("’ch")) {
-w = w.slice(0, -3);
-} else if (
-w.endsWith("'r") || w.endsWith("’r") ||
-w.endsWith("'n") || w.endsWith("’n")
-) {
-w = w.slice(0, -2);
-}
-}
+  // 1. WELSH CONTRACTION SPLITTER
+  if (!glossary[w]) {
+    // ─── 🛠️ NEW: FRONT PREPOSITION CONTRACTION STRIPPER (Fixes "o'i" / "a'i") ─────
+    // If the cleaned token is exactly "o'i" or "a'i", strip the possessive pronoun 
+    // contraction away so the base preposition maps to your glossary entries instantly!
+    if (w === "o'i" || w === "o’i") {
+      w = "o";
+    } else if (w === "a'i" || w === "a’i") {
+      w = "a";
+    }
+    // Your existing trailing pronoun contraction checks continue safely below:
+    else if (w.endsWith("'ch") || w.endsWith("’ch")) {
+      w = w.slice(0, -3);
+    } else if (
+      w.endsWith("'r") || w.endsWith("’r") ||
+      w.endsWith("'n") || w.endsWith("’n")
+    ) {
+      w = w.slice(0, -2);
+    }
+  }
 
   // 2. WELSH VOWEL-LINK STRIPPER
   if (!glossary[w]) {
@@ -460,8 +468,8 @@ function annotate(text, glossary) {
     // B. TRACK INDIVIDUAL SINGLE WORDS
     // 🛠️ FIXED: Added "\-"  curly and straight apostrophes!
     // This stops the regex engine from breaking hyphenated words like "pen-blwydd" apart!
-    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’\-][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*)/g);
-return words.map(word => {
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’\-][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*|['’][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
+    return words.map(word => {
   const matches = collectMatches(word, glossary) || [];
 
   if (matches.length === 0) {
