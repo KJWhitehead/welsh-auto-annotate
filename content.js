@@ -438,15 +438,15 @@ function annotate(text, glossary) {
       const safeCourse = escapeHtml(courseText);
       const safeUnit = escapeHtml(unitText);
 
+      let curriculumText = "";
+      if (safeCourse || safeUnit) {
+        curriculumText = " [" + safeCourse + (safeUnit ? " • " + safeUnit : "") + "]";
+      }
+
       const tooltipHtml = `
         <span class="tooltip-branch">
           <span class="tooltip-label">(${safePhraseText}):</span>
-          ${safeDefinition}
-          ${
-            safeCourse || safeUnit 
-              ? ` [safeCourse{safeUnit ? ` • ${safeUnit}` : ""}]` 
-              : ""
-          }
+          ${safeDefinition}${curriculumText}
         </span>
       `;
 
