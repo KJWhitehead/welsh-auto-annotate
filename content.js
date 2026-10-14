@@ -442,7 +442,11 @@ function annotate(text, glossary) {
         <span class="tooltip-branch">
           <span class="tooltip-label">(${safePhraseText}):</span>
           ${safeDefinition}
-          ${safeCourse || safeUnit ? ` [safeCourse{safeUnit ? ` • ${safeUnit}` : ""}]` : ""}
+          ${
+            safeCourse || safeUnit 
+              ? ` [safeCourse{safeUnit ? ` • ${safeUnit}` : ""}]` 
+              : ""
+          }
         </span>
       `;
 
