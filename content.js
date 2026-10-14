@@ -363,7 +363,9 @@ function escapeHtml(value) {
     .replace(/'/g, "&#039;");
 }
 
-// 1. MASTER ANNOTATION ENGINE (Matches your verified index.html logic)
+// =======================================================
+// 1. MASTER ANNOTATION ENGINE
+// =======================================================
 function annotate(text, glossary) {
   const phrases = Object.keys(glossary)
     .filter(k => k.includes(" "))
@@ -377,266 +379,184 @@ function annotate(text, glossary) {
     );
 
     const escapedPhrases = phrases.map(phrase =>
-      phrase.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&")
+      phrase.replace(/[-\/\\^\$*+?.()|[\]{}]/g, "\\$&")
     );
 
-  const phraseRegex = new RegExp(
-  `(^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])` +
-  `(${escapedPhrases.join("|")})` +
-  `(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`,
-  "gi"
-);
+    const phraseRegex = new RegExp(
+      `(^|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])` +
+      `(${escapedPhrases.join("|")})` +
+      `(?=$|[^a-zA-Z\\u00C0-\\u017F\\u1E00-\\u1EFF])`,
+      "gi"
+    );
 
-processedText = processedText.replace(
-  phraseRegex,
-  (match, boundary, phraseMatch) => {
-    const glossaryKey = phraseLookup[phraseMatch.toLowerCase()];
-    const d = glossary[glossaryKey];
+    processedText = processedText.replace(
+      phraseRegex,
+      (match, boundary, phraseMatch) => {
+        const glossaryKey = phraseLookup[phraseMatch.toLowerCase()];
+        const d = glossary[glossaryKey];
 
-    const txt = d && typeof d === "object" ? d.definition : d;
-    const c = d && d.course ? d.course : "";
-    const u = d && d.unit ? d.unit : "";
+        const txt = d && typeof d === "object" ? d.definition : d;
+        const c = d && d.course ? d.course : "";
+        const u = d && d.unit ? d.unit : "";
 
-    return (
-      `${boundary}___PHRASE_START___${phraseMatch}` +
-      `___PHRASE_DIVIDER___${txt}|||${c}|||${u}` +
-      `___PHRASE_END___`
+        return (
+          `${boundary}___PHRASE_START___${phraseMatch}` +
+          `___PHRASE_DIVIDER___${txt}|||${c}|||${u}` +
+          `___PHRASE_END___`
+        );
+      }
     );
   }
-);
 
   const tokens = processedText.split(
     /(___PHRASE_START___.*?___PHRASE_END___)/g
   );
 
   return tokens.map(token => {
-if (token.startsWith("___PHRASE_START___")) {
-  const phraseStart = "___PHRASE_START___";
-  const phraseDivider = "___PHRASE_DIVIDER___";
-  const phraseEnd = "___PHRASE_END___";
+    // TRACK A: MULTI-WORD PHRASES
+    if (token.startsWith("___PHRASE_START___")) {
+      const phraseStart = "___PHRASE_START___";
+      const phraseDivider = "___PHRASE_DIVIDER___";
+      const phraseEnd = "___PHRASE_END___";
 
-  const content = token
-    .slice(phraseStart.length)
-    .replace(new RegExp(`${phraseEnd}$`), "");
+      const content = token
+        .slice(phraseStart.length)
+        .replace(new RegExp(`${phraseEnd}$`), "");
 
-  const dividerIndex = content.indexOf(phraseDivider);
-
-  if (dividerIndex === -1) {
-    return token;
-  }
-
-  const phraseText = content.slice(0, dividerIndex);
-  const metadata = content.slice(
-    dividerIndex + phraseDivider.length
-  );
-
-  // The metadata format is:
-  // definition|||course|||unit
-  const [definitionText = "", courseText = "", unitText = ""] =
-    metadata.split("|||");
-
-  const safePhraseText = escapeHtml(phraseText);
-  const safeDefinition = escapeHtml(definitionText);
-  const safeCourse = escapeHtml(courseText);
-  const safeUnit = escapeHtml(unitText);
-
-  const tooltipHtml = `
-    <span class="tooltip-branch">
-      <span class="tooltip-label">(${safePhraseText}):</span>
-      ${safeDefinition}
-      ${
-        safeCourse || safeUnit
-          ? ` [${safeCourse}${safeUnit ? ` • ${safeUnit}` : ""}]`
-          : ""
+      const dividerIndex = content.indexOf(phraseDivider);
+      if (dividerIndex === -1) {
+        return token;
       }
-    </span>
-  `;
 
-  const rawDef =
-    glossary[phraseText] ||
-    glossary[phraseText.toLowerCase()] ||
-    definitionText;
+      const phraseText = content.slice(0, dividerIndex);
+      const metadata = content.slice(dividerIndex + phraseDivider.length);
 
-  const definitionForStudy =
-    rawDef && typeof rawDef === "object"
-      ? rawDef.definition
-      : rawDef;
+      const [definitionText = "", courseText = "", unitText = ""] = metadata.split("|||");
 
-  const studyCourse =
-    rawDef && typeof rawDef === "object" && rawDef.course
-      ? rawDef.course
-      : courseText;
+      const safePhraseText = escapeHtml(phraseText);
+      const safeDefinition = escapeHtml(definitionText);
+      const safeCourse = escapeHtml(courseText);
+      const safeUnit = escapeHtml(unitText);
 
-  const studyUnit =
-    rawDef && typeof rawDef === "object" && rawDef.unit
-      ? rawDef.unit
-      : unitText;
+      const tooltipHtml = `
+        <span class="tooltip-branch">
+          <span class="tooltip-label">(${safePhraseText}):</span>
+          ${safeDefinition}
+          ${safeCourse || safeUnit ? ` [safeCourse{safeUnit ? ` • ${safeUnit}` : ""}]` : ""}
+        </span>
+      `;
 
-  const cleanParam = encodeURIComponent(
-    JSON.stringify({
-  word: phraseText,
-  root: phraseText,
-  def: definitionForStudy,
-  course: studyCourse,
-  unit: studyUnit
-})
-  );
+      const rawDef = glossary[phraseText] || glossary[phraseText.toLowerCase()] || definitionText;
+      const definitionForStudy = rawDef && typeof rawDef === "object" ? rawDef.definition : rawDef;
+      const studyCourse = rawDef && typeof rawDef === "object" && rawDef.course ? rawDef.course : courseText;
+      const studyUnit = rawDef && typeof rawDef === "object" && rawDef.unit ? rawDef.unit : unitText;
 
-  const btn = `
-    <button
-      class="study-btn"
-      data-word="${safePhraseText}"
-      data-param="${cleanParam}"
-      style="
-        display: block;
-        width: 100%;
-        margin-top: 8px;
-        padding: 4px;
-        font-size: 11px;
-        background: #10b981;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      "
-    >
-      Add to study list
-    </button>
-  `;
+      const cleanParam = encodeURIComponent(
+        JSON.stringify({
+          word: phraseText,
+          root: phraseText,
+          def: definitionForStudy,
+          course: studyCourse,
+          unit: studyUnit
+        })
+      );
 
-  return `
-    <span class="annotated">
-      ${safePhraseText}
-      <span class="tooltip">
-        ${tooltipHtml}
-        ${btn}
-      </span>
-    </span>
-  `;
-}
+      const btn = `
+        <button
+          class="study-btn"
+          data-word="${safePhraseText}"
+          data-param="${cleanParam}"
+          style="display: block; width: 100%; margin-top: 8px; padding: 4px; font-size: 11px; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer;"
+        >
+          Add to study list
+        </button>
+      `;
 
-    // B. TRACK INDIVIDUAL SINGLE WORDS
-    // 🛠️ FIXED: Captures single-letter pronoun contractions like "o'i" and "a'i" cleanly!
-   const words = token.split(/(\p{L}+(?:['’\-]\p{L}+)*)/gu);
+      return `
+        <span class="annotated">
+          ${safePhraseText}
+          <span class="tooltip">
+            ${tooltipHtml}
+            ${btn}
+          </span>
+        </span>
+      `;
+    }
+
+    // TRACK B: INDIVIDUAL SINGLE WORDS
+    // 🛠️ REPAIRED REGEX: Explicitly targets single-letter prepositions with apostrophes seamlessly!
+    const words = token.split(/([a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+(?:['’\-][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)*|['’][a-zA-Z\u00C0-\u017F\u1E00-\u1EFF]+)/g);
     return words.map(word => {
       const matches = collectMatches(word, glossary) || [];
+      if (matches.length === 0) {
+        return word;
+      }
 
-  if (matches.length === 0) {
-    return word;
-  }
+      const safeWord = escapeHtml(word);
 
-  const safeWord = escapeHtml(word);
+      const tooltipHtml = matches.map(match => {
+        const definition = match.definition;
+        const definitionText = definition && typeof definition === "object" ? definition.definition : definition;
+        const course = definition && typeof definition === "object" ? definition.course || "" : "";
+        const unit = definition && typeof definition === "object" ? definition.unit || "" : "";
 
-  const tooltipHtml = matches.map(match => {
-    const definition = match.definition;
-    const definitionText =
-      definition && typeof definition === "object"
-        ? definition.definition
-        : definition;
+        const safeRoot = escapeHtml(match.root);
+        const safeDefinition = escapeHtml(definitionText);
+        const safeForm = escapeHtml(match.form || "");
+        const safeCourse = escapeHtml(course);
+        const safeUnit = escapeHtml(unit);
 
-    const course =
-      definition && typeof definition === "object"
-        ? definition.course || ""
-        : "";
+        const formLabel = match.form ? ` (${safeForm})` : "";
+        const curriculum = course || unit ? ` [${safeCourse}${unit ? ` • \${safeUnit}` : ""}]` : "";
 
-    const unit =
-      definition && typeof definition === "object"
-        ? definition.unit || ""
-        : "";
+        const packedData = {
+          word,
+          root: match.root,
+          def: definitionText || "",
+          course,
+          unit
+        };
 
-    const safeRoot = escapeHtml(match.root);
-    const safeDefinition = escapeHtml(definitionText);
-    const safeForm = escapeHtml(match.form || "");
-    const safeCourse = escapeHtml(course);
-    const safeUnit = escapeHtml(unit);
+        const cleanParam = encodeURIComponent(JSON.stringify(packedData));
 
-    const formLabel = match.form
-      ? ` (${safeForm})`
-      : "";
+        return `
+          <span class="tooltip-branch">
+            <span class="tooltip-label">(${safeRoot}):</span>
+            ${safeDefinition}${formLabel}${curriculum}
+            <button
+              class="study-btn"
+              data-word="${safeWord}"
+              data-param="${cleanParam}"
+              style="display: block; width: 100%; margin-top: 4px; padding: 4px; font-size: 11px; background: #10b981; color: white; border: none; border-radius: 4px; cursor: pointer;"
+            >
+              Add “${safeRoot}” to study list
+            </button>
+          </span>
+        `;
+      }).join("");
 
-    const curriculum = course || unit
-      ? ` [${safeCourse}${unit ? ` • ${safeUnit}` : ""}]`
-      : "";
+      const audioButton = `
+        <button
+          class="speak-btn"
+          data-text="${safeWord}"
+          style="display: block; width: 100%; margin-top: 4px; padding: 4px; font-size: 11px; background: #3b82f6; color: white; border: none; border-radius: 4px; cursor: pointer;"
+        >
+          🔊 Hear word
+        </button>
+      `;
 
-const packedData = {
-  word,
-  root: match.root,
-  def: definitionText || "",
-  course,
-  unit
-};
-
-    const cleanParam = encodeURIComponent(
-      JSON.stringify(packedData)
-    );
-
-    const studyButton = `
-      <button
-        class="study-btn"
-        data-word="${safeWord}"
-        data-param="${cleanParam}"
-        style="
-          display: block;
-          width: 100%;
-          margin-top: 4px;
-          padding: 4px;
-          font-size: 11px;
-          background: #10b981;
-          color: white;
-          border: none;
-          border-radius: 4px;
-          cursor: pointer;
-        "
-      >
-        Add “${safeRoot}” to study list
-      </button>
-    `;
-
-    return `
-      <span class="tooltip-branch">
-        <span class="tooltip-label">(${safeRoot}):</span>
-        ${safeDefinition}${formLabel}${curriculum}
-        ${studyButton}
-      </span>
-    `;
+      return `
+        <span class="annotated">
+          ${safeWord}
+          <span class="tooltip">
+            ${tooltipHtml}
+            ${audioButton}
+          </span>
+        </span>
+      `;
+    }).join("");
   }).join("");
-}).join("");
-  }
-  const audioButton = `
-    <button
-      class="speak-btn"
-      data-text="${safeWord}"
-      style="
-        display: block;
-        width: 100%;
-        margin-top: 4px;
-        padding: 4px;
-        font-size: 11px;
-        background: #3b82f6;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      "
-    >
-      🔊 Hear word
-    </button>
-  `;
-
-  return `
-    <span class="annotated">
-      ${safeWord}
-      <span class="tooltip">
-        ${tooltipHtml}
-        ${audioButton}
-      </span>
-    </span>
-  `;
-  }).join("");
-}).join("");
 }
-
-
 // =======================================================
 // 2. EXTENSION RECEIVER PIPELINE (Sentence boundary scanner)
 // =======================================================
