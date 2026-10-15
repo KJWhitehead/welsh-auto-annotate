@@ -6474,6 +6474,27 @@
   "ynddyn nhw": {
     "definition": "in them (inflected form of yn)"
   },
+    "ynddo": {
+    "definition": "in me (inflected form of yn)"
+  },
+  "ynddot": {
+    "definition": "in you (inflected form of yn)"
+  },
+  "ynddo": {
+    "definition": "in him (inflected form of yn)"
+  },
+  "ynddi": {
+    "definition": "in her/it (inflected form of yn)"
+  },
+  "ynddon": {
+    "definition": "in us (inflected form of yn)"
+  },
+  "ynddoch": {
+    "definition": "in you (inflected form of yn)"
+  },
+  "ynddyn": {
+    "definition": "in them (inflected form of yn)"
+  },
   "ym": {
     "definition": "inflected form of yn before words beginning with M"
   },
@@ -6501,29 +6522,71 @@
   "drostyn nhw": {
     "definition": "for/over them (inflected form of dros)"
   },
+    "drosto": {
+    "definition": "for/over me (inflected form of dros)"
+  },
+  "drostot": {
+    "definition": "for/over you (inflected form of dros)"
+  },
+  "drosto": {
+    "definition": "for/over him (inflected form of dros)"
+  },
+  "drosti": {
+    "definition": "for/over her/it (inflected form of dros)"
+  },
+  "droston": {
+    "definition": "for/over us (inflected form of dros)"
+  },
+  "drostoch": {
+    "definition": "for/over you (inflected form of dros)"
+  },
+  "drostyn": {
+    "definition": "for/over them (inflected form of dros)"
+  },
   "ohono i": {
-    "definition": "from/about me (inflected form of dros)"
+    "definition": "from/about me (inflected form of o)"
   },
   "ohonot ti": {
-    "definition": "from/about you (inflected form of dros)"
+    "definition": "from/about you (inflected form of o)"
   },
   "ohono fe": {
-    "definition": "from/about him (inflected form of dros)"
+    "definition": "from/about him (inflected form of o)"
   },
   "ohono fo": {
-    "definition": "from/about him (inflected form of dros)"
+    "definition": "from/about him (inflected form of o)"
   },
   "ohoni hi": {
-    "definition": "from/about her/it (inflected form of dros)"
+    "definition": "from/about her/it (inflected form of o)"
   },
   "ohonon ni": {
-    "definition": "from/about us (inflected form of dros)"
+    "definition": "from/about us (inflected form of o)"
   },
   "ohonoch chi": {
-    "definition": "from/about you (inflected form of dros)"
+    "definition": "from/about you (inflected form of o)"
   },
   "ohonyn nhw": {
-    "definition": "from/about them (inflected form of dros)"
+    "definition": "from/about them (inflected form of o)"
+  },
+    "ohono": {
+    "definition": "from/about me (inflected form of o)"
+  },
+  "ohonot": {
+    "definition": "from/about you (inflected form of o)"
+  },
+  "ohono": {
+    "definition": "from/about him (inflected form of o)"
+  },
+  "ohoni": {
+    "definition": "from/about her/it (inflected form of o)"
+  },
+  "ohonon": {
+    "definition": "from/about us (inflected form of o)"
+  },
+  "ohonoch": {
+    "definition": "from/about you (inflected form of o)"
+  },
+  "ohonyn": {
+    "definition": "from/about them (inflected form of o)"
   },
   "taw": {
     "definition": "that"
@@ -6552,6 +6615,21 @@
   "ganddyn nhw": {
     "definition": "by/from/with them (inflected form of gan)"
   },
+    "ganddo": {
+    "definition": "by/from/with him (inflected form of gan)"
+  },
+  "ganddi": {
+    "definition": "by/from/with her/it (inflected form of gan)"
+  },
+  "gynnon": {
+    "definition": "by/from/with us (inflected form of gan)"
+  },
+  "gynnoch": {
+    "definition": "by/from/with you (inflected form of gan)"
+  },
+  "ganddyn": {
+    "definition": "by/from/with them (inflected form of gan)"
+  },
   "dana i": {
     "definition": "under me (inflected form of dan)"
   },
@@ -6574,6 +6652,27 @@
     "definition": "under you (inflected form of dan)"
   },
   "danyn nhw": {
+    "definition": "under them (inflected form of dan)"
+  },
+    "dana": {
+    "definition": "under me (inflected form of dan)"
+  },
+  "danat": {
+    "definition": "under you (inflected form of dan)"
+  },
+  "dano": {
+    "definition": "under him (inflected form of dan)"
+  },
+  "dani": {
+    "definition": "under her/it (inflected form of dan)"
+  },
+  "danon": {
+    "definition": "under us (inflected form of dan)"
+  },
+  "danoch": {
+    "definition": "under you (inflected form of dan)"
+  },
+  "danyn": {
     "definition": "under them (inflected form of dan)"
   },
   "drwyddo i": {
@@ -6600,6 +6699,24 @@
   "drwyddyn nhw": {
     "definition": "through they (inflected form of drwy)"
   },
+  "drwyddot": {
+    "definition": "through you (inflected form of drwy)"
+  },
+  "drwyddo": {
+    "definition": "through me; through him (inflected form of drwy)"
+  },
+  "drwyddi": {
+    "definition": "through her (inflected form of drwy)"
+  },
+  "drwyddon": {
+    "definition": "through us (inflected form of drwy)"
+  },
+  "drwyddoch": {
+    "definition": "through you (inflected form of drwy)"
+  },
+  "drwyddyn": {
+    "definition": "through they (inflected form of drwy)"
+  },
   "trwyddo i": {
     "definition": "through me (inflected form of trwy)"
   },
@@ -6622,6 +6739,24 @@
     "definition": "through you (inflected form of trwy)"
   },
   "trwyddyn nhw": {
+    "definition": "through they (inflected form of trwy)"
+  },
+  "trwyddot": {
+    "definition": "through you (inflected form of trwy)"
+  },
+  "trwyddo": {
+    "definition": "through me; through him (inflected form of trwy)"
+  },
+  "trwyddi": {
+    "definition": "through her (inflected form of trwy)"
+  },
+  "trwyddon": {
+    "definition": "through us (inflected form of trwy)"
+  },
+  "trwyddoch": {
+    "definition": "through you (inflected form of trwy)"
+  },
+  "trwyddyn": {
     "definition": "through they (inflected form of trwy)"
   },
   "hebddo i": {
@@ -6648,6 +6783,24 @@
   "hebddyn nhw": {
     "definition": "without them (inflected form of heb)"
   },
+  "hebddot": {
+    "definition": "without you (inflected form of heb)"
+  },
+  "hebddo": {
+    "definition": "without me or without him (inflected form of heb)"
+  },
+  "hebddi": {
+    "definition": "without her/it (inflected form of heb)"
+  },
+  "hebddon": {
+    "definition": "without us (inflected form of heb)"
+  },
+  "hebddoch": {
+    "definition": "without you (inflected form of heb)"
+  },
+  "hebddyn": {
+    "definition": "without them (inflected form of heb)"
+  },
   "rhagddo i": {
     "definition": "before/from/against me (inflected form of rhag)"
   },
@@ -6670,6 +6823,24 @@
     "definition": "before/from/against you (inflected form of rhag)"
   },
   "rhagddyn nhw": {
+    "definition": "before/from/against them (inflected form of rhag)"
+  },
+    "rhagddo": {
+    "definition": "before/from/against me; before/from/against him (inflected form of rhag)"
+  },
+  "rhagddot": {
+    "definition": "before/from/against you (inflected form of rhag)"
+  },
+  "rhagddi": {
+    "definition": "before/from/against her (inflected form of rhag)"
+  },
+  "rhagddon": {
+    "definition": "before/from/against us (inflected form of rhag)"
+  },
+  "rhagddoch": {
+    "definition": "before/from/against you (inflected form of rhag)"
+  },
+  "rhagddyn": {
     "definition": "before/from/against them (inflected form of rhag)"
   },
   "rhyngo i": {
@@ -6696,6 +6867,27 @@
   "rhyngddyn nhw": {
     "definition": "between them (inflected form of rhwng)"
   },
+    "rhyngo": {
+    "definition": "between me (inflected form of rhwng)"
+  },
+  "rhyngot": {
+    "definition": "between you (inflected form of rhwng)"
+  },
+  "rhyngddo": {
+    "definition": "between him (inflected form of rhwng)"
+  },
+  "rhyngddi": {
+    "definition": "between her (inflected form of rhwng)"
+  },
+  "rhyngon": {
+    "definition": "between us (inflected form of rhwng)"
+  },
+  "rhyngoch": {
+    "definition": "between you (inflected form of rhwng)"
+  },
+  "rhyngddyn": {
+    "definition": "between them (inflected form of rhwng)"
+  },
   "mono i": {
     "definition": "ddim o + i (inflected form)"
   },
@@ -6718,6 +6910,24 @@
     "definition": "ddim o + chi (inflected form)"
   },
   "monyn nhw": {
+    "definition": "ddim o + nhw (inflected form)"
+  }
+    "mono": {
+    "definition": "ddim o + i/fe/fo (inflected form)"
+  },
+  "monot": {
+    "definition": "ddim o + ti (inflected form)"
+  },
+  "moni": {
+    "definition": "ddim o + hi (inflected form)"
+  },
+  "monon": {
+    "definition": "ddim o + ni (inflected form)"
+  },
+  "monoch": {
+    "definition": "ddim o + chi (inflected form)"
+  },
+  "monyn": {
     "definition": "ddim o + nhw (inflected form)"
   }
 }
