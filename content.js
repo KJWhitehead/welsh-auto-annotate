@@ -504,14 +504,20 @@ function annotate(text, glossary) {
         const course = definition && typeof definition === "object" ? definition.course || "" : "";
         const unit = definition && typeof definition === "object" ? definition.unit || "" : "";
 
-        const safeRoot = escapeHtml(match.root);
+const safeRoot = escapeHtml(match.root);
         const safeDefinition = escapeHtml(definitionText);
         const safeForm = escapeHtml(match.form || "");
         const safeCourse = escapeHtml(course);
         const safeUnit = escapeHtml(unit);
 
         const formLabel = match.form ? ` (${safeForm})` : "";
-        const curriculum = course || unit ? ` [${safeCourse}${unit ? ` • \${safeUnit}` : ""}]` : "";
+
+        // ─── 🛠️ FIXED: CLEAN SEPARATED CURRICULUM STRING COMBINATION ─────
+        // Removes the nested backtick trap entirely so \${safeUnit} resolves perfectly!
+        let curriculum = "";
+        if (safeCourse || safeUnit) {
+          curriculum = " [" + safeCourse + (safeUnit ? " • " + safeUnit : "") + "]";
+        }
 
         const packedData = {
           word,
