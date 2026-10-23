@@ -371,6 +371,49 @@ const aspirate = { "ch": ["c"], "ph": ["p"], "th": ["t"] };
 
     }
   }
+// --- 5. CONCISE FUTURE SUFFIX STRIPPER (NEW) ---
+// Placed directly after adjective suffixes to resolve the -af / -a overlap safely
+const FUTURE_SUFFIXES = [
+    { suffix: 'ant', person: '3pl', type: 'verb' },
+    { suffix: 'wch', person: '2pl', type: 'verb' },
+    { suffix: 'wn',  person: '1pl', type: 'verb' },
+    { suffix: 'ith', person: '3sg', type: 'verb' },
+    { suffix: 'iff', person: '3sg', type: 'verb' },
+    { suffix: 'an',  person: '3pl', type: 'verb' },
+    { suffix: 'af',  person: '1sg', type: 'verb' }, // Overlaps with adjective superlative
+    { suffix: 'i',   person: '2sg', type: 'verb' },
+    { suffix: 'a',   person: '3sg', type: 'verb' }  // Overlaps with adjective superlative
+];
+
+function stripConciseFuture(word, glossary) {
+    const lowerWord = word.toLowerCase();
+
+    for (const item of FUTURE_SUFFIXES) {
+        if (lowerWord.endsWith(item.suffix) && lowerWord.length > item.suffix.length + 1) {
+            let stem = lowerWord.slice(0, -item.suffix.length);
+
+            // Run through mutation scanner to handle soft-mutated verb stems (e.g., ddysg -> dysg)
+            let unmutatedStem = typeof scanMutations === 'function' ? scanMutations(stem) : stem;
+
+            if (glossary[unmutatedStem]) {
+                // Optional future POS validation guard for overlapping suffixes (-af, -a)
+                const entry = glossary[unmutatedStem];
+                if ((item.suffix === 'af' || item.suffix === 'a') && entry.pos && entry.pos === 'adj') {
+                    continue; // Skip if the root is explicitly an adjective, leaving it to the superlative pass
+                }
+
+                return {
+                    stem: unmutatedStem,
+                    match: entry,
+                    tense: 'future',
+                    person: item.person
+                };
+            }
+        }
+    }
+    return null;
+}
+        
  // --- FIXED: FINAL DE-DUPLICATION FILTER GATE ---
   // Loops through all gathered keys and filters out generic plain roots 
   // if a richer, grammatically tagged version of that same root exists!
