@@ -315,26 +315,70 @@ function collectMatches(word, glossary) {
 // The adjective suffix logic below still handles -ed as equative.
 scanMutations(w);
 
- // --- 3. VERB STEM SUFFIX STRIPPER ---
+ // --- 3. VERB STEM SUFFIX STRIPPER (Preterite & Concise Future) ---
 const verbSuffixes = [
-    // Preterite / Past tense endings
-    "asant", "aeth", "ais", "och", "odd", "es", "on",
-    // Concise Future / Present endings (excluding -af and -a to protect adjective superlatives)
-    "ith", "iff", "ant", "wch", "wn", "an"
+    // --- Concise Future / Present Endings ---
+    { suffix: "ith", label: "Future Tense (3rd Singular)" },
+    { suffix: "iff", label: "Future Tense (3rd Singular)" },
+    { suffix: "ant", label: "Future Tense (3rd Plural)" },
+    { suffix: "wch", label: "Future / Imperative (2nd Plural)" },
+    { suffix: "wn",  label: "Future Tense (1st Plural)" },
+    { suffix: "an",  label: "Future Tense (3rd Plural)" },
+
+    // --- Preterite / Past Tense Endings ---
+    { suffix: "asant", label: "Preterite / Past (3rd Plural)" },
+    { suffix: "aeth",  label: "Preterite / Past (3rd Singular)" },
+    { suffix: "ais",   label: "Preterite / Past (1st Singular)" },
+    { suffix: "och",   label: "Preterite / Past or Imperative (2nd Plural)" },
+    { suffix: "odd",   label: "Preterite / Past (3rd Singular)" },
+    { suffix: "es",    label: "Preterite / Past (1st Singular)" },
+    { suffix: "on",    label: "Preterite / Past (1st Plural)" }
+
+    // Note: "-af" (1st Person Future) and "-a" (3rd Person Singular Future)
+    // are intentionally omitted here to protect adjective superlatives in Stage 4.
 ];
 
-for (const suffix of verbSuffixes) {
-    if (w.endsWith(suffix) && w.length > suffix.length) {
-        const nakedStem = w.slice(0, -suffix.length);
-        checkAndAdd(nakedStem);
-        scanMutations(nakedStem);
+for (const item of verbSuffixes) {
+    if (lowerWord.endsWith(item.suffix) && lowerWord.length > item.suffix.length) {
+        const nakedStem = lowerWord.slice(0, -item.suffix.length);
 
-        // Reconstruct verb-nouns (infinitive forms)
+        // A. Check naked stem match (e.g. consonant-ending verbnouns or base stems like "siarad")
+        if (glossary[nakedStem]) {
+            const matchedItem = {
+                ...glossary[nakedStem],
+                morphology: item.label
+            };
+            if (!results.some(r => r.root === matchedItem.root && r.morphology === matchedItem.morphology)) {
+                results.push(matchedItem);
+            }
+        }
+
+        // B. Reconstruct infinitive verb-nouns (-u, -i, -o, -io, -a, -ed, -d)
         const infinitiveEndings = ["u", "i", "o", "io", "a", "ed", "d"];
         for (const inf of infinitiveEndings) {
             let reconstructedVerb = nakedStem + inf;
-            checkAndAdd(reconstructedVerb);
-            scanMutations(reconstructedVerb);
+
+            if (glossary[reconstructedVerb]) {
+                const matchedItem = {
+                    ...glossary[reconstructedVerb],
+                    morphology: item.label
+                };
+                if (!results.some(r => r.root === matchedItem.root && r.morphology === matchedItem.morphology)) {
+                    results.push(matchedItem);
+                }
+            }
+
+            // Handles initial soft mutations on reconstructed verb-nouns
+            let mutatedVerb = typeof scanMutations === 'function' ? scanMutations(reconstructedVerb) : reconstructedVerb;
+            if (glossary[mutatedVerb]) {
+                const matchedItem = {
+                    ...glossary[mutatedVerb],
+                    morphology: item.label
+                };
+                if (!results.some(r => r.root === matchedItem.root && r.morphology === matchedItem.morphology)) {
+                    results.push(matchedItem);
+                }
+            }
         }
     }
 }
@@ -479,7 +523,7 @@ function annotate(text, glossary) {
       definition && typeof definition === "object"
         ? definition.definition || ""
         : definition || "";
-
+          
     const course =
       definition && typeof definition === "object"
         ? definition.course || ""
@@ -489,6 +533,10 @@ function annotate(text, glossary) {
       definition && typeof definition === "object"
         ? definition.unit || ""
         : "";
+
+        const morphologyLabel = match.morphology
+      ? ` <strong>(${match.morphology})</strong>`
+      : "";
 
     const formLabel = match.form
       ? ` (${match.form})`
