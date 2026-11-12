@@ -142,17 +142,20 @@ uwch1Glossary: 'dictionaries/uwch1.json',
 <div class="study-list-container">
   <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 8px;">
     <h3 style="margin: 0;">My Vocabulary Study List</h3>
-    <button class="btn-danger" style="margin: 0;" onclick="clearStudyList()">Clear Study List</button>
+    <div style="display: flex; gap: 8px;">
+      <button class="btn-secondary" style="margin: 0;" onclick="triggerXMLExport()">Export XML</button>
+      <button class="btn-danger" style="margin: 0;" onclick="clearStudyList()">Clear Study List</button>
+    </div>
   </div>
   <table class="study-table">
-<thead>
-  <tr>
-    <th style="width: 30%;">Word / Phrase in Context</th>
-    <th style="width: 40%;">Dictionary Root & Translations</th>
-    <th style="width: 15%;">Course / Unit</th>
-    <th style="width: 15%; text-align: center;">Times Looked Up</th>
-  </tr>
-</thead>
+    <thead>
+      <tr>
+        <th style="width: 30%;">Word / Phrase in Context</th>
+        <th style="width: 40%;">Dictionary Root & Translations</th>
+        <th style="width: 15%;">Course / Unit</th>
+        <th style="width: 15%; text-align: center;">Times Looked Up</th>
+      </tr>
+    </thead>
     <tbody id="studyListBody">
       <tr>
         <td colspan="4" class="empty-msg">No words saved to study list yet. Tap the [+] inside any translation bubble to start tracking.</td>
