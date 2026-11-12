@@ -143,7 +143,7 @@ uwch1Glossary: 'dictionaries/uwch1.json',
   <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #dee2e6; padding-bottom: 8px;">
     <h3 style="margin: 0;">My Vocabulary Study List</h3>
     <div style="display: flex; gap: 8px;">
-      <button class="btn-secondary" style="margin: 0;" onclick="triggerXMLExport()">Export XML</button>
+      <button class="btn-secondary" style="margin: 0;" onclick="triggerCSVExport()">Export CSV</button>
       <button class="btn-danger" style="margin: 0;" onclick="clearStudyList()">Clear Study List</button>
     </div>
   </div>
@@ -682,33 +682,39 @@ return `<tr>
   }).join("");
 }
 
-// --- SYSTEM XML EXPORT CONTROLLER ---
-function triggerXMLExport() {
+// --- SYSTEM CSV EXPORT CONTROLLER (WITH TIMESTAMP) ---
+function triggerCSVExport() {
   let listCache = localStorage.getItem("welshLocalStudySession");
   let loggedWords = listCache ? JSON.parse(listCache) : [];
 
-  // 🛠️ FIXED: Replaced the undefined tableBody reference with a clean, defensive native alert!
   if (loggedWords.length === 0) {
     alert("Your vocabulary study list is currently empty. Add some words first!");
     return;
   }
 
-  let xmlString = `<?xml version="1.0" encoding="UTF-8"?>\n<studylist>\n`;
-  loggedWords.forEach(item => {
-    xmlString += `  <item>\n`;
-    xmlString += `    <word>${escapeXML(item.word)}</word>\n`;
-    xmlString += `    <definition>${escapeXML(item.displayDef)}</definition>\n`;
-    xmlString += `    <course>${escapeXML(item.course)}</course>\n`;
-    xmlString += `    <unit>${escapeXML(item.unit)}</unit>\n`;
-    xmlString += `    <count>${item.count}</count>\n`;
-    xmlString += `  </item>\n`;
-  });
-  xmlString += `</studylist>`;
+  // Generate a clean timestamp: YYYY-MM-DD_HH-MM
+  const now = new Date();
+  const dateStr = now.toISOString().slice(0, 10);
+  const timeStr = now.toTimeString().slice(0, 5).replace(":", "-");
+  const filename = `welsh_vocab_study_list_${dateStr}_${timeStr}.csv`;
 
-  const blob = new Blob([xmlString], { type: "text/xml" });
+  // CSV Header
+  let csvContent = "Word,Definition,Course,Unit,Count\n";
+
+  loggedWords.forEach(item => {
+    const word = `"${(item.word || "").replace(/"/g, '""')}"`;
+    const definition = `"${(item.displayDef || "").replace(/"/g, '""')}"`;
+    const course = `"${(item.course || "").replace(/"/g, '""')}"`;
+    const unit = `"${(item.unit || "").replace(/"/g, '""')}"`;
+    const count = item.count || 1;
+
+    csvContent += `${word},${definition},${course},${unit},${count}\n`;
+  });
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
-  link.download = "welsh_vocabulary_study_list.xml";
+  link.download = filename;
   link.click();
 }
 
